@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>FindAndFollow</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{e1c40f4b-8f6a-4d53-87ad-36658dd07bbb}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>FindAndFollow</RootNamespace>
+    <AssemblyName>FindAndFollow</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <Parameterization>SIMPLE</Parameterization>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Source" />
+    <Folder Include="Source\Function" />
+    <Folder Include="Source\Table" />
+    <Folder Include="Source\Table\Index" />
+    <Folder Include="Source\Table\Constraint" />
+    <Folder Include="Source\Table\Constraint\AK" />
+    <Folder Include="Source\Table\Constraint\Check" />
+    <Folder Include="Source\Table\Constraint\Default" />
+    <Folder Include="Source\Table\Constraint\FK" />
+    <Folder Include="Source\Table\Constraint\PK" />
+    <Folder Include="Source\System" />
+    <Folder Include="Source\Procedure" />
+    <Folder Include="Publish profiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Source\Table\Constraint\Check\Car.sql" />
+    <Build Include="Source\Table\Constraint\FK\Car.sql" />
+    <Build Include="Source\Table\Constraint\FK\CarImage.sql" />
+    <Build Include="Source\Table\Constraint\FK\CurrencyRate.sql" />
+    <Build Include="Source\Table\Constraint\FK\Log.sql" />
+    <Build Include="Source\Table\Constraint\FK\OptionSet.sql" />
+    <Build Include="Source\Table\Constraint\FK\Place.sql" />
+    <Build Include="Source\Table\Constraint\FK\Search.sql" />
+    <Build Include="Source\Table\Constraint\FK\SearchCar.sql" />
+    <Build Include="Source\Table\Constraint\FK\SearchSite.sql" />
+    <Build Include="Source\Table\Constraint\FK\Site.sql" />
+    <Build Include="Source\Table\Constraint\FK\Subscription.sql" />
+    <Build Include="Source\Table\Constraint\PK\Car.sql" />
+    <Build Include="Source\Table\Constraint\PK\CarBrand.sql" />
+    <Build Include="Source\Table\Constraint\PK\CarImage.sql" />
+    <Build Include="Source\Table\Constraint\PK\City.sql" />
+    <Build Include="Source\Table\Constraint\PK\Color.sql" />
+    <Build Include="Source\Table\Constraint\PK\Country.sql" />
+    <Build Include="Source\Table\Constraint\PK\Currency.sql" />
+    <Build Include="Source\Table\Constraint\PK\CurrencyRate.sql" />
+    <Build Include="Source\Table\Constraint\PK\Log.sql" />
+    <Build Include="Source\Table\Constraint\PK\Option.sql" />
+    <Build Include="Source\Table\Constraint\PK\OptionSet.sql" />
+    <Build Include="Source\Table\Constraint\PK\Place.sql" />
+    <Build Include="Source\Table\Constraint\PK\Region.sql" />
+    <Build Include="Source\Table\Constraint\PK\Search.sql" />
+    <Build Include="Source\Table\Constraint\PK\SearchCar.sql" />
+    <Build Include="Source\Table\Constraint\PK\SearchSite.sql" />
+    <Build Include="Source\Table\Constraint\PK\Site.sql" />
+    <Build Include="Source\Table\Constraint\PK\Subscription.sql" />
+    <Build Include="Source\Table\Constraint\PK\User.sql" />
+    <Build Include="Source\Table\Car.sql" />
+    <Build Include="Source\Table\CarBrand.sql" />
+    <Build Include="Source\Table\CarImage.sql" />
+    <Build Include="Source\Table\City.sql" />
+    <Build Include="Source\Table\Color.sql" />
+    <Build Include="Source\Table\Country.sql" />
+    <Build Include="Source\Table\Currency.sql" />
+    <Build Include="Source\Table\CurrencyRate.sql" />
+    <Build Include="Source\Table\Log.sql" />
+    <Build Include="Source\Table\Option.sql" />
+    <Build Include="Source\Table\OptionSet.sql" />
+    <Build Include="Source\Table\Place.sql" />
+    <Build Include="Source\Table\Region.sql" />
+    <Build Include="Source\Table\Search.sql" />
+    <Build Include="Source\Table\SearchCar.sql" />
+    <Build Include="Source\Table\SearchSite.sql" />
+    <Build Include="Source\Table\Site.sql" />
+    <Build Include="Source\Table\Subscription.sql" />
+    <Build Include="Source\Table\User.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish profiles\FindAndFollow.local.publish.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+</Project>
