@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.[Option] ADD CONSTRAINT dfOption_CreatedOn DEFAULT GETDATE() FOR CreatedOn

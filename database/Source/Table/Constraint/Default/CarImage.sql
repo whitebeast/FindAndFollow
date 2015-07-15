@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.CarImage ADD CONSTRAINT dfCarImage_CreatedOn DEFAULT GETDATE() FOR CreatedOn

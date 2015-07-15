@@ -70,7 +70,7 @@
     <Folder Include="Source\Table\Constraint\PK" />
     <Folder Include="Source\System" />
     <Folder Include="Source\Procedure" />
-    <Folder Include="Publish profiles" />
+    <Folder Include="Source\System\SQLJob" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Source\Table\Constraint\Check\Car.sql" />
@@ -123,11 +123,45 @@
     <Build Include="Source\Table\Site.sql" />
     <Build Include="Source\Table\Subscription.sql" />
     <Build Include="Source\Table\User.sql" />
+    <Build Include="Source\Table\Index\Currency.sql" />
+    <Build Include="Source\Procedure\CurrencyMerge.sql" />
+    <Build Include="Source\Procedure\CurrencyRateGet.sql" />
+    <Build Include="Source\Procedure\HTTPCall.sql" />
+    <PostDeploy Include="Source\PostDeployment.sql" />
+    <Build Include="Source\Table\Constraint\Default\Car.sql" />
+    <Build Include="Source\Table\Constraint\Default\CarBrand.sql" />
+    <Build Include="Source\Table\Constraint\Default\Region.sql" />
+    <Build Include="Source\Table\Constraint\Default\SearchSite.sql" />
+    <Build Include="Source\Table\Constraint\Default\Search.sql" />
+    <Build Include="Source\Table\Constraint\Default\SearchCar.sql" />
+    <Build Include="Source\Table\Constraint\Default\Site.sql" />
+    <Build Include="Source\Table\Constraint\Default\Subscription.sql" />
+    <Build Include="Source\Table\Constraint\Default\User.sql" />
+    <Build Include="Source\Table\Constraint\Default\CarImage.sql" />
+    <Build Include="Source\Table\Constraint\Default\City.sql" />
+    <Build Include="Source\Table\Constraint\Default\Color.sql" />
+    <Build Include="Source\Table\Constraint\Default\Country.sql" />
+    <Build Include="Source\Table\Constraint\Default\Currency.sql" />
+    <Build Include="Source\Table\Constraint\Default\Log.sql" />
+    <Build Include="Source\Table\Constraint\Default\Option.sql" />
+    <Build Include="Source\Table\Constraint\Default\OptionSet.sql" />
+    <Build Include="Source\Table\Constraint\Default\Place.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Publish profiles\FindAndFollow.local.publish.publish.xml" />
+    <None Include="Properties\FindAndFollow.local.publish.publish.xml" />
+    <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <SqlCmdVariable Include="FindAndFollow">
+      <DefaultValue>FindAndFollow</DefaultValue>
+      <Value>$(SqlCmdVar__1)</Value>
+    </SqlCmdVariable>
+    <SqlCmdVariable Include="msdb">
+      <DefaultValue>msdb</DefaultValue>
+      <Value>$(SqlCmdVar__2)</Value>
+    </SqlCmdVariable>
   </ItemGroup>
 </Project>

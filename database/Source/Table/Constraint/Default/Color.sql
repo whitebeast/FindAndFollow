@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.Color ADD CONSTRAINT dfColor_CreatedOn DEFAULT GETDATE() FOR CreatedOn

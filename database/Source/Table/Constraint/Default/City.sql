@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.City ADD CONSTRAINT dfCity_CreatedOn DEFAULT GETDATE() FOR CreatedOn

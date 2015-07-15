@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.OptionSet ADD CONSTRAINT dfOptionSet_CreatedOn DEFAULT GETDATE() FOR CreatedOn

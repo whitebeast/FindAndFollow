@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.[Log] ADD CONSTRAINT dfLog_CreatedOn DEFAULT GETDATE() FOR CreatedOn

@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.[User] ADD CONSTRAINT dfUser_CreatedOn DEFAULT GETDATE() FOR CreatedOn

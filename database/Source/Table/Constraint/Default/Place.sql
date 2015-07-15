@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.Place ADD CONSTRAINT dfPlace_CreatedOn DEFAULT GETDATE() FOR CreatedOn
