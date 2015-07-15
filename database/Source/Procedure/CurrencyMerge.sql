@@ -23,16 +23,25 @@ set nocount on;
                    ,'BYR' as CharCode
                    ,'Belorussian Ruble' as EnglishName
             UNION ALL
-            SELECT	
+            SELECT
                     CurrencyId
                    ,CharCode
-                   ,EnglishName
-	        FROM	OpenXML(@Handle,'//DailyExRates/Currency')
-	        WITH	( 
+                   ,EnglishName 
+            FROM 
+                (
+                    SELECT	
+                            CurrencyId
+                           ,CharCode
+                           ,EnglishName
+	                FROM	OpenXML(@Handle,'//DailyExRates/Currency')
+	                WITH	
+	                ( 
                         CurrencyId      int             './@Id',
                         CharCode        varchar(3)      './CharCode',
                         EnglishName     varchar(255)    './EnglishName'
-                    )
+	                ) 
+                ) AS t 
+            WHERE CharCode IN ('USD', 'EUR', 'RUB')  
 		) as source
     on target.CurrencyId = source.CurrencyId
     when matched 
