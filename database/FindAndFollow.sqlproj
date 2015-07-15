@@ -164,4 +164,7 @@
       <Value>$(SqlCmdVar__2)</Value>
     </SqlCmdVariable>
   </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Source\PreDeployment.sql" />
+  </ItemGroup>
 </Project>
