@@ -5,7 +5,6 @@
         ShortDescription     NVARCHAR(100) NOT NULL,
         FullDescription      NVARCHAR(500) NOT NULL,
         CountryId            INT NOT NULL,
-        CreatedOn            DATETIME2 NOT NULL,
-        ModifiedOn           DATETIME2 NULL
+        CreatedOn            DATETIME2 NOT NULL
     )
     ;

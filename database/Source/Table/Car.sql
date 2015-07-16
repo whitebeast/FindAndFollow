@@ -1,9 +1,9 @@
 ﻿CREATE TABLE Car
     (
         CarId                 INT IDENTITY(1, 1) NOT NULL,
-        [CarBrandId]               INT NOT NULL,
+        CarBrandId            INT NOT NULL,
         Model                 VARCHAR(50) NOT NULL,
-        PlaceId               INT NOT NULL,
+        SiteId                INT NOT NULL,
         Price                 MONEY NOT NULL,
         BodyType              TINYINT NOT NULL,
         ModelYear             SMALLINT NOT NULL,

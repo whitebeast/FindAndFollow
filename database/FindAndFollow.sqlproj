@@ -71,6 +71,7 @@
     <Folder Include="Source\System" />
     <Folder Include="Source\Procedure" />
     <Folder Include="Source\System\SQLJob" />
+    <Folder Include="Source\View" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Source\Table\Constraint\Check\Car.sql" />
@@ -146,6 +147,8 @@
     <Build Include="Source\Table\Constraint\Default\Option.sql" />
     <Build Include="Source\Table\Constraint\Default\OptionSet.sql" />
     <Build Include="Source\Table\Constraint\Default\Place.sql" />
+    <Build Include="Source\View\vwCar.sql" />
+    <Build Include="Source\Table\Constraint\Check\Subscription.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\FindAndFollow.local.publish.publish.xml" />
