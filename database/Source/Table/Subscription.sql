@@ -4,7 +4,7 @@
         UserId             INT NOT NULL,
         DateStart          DATE NOT NULL,
         DateEnd            DATE NOT NULL,
-		Type			   TINYINT NOT NULL,
+        Type               TINYINT NOT NULL,
         CreatedOn          DATETIME2 NOT NULL
     )
     ;

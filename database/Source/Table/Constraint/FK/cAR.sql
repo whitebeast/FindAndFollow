@@ -1,7 +1,7 @@
 ﻿ALTER TABLE dbo.Car 
-    ADD CONSTRAINT fkCar_Brand 
-    FOREIGN KEY (CarBrandId) 
-    REFERENCES dbo.CarBrand (CarBrandId) 
+    ADD CONSTRAINT fkCar_CarModel 
+    FOREIGN KEY (CarModelId) 
+    REFERENCES dbo.CarModel (CarModelId) 
 GO
 
 ALTER TABLE dbo.Car 
@@ -14,10 +14,4 @@ ALTER TABLE dbo.Car
     ADD CONSTRAINT fkCar_Color 
     FOREIGN KEY (ColorId) 
     REFERENCES dbo.Color (ColorId) 
-GO
-
-ALTER TABLE dbo.Car 
-    ADD CONSTRAINT fkCar_OptionSet 
-    FOREIGN KEY (OptionSetId) 
-    REFERENCES dbo.OptionSet (OptionSetId) 
 GO

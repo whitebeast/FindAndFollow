@@ -2,21 +2,21 @@
      @pCurrencyCode             varchar(3) = 'USD'
     ,@pFromDate                 date = NULL
     ,@pToDate                   date = NULL
-    ,@pDebug	                bit = 0
+    ,@pDebug                    bit = 0
 
 AS
 BEGIN
-	SET NOCOUNT ON;
+    SET NOCOUNT ON;
 
-	DECLARE	 @ErrCode           Int
-		    ,@Handle            Int
-		    ,@URL               SysName
+    DECLARE  @ErrCode           Int
+            ,@Handle            Int
+            ,@URL               SysName
             ,@xml               nvarchar(max)
             ,@ErrorMessage      varchar(2000)
             ,@CurrencyId        int
             ,@RowCnt            int
     ;
-	
+    
     if DATEDIFF(day,@pFromDate,@pToDate) > 365 raiserror('Time interval should be less than one year.',18,1);
 
     if coalesce(@pToDate,@pFromDate) is null begin
@@ -36,19 +36,19 @@ BEGIN
     select @url = 'http://www.nbrb.by/Services/XmlExRatesDyn.aspx?curId=' + cast(@CurrencyId as varchar) + '&fromDate=' + cast(@pFromDate as varchar) + '&toDate=' + cast(@pToDate as varchar) + '';
 
     EXEC @ErrCode = dbo.HTTPCall @URL, @XML out   IF (@ErrCode != 0) RETURN @@Error;
-	EXEC @ErrCode = sys.sp_xml_preparedocument @Handle OUT, @XML   IF  (@ErrCode != 0) BEGIN RAISERROR('Error parsing XML',18,1) RETURN @@Error END;
+    EXEC @ErrCode = sys.sp_xml_preparedocument @Handle OUT, @XML   IF  (@ErrCode != 0) BEGIN RAISERROR('Error parsing XML',18,1) RETURN @@Error END;
 
     if @pDebug = 1 select @XML;
-	exec sp_xml_preparedocument  @Handle output, @XML;
+    exec sp_xml_preparedocument  @Handle output, @XML;
 
     MERGE [dbo].[CurrencyRate] AS target
     USING 
         (
-	        SELECT	@CurrencyId as CurrencyId,
+            SELECT  @CurrencyId as CurrencyId,
                     RateDate,
                     Rate
-	        FROM	OpenXML(@Handle,'//Currency/Record')
-	        WITH	( 
+            FROM    OpenXML(@Handle,'//Currency/Record')
+            WITH    ( 
                         RateDate        date    './@Date',
                         Rate            money   './Rate' 
                     )
@@ -71,15 +71,15 @@ BEGIN
     --when not matched by source then delete
     ;
     
-	exec sp_xml_removedocument @Handle;
+    exec sp_xml_removedocument @Handle;
 END
 GO
 
 /*
 
-EXEC	[dbo].[CurrencyRateGet]
+EXEC    [dbo].[CurrencyRateGet]
         @pCurrencyCode = 'USD',
-		@pFromDate = '2014-01-01',
+        @pFromDate = '2014-01-01',
         @pToDate = '2014-02-19',
         @pDebug = 0
 */

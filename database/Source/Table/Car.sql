@@ -1,8 +1,7 @@
 ﻿CREATE TABLE Car
     (
         CarId                 INT IDENTITY(1, 1) NOT NULL,
-        CarBrandId            INT NOT NULL,
-        Model                 VARCHAR(50) NOT NULL,
+        CarModelId            INT NOT NULL,
         SiteId                INT NOT NULL,
         Price                 MONEY NOT NULL,
         BodyType              TINYINT NOT NULL,
@@ -18,7 +17,6 @@
         IsCustomsCleared      BIT NOT NULL,
         IsSwap                BIT NOT NULL,
         Description           NVARCHAR(1000) NULL,
-        OptionSetId           INT NOT NULL,
         OriginalURL           VARCHAR(1000),
         CreatedOn             DATETIME2 NOT NULL
     )

@@ -79,10 +79,8 @@
     <Build Include="Source\Table\Constraint\FK\CarImage.sql" />
     <Build Include="Source\Table\Constraint\FK\CurrencyRate.sql" />
     <Build Include="Source\Table\Constraint\FK\Log.sql" />
-    <Build Include="Source\Table\Constraint\FK\OptionSet.sql" />
     <Build Include="Source\Table\Constraint\FK\Place.sql" />
     <Build Include="Source\Table\Constraint\FK\Search.sql" />
-    <Build Include="Source\Table\Constraint\FK\SearchCar.sql" />
     <Build Include="Source\Table\Constraint\FK\SearchSite.sql" />
     <Build Include="Source\Table\Constraint\FK\Site.sql" />
     <Build Include="Source\Table\Constraint\FK\Subscription.sql" />
@@ -95,12 +93,9 @@
     <Build Include="Source\Table\Constraint\PK\Currency.sql" />
     <Build Include="Source\Table\Constraint\PK\CurrencyRate.sql" />
     <Build Include="Source\Table\Constraint\PK\Log.sql" />
-    <Build Include="Source\Table\Constraint\PK\Option.sql" />
-    <Build Include="Source\Table\Constraint\PK\OptionSet.sql" />
     <Build Include="Source\Table\Constraint\PK\Place.sql" />
     <Build Include="Source\Table\Constraint\PK\Region.sql" />
     <Build Include="Source\Table\Constraint\PK\Search.sql" />
-    <Build Include="Source\Table\Constraint\PK\SearchCar.sql" />
     <Build Include="Source\Table\Constraint\PK\SearchSite.sql" />
     <Build Include="Source\Table\Constraint\PK\Site.sql" />
     <Build Include="Source\Table\Constraint\PK\Subscription.sql" />
@@ -114,12 +109,9 @@
     <Build Include="Source\Table\Currency.sql" />
     <Build Include="Source\Table\CurrencyRate.sql" />
     <Build Include="Source\Table\Log.sql" />
-    <Build Include="Source\Table\Option.sql" />
-    <Build Include="Source\Table\OptionSet.sql" />
     <Build Include="Source\Table\Place.sql" />
     <Build Include="Source\Table\Region.sql" />
     <Build Include="Source\Table\Search.sql" />
-    <Build Include="Source\Table\SearchCar.sql" />
     <Build Include="Source\Table\SearchSite.sql" />
     <Build Include="Source\Table\Site.sql" />
     <Build Include="Source\Table\Subscription.sql" />
@@ -134,7 +126,6 @@
     <Build Include="Source\Table\Constraint\Default\Region.sql" />
     <Build Include="Source\Table\Constraint\Default\SearchSite.sql" />
     <Build Include="Source\Table\Constraint\Default\Search.sql" />
-    <Build Include="Source\Table\Constraint\Default\SearchCar.sql" />
     <Build Include="Source\Table\Constraint\Default\Site.sql" />
     <Build Include="Source\Table\Constraint\Default\Subscription.sql" />
     <Build Include="Source\Table\Constraint\Default\User.sql" />
@@ -144,15 +135,17 @@
     <Build Include="Source\Table\Constraint\Default\Country.sql" />
     <Build Include="Source\Table\Constraint\Default\Currency.sql" />
     <Build Include="Source\Table\Constraint\Default\Log.sql" />
-    <Build Include="Source\Table\Constraint\Default\Option.sql" />
-    <Build Include="Source\Table\Constraint\Default\OptionSet.sql" />
     <Build Include="Source\Table\Constraint\Default\Place.sql" />
     <Build Include="Source\View\vwCar.sql" />
     <Build Include="Source\Table\Constraint\Check\Subscription.sql" />
+    <Build Include="Source\Table\CarModel.sql" />
+    <Build Include="Source\Table\Constraint\Default\CarModel.sql" />
+    <Build Include="Source\Table\Constraint\FK\CarModel.sql" />
+    <Build Include="Source\Table\Constraint\PK\CarModel.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\FindAndFollow.local.publish.publish.xml" />
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
+    <None Include="Properties\FindAndFollow.local.publish.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
