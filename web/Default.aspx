@@ -45,6 +45,8 @@
             ConnectionString="<%$ ConnectionStrings:FindAndFollowConnectionString %>" 
             SelectCommand="SELECT [RateDate], [Rate], [CurrencyId] FROM [CurrencyRate]">
         </asp:SqlDataSource>
+        <asp:Button ID="BtnUploadData" runat="server" OnClick="BtnUploadData_Click" 
+            Text="Upload Data" />
     </form>
 </body>
 </html>
