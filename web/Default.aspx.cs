@@ -20,22 +20,38 @@ namespace FindAndFollow
           // loading page..
         }
 
-        public static List<string> getLinks(string url)
+        public static List<string> getLinks(string url, string siteName)
         {
             // upload web page
             var webGet = new HtmlWeb();
             webGet.OverrideEncoding = System.Text.Encoding.UTF8;
             var doc = webGet.Load(url);
 
-            // get block with links
-            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/table[2]/tr[2]/table[4]/td[1]/td[2]/table[1]/tr[8]/td[1]");
-            // get links
-            HtmlNodeCollection oursNode = bodyNode.SelectNodes("/html[1]/body[1]/table[2]/tr[2]/table[4]/td[1]/td[2]/table[1]/tr[8]/td[1]//a[@href]");
-
             List<string> lst = new List<string>();
-            foreach (HtmlNode href in oursNode)
+
+            if (siteName == "av.by")
             {
-                lst.Add(href.Attributes["href"].Value);
+                // get block with links
+                HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]");
+                // get links
+                HtmlNodeCollection oursNode = bodyNode.SelectNodes("/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]//a[@href]");
+
+                foreach (HtmlNode href in oursNode)
+                {
+                    lst.Add(href.Attributes["href"].Value);
+                }
+            }
+            if (siteName == "abw.by")
+            {
+                // get block with links
+                HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[3]/td[1]");
+                // get links
+                HtmlNodeCollection oursNode = bodyNode.SelectNodes("/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[3]/td[1]//a[@href]");
+
+                foreach (HtmlNode href in oursNode)
+                {
+                    lst.Add(href.Attributes["href"].Value);
+                }
             }
 
             return lst;
@@ -61,23 +77,19 @@ namespace FindAndFollow
 
         protected void BtnUploadData_Click(object sender, EventArgs e)
         {
-            string urlPage = "http://www.av.by/public/search.php?event=Search&category_parent%5B0%5D=0&category_id%5B0%5D=0&year_id=0&year_id_max=0&engine_type_id2=1&engine_type_all=1&body_type_id=0&transmission_id=0&currency_id=USD&price_value=0&price_value_max=0&country_id=0&region_id=0&city_id2=0&order_id=0&submit_presearch=%CF%EE%EA%E0%E7%E0%F2%FC%3A+95138";
-            List<string> lst = getLinks(urlPage);
+            string urlPageAv = "http://www.av.by/public/search.php?event=Search&currency_id=USD";
+            List<string> lstAv = getLinks(urlPageAv, "av.by");
+
+            string urlPageAbw = "http://www.abw.by/index.php?set_small_form_1=1&act=public_search&do=search&index=1&adv_type=1&adv_group=&marka%5B%5D=&model%5B%5D=&type_engine=&transmission=&vol1=&vol2=&year1=1960&year2=2015&cost_val1=&cost_val2=&u_city=&period=&sort=&na_rf=&type_body=&privod=&probeg_col1=&probeg_col2=&key_word_a=";
+            List<string> lstAbw = getLinks(urlPageAbw, "abw.by");
 
             // TODO - run clean stored procedure from db
-
-            // parser by contentType
-            //foreach (string Url in lst)
-            //{
-            //    // Car Name 
-            //    getData(Url, "/html[1]/head[1]/title[1]/#text[1]", "CarName");
-            //}
 
             // INSERT Statement
             string insertStmt = "INSERT INTO dbo.UrlsTemp(OriginalURL) " + "VALUES(@URL)";
             
             // Set up SQL Server connection
-            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString2"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
             
             sqlConnection.Open();
@@ -86,15 +98,20 @@ namespace FindAndFollow
             // Define parameters
             commandInsert.Parameters.Add("@URL", SqlDbType.VarChar, 1000);
             
-            foreach (string Url in lst)
+            // av.by
+            foreach (string Url in lstAv)
             {
-                //commandInsert.Parameters["@URL"].Value = "http://www.av.by/public/" + Url;
-                commandInsert.Parameters["@URL"].Value = getData("http://www.av.by/public/" + Url, "/html[1]/head[1]/title[1]", "CarName");
-
-                // Run query
+                commandInsert.Parameters["@URL"].Value = getData("http://www.av.by/public/" + Url, "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/header[1]/h1[1]", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
             
+            // abw.by
+            foreach (string Url in lstAbw)
+            {
+                commandInsert.Parameters["@URL"].Value = getData("http://www.abw.by/" + Url, "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
+                commandInsert.ExecuteNonQuery();
+            }
+
             sqlConnection.Close();
         }
     }
