@@ -25,6 +25,11 @@ namespace FindAndFollow
             // upload web page
             var webGet = new HtmlWeb();
             webGet.OverrideEncoding = System.Text.Encoding.UTF8;
+            webGet.PreRequest += request =>
+            {
+                request.CookieContainer = new System.Net.CookieContainer();
+                return true;
+            };
             var doc = webGet.Load(url);
 
             List<string> lst = new List<string>();
@@ -53,7 +58,18 @@ namespace FindAndFollow
                     lst.Add(href.Attributes["href"].Value);
                 }
             }
+            if (siteName == "ab.onliner.by")
+            {
+                // get block with links
+                HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/table[1]");
+                // get links
+                HtmlNodeCollection oursNode = bodyNode.SelectNodes("/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/table[1]//a[@href]");
 
+                foreach (HtmlNode href in oursNode)
+                {
+                    lst.Add(href.Attributes["href"].Value);
+                }
+            }
             return lst;
         }
 
@@ -83,13 +99,16 @@ namespace FindAndFollow
             string urlPageAbw = "http://www.abw.by/index.php?set_small_form_1=1&act=public_search&do=search&index=1&adv_type=1&adv_group=&marka%5B%5D=&model%5B%5D=&type_engine=&transmission=&vol1=&vol2=&year1=1960&year2=2015&cost_val1=&cost_val2=&u_city=&period=&sort=&na_rf=&type_body=&privod=&probeg_col1=&probeg_col2=&key_word_a=";
             List<string> lstAbw = getLinks(urlPageAbw, "abw.by");
 
+            string urlPageAb = "http://ab.onliner.by";
+            List<string> lstAb = getLinks(urlPageAb, "ab.onliner.by");
+
             // TODO - run clean stored procedure from db
 
             // INSERT Statement
             string insertStmt = "INSERT INTO dbo.UrlsTemp(OriginalURL) " + "VALUES(@URL)";
             
             // Set up SQL Server connection
-            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString2"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
             
             sqlConnection.Open();
@@ -97,7 +116,7 @@ namespace FindAndFollow
             
             // Define parameters
             commandInsert.Parameters.Add("@URL", SqlDbType.VarChar, 1000);
-            
+
             // av.by
             foreach (string Url in lstAv)
             {
@@ -109,6 +128,13 @@ namespace FindAndFollow
             foreach (string Url in lstAbw)
             {
                 commandInsert.Parameters["@URL"].Value = getData("http://www.abw.by/" + Url, "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
+                commandInsert.ExecuteNonQuery();
+            }
+
+            // ab.onliner.by
+            foreach (string Url in lstAb)
+            {
+                commandInsert.Parameters["@URL"].Value = getData("http://www.ab.onliner.by/" + Url, "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
 
