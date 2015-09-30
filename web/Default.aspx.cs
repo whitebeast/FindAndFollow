@@ -22,14 +22,12 @@ namespace FindAndFollow
         public static List<string> getLinks(string url, string siteName)
         {
             // upload web page
-            var webGet = new HtmlWeb();
-            webGet.OverrideEncoding = Encoding.UTF8;
-            webGet.PreRequest += request =>
-            {
-                request.CookieContainer = new System.Net.CookieContainer();
-                return true;
-            };
-            var doc = webGet.Load(url);
+
+            WebClient webGet = new WebClient();
+            webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
+            var html = webGet.DownloadString(url);
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(html);
 
             List<string> lst = new List<string>();
 
@@ -101,7 +99,7 @@ namespace FindAndFollow
             string urlPageAbw = "http://www.abw.by/index.php?set_small_form_1=1&act=public_search&do=search&index=1&adv_type=1&adv_group=&marka%5B%5D=&model%5B%5D=&type_engine=&transmission=&vol1=&vol2=&year1=1960&year2=2015&cost_val1=&cost_val2=&u_city=&period=&sort=&na_rf=&type_body=&privod=&probeg_col1=&probeg_col2=&key_word_a=";
             List<string> lstAbw = getLinks(urlPageAbw, "abw.by");
 
-            string urlPageAb = "http://ab.onliner.by";
+            string urlPageAb = "http://ab.onliner.by/#currency=USD&sort[]=creation_date&page=1";
             List<string> lstAb = getLinks(urlPageAb, "ab.onliner.by");
 
             // TODO - run clean stored procedure from db
@@ -132,11 +130,11 @@ namespace FindAndFollow
                 commandInsert.Parameters["@URL"].Value = getData("http://www.abw.by/" + Url, "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
-            
+
             // ab.onliner.by
-            foreach (string Url in lstAb)
-            {
-                commandInsert.Parameters["@URL"].Value = getData("http://www.ab.onliner.by/" + Url, "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
+            for (int i = 2328800; i < 2328818; i++)
+			{
+                commandInsert.Parameters["@URL"].Value = getData("http://ab.onliner.by/car/" + i.ToString(), "//*[@id='minWidth']/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
             
