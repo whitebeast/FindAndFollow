@@ -8,8 +8,7 @@ using System.Net;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
-//using System.Linq;
-//using System.IO;
+using System.Text;
 
 namespace FindAndFollow
 {
@@ -24,7 +23,7 @@ namespace FindAndFollow
         {
             // upload web page
             var webGet = new HtmlWeb();
-            webGet.OverrideEncoding = System.Text.Encoding.UTF8;
+            webGet.OverrideEncoding = Encoding.UTF8;
             webGet.PreRequest += request =>
             {
                 request.CookieContainer = new System.Net.CookieContainer();
@@ -75,9 +74,12 @@ namespace FindAndFollow
 
         public static string getData(string url, string XPath, string contentType)
         {
-            // upload web page
-            var webGet = new HtmlWeb();
-            var doc = webGet.Load(url);
+            // upload page
+            WebClient webGet = new WebClient();
+            webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
+            var html = webGet.DownloadString(url);
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(html);
 
             // get block with data
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(XPath);
@@ -105,7 +107,7 @@ namespace FindAndFollow
             // TODO - run clean stored procedure from db
 
             // INSERT Statement
-            string insertStmt = "INSERT INTO dbo.UrlsTemp(OriginalURL) " + "VALUES(@URL)";
+            string insertStmt = "INSERT INTO dbo.UrlsTemp(OriginalURL) VALUES(@URL)";
             
             // Set up SQL Server connection
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
@@ -115,12 +117,12 @@ namespace FindAndFollow
             SqlCommand commandInsert = new SqlCommand(insertStmt, sqlConnection);
             
             // Define parameters
-            commandInsert.Parameters.Add("@URL", SqlDbType.VarChar, 1000);
+            commandInsert.Parameters.Add("@URL", SqlDbType.NVarChar, 1000);
 
             // av.by
             foreach (string Url in lstAv)
             {
-                commandInsert.Parameters["@URL"].Value = getData("http://www.av.by/public/" + Url, "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/header[1]/h1[1]", "CarName");
+                commandInsert.Parameters["@URL"].Value = getData("http://www.av.by/public/" + Url,"/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/header[1]/h1[1]", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
             
@@ -130,14 +132,14 @@ namespace FindAndFollow
                 commandInsert.Parameters["@URL"].Value = getData("http://www.abw.by/" + Url, "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
-
+            
             // ab.onliner.by
             foreach (string Url in lstAb)
             {
                 commandInsert.Parameters["@URL"].Value = getData("http://www.ab.onliner.by/" + Url, "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
-
+            
             sqlConnection.Close();
         }
     }
