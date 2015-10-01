@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using HtmlAgilityPack; // need add reference
 using System.Net;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace FindAndFollow
 {
@@ -22,12 +18,13 @@ namespace FindAndFollow
         public static List<string> getLinks(string url, string siteName)
         {
             // upload web page
-
             WebClient webGet = new WebClient();
             webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
-            var html = webGet.DownloadString(url);
-            HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(html);
+            try
+            {
+                var html = webGet.DownloadString(url);
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(html);
 
             List<string> lst = new List<string>();
 
@@ -68,6 +65,11 @@ namespace FindAndFollow
                 }
             }
             return lst;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public static string getData(string url, string XPath, string contentType)
@@ -75,19 +77,28 @@ namespace FindAndFollow
             // upload page
             WebClient webGet = new WebClient();
             webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
-            var html = webGet.DownloadString(url);
-            HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(html);
 
-            // get block with data
-            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(XPath);
-            if (bodyNode == null)
+            try
             {
-                return "null!";
+                var html = webGet.DownloadString(url);
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(html);
+
+                // get block with data
+                HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(XPath);
+                if (bodyNode == null)
+                {
+                    return "null";
+                }
+                else
+                {
+                    return bodyNode.InnerHtml;
+                }
             }
-            else
+            catch
+                (Exception e)
             {
-                return bodyNode.InnerHtml;
+                return "null";
             }
         }
 
@@ -105,7 +116,7 @@ namespace FindAndFollow
             // TODO - run clean stored procedure from db
 
             // INSERT Statement
-            string insertStmt = "INSERT INTO dbo.UrlsTemp(OriginalURL) VALUES(@URL)";
+            string insertStmt = "INSERT INTO dbo.UrlsTemp(OriginalURL) VALUES(NULLIF(@URL, 'null'))";
             
             // Set up SQL Server connection
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
@@ -118,21 +129,21 @@ namespace FindAndFollow
             commandInsert.Parameters.Add("@URL", SqlDbType.NVarChar, 1000);
 
             // av.by
-            foreach (string Url in lstAv)
+            for (int i = 10707100; i < 10707116; i++)
             {
-                commandInsert.Parameters["@URL"].Value = getData("http://www.av.by/public/" + Url,"/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/header[1]/h1[1]", "CarName");
+                commandInsert.Parameters["@URL"].Value = getData("http://www.av.by/public/public.php?event=View&public_id=" + i.ToString(), "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/header[1]/h1[1]", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
             
             // abw.by
-            foreach (string Url in lstAbw)
+            for (int i = 8155541; i < 8155561; i++)
             {
-                commandInsert.Parameters["@URL"].Value = getData("http://www.abw.by/" + Url, "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
+                commandInsert.Parameters["@URL"].Value = getData("http://www.abw.by/allpublic/sell/" + i.ToString(), "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]/p[1]/b[1]", "CarName");
                 commandInsert.ExecuteNonQuery();
             }
 
             // ab.onliner.by
-            for (int i = 2328800; i < 2328818; i++)
+            for (int i = 2328800; i < 2328850; i++)
 			{
                 commandInsert.Parameters["@URL"].Value = getData("http://ab.onliner.by/car/" + i.ToString(), "//*[@id='minWidth']/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong", "CarName");
                 commandInsert.ExecuteNonQuery();
