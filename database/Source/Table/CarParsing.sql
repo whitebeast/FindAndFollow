@@ -1,0 +1,22 @@
+﻿ CREATE TABLE CarParsing(
+	ID						INT NOT NULL IDENTITY(1, 1),
+	CarBrand				NVARCHAR(1000),
+	Model					NVARCHAR(1000),
+	SiteUrl				NVARCHAR(2000),
+	Price					FLOAT,
+	BodyType				NVARCHAR(1000),
+	ModelYear			INT,
+	EngineType			NVARCHAR(200),
+	EngineSize			INT,
+	TransmissionType	NVARCHAR(100),
+	DriveType			NVARCHAR(100),
+	Condition			BIT,
+	Mileage				INT,
+	Color					NVARCHAR(100),
+	SellerType			NVARCHAR(100),
+	IsCustomsCleared	NVARCHAR(100),
+	IsSwap				NVARCHAR(100),
+	[Description]		NVARCHAR(2000),
+	CreatedOn			NVARCHAR(100),
+	UploadDate			DATETIME NOT NULL
+	)
