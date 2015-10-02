@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE CarParsingClean
+AS
+SET NOCOUNT ON
+
+DELETE FROM CarParsing WHERE IsPageExist = 0
