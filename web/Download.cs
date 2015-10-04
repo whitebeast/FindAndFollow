@@ -1,36 +1,43 @@
 ﻿using System;
 using System.Net;
 using HtmlAgilityPack;
+using System.Data.SqlClient;
 
 public class Download
 {
-    public static string getData(string url, string XPath, string contentType)
+    public static string[] getData(string url, string[] XPathArray, string contentType)
     {
         // Upload page
         WebClient webGet = new WebClient();
         webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
 
-        try
-        {
-            var html = webGet.DownloadString(url);
-            HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(html);
+        var html = webGet.DownloadString(url);
+        HtmlDocument doc = new HtmlDocument();
+        doc.LoadHtml(html);
 
-            // Get block with data
-            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(XPath);
-            if (bodyNode == null)
-            {
-                return "null";
-            }
-            else
-            {
-                return bodyNode.InnerHtml;
-            }
-        }
-        catch (Exception)
+        string[] returnArray = new string[XPathArray.Length];
+
+        for (int i = 0; i < XPathArray.Length ;i++)
         {
-            return "null";
+            try
+            {
+                // Get block with data
+                HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(XPathArray[i]);
+                if (bodyNode == null)
+                {
+                    returnArray[i] = null;
+                }
+                else
+                {
+                    returnArray[i] = bodyNode.InnerHtml;
+                }
+            }
+            catch (Exception)
+            {
+                returnArray[i] = null;
+            }
         }
+        return returnArray;
     }
 
     public static bool isPageExist(string url)
