@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 public class Database
 {
     // db logic
-    public static void CarParsingInsert(string url, string[] XPathArray, int startId, int finishId)
+    public static void CarParsingInsert(string url, string[] XPathArray, int startId, int finishId, string webSite)
     {
         // Insert statement
         string insertStmt = "INSERT INTO dbo.CarParsing(CarBrand, Model, ModelYear, Price, Mileage, EngineSize, Color, " +
@@ -48,13 +48,11 @@ public class Database
         // Insert data
         for (int i = startId; i < finishId; i++)
         {
-            if (Download.isPageExist(url + i.ToString()))
+            if (Download.IsPageExist(url + i.ToString()))
             {
-                //roleID = readerRole.GetInt16(0) == 0 ? (int?)null : (int)readerRole.GetInt16(0);
-                // get to null value
-                DataArray = Download.getData(url + i.ToString(), XPathArray, "NONUSE");
+                DataArray = Download.GetData(url + i.ToString(), XPathArray, webSite);
                 commandInsert.Parameters["@CarBrand"].Value = DataArray[0] == null ? sqlParameters[0].Value : DataArray[0];
-                commandInsert.Parameters["@Model"].Value = DataArray[1]== null ? sqlParameters[0].Value : DataArray[1];
+                commandInsert.Parameters["@Model"].Value = DataArray[1] == null ? sqlParameters[0].Value : DataArray[1];
                 commandInsert.Parameters["@ModelYear"].Value = DataArray[2] == null ? sqlParameters[0].Value : DataArray[2];
                 commandInsert.Parameters["@Price"].Value = DataArray[3] == null ? sqlParameters[0].Value : DataArray[3];
                 commandInsert.Parameters["@Mileage"].Value = DataArray[4] == null ? sqlParameters[0].Value : DataArray[4];

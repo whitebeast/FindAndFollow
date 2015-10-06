@@ -33,7 +33,7 @@ namespace FindAndFollow
             XPathArray[11] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[2]/div[3]/h4";              // Description
             XPathArray[12] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/header/ul/li[3]";                      // CreatedOn
 
-            Database.CarParsingInsert(avUrl, XPathArray, 10707100, 10707116);
+            Database.CarParsingInsert(avUrl, XPathArray, 10707107, 10707108, "av.by");
             
             // abw.by
             XPathArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tbody/tr[2]/td[1]/table[3]/tbody/tr[1]/td[1]/div[1]/span[1]/a[1]";  // CarBrand
@@ -50,7 +50,7 @@ namespace FindAndFollow
             XPathArray[11] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/b[2]";                                                 // Description
             XPathArray[12] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]";                                                 // CreatedOn
 
-            Database.CarParsingInsert(abwUrl, XPathArray, 8198397, 8198398);
+            Database.CarParsingInsert(abwUrl, XPathArray, 8198397, 8198398, "abw.by");
             
             // ab.onliner.by
             XPathArray[0] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong";              // CarBrand
@@ -67,7 +67,7 @@ namespace FindAndFollow
             XPathArray[11] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[5]";                            // Description
             XPathArray[12] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/small/text()";                               // CreatedOn
 
-            Database.CarParsingInsert(abUrl, XPathArray, 2328800, 2328805);
+            Database.CarParsingInsert(abUrl, XPathArray, 2328803, 2328804, "ab.onliner.by");
 
             Database.CarParsingClean();
         }
