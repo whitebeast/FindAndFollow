@@ -2,17 +2,21 @@
 using System.Net;
 using HtmlAgilityPack;
 using System.Data.SqlClient;
+using System.IO;
 
 public class Download
 {
     public static string[] getData(string url, string[] XPathArray, string contentType)
     {
-        // Upload page
+        // Upload page ab.onliner.by
+        HtmlDocument doc = new HtmlDocument();
+        doc.LoadHtml(Download2(url));
+
+        // Upload page av.by / abw.by
         WebClient webGet = new WebClient();
         webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
 
         var html = webGet.DownloadString(url);
-        HtmlDocument doc = new HtmlDocument();
         doc.LoadHtml(html);
 
         string[] returnArray = new string[XPathArray.Length];
@@ -58,5 +62,18 @@ public class Download
             //Any exception will returns false.
             return false;
         }
+    }
+
+
+    public static string Download2(string uri)
+    {
+        WebClient client = new WebClient();
+
+        Stream data = client.OpenRead(uri);
+        StreamReader reader = new StreamReader(data);
+        string s = reader.ReadToEnd();
+        data.Close();
+        reader.Close();
+        return s;
     }
 }
