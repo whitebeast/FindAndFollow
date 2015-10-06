@@ -24,7 +24,7 @@ public class Database
         // Define parameters
         commandInsert.Parameters.Add("@CarBrand", SqlDbType.NVarChar, 1000);
         commandInsert.Parameters.Add("@Model", SqlDbType.NVarChar, 1000);
-        commandInsert.Parameters.Add("@ModelYear", SqlDbType.NVarChar, 1000);
+        commandInsert.Parameters.Add("@ModelYear", SqlDbType.NVarChar, 4000);
         commandInsert.Parameters.Add("@Price", SqlDbType.NVarChar, 1000);
         commandInsert.Parameters.Add("@Mileage", SqlDbType.NVarChar, 1000);
         commandInsert.Parameters.Add("@EngineSize", SqlDbType.NVarChar, 1000);
@@ -40,7 +40,7 @@ public class Database
 
         // Set DB Null value
         SqlParameter[] sqlParameters = new SqlParameter[1];
-        sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 1000);
+        sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000);
         sqlParameters[0].Value = DBNull.Value;
 
         string[] DataArray = new string[XPathArray.Length];

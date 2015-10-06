@@ -36,18 +36,18 @@ namespace FindAndFollow
             Database.CarParsingInsert(avUrl, XPathArray, 10707107, 10707108, "av.by");
             
             // abw.by
-            XPathArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tbody/tr[2]/td[1]/table[3]/tbody/tr[1]/td[1]/div[1]/span[1]/a[1]";  // CarBrand
-            XPathArray[1] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[2]";              // Model
-            XPathArray[2] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[3]";                   // ModelYear
-            XPathArray[3] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/span[1]/span[2]";   // Price
-            XPathArray[4] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[3]";                   // Mileage
-            XPathArray[5] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[3]";                   // EngineSize
+            XPathArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[1]";              // CarBrand
+            XPathArray[1] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[2]";              // Model
+            XPathArray[2] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[3]";                   // ModelYear
+            XPathArray[3] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/span[1]/span[2]";   // Price
+            XPathArray[4] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[3]";                   // Mileage
+            XPathArray[5] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[3]";                   // EngineSize
             XPathArray[6] = "empty";                                                                                                            // Color
             XPathArray[7] = "empty";                                                                                                            // BodyType
-            XPathArray[8] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[3]";                   // EngineType
+            XPathArray[8] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[3]";                   // EngineType
             XPathArray[9] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[3]";                   // TransmissionType
             XPathArray[10] = "empty";                                                                                                           // DriveType
-            XPathArray[11] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/b[2]";                                                 // Description
+            XPathArray[11] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]";                                       // Description
             XPathArray[12] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]";                                                 // CreatedOn
 
             Database.CarParsingInsert(abwUrl, XPathArray, 8198397, 8198398, "abw.by");
@@ -68,7 +68,7 @@ namespace FindAndFollow
             XPathArray[12] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/small/text()";                               // CreatedOn
 
             Database.CarParsingInsert(abUrl, XPathArray, 2328803, 2328804, "ab.onliner.by");
-
+            
             Database.CarParsingClean();
         }
     }
