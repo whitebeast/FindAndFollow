@@ -18,17 +18,23 @@
         <strong>Default page</strong><br />
         Check DataSource:</div>
         <asp:GridView ID="GridView1" runat="server" AllowSorting="True" 
-            AutoGenerateColumns="False" CellPadding="4" DataKeyNames="RateDate,CurrencyId" 
+            AutoGenerateColumns="False" CellPadding="4" 
             DataSourceID="FindAndFollowDataSource" ForeColor="#333333" GridLines="None" 
             style="text-align: center" Width="436px">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="RateDate" HeaderText="RateDate" ReadOnly="True" 
-                    SortExpression="RateDate" />
-                <asp:BoundField DataField="Rate" HeaderText="Rate" SortExpression="Rate" />
-                <asp:BoundField DataField="CurrencyId" HeaderText="CurrencyId" ReadOnly="True" 
-                    SortExpression="CurrencyId" />
+                <asp:BoundField DataField="CarBrand" HeaderText="CarBrand" 
+                    SortExpression="CarBrand" />
+                <asp:BoundField DataField="Model" HeaderText="Model" SortExpression="Model" />
+                <asp:BoundField DataField="SiteUrl" HeaderText="SiteUrl" 
+                    SortExpression="SiteUrl" />
+                <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                <asp:BoundField DataField="ModelYear" HeaderText="ModelYear" 
+                    SortExpression="ModelYear" />
+                <asp:BoundField DataField="CreatedOn" HeaderText="CreatedOn" 
+                    SortExpression="CreatedOn" />
+                <asp:BoundField DataField="UploadDate" HeaderText="UploadDate" 
+                    SortExpression="UploadDate" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -43,7 +49,8 @@
         </asp:GridView>
         <asp:SqlDataSource ID="FindAndFollowDataSource" runat="server" 
             ConnectionString="<%$ ConnectionStrings:FindAndFollowConnectionString %>" 
-            SelectCommand="SELECT [RateDate], [Rate], [CurrencyId] FROM [CurrencyRate]">
+            
+            SelectCommand="SELECT [CarBrand], [Model], [SiteUrl], [Price], [ModelYear], [CreatedOn], [UploadDate] FROM [CarParsing]">
         </asp:SqlDataSource>
         <asp:Button ID="BtnUploadData" runat="server" OnClick="BtnUploadData_Click" 
             Text="Upload Data" />

@@ -30,7 +30,7 @@ public class Download
             try
             {
                 HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(XPathArray[i]);
-                returnArray[i] = bodyNode.InnerHtml;
+                returnArray[i] = bodyNode.InnerHtml.Trim();
             }
             catch (Exception)
             {
