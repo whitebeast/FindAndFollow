@@ -52,11 +52,11 @@ namespace FindAndFollow
             XPathArray[10] = "//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[10]/td[2]";                                                            // DriveType
             XPathArray[11] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]";                                       // Description
             XPathArray[12] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]";                                                 // CreatedOn
-            XPathArray[13] = "empty";                                                                                                           // SellerType
-            XPathArray[14] = "empty";                                                                                                           // Condition
+            XPathArray[13] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";                       // SellerType
+            XPathArray[14] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[4]/table[1]/tbody[1]";                             // Condition
             XPathArray[15] = "empty";                                                                                                           // IsSwap
 
-            Database.CarParsingInsert(abwUrl, XPathArray, 8198397, 8198398, "abw.by");
+            Database.CarParsingInsert(abwUrl, XPathArray, 8200189, 8200190, "abw.by");
 
             // ab.onliner.by
             XPathArray[0] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong";              // CarBrand
