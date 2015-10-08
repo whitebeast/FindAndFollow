@@ -9,10 +9,10 @@ public class Database
     public static void CarParsingInsert(string url, string[] XPathArray, int startId, int finishId, string webSite)
     {
         // Insert statement
-        string insertStmt = "INSERT INTO dbo.CarParsing(CarBrand, Model, ModelYear, Price, Mileage, EngineSize, Color, " +
-            "BodyType, EngineType, TransmissionType, DriveType, CreatedOn, Description, SiteUrl, IsPageExist) " +
+        string insertStmt = "INSERT INTO dbo.CarParsing(CarBrand, Model, ModelYear, Price, Mileage, EngineSize, Color, BodyType, " +
+            "EngineType, TransmissionType, DriveType, CreatedOn, Description, SiteUrl, IsPageExist, SellerType, Condition, IsSwap) " +
             "VALUES(@CarBrand, @Model, @ModelYear, @Price, @Mileage, @EngineSize, @Color, @BodyType, @EngineType, @TransmissionType, " +
-            "@DriveType, @CreatedOn, @Description, @SiteUrl, @IsPageExist)";
+            "@DriveType, @CreatedOn, @Description, @SiteUrl, @IsPageExist, @SellerType, @Condition, @IsSwap)";
 
         // Set up SQL Server connection
         string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
@@ -37,7 +37,10 @@ public class Database
         commandInsert.Parameters.Add("@CreatedOn", SqlDbType.NVarChar, 1000);
         commandInsert.Parameters.Add("@SiteUrl", SqlDbType.NVarChar, 4000);
         commandInsert.Parameters.Add("@IsPageExist", SqlDbType.Bit);
-
+        commandInsert.Parameters.Add("@SellerType", SqlDbType.NVarChar, 1000);
+        commandInsert.Parameters.Add("@Condition", SqlDbType.NVarChar, 1000);
+        commandInsert.Parameters.Add("@IsSwap", SqlDbType.NVarChar, 1000);
+        
         // Set DB Null value
         SqlParameter[] sqlParameters = new SqlParameter[1];
         sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000);
@@ -66,6 +69,20 @@ public class Database
                 commandInsert.Parameters["@CreatedOn"].Value = DataArray[12] == null ? sqlParameters[0].Value : DataArray[12];
                 commandInsert.Parameters["@SiteUrl"].Value = url + i.ToString();
                 commandInsert.Parameters["@IsPageExist"].Value = true;
+                commandInsert.Parameters["@SellerType"].Value = DataArray[13] == null ? "частное" : "автохаус";
+                if (DataArray[14] != null)
+                {
+                    if (DataArray[14].Contains("кондиционер") || DataArray[14].Contains("климат-контроль"))
+                    commandInsert.Parameters["@Condition"].Value = "1";
+                    else
+                    commandInsert.Parameters["@Condition"].Value = "0";
+                }
+                else
+                {
+                    commandInsert.Parameters["@Condition"].Value = "0";
+                }
+                commandInsert.Parameters["@IsSwap"].Value = DataArray[15] == null ? "0" : "1";
+
                 commandInsert.ExecuteNonQuery();
             }
             else
@@ -85,6 +102,9 @@ public class Database
                 commandInsert.Parameters["@CreatedOn"].Value = sqlParameters[0].Value;
                 commandInsert.Parameters["@SiteUrl"].Value = url + i.ToString();
                 commandInsert.Parameters["@IsPageExist"].Value = false;
+                commandInsert.Parameters["@SellerType"].Value = sqlParameters[0].Value;
+                commandInsert.Parameters["@Condition"].Value = sqlParameters[0].Value;
+                commandInsert.Parameters["@IsSwap"].Value = sqlParameters[0].Value;
                 commandInsert.ExecuteNonQuery();
             }
         }

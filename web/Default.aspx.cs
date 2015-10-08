@@ -16,7 +16,7 @@ namespace FindAndFollow
             string abwUrl = "http://www.abw.by/allpublic/sell/";
             string abUrl = "http://ab.onliner.by/car/";
 
-            string[] XPathArray = new string[13];
+            string[] XPathArray = new string[16];
 
             // av.by
             XPathArray[0] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[1]/ul/li[2]/a";                                                     // CarBrand
@@ -32,9 +32,12 @@ namespace FindAndFollow
             XPathArray[10] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[2]/dl[11]/dd";                                       // DriveType
             XPathArray[11] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[2]/div[3]/h4";                                              // Description
             XPathArray[12] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/header/ul/li[3]";                                                      // CreatedOn
+            XPathArray[13] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/small/text()[2]";                                 // SellerType
+            XPathArray[14] = "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[3]/ul[3]";                                  // Condition
+            XPathArray[15] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[4]/h5";                                              // IsSwap
 
-            Database.CarParsingInsert(avUrl, XPathArray, 10707107, 10707108, "av.by");
-            
+            Database.CarParsingInsert(avUrl, XPathArray, 10757949, 10757950, "av.by");
+
             // abw.by
             XPathArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[1]";              // CarBrand
             XPathArray[1] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[2]";              // Model
@@ -49,6 +52,9 @@ namespace FindAndFollow
             XPathArray[10] = "//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[10]/td[2]";                                                            // DriveType
             XPathArray[11] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]";                                       // Description
             XPathArray[12] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]";                                                 // CreatedOn
+            XPathArray[13] = "empty";                                                                                                           // SellerType
+            XPathArray[14] = "empty";                                                                                                           // Condition
+            XPathArray[15] = "empty";                                                                                                           // IsSwap
 
             Database.CarParsingInsert(abwUrl, XPathArray, 8198397, 8198398, "abw.by");
 
@@ -66,6 +72,9 @@ namespace FindAndFollow
             XPathArray[10] = "empty";                                                                                                           // DriveType
             XPathArray[11] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[5]";                            // Description
             XPathArray[12] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/small/text()";                               // CreatedOn
+            XPathArray[13] = "empty";                                                                                                           // SellerType
+            XPathArray[14] = "empty";                                                                                                           // Condition
+            XPathArray[15] = "empty";                                                                                                           // IsSwap
 
             Database.CarParsingInsert(abUrl, XPathArray, 2328803, 2328804, "ab.onliner.by");
 
