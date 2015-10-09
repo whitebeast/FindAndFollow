@@ -31,10 +31,10 @@
                 <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
                 <asp:BoundField DataField="ModelYear" HeaderText="ModelYear" 
                     SortExpression="ModelYear" />
+                <asp:BoundField DataField="PageCreatedOn" HeaderText="PageCreatedOn" 
+                    SortExpression="PageCreatedOn" />
                 <asp:BoundField DataField="CreatedOn" HeaderText="CreatedOn" 
                     SortExpression="CreatedOn" />
-                <asp:BoundField DataField="UploadDate" HeaderText="UploadDate" 
-                    SortExpression="UploadDate" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -50,7 +50,7 @@
         <asp:SqlDataSource ID="FindAndFollowDataSource" runat="server" 
             ConnectionString="<%$ ConnectionStrings:FindAndFollowConnectionString %>" 
             
-            SelectCommand="SELECT [CarBrand], [Model], [SiteUrl], [Price], [ModelYear], [CreatedOn], [UploadDate] FROM [CarParsing]">
+            SelectCommand="SELECT [CarBrand], [Model], [SiteUrl], [Price], [ModelYear], [PageCreatedOn], [CreatedOn] FROM [CarParsing]">
         </asp:SqlDataSource>
         <asp:Button ID="BtnUploadData" runat="server" OnClick="BtnUploadData_Click" 
             Text="Upload Data" />

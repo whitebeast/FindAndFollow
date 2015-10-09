@@ -10,9 +10,9 @@ public class Database
     {
         // Insert statement
         string insertStmt = "INSERT INTO dbo.CarParsing(CarBrand, Model, ModelYear, Price, Mileage, EngineSize, Color, BodyType, " +
-            "EngineType, TransmissionType, DriveType, CreatedOn, Description, SiteUrl, IsPageExist, SellerType, Condition, IsSwap) " +
+            "EngineType, TransmissionType, DriveType, PageCreatedOn, Description, SiteUrl, IsPageExist, SellerType, Condition, IsSwap) " +
             "VALUES(@CarBrand, @Model, @ModelYear, @Price, @Mileage, @EngineSize, @Color, @BodyType, @EngineType, @TransmissionType, " +
-            "@DriveType, @CreatedOn, @Description, @SiteUrl, @IsPageExist, @SellerType, @Condition, @IsSwap)";
+            "@DriveType, @PageCreatedOn, @Description, @SiteUrl, @IsPageExist, @SellerType, @Condition, @IsSwap)";
 
         // Set up SQL Server connection
         string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
@@ -34,7 +34,7 @@ public class Database
         commandInsert.Parameters.Add("@TransmissionType", SqlDbType.NVarChar, 1000);
         commandInsert.Parameters.Add("@DriveType", SqlDbType.NVarChar, 1000);
         commandInsert.Parameters.Add("@Description", SqlDbType.NVarChar, 4000);
-        commandInsert.Parameters.Add("@CreatedOn", SqlDbType.NVarChar, 1000);
+        commandInsert.Parameters.Add("@PageCreatedOn", SqlDbType.NVarChar, 1000);
         commandInsert.Parameters.Add("@SiteUrl", SqlDbType.NVarChar, 4000);
         commandInsert.Parameters.Add("@IsPageExist", SqlDbType.Bit);
         commandInsert.Parameters.Add("@SellerType", SqlDbType.NVarChar, 1000);
@@ -66,7 +66,7 @@ public class Database
                 commandInsert.Parameters["@TransmissionType"].Value = DataArray[9] == null ? sqlParameters[0].Value : DataArray[9];
                 commandInsert.Parameters["@DriveType"].Value = DataArray[10] == null ? sqlParameters[0].Value : DataArray[10];
                 commandInsert.Parameters["@Description"].Value = DataArray[11] == null ? sqlParameters[0].Value : DataArray[11];
-                commandInsert.Parameters["@CreatedOn"].Value = DataArray[12] == null ? sqlParameters[0].Value : DataArray[12];
+                commandInsert.Parameters["@PageCreatedOn"].Value = DataArray[12] == null ? sqlParameters[0].Value : DataArray[12];
                 commandInsert.Parameters["@SiteUrl"].Value = url + i.ToString();
                 commandInsert.Parameters["@IsPageExist"].Value = true;
                 commandInsert.Parameters["@SellerType"].Value = DataArray[13] == null ? "частное" : "автохаус";
@@ -99,7 +99,7 @@ public class Database
                 commandInsert.Parameters["@TransmissionType"].Value = sqlParameters[0].Value;
                 commandInsert.Parameters["@DriveType"].Value = sqlParameters[0].Value;
                 commandInsert.Parameters["@Description"].Value = sqlParameters[0].Value;
-                commandInsert.Parameters["@CreatedOn"].Value = sqlParameters[0].Value;
+                commandInsert.Parameters["@PageCreatedOn"].Value = sqlParameters[0].Value;
                 commandInsert.Parameters["@SiteUrl"].Value = url + i.ToString();
                 commandInsert.Parameters["@IsPageExist"].Value = false;
                 commandInsert.Parameters["@SellerType"].Value = sqlParameters[0].Value;
