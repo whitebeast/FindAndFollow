@@ -21,7 +21,7 @@ INSERT INTO [dbo].[CarParsingSettings]
            ,[IsSwapXPath]
            ,[DescriptionXPath]
            ,[PageCreatedOnXPath])
-SELECT     0 AS CurrentId,
+SELECT     NULL AS CurrentId,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[1]/ul/li[2]/a' AS CarBrandXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[1]/ul/li[3]/a' AS ModelXPath,
            'av.by' AS SiteUrlXPath,
@@ -64,7 +64,7 @@ INSERT INTO [dbo].[CarParsingSettings]
            ,[DescriptionXPath]
            ,[PageCreatedOnXPath])
 SELECT
-           0 AS CurrentId,
+           NULL AS CurrentId,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
            'abw.by' AS SiteUrlXPath,
@@ -107,7 +107,7 @@ INSERT INTO [dbo].[CarParsingSettings]
            ,[DescriptionXPath]
            ,[PageCreatedOnXPath])
 SELECT
-           0 AS CurrentId,
+           NULL AS CurrentId,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong' AS CarBrandXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong' AS ModelXPath,
            'ab.onliner.by' AS SiteUrlXPath,
