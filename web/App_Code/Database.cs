@@ -44,7 +44,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 1000).Value = DataArray[9] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 1000).Value = DataArray[10] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 4000).Value = DataArray[11] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pCreatedOn", SqlDbType.NVarChar, 1000).Value = DataArray[12] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = DataArray[12] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = url + i.ToString();
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = true;
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = DataArray[13] == null ? "частное" : "автохаус";
@@ -75,10 +75,9 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pColor", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pBodyType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pEngineType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters["@pTransmissionType"].Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pCreatedOn", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = url + i.ToString();
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = false;
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
