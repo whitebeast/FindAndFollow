@@ -1,5 +1,5 @@
 ﻿ CREATE TABLE CarParsing(
-    ID                  INT NOT NULL IDENTITY(1, 1),
+    [CarParsingId]                  INT NOT NULL IDENTITY(1, 1),
     CarBrand            NVARCHAR(1000),
     Model               NVARCHAR(1000),
     SiteUrl             NVARCHAR(2000),
