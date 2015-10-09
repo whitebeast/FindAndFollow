@@ -17,7 +17,7 @@
 	    @pIsCustomsCleared  NVARCHAR(100),
 	    @pIsSwap            NVARCHAR(100),
 	    @pDescription       NVARCHAR(2000),
-	    @pCreatedOn         NVARCHAR(100),
+	    @pPageCreatedOn     NVARCHAR(100),
 	    @pIsPageExist       BIT = 0
     )
 AS
@@ -44,7 +44,7 @@ BEGIN
                     IsCustomsCleared,
                     IsSwap,
                     [Description],
-                    CreatedOn,
+                    PageCreatedOn,
                     IsPageExist
                 )
             SELECT
@@ -65,7 +65,7 @@ BEGIN
                     @pIsCustomsCleared,
                     @pIsSwap,
                     @pDescription,
-                    @pCreatedOn,
+                    @pPageCreatedOn,
                     @pIsPageExist
             ;
         COMMIT TRANSACTION

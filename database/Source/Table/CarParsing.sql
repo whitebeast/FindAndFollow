@@ -1,5 +1,5 @@
 ﻿ CREATE TABLE CarParsing(
-    [CarParsingId]                  INT NOT NULL IDENTITY(1, 1),
+    CarParsingId        INT NOT NULL IDENTITY(1,1),
     CarBrand            NVARCHAR(1000),
     Model               NVARCHAR(1000),
     SiteUrl             NVARCHAR(2000),
@@ -17,7 +17,7 @@
     IsCustomsCleared    NVARCHAR(100),
     IsSwap              NVARCHAR(100),
     [Description]       NVARCHAR(2000),
-    CreatedOn           NVARCHAR(100),
-    UploadDate          DATETIME NOT NULL,
+    PageCreatedOn       NVARCHAR(100),
+    CreatedOn           DATETIME NOT NULL,
     IsPageExist         BIT
     )

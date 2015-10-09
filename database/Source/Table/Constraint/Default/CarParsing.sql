@@ -1,1 +1,1 @@
-﻿ALTER TABLE dbo.CarParsing ADD CONSTRAINT dfCarParsing_UploadDate DEFAULT GETUTCDATE() FOR UploadDate
+﻿ALTER TABLE dbo.CarParsing ADD CONSTRAINT dfCarParsing_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn
