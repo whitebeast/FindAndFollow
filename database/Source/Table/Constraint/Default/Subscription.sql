@@ -1,1 +1,1 @@
-﻿ALTER TABLE dbo.Subscription ADD CONSTRAINT dfSubscription_CreatedOn DEFAULT GETDATE() FOR CreatedOn
+﻿ALTER TABLE dbo.Subscription ADD CONSTRAINT dfSubscription_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn

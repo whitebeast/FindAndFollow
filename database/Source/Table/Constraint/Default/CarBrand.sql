@@ -1,1 +1,1 @@
-﻿ALTER TABLE dbo.CarBrand ADD CONSTRAINT dfCarBrand_CreatedOn DEFAULT GETDATE() FOR CreatedOn
+﻿ALTER TABLE dbo.CarBrand ADD CONSTRAINT dfCarBrand_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn

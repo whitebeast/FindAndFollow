@@ -1,1 +1,1 @@
-﻿ALTER TABLE dbo.SearchSite ADD CONSTRAINT dfSearchSite_CreatedOn DEFAULT GETDATE() FOR CreatedOn
+﻿ALTER TABLE dbo.SearchSite ADD CONSTRAINT dfSearchSite_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn

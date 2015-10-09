@@ -1,1 +1,1 @@
-﻿ALTER TABLE dbo.Search ADD CONSTRAINT dfSearch_CreatedOn DEFAULT GETDATE() FOR CreatedOn
+﻿ALTER TABLE dbo.Search ADD CONSTRAINT dfSearch_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn

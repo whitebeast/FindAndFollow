@@ -1,1 +1,1 @@
-﻿ALTER TABLE dbo.Region ADD CONSTRAINT dfRegion_CreatedOn DEFAULT GETDATE() FOR CreatedOn
+﻿ALTER TABLE dbo.Region ADD CONSTRAINT dfRegion_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn

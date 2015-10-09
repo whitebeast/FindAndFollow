@@ -1,1 +1,1 @@
-﻿ALTER TABLE dbo.Currency ADD CONSTRAINT dfCurrency_CreatedOn DEFAULT GETDATE() FOR CreatedOn
+﻿ALTER TABLE dbo.Currency ADD CONSTRAINT dfCurrency_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn

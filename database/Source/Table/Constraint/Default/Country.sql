@@ -1,1 +1,1 @@
-﻿ALTER TABLE dbo.Country ADD CONSTRAINT dfCountry_CreatedOn DEFAULT GETDATE() FOR CreatedOn
+﻿ALTER TABLE dbo.Country ADD CONSTRAINT dfCountry_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn
