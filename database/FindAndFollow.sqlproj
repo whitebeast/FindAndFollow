@@ -145,6 +145,8 @@
     <Build Include="Source\Table\CarParsing.sql" />
     <Build Include="Source\Table\Constraint\Default\CarParsing.sql" />
     <Build Include="Source\Procedure\CarParsingClean.sql" />
+    <Build Include="Source\Procedure\CarParsingInsert.sql" />
+    <Build Include="Source\Procedure\ErrorInfoGet.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
