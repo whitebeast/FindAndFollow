@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[CarParsingSettings]
 (
     CarParsingSettingsId    INT NOT NULL IDENTITY(1,1),
-    CurrentId               INT NOT NULL,
+    CurrentId               INT NULL,
     CarBrandXPath           NVARCHAR(1000) NULL,
     ModelXPath              NVARCHAR(1000) NULL,
     SiteUrlXPath            NVARCHAR(1000) NULL,
