@@ -1,7 +1,4 @@
-﻿USE [msdb]
-GO
-
-BEGIN TRANSACTION
+﻿BEGIN TRANSACTION
 DECLARE @ReturnCode INT
 SELECT @ReturnCode = 0
 
@@ -66,5 +63,3 @@ GOTO EndSave
 QuitWithRollback:
     IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
 EndSave:
-
-GO

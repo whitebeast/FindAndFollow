@@ -72,6 +72,8 @@
     <Folder Include="Source\Procedure" />
     <Folder Include="Source\System\SQLJob" />
     <Folder Include="Source\View" />
+    <Folder Include="Source\Script" />
+    <Folder Include="Source\Script\PostDeployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Source\Table\Constraint\Check\Car.sql" />
@@ -147,10 +149,16 @@
     <Build Include="Source\Procedure\CarParsingClean.sql" />
     <Build Include="Source\Procedure\CarParsingInsert.sql" />
     <Build Include="Source\Procedure\ErrorInfoGet.sql" />
+    <Build Include="Source\Table\CarParsingSettings.sql" />
+    <Build Include="Source\Table\Constraint\PK\CarParsing.sql" />
+    <Build Include="Source\Table\Constraint\PK\CarParsingSettings.sql" />
+    <None Include="Source\Script\PostDeployment\CurrencyInitial.sql" />
+    <None Include="Source\Script\PostDeployment\CarParsingSettingsInitial.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
-    <None Include="Properties\FindAndFollow.local.publish.publish.xml" />
+    <None Include="Properties\FindAndFollow.DEV.Update.publish.xml" />
+    <None Include="Properties\FindAndFollow.DEV.ReCreate.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -167,5 +175,8 @@
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Source\PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="FindAndFollow.refactorlog" />
   </ItemGroup>
 </Project>

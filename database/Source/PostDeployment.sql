@@ -6,30 +6,9 @@ GO
 GO
 USE [$(FindAndFollow)]
 GO
-EXEC dbo.CurrencyMerge
+:r .\Script\PostDeployment\CurrencyInitial.sql 
 GO
-
-USE [$(FindAndFollow)]
+:r .\Script\PostDeployment\CarParsingSettingsInitial.sql 
 GO
-DECLARE @DateBegin  DATE,
-	    @DateEnd    DATE = GETDATE()
-;	        
-SELECT  @DateBegin = DATEADD(DAY,1-DAY(@DateEnd),@DateEnd)
-;
-EXEC [CurrencyRateGet] 
-     @pCurrencyCode = 'USD',
-     @pFromDate     = @DateBegin,
-     @pToDate       = @DateEnd
-;
-EXEC [CurrencyRateGet] 
-     @pCurrencyCode = 'EUR',
-     @pFromDate     = @DateBegin,
-     @pToDate       = @DateEnd
-;
-EXEC [CurrencyRateGet] 
-     @pCurrencyCode = 'RUB',
-     @pFromDate     = @DateBegin,
-     @pToDate       = @DateEnd
-;               
 PRINT '---- End Post-Deployment script----'
 GO
