@@ -50,7 +50,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = DataArray[13] == null ? "частное" : "автохаус";
                     if (DataArray[14] != null)
                     {
-                        if (DataArray[14].Contains("кондиционер") || DataArray[14].Contains("климат-контроль"))
+                        if (DataArray[14].Contains("Кондиционер") || DataArray[14].Contains("климат-контроль"))
                             commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = "1";
                         else
                             commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = "0";
