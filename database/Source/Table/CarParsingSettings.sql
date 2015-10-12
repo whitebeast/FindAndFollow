@@ -16,7 +16,6 @@
     MileageXPath            NVARCHAR(1000) NULL,
     ColorXPath              NVARCHAR(1000) NULL,
     SellerTypeXPath         NVARCHAR(1000) NULL,
-    IsCustomsClearedXPath   NVARCHAR(1000) NULL,
     IsSwapXPath             NVARCHAR(1000) NULL,
     DescriptionXPath        NVARCHAR(1000) NULL,
     PageCreatedOnXPath      NVARCHAR(1000) NULL,
