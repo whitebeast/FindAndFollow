@@ -14,6 +14,7 @@
     Mileage             NVARCHAR(1000) NULL,
     Color               NVARCHAR(100) NULL,
     SellerType          NVARCHAR(100) NULL,
+    IsCustomsCleared    NVARCHAR(100) NULL,
     IsSwap              NVARCHAR(100) NULL,
     [Description]       NVARCHAR(2000) NULL,
     PageCreatedOn       NVARCHAR(100) NULL,

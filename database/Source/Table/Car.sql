@@ -14,6 +14,7 @@
         Mileage               SMALLINT NOT NULL,
         ColorId               TINYINT NOT NULL,
         SellerType            TINYINT NOT NULL,
+        IsCustomsCleared      BIT NOT NULL,
         IsSwap                BIT NOT NULL,
         Description           NVARCHAR(1000) NULL,
         OriginalURL           VARCHAR(1000),
