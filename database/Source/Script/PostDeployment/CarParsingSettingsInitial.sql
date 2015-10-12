@@ -41,8 +41,8 @@ SELECT     NULL AS CurrentId,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[2]/div[3]/h4' AS DescriptionXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/header/ul/li[3]' AS PageCreatedOnXPath
 ;
--- abw.by       
-IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings WHERE SiteUrlXPath = 'abw.by')
+-- abw.by-private      
+IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings WHERE SiteUrlXPath = 'abw.by-private')
 INSERT INTO [dbo].[CarParsingSettings]
            ([CurrentId]
            ,[CarBrandXPath]
@@ -67,7 +67,7 @@ SELECT
            NULL AS CurrentId,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
-           'abw.by' AS SiteUrlXPath,
+           'abw.by-private' AS SiteUrlXPath,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[11]/td[2]/div/span[2]' AS PriceXPath,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[8]/td[2]' AS BodyTypeXPath,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[1]/td[2]' AS ModelYearXPath,
@@ -78,6 +78,49 @@ SELECT
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[4]/table[1]/tbody[1]' AS ConditionXPath,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[3]/td[2]' AS MileageXPath,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[2]/td[2]' AS ColorXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]' AS SellerTypeXPath,
+           NULL AS IsCustomsClearedXPath,
+           NULL AS IsSwapXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]' AS DescriptionXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]' AS PageCreatedOnXPath
+;
+-- abw.by-autoagency      
+IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings WHERE SiteUrlXPath = 'abw.by-autoagency')
+INSERT INTO [dbo].[CarParsingSettings]
+           ([CurrentId]
+           ,[CarBrandXPath]
+           ,[ModelXPath]
+           ,[SiteUrlXPath]
+           ,[PriceXPath]
+           ,[BodyTypeXPath]
+           ,[ModelYearXPath]
+           ,[EngineTypeXPath]
+           ,[EngineSizeXPath]
+           ,[TransmissionTypeXPath]
+           ,[DriveTypeXPath]
+           ,[ConditionXPath]
+           ,[MileageXPath]
+           ,[ColorXPath]
+           ,[SellerTypeXPath]
+           ,[IsCustomsClearedXPath]
+           ,[IsSwapXPath]
+           ,[DescriptionXPath]
+           ,[PageCreatedOnXPath])
+SELECT
+           NULL AS CurrentId,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
+           'abw.by-autoagency' AS SiteUrlXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[11]/td[2]/div[1]/span[2]' AS PriceXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[8]/td[2]' AS BodyTypeXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[1]/td[2]' AS ModelYearXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[4]/td[2]' AS EngineTypeXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[5]/td[2]' AS EngineSizeXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[7]/td[2]' AS TransmissionTypeXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[10]/td[2]' AS DriveTypeXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[4]/table[1]/tbody[1]' AS ConditionXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[3]/td[2]' AS MileageXPath,
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[2]/td[2]' AS ColorXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]' AS SellerTypeXPath,
            NULL AS IsCustomsClearedXPath,
            NULL AS IsSwapXPath,
@@ -116,14 +159,14 @@ SELECT
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[2]/span[1]/strong' AS ModelYearXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/text()[1]' AS EngineTypeXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/strong' AS EngineSizeXPath,
-           '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/text()[1]' AS TransmissionTypeXPath,
-           NULL AS DriveTypeXPath,
-           NULL AS ConditionXPath,
+           '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/text()[2]' AS TransmissionTypeXPath,
+           '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/text()[2]' AS DriveTypeXPath,
+           '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/div[3]' AS ConditionXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[2]/span[2]/strong' AS MileageXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/text()[1]' AS ColorXPath,
            NULL AS SellerTypeXPath,
            NULL AS IsCustomsClearedXPath,
-           NULL AS IsSwapXPath,
-           '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[5]' AS DescriptionXPath,
+           '//*[@id=\"minWidth\"]/div/div[4]/div/div[1]/div[2]/strong[2]' AS IsSwapXPath,
+           '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/p[4]/p[1]' AS DescriptionXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/small/text()' AS PageCreatedOnXPath
 ;
