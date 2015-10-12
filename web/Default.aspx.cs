@@ -31,7 +31,7 @@ namespace FindAndFollow
             XPathArray[9] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[2]/dl[9]/dd";                                         // TransmissionType
             XPathArray[10] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[2]/dl[11]/dd";                                       // DriveType
             XPathArray[11] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[2]/div[3]/h4";                                              // Description
-            XPathArray[12] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/header/ul/li[3]";                                                      // CreatedOn
+            XPathArray[12] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/header/ul/li[3]";                                                      // PageCreatedOn
             XPathArray[13] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/small/text()[2]";                                 // SellerType
             XPathArray[14] = "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[3]/ul[3]";                                  // Condition
             XPathArray[15] = "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[4]/h5";                                              // IsSwap
@@ -58,7 +58,7 @@ namespace FindAndFollow
                 XPathArray[9] = "//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[7]/td[2]";                                                          // TransmissionType
                 XPathArray[10] = "//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[10]/td[2]";                                                        // DriveType
                 XPathArray[11] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]";                                   // Description
-                XPathArray[12] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]";                                             // CreatedOn
+                XPathArray[12] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]";                                             // PageCreatedOn
                 XPathArray[13] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";                   // SellerType
                 XPathArray[14] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[4]/table[1]/tbody[1]";                         // Condition
                 XPathArray[15] = "empty";                                                                                                       // IsSwap
@@ -78,7 +78,7 @@ namespace FindAndFollow
                 XPathArray[9] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[7]/td[2]";                       // TransmissionType
                 XPathArray[10] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[10]/td[2]";                     // DriveType
                 XPathArray[11] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]";                                   // Description
-                XPathArray[12] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]";                                             // CreatedOn
+                XPathArray[12] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]";                                             // PageCreatedOn
                 XPathArray[13] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";                   // SellerType
                 XPathArray[14] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[4]/table[1]/tbody[1]";                         // Condition
                 XPathArray[15] = "empty";                                                                                                       // IsSwap
@@ -99,7 +99,7 @@ namespace FindAndFollow
             XPathArray[9] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/text()[2]";                                       // TransmissionType
             XPathArray[10] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/text()[2]";                                      // DriveType
             XPathArray[11] = "/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/p[4]/p[1]";                 // Description
-            XPathArray[12] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/small/text()";                                                   // CreatedOn
+            XPathArray[12] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/small/text()";                                                   // PageCreatedOn
             XPathArray[13] = "empty";                                                                                                                               // SellerType
             XPathArray[14] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/div[3]";                                              // Condition
             XPathArray[15] = "//*[@id=\"minWidth\"]/div/div[4]/div/div[1]/div[2]/strong[2]";                                                                        // IsSwap
