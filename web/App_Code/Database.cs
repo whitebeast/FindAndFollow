@@ -60,7 +60,6 @@ namespace FindAndFollow
                         commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = "0";
                     }
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1000).Value = DataArray[15] == null ? "0" : "1";
-                    commandInsert.Parameters.Add("@pIsCustomsCleared", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
                 }
@@ -83,7 +82,6 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pIsCustomsCleared", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
                 }
@@ -105,6 +103,50 @@ namespace FindAndFollow
             commandDelete.ExecuteNonQuery();
 
             sqlConnection.Close();
+        }
+
+        public static string[] GetCarParsingSettings(string Url)
+        {
+            string[] XPathArray = new string[16];
+            
+            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(connStr);
+
+            string selectString = "SELECT CarBrandXPath, ModelXPath, ModelYearXPath, PriceXPath, MileageXPath, EngineSizeXPath," + 
+                                    "ColorXPath, BodyTypeXPath, EngineTypeXPath, TransmissionTypeXPath, DriveTypeXPath," + 
+                                    "DescriptionXPath, PageCreatedOnXPath, SellerTypeXPath, ConditionXPath, IsSwapXPath " +
+                                    "FROM CarParsingSettings WHERE SiteUrlXPath = @SiteUrl";
+
+            SqlCommand commandSelect = new SqlCommand(selectString, sqlConnection);
+            commandSelect.Parameters.AddWithValue("@SiteUrl", Url);
+
+            sqlConnection.Open();
+
+            // Get data from db
+            SqlDataReader DataReader = commandSelect.ExecuteReader();
+            while (DataReader.Read())
+            {
+                XPathArray[0] = DataReader["CarBrandXPath"].ToString();
+                XPathArray[1] = DataReader["ModelXPath"].ToString();
+                XPathArray[2] = DataReader["ModelYearXPath"].ToString();
+                XPathArray[3] = DataReader["PriceXPath"].ToString();
+                XPathArray[4] = DataReader["MileageXPath"].ToString();
+                XPathArray[5] = DataReader["EngineSizeXPath"].ToString();
+                XPathArray[6] = DataReader["ColorXPath"].ToString();
+                XPathArray[7] = DataReader["BodyTypeXPath"].ToString();
+                XPathArray[8] = DataReader["EngineTypeXPath"].ToString();
+                XPathArray[9] = DataReader["TransmissionTypeXPath"].ToString();
+                XPathArray[10] = DataReader["DriveTypeXPath"].ToString();
+                XPathArray[11] = DataReader["DescriptionXPath"].ToString();
+                XPathArray[12] = DataReader["PageCreatedOnXPath"].ToString();
+                XPathArray[13] = DataReader["PageCreatedOnXPath"].ToString();
+                XPathArray[14] = DataReader["ConditionXPath"].ToString();
+                XPathArray[15] = DataReader["IsSwapXPath"].ToString();
+            }
+
+            sqlConnection.Close();
+
+            return XPathArray;
         }
     }
 }
