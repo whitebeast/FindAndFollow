@@ -42,6 +42,14 @@ namespace FindAndFollow
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: "));
                     }
 
+                    if (webSite == "abw.by")
+                    {
+                        dataArray[3] = StringClass.MultiplyValue(StringClass.ReplaceText(StringClass.RemoveText(dataArray[3], " млн б.р."), ".", ","), 1000000);
+                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км").Trim(), 1000);
+                        dataArray[5] = StringClass.RemoveText(dataArray[5], " см3");
+                        //dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Размещено: "));
+                    }
+
                     commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = dataArray[0] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 1000).Value = dataArray[1] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pModelYear", SqlDbType.NVarChar, 4000).Value = dataArray[2] ?? sqlParameters[0].Value;

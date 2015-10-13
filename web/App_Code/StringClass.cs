@@ -22,5 +22,17 @@ namespace FindAndFollow
             DateTime myTime = DateTime.Parse(word);
             return myTime.ToString("yyyy-MM-dd HH:mm:ss");
         }
+
+        public static string MultiplyValue(string word, int value)
+        {
+            double myNumber = double.Parse(word);
+            return (myNumber * value).ToString();
+        }
+
+        public static string ReplaceText(string word, string oldChar, string newChar)
+        {
+            return word.Replace(oldChar, newChar);
+        }
+
     }
 }
