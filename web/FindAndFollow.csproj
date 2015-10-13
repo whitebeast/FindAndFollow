@@ -74,6 +74,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\StringClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">

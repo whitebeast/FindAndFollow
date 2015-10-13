@@ -32,6 +32,16 @@ namespace FindAndFollow
                 if (Download.IsPageExist(url + i.ToString()))
                 {
                     dataArray = Download.GetData(url + i.ToString(), XPathArray, webSite);
+
+                    if (webSite == "av.by")
+                    {
+                        dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], "р."));
+                        dataArray[4] = StringClass.RemoveText(dataArray[4], "км.");
+                        dataArray[5] = StringClass.RemoveText(dataArray[5], "см");
+                        dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:");
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: "));
+                    }
+
                     commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = dataArray[0] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 1000).Value = dataArray[1] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pModelYear", SqlDbType.NVarChar, 4000).Value = dataArray[2] ?? sqlParameters[0].Value;

@@ -15,7 +15,7 @@ namespace FindAndFollow
             string avUrl = "http://www.av.by/public/public.php?event=View&public_id=";
             string abwUrl = "http://www.abw.by/allpublic/sell/";
             string abUrl = "http://ab.onliner.by/car/";
-            
+
             // av.by
             string[] XPathArray = Database.GetCarParsingSettings("av.by");
 
@@ -43,7 +43,7 @@ namespace FindAndFollow
             XPathArray = Database.GetCarParsingSettings("ab.onliner.by");
 
             Database.CarParsingInsert(abUrl, XPathArray, 2347924, 2347925, "ab.onliner.by");
-
+ 
             Database.CarParsingClean();
         }
     }
