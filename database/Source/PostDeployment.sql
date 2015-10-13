@@ -14,5 +14,9 @@ GO
 GO
 :r .\Script\PostDeployment\ColorInitial.sql 
 GO
+:r .\Script\PostDeployment\CarBrandInitial.sql 
+GO
+:r .\Script\PostDeployment\CarModelInitial.sql 
+GO
 PRINT '---- End Post-Deployment script----'
 GO
