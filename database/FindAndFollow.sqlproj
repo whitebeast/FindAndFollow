@@ -74,6 +74,7 @@
     <Folder Include="Source\View" />
     <Folder Include="Source\Script" />
     <Folder Include="Source\Script\PostDeployment" />
+    <Folder Include="Source\Data" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Source\Table\Constraint\Check\Car.sql" />
@@ -154,12 +155,17 @@
     <Build Include="Source\Table\Constraint\PK\CarParsingSettings.sql" />
     <None Include="Source\Script\PostDeployment\CurrencyInitial.sql" />
     <None Include="Source\Script\PostDeployment\CarParsingSettingsInitial.sql" />
+    <None Include="Source\Script\PostDeployment\ColorInitial.sql" />
+    <Build Include="Source\Function\ParseJSON.sql" />
+    <Build Include="Source\Function\DecodeCyrillicJSON.sql" />
+    <Build Include="Source\Procedure\CarParsingSettingsGet.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
     <None Include="Properties\FindAndFollow.DEV.Update.publish.xml" />
     <None Include="Properties\FindAndFollow.DEV.ReCreate.publish.xml" />
-    <None Include="Source\Script\PostDeployment\ColorInitial.sql" />
+    <None Include="Source\Data\onliner.car.json.txt" />
+    <None Include="Source\Data\onliner.carmodel.json.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
