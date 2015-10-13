@@ -1,11 +1,13 @@
 ﻿PRINT 'Populate CarParsingSettings table...'
+;
 -- av.by
-IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings WHERE SiteUrlXPath = 'av.by')
+IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings)
 INSERT INTO [dbo].[CarParsingSettings]
-           ([CurrentId]
+           ([SiteUrl]
+           ,[CurrentId]
+           ,[DownloadMaskURL]
            ,[CarBrandXPath]
            ,[ModelXPath]
-           ,[SiteUrlXPath]
            ,[PriceXPath]
            ,[BodyTypeXPath]
            ,[ModelYearXPath]
@@ -20,10 +22,11 @@ INSERT INTO [dbo].[CarParsingSettings]
            ,[IsSwapXPath]
            ,[DescriptionXPath]
            ,[PageCreatedOnXPath])
-SELECT     NULL AS CurrentId,
+SELECT     'av.by' AS SiteUrlXPath,
+           NULL AS CurrentId,
+           'http://www.av.by/public/public.php?event=View&public_id=' AS DownloadMaskURL,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[1]/ul/li[2]/a' AS CarBrandXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[1]/ul/li[3]/a' AS ModelXPath,
-           'av.by' AS SiteUrlXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[1]/div[1]/span' AS PriceXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[2]/dl[5]/dd' AS BodyTypeXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[2]/dl[1]/dd' AS ModelYearXPath,
@@ -38,33 +41,13 @@ SELECT     NULL AS CurrentId,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[4]/h5' AS IsSwapXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[2]/div[3]/h4' AS DescriptionXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/header/ul/li[3]' AS PageCreatedOnXPath
-;
+UNION ALL
 -- abw.by-private      
-IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings WHERE SiteUrlXPath = 'abw.by-private')
-INSERT INTO [dbo].[CarParsingSettings]
-           ([CurrentId]
-           ,[CarBrandXPath]
-           ,[ModelXPath]
-           ,[SiteUrlXPath]
-           ,[PriceXPath]
-           ,[BodyTypeXPath]
-           ,[ModelYearXPath]
-           ,[EngineTypeXPath]
-           ,[EngineSizeXPath]
-           ,[TransmissionTypeXPath]
-           ,[DriveTypeXPath]
-           ,[ConditionXPath]
-           ,[MileageXPath]
-           ,[ColorXPath]
-           ,[SellerTypeXPath]
-           ,[IsSwapXPath]
-           ,[DescriptionXPath]
-           ,[PageCreatedOnXPath])
-SELECT
+SELECT     'abw.by-private' AS SiteUrl,
            NULL AS CurrentId,
+           'http://www.abw.by/allpublic/sell/' AS DownloadMaskURL,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
-           'abw.by-private' AS SiteUrlXPath,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[11]/td[2]/div/span[2]' AS PriceXPath,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[8]/td[2]' AS BodyTypeXPath,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[1]/td[2]' AS ModelYearXPath,
@@ -79,33 +62,13 @@ SELECT
            NULL AS IsSwapXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]' AS DescriptionXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]' AS PageCreatedOnXPath
-;
+UNION ALL
 -- abw.by-autoagency      
-IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings WHERE SiteUrlXPath = 'abw.by-autoagency')
-INSERT INTO [dbo].[CarParsingSettings]
-           ([CurrentId]
-           ,[CarBrandXPath]
-           ,[ModelXPath]
-           ,[SiteUrlXPath]
-           ,[PriceXPath]
-           ,[BodyTypeXPath]
-           ,[ModelYearXPath]
-           ,[EngineTypeXPath]
-           ,[EngineSizeXPath]
-           ,[TransmissionTypeXPath]
-           ,[DriveTypeXPath]
-           ,[ConditionXPath]
-           ,[MileageXPath]
-           ,[ColorXPath]
-           ,[SellerTypeXPath]
-           ,[IsSwapXPath]
-           ,[DescriptionXPath]
-           ,[PageCreatedOnXPath])
-SELECT
+SELECT     'abw.by-autoagency' AS SiteUrl,
            NULL AS CurrentId,
+           'http://www.abw.by/allpublic/sell/' AS DownloadMaskURL,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
-           'abw.by-autoagency' AS SiteUrlXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[11]/td[2]/div[1]/span[2]' AS PriceXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[8]/td[2]' AS BodyTypeXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[1]/td[2]' AS ModelYearXPath,
@@ -120,33 +83,13 @@ SELECT
            NULL AS IsSwapXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]' AS DescriptionXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]' AS PageCreatedOnXPath
-;
+UNION ALL
 -- ab.onliner.by
-IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings WHERE SiteUrlXPath = 'ab.onliner.by')
-INSERT INTO [dbo].[CarParsingSettings]
-           ([CurrentId]
-           ,[CarBrandXPath]
-           ,[ModelXPath]
-           ,[SiteUrlXPath]
-           ,[PriceXPath]
-           ,[BodyTypeXPath]
-           ,[ModelYearXPath]
-           ,[EngineTypeXPath]
-           ,[EngineSizeXPath]
-           ,[TransmissionTypeXPath]
-           ,[DriveTypeXPath]
-           ,[ConditionXPath]
-           ,[MileageXPath]
-           ,[ColorXPath]
-           ,[SellerTypeXPath]
-           ,[IsSwapXPath]
-           ,[DescriptionXPath]
-           ,[PageCreatedOnXPath])
-SELECT
+SELECT     'ab.onliner.by' AS SiteUrl,
            NULL AS CurrentId,
+           'http://ab.onliner.by/car/' AS DownloadMaskURL,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong' AS CarBrandXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong' AS ModelXPath,
-           'ab.onliner.by' AS SiteUrlXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/div[5]/span/span/strong' AS PriceXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[2]/text()[1]' AS BodyTypeXPath,
            '//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[2]/span[1]/strong' AS ModelYearXPath,
