@@ -1,7 +1,9 @@
 ﻿PRINT 'Running CurrencyMerge sproc...'
+;
 EXEC dbo.CurrencyMerge
-
+;
 PRINT 'Populating CurrencyRate table...'
+;
 DECLARE @DateBegin  DATE,
 	    @DateEnd    DATE = GETDATE()
 ;	        
