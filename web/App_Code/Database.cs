@@ -44,19 +44,24 @@ namespace FindAndFollow
 
                     if (webSite == "abw.by")
                     {
-                        dataArray[3] = StringClass.MultiplyValue(StringClass.ReplaceText(StringClass.RemoveText(dataArray[3], " млн б.р."), ".", ","), 10000);
-                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км").Trim(), 1000);
+                        dataArray[3] = StringClass.MultiplyValue(StringClass.ReplaceText(StringClass.RemoveText(dataArray[3], " млн б.р."), ".", ","), 1000000);
+                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км"), 1000);
                         dataArray[5] = StringClass.RemoveText(dataArray[5], " см3");
-                        //dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Размещено: "));
+                        dataArray[12] = StringClass.RemoveText(dataArray[12], "Размещено: ");
                     }
 
                     if (webSite == "ab.onliner.by")
                     {
-                        dataArray[0] = StringClass.SelectWordGet(dataArray[0], ' ', 1).Trim();
-                        dataArray[1] = StringClass.SelectWordGet(dataArray[1], ' ', 2).Trim();
-                        dataArray[3] = StringClass.ConcatenateSpaces(dataArray[3]).Trim();
-                        dataArray[7] = StringClass.SelectWordGet(dataArray[7], ',', 2).Trim();
-                        dataArray[8] = StringClass.SelectWordGet(dataArray[8], ',', 3).Trim();
+                        dataArray[0] = StringClass.SelectWordGet(dataArray[0], ' ', 1);
+                        dataArray[1] = StringClass.SelectWordGet(dataArray[1], ' ', 2);
+                        dataArray[3] = StringClass.ConcatenateSpaces(dataArray[3]);
+                        dataArray[4] = StringClass.ConcatenateSpaces(dataArray[4]);
+                        dataArray[5] = StringClass.MultiplyValue(StringClass.ReplaceText((dataArray[5]).Trim(), ".", ","), 1000);
+                        dataArray[6] = StringClass.SelectWordGet(dataArray[6], ',', 1);
+                        dataArray[7] = StringClass.SelectWordGet(dataArray[7], ',', 2);
+                        dataArray[8] = StringClass.SelectWordGet(dataArray[8], ',', 3);
+                        dataArray[9] = StringClass.SelectWordGet(dataArray[9], ',', 2);
+                        dataArray[10] = StringClass.SelectWordGet(dataArray[10], ',', 3);
                     }
 
                     commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = dataArray[0] ?? sqlParameters[0].Value;
