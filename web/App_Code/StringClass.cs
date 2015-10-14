@@ -34,5 +34,11 @@ namespace FindAndFollow
             return word.Replace(oldChar, newChar);
         }
 
+        public static string SelectWordGet(string word, char delimeter, int wordNumber)
+        {
+            string[] words = word.Split(delimeter);
+
+            return words[wordNumber - 1];
+        }
     }
 }
