@@ -38,8 +38,12 @@ namespace FindAndFollow
                         dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], "р."));
                         dataArray[4] = StringClass.RemoveText(dataArray[4], "км.");
                         dataArray[5] = StringClass.RemoveText(dataArray[5], "см");
+                        dataArray[6] = StringClass.ColorGet(dataArray[6]);
+                        dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
+                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
                         dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:");
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: "));
+                        dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
                     }
 
                     if (webSite == "abw.by")
@@ -47,7 +51,11 @@ namespace FindAndFollow
                         dataArray[3] = StringClass.MultiplyValue(StringClass.ReplaceText(StringClass.RemoveText(dataArray[3], " млн б.р."), ".", ","), 1000000);
                         dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км"), 1000);
                         dataArray[5] = StringClass.RemoveText(dataArray[5], " см3");
+                        dataArray[6] = StringClass.ColorGet(dataArray[6]);
+                        dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
+                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
                         dataArray[12] = StringClass.RemoveText(dataArray[12], "Размещено: ");
+                        dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
                     }
 
                     if (webSite == "ab.onliner.by")
@@ -57,11 +65,12 @@ namespace FindAndFollow
                         dataArray[3] = StringClass.ConcatenateSpaces(dataArray[3]);
                         dataArray[4] = StringClass.ConcatenateSpaces(dataArray[4]);
                         dataArray[5] = StringClass.MultiplyValue(StringClass.ReplaceText((dataArray[5]).Trim(), ".", ","), 1000);
-                        dataArray[6] = StringClass.SelectWordGet(dataArray[6], ',', 1);
+                        dataArray[6] = StringClass.ColorGet(StringClass.SelectWordGet(dataArray[6], ',', 1));
                         dataArray[7] = StringClass.SelectWordGet(dataArray[7], ',', 2);
                         dataArray[8] = StringClass.SelectWordGet(dataArray[8], ',', 3);
-                        dataArray[9] = StringClass.SelectWordGet(dataArray[9], ',', 2);
-                        dataArray[10] = StringClass.SelectWordGet(dataArray[10], ',', 3);
+                        dataArray[9] = StringClass.TransmissionGet(StringClass.SelectWordGet(dataArray[9], ',', 2));
+                        dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3));
+                        dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
                     }
 
                     commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = dataArray[0] ?? sqlParameters[0].Value;
@@ -79,18 +88,8 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = dataArray[12] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = url + i.ToString();
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = true;
-                    commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = dataArray[13] == null ? "частное" : "автохаус";
-                    if (dataArray[14] != null)
-                    {
-                        if (dataArray[14].Contains("Кондиционер") || dataArray[14].Contains("климат-контроль"))
-                            commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = "1";
-                        else
-                            commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = "0";
-                    }
-                    else
-                    {
-                        commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = "0";
-                    }
+                    commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = dataArray[13] == null ? "Частное" : "Автохаус";
+                    commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = dataArray[14] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1000).Value = dataArray[15] == null ? "0" : "1";
 
                     commandInsert.ExecuteNonQuery();
