@@ -8,7 +8,7 @@ namespace FindAndFollow
     public class Database
     {
         // db logic
-        public static void CarParsingInsert(string url, string[] XPathArray, int startId, int finishId, string webSite)
+        public static void CarParsingInsert(string url, string[] xPathArray, int startId, int finishId, string webSite)
         {
             // Set up SQL Server connection
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
@@ -24,14 +24,14 @@ namespace FindAndFollow
             sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000);
             sqlParameters[0].Value = DBNull.Value;
 
-            string[] dataArray = new string[XPathArray.Length];
+            string[] dataArray = new string[xPathArray.Length];
 
             // Insert data
             for (int i = startId; i < finishId; i++)
             {
                 if (Download.IsPageExist(url + i.ToString()))
                 {
-                    dataArray = Download.GetData(url + i.ToString(), XPathArray, webSite);
+                    dataArray = Download.GetData(url + i.ToString(), xPathArray, webSite);
 
                     if (webSite == "av.by")
                     {
@@ -39,6 +39,7 @@ namespace FindAndFollow
                         dataArray[4] = StringClass.RemoveText(dataArray[4], "км.");
                         dataArray[5] = StringClass.RemoveText(dataArray[5], "см");
                         dataArray[6] = StringClass.ColorGet(dataArray[6]);
+                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8]);
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
                         dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:");
@@ -52,6 +53,7 @@ namespace FindAndFollow
                         dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км"), 1000);
                         dataArray[5] = StringClass.RemoveText(dataArray[5], " см3");
                         dataArray[6] = StringClass.ColorGet(dataArray[6]);
+                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8]);
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
                         dataArray[12] = StringClass.RemoveText(dataArray[12], "Размещено: ");
@@ -67,7 +69,7 @@ namespace FindAndFollow
                         dataArray[5] = StringClass.MultiplyValue(StringClass.ReplaceText((dataArray[5]).Trim(), ".", ","), 1000);
                         dataArray[6] = StringClass.ColorGet(StringClass.SelectWordGet(dataArray[6], ',', 1));
                         dataArray[7] = StringClass.SelectWordGet(dataArray[7], ',', 2);
-                        dataArray[8] = StringClass.SelectWordGet(dataArray[8], ',', 3);
+                        dataArray[8] = StringClass.EngineTypeGet(StringClass.SelectWordGet(dataArray[8], ',', 3));
                         dataArray[9] = StringClass.TransmissionGet(StringClass.SelectWordGet(dataArray[9], ',', 2));
                         dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3));
                         dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
