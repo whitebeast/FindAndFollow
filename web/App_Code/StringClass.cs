@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace FindAndFollow
 {
@@ -92,46 +89,88 @@ namespace FindAndFollow
 
         public static string TransmissionGet(string word)
         {
-            string color = word.Substring(0, 3).ToLower();
+            string transmission = word.Substring(0, 3).ToLower();
 
-            switch (color)
+            switch (transmission)
             {
-                case ("авт"): color = "Автомат";
+                case ("авт"): transmission = "Автомат";
                     break;
-                case ("акп"): color = "Автомат";
+                case ("акп"): transmission = "Автомат";
                     break;
-                case ("мех"): color = "Механика";
+                case ("мех"): transmission = "Механика";
                     break;
-                case ("мкп"): color = "Механика";
+                case ("мкп"): transmission = "Механика";
                     break;
-                default: color = "Другой";
+                default: transmission = "Другой";
                     break;
             }
 
-            return color;
+            return transmission;
         }
 
         public static string DriveTypeGet(string word)
         {
-            string color = word.Substring(0, 3).ToLower();
+            string driveType = word.Substring(0, 3).ToLower();
 
-            switch (color)
+            switch (driveType)
             {
-                case ("пер"): color = "Передний";
+                case ("пер"): driveType = "Передний";
                     break;
-                case ("зад"): color = "Задний";
+                case ("зад"): driveType = "Задний";
                     break;
-                case ("пол"): color = "Полный";
+                case ("пол"): driveType = "Полный";
                     break;
-                case ("пос"): color = "Полный";
+                case ("пос"): driveType = "Полный";
                     break;
-                case ("под"): color = "Полный";
+                case ("под"): driveType = "Полный";
                     break;
-                default: color = "Другой";
+                default: driveType = "Другой";
                     break;
             }
 
-            return color;
+            return driveType;
+        }
+
+        public static string EngineTypeGet(string word)
+        {
+            string engineType = word.Substring(0, 3).ToLower();
+
+            switch (engineType)
+            {
+                case ("бен"): engineType = "Бензиновый";
+                    break;
+                case ("диз"): engineType = "Дизельный";
+                    break;
+                case ("газ"): engineType = "Газ";
+                    break;
+                case ("гиб"): engineType = StringClass.EngineTypeGetHybrid(word);
+                    break;
+                default: engineType = "Другой";
+                    break;
+            }
+
+            return engineType;
+        }
+
+        public static string EngineTypeGetHybrid(string word)
+        {
+            string engineType = word.Substring(0, 10).ToLower();
+
+            switch (engineType)
+            {
+                case ("гибридныйб"): engineType = "Гибридный бензиновый";
+                    break;
+                case ("гибридныйд"): engineType = "Гибридный дизельный";
+                    break;
+                case ("гибрид (бе"): engineType = "Гибридный бензиновый";
+                    break;
+                case ("гибрид (ди"): engineType = "Гибридный дизельный";
+                    break;
+                default: engineType = "Гибрид";
+                    break;
+            }
+
+            return engineType;
         }
     }
 }

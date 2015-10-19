@@ -17,32 +17,32 @@ namespace FindAndFollow
             string abUrl = "http://ab.onliner.by/car/";
 
             // av.by
-            string[] XPathArray = Database.GetCarParsingSettings("av.by");
+            string[] xPathArray = Database.GetCarParsingSettings("av.by");
 
-            Database.CarParsingInsert(avUrl, XPathArray, 10708341, 10708342, "av.by");
+            Database.CarParsingInsert(avUrl, xPathArray, 10708341, 10708342, "av.by");
 
             // abw.by
-            string[] CheckSellerTypeArray = new string[1];
-            CheckSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
-            CheckSellerTypeArray = Download.GetData(abwUrl + "6776158", CheckSellerTypeArray, "abw.by");
+            string[] checkSellerTypeArray = new string[1];
+            checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
+            checkSellerTypeArray = Download.GetData(abwUrl + "6776158", checkSellerTypeArray, "abw.by");
 
-            if (CheckSellerTypeArray[0] == null)
+            if (checkSellerTypeArray[0] == null)
             {
                 // private
-                XPathArray = Database.GetCarParsingSettings("abw.by-private");
+                xPathArray = Database.GetCarParsingSettings("abw.by-private");
             }
             else
             {
                 // auto agency
-                XPathArray = Database.GetCarParsingSettings("abw.by-autoagency");
+                xPathArray = Database.GetCarParsingSettings("abw.by-autoagency");
             }
             
-            Database.CarParsingInsert(abwUrl, XPathArray, 6776158, 6776159, "abw.by");
+            Database.CarParsingInsert(abwUrl, xPathArray, 6776158, 6776159, "abw.by");
 
             // ab.onliner.by
-            XPathArray = Database.GetCarParsingSettings("ab.onliner.by");
+            xPathArray = Database.GetCarParsingSettings("ab.onliner.by");
 
-            Database.CarParsingInsert(abUrl, XPathArray, 2347924, 2347925, "ab.onliner.by");
+            Database.CarParsingInsert(abUrl, xPathArray, 2339068, 2339069, "ab.onliner.by");
  
             Database.CarParsingClean();
         }
