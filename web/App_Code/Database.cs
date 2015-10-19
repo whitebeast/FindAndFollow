@@ -39,6 +39,7 @@ namespace FindAndFollow
                         dataArray[4] = StringClass.RemoveText(dataArray[4], "км.");
                         dataArray[5] = StringClass.RemoveText(dataArray[5], "см");
                         dataArray[6] = StringClass.ColorGet(dataArray[6]);
+                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7]);
                         dataArray[8] = StringClass.EngineTypeGet(dataArray[8]);
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
@@ -53,6 +54,7 @@ namespace FindAndFollow
                         dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км"), 1000);
                         dataArray[5] = StringClass.RemoveText(dataArray[5], " см3");
                         dataArray[6] = StringClass.ColorGet(dataArray[6]);
+                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7]);
                         dataArray[8] = StringClass.EngineTypeGet(dataArray[8]);
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
@@ -68,7 +70,7 @@ namespace FindAndFollow
                         dataArray[4] = StringClass.ConcatenateSpaces(dataArray[4]);
                         dataArray[5] = StringClass.MultiplyValue(StringClass.ReplaceText((dataArray[5]).Trim(), ".", ","), 1000);
                         dataArray[6] = StringClass.ColorGet(StringClass.SelectWordGet(dataArray[6], ',', 1));
-                        dataArray[7] = StringClass.SelectWordGet(dataArray[7], ',', 2);
+                        dataArray[7] = StringClass.BodyTypeGet(StringClass.SelectWordGet(dataArray[7], ',', 2));
                         dataArray[8] = StringClass.EngineTypeGet(StringClass.SelectWordGet(dataArray[8], ',', 3));
                         dataArray[9] = StringClass.TransmissionGet(StringClass.SelectWordGet(dataArray[9], ',', 2));
                         dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3));

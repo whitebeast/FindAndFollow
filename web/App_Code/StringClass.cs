@@ -172,5 +172,48 @@ namespace FindAndFollow
 
             return engineType;
         }
+
+        public static string BodyTypeGet(string word)
+        {
+            string bodyType = word.Substring(0, 4).ToLower();
+
+            switch (bodyType)
+            {
+                case ("седа"): bodyType = "Седан";
+                    break;
+                case ("унив"): bodyType = "Универсал";
+                    break;
+                case ("хетч"): bodyType = "Хетчбэк";
+                    break;
+                case ("мини"): bodyType = "Минивэн";
+                    break;
+                case ("внед"): bodyType = "Внедорожник";
+                    break;
+                case ("всед"): bodyType = "Внедорожник";
+                    break;
+                case ("купе"): bodyType = "Купе";
+                    break;
+                case ("кабр"): bodyType = "Кабриолет";
+                    break;
+                case ("микр"): bodyType = "Микроавтобус";
+                    break;
+                case ("груз"): bodyType = "Грузовик";
+                    break;
+                case ("фург"): bodyType = "Грузовик";
+                    break;
+                case ("пикa"): bodyType = "Пикап";
+                    break;
+                case ("родс"): bodyType = "Родстер";
+                    break;
+                case ("авто"): bodyType = "Автобус";
+                    break;
+                case ("лифт"): bodyType = "Хетчбэк";
+                    break;
+                default: bodyType = "Другой";
+                    break;
+            }
+
+            return bodyType;
+        }
     }
 }
