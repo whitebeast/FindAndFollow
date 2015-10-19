@@ -167,6 +167,7 @@
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
     <None Include="Properties\FindAndFollow.DEV.Update.publish.xml" />
     <None Include="Properties\FindAndFollow.DEV.ReCreate.publish.xml" />
+    <None Include="Source\Script\PostDeployment\BelarusCityAndRegionInitial.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

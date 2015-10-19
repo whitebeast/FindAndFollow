@@ -18,5 +18,7 @@ GO
 GO
 :r .\Script\PostDeployment\CarModelInitial.sql 
 GO
+:r .\Script\PostDeployment\BelarusCityAndRegionInitial.sql 
+GO
 PRINT '---- End Post-Deployment script----'
 GO
