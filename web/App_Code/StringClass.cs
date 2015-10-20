@@ -143,7 +143,7 @@ namespace FindAndFollow
                     break;
                 case ("газ"): engineType = "Газ";
                     break;
-                case ("гиб"): engineType = StringClass.EngineTypeGetHybrid(word);
+                case ("гиб"): engineType = EngineTypeGetHybrid(word);
                     break;
                 default: engineType = "Другой";
                     break;
