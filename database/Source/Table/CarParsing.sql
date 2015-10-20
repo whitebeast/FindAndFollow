@@ -2,7 +2,7 @@
     CarParsingId        INT NOT NULL IDENTITY(1,1),
     CarBrand            NVARCHAR(1000) NULL,
     Model               NVARCHAR(1000) NULL,
-    SiteId              INT NULL,
+    SiteId              NVARCHAR(50) NULL,
     SiteUrl             NVARCHAR(2000) NULL,
     Price               NVARCHAR(1000) NULL,
     BodyType            NVARCHAR(1000) NULL,
