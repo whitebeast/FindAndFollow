@@ -24,7 +24,7 @@ namespace FindAndFollow
             sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000);
             sqlParameters[0].Value = DBNull.Value;
 
-            string[] dataArray = new string[xPathArray.Length];
+            string[] dataArray;
 
             // Insert data
             for (int i = startId; i < finishId; i++)
@@ -140,7 +140,7 @@ namespace FindAndFollow
             sqlConnection.Close();
         }
 
-        public static string[] GetCarParsingSettings(string Url)
+        public static string[] GetCarParsingSettings(string url)
         {
             string[] xPathArray = new string[16];
             
@@ -149,7 +149,7 @@ namespace FindAndFollow
 
             SqlCommand commandSelect = new SqlCommand("CarParsingSettingsGet", sqlConnection);
             commandSelect.CommandType = CommandType.StoredProcedure;
-            commandSelect.Parameters.AddWithValue("@pSiteUrl", Url);
+            commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
 
             sqlConnection.Open();
 
