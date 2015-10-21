@@ -92,6 +92,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 4000).Value = dataArray[11] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = dataArray[12] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = url + i.ToString();
+                    commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = true;
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = dataArray[13] == null ? "Частное" : "Автохаус";
                     commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = dataArray[14] ?? sqlParameters[0].Value;
@@ -114,6 +115,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = url + i.ToString();
+                    commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = false;
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
@@ -144,7 +146,7 @@ namespace FindAndFollow
         public static string[] GetCarParsingSettings(string url)
         {
             string[] xPathArray = new string[16];
-            
+
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
 
