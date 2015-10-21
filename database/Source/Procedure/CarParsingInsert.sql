@@ -2,7 +2,7 @@
     (
         @pCarBrand          NVARCHAR(1000),
 	    @pModel             NVARCHAR(1000),
-	    @pSiteUrl           NVARCHAR(2000),
+	    @pSiteId            NVARCHAR(50),
 	    @pPrice             NVARCHAR(1000),
 	    @pBodyType          NVARCHAR(1000),
 	    @pModelYear         NVARCHAR(1000),
@@ -48,7 +48,7 @@ BEGIN
             SELECT
                     @pCarBrand,
                     @pModel,
-                    @pSiteUrl,
+                    @pSiteId,
                     @pPrice,
                     @pBodyType,
                     @pModelYear,
