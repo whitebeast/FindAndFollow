@@ -36,14 +36,14 @@ namespace FindAndFollow
                 // auto agency
                 xPathArray = Database.GetCarParsingSettings("abw.by-autoagency");
             }
-            
+
             Database.CarParsingInsert(abwUrl, xPathArray, 6776158, 6776159, "abw.by");
 
             // ab.onliner.by
             xPathArray = Database.GetCarParsingSettings("ab.onliner.by");
 
             Database.CarParsingInsert(abUrl, xPathArray, 2339068, 2339069, "ab.onliner.by");
- 
+
             Database.CarParsingClean();
         }
     }

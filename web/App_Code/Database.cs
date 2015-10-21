@@ -50,7 +50,7 @@ namespace FindAndFollow
 
                     if (webSite == "abw.by")
                     {
-                        dataArray[3] = StringClass.MultiplyValue(StringClass.ReplaceText(StringClass.RemoveText(dataArray[3], " млн б.р."), ".", ","), 1000000);
+                        dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р."), 1000000);
                         dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км"), 1000);
                         dataArray[5] = StringClass.RemoveText(dataArray[5], " см3");
                         dataArray[6] = StringClass.ColorGet(dataArray[6]);
@@ -58,7 +58,7 @@ namespace FindAndFollow
                         dataArray[8] = StringClass.EngineTypeGet(dataArray[8]);
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
-                        dataArray[12] = StringClass.RemoveText(dataArray[12], "Размещено: ");
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ")));
                         dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
                     }
 
@@ -68,12 +68,13 @@ namespace FindAndFollow
                         dataArray[1] = StringClass.SelectWordGet(dataArray[1], ' ', 2);
                         dataArray[3] = StringClass.ConcatenateSpaces(dataArray[3]);
                         dataArray[4] = StringClass.ConcatenateSpaces(dataArray[4]);
-                        dataArray[5] = StringClass.MultiplyValue(StringClass.ReplaceText((dataArray[5]).Trim(), ".", ","), 1000);
+                        dataArray[5] = StringClass.MultiplyValue(dataArray[5], 1000);
                         dataArray[6] = StringClass.ColorGet(StringClass.SelectWordGet(dataArray[6], ',', 1));
                         dataArray[7] = StringClass.BodyTypeGet(StringClass.SelectWordGet(dataArray[7], ',', 2));
                         dataArray[8] = StringClass.EngineTypeGet(StringClass.SelectWordGet(dataArray[8], ',', 3));
                         dataArray[9] = StringClass.TransmissionGet(StringClass.SelectWordGet(dataArray[9], ',', 2));
                         dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3));
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(dataArray[12]));
                         dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
                     }
 

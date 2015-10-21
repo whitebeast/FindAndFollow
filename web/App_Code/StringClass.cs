@@ -53,7 +53,7 @@ namespace FindAndFollow
                     break;
                 case ("крас"): color = "Красный";
                     break;
-                case ("оран"): color = "Оранжевой";
+                case ("оран"): color = "Оранжевый";
                     break;
                 case ("сере"): color = "Серебристый";
                     break;
@@ -214,6 +214,46 @@ namespace FindAndFollow
             }
 
             return bodyType;
+        }
+
+        public static string MonthConvert(string word)
+        {
+            string currentYear = DateTime.Now.Year.ToString();
+            string monthNumber = SelectWordGet(word, ' ', 2);
+            string dateNumber = SelectWordGet(word, ' ', 1);
+            string timeNumber = SelectWordGet(word, ' ', 4);
+
+            switch (monthNumber.Substring(0, 3).ToLower())
+            {
+                case ("янв"): monthNumber = "01";
+                    break;
+                case ("фев"): monthNumber = "02";
+                    break;
+                case ("мар"): monthNumber = "03";
+                    break;
+                case ("апр"): monthNumber = "04";
+                    break;
+                case ("мая"): monthNumber = "05";
+                    break;
+                case ("июн"): monthNumber = "06";
+                    break;
+                case ("июл"): monthNumber = "07";
+                    break;
+                case ("авг"): monthNumber = "08";
+                    break;
+                case ("сен"): monthNumber = "09";
+                    break;
+                case ("окт"): monthNumber = "10";
+                    break;
+                case ("ноя"): monthNumber = "11";
+                    break;
+                case ("дек"): monthNumber = "12";
+                    break;
+                default: monthNumber = "00";
+                    break;
+            }
+
+            return currentYear + ' ' + monthNumber + ' ' + dateNumber + ' '  + timeNumber;
         }
     }
 }
