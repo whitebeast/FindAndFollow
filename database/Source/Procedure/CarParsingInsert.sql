@@ -3,6 +3,7 @@
         @pCarBrand          NVARCHAR(1000),
 	    @pModel             NVARCHAR(1000),
 	    @pSiteId            NVARCHAR(50),
+        @pSiteURL           NVARCHAR(2000),
 	    @pPrice             NVARCHAR(1000),
 	    @pBodyType          NVARCHAR(1000),
 	    @pModelYear         NVARCHAR(1000),
@@ -28,6 +29,7 @@ BEGIN
                 (
                     CarBrand,
                     Model,
+                    SiteId,
                     SiteUrl,
                     Price,
                     BodyType,
@@ -49,6 +51,7 @@ BEGIN
                     @pCarBrand,
                     @pModel,
                     @pSiteId,
+                    @pSiteURL,
                     @pPrice,
                     @pBodyType,
                     @pModelYear,
