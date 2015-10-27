@@ -2,12 +2,11 @@
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT
-        ERROR_NUMBER() AS ErrorNumber,
-        ERROR_SEVERITY() AS ErrorSeverity,
-        ERROR_STATE() AS ErrorState,
-        ERROR_PROCEDURE() AS ErrorProcedure,
-        ERROR_LINE() AS ErrorLine,
-        ERROR_MESSAGE() AS ErrorMessage;
+    PRINT 'Error ' + CONVERT(varchar(50), ERROR_NUMBER()) +
+          ', Severity ' + CONVERT(varchar(5), ERROR_SEVERITY()) +
+          ', State ' + CONVERT(varchar(5), ERROR_STATE()) + 
+          ', Procedure ' + ISNULL(ERROR_PROCEDURE(), '-') + 
+          ', Line ' + CONVERT(varchar(5), ERROR_LINE());
+    PRINT ERROR_MESSAGE();
 END    
 GO

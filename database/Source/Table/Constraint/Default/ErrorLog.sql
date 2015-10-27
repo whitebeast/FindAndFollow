@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.[ErrorLog] ADD CONSTRAINT dfErrorLog_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn
