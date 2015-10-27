@@ -11,7 +11,7 @@
     EngineSize          NVARCHAR(5) NULL,
     TransmissionType    NVARCHAR(100) NULL,
     DriveType           NVARCHAR(100) NULL,
-    Condition           NVARCHAR(1) NULL,
+    Condition           NVARCHAR(100) NULL,
     Mileage             NVARCHAR(100) NULL,
     Color               NVARCHAR(100) NULL,
     SellerType          NVARCHAR(100) NULL,

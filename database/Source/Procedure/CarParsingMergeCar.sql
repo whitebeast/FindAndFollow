@@ -1,4 +1,4 @@
-п»їCREATE PROCEDURE [dbo].[CarParsingMergeCar]
+CREATE PROCEDURE [dbo].[CarParsingMergeCar]
 AS
 BEGIN
 	SET NOCOUNT ON
@@ -24,55 +24,55 @@ BEGIN
             cp.SiteId AS SiteURL,
             cp.Price,
             CASE cp.BodyType
-                WHEN N'РЎРµРґР°РЅ' THEN 1
-                WHEN N'РЈРЅРёРІРµСЂСЃР°Р»' THEN 2
-                WHEN N'РҐРµС‚С‡Р±СЌРє' THEN 3
-                WHEN N'РњРёРЅРёРІСЌРЅ' THEN 4
-                WHEN N'Р’РЅРµРґРѕСЂРѕР¶РЅРёРє' THEN 5 
-                WHEN N'РљСѓРїРµ' THEN 6
-                WHEN N'РљР°Р±СЂРёРѕР»РµС‚' THEN 7 
-                WHEN N'РњРёРєСЂРѕР°РІС‚РѕР±СѓСЃ' THEN 8 
-                WHEN N'Р“СЂСѓР·РѕРІРёРє' THEN 9
-                WHEN N'РџРёРєР°Рї' THEN 10
-                WHEN N'Р РѕРґСЃС‚РµСЂ' THEN 11
-                WHEN N'РђРІС‚РѕР±СѓСЃ' THEN 12
+                WHEN N'Седан' THEN 1
+                WHEN N'Универсал' THEN 2
+                WHEN N'Хетчбэк' THEN 3
+                WHEN N'Минивэн' THEN 4
+                WHEN N'Внедорожник' THEN 5 
+                WHEN N'Купе' THEN 6
+                WHEN N'Кабриолет' THEN 7 
+                WHEN N'Микроавтобус' THEN 8 
+                WHEN N'Грузовик' THEN 9
+                WHEN N'Пикап' THEN 10
+                WHEN N'Родстер' THEN 11
+                WHEN N'Автобус' THEN 12
                 ELSE 0 
             END AS BodyType,
             cp.ModelYear,
             CASE cp.EngineType
-                WHEN N'Р‘РµРЅР·РёРЅРѕРІС‹Р№' THEN 1
-                WHEN N'Р”РёР·РµР»СЊРЅС‹Р№' THEN 2
-                WHEN N'Р“Р°Р·' THEN 3
-                WHEN N'Р“РёР±СЂРёРґРЅС‹Р№ Р±РµРЅР·РёРЅРѕРІС‹Р№' THEN 4
-                WHEN N'Р“РёР±СЂРёРґРЅС‹Р№ РґРёР·РµР»СЊРЅС‹Р№' THEN 5
-                WHEN N'Р­Р»РµРєС‚СЂРёС‡РµСЃРєРёР№' THEN 6
+                WHEN N'Бензиновый' THEN 1
+                WHEN N'Дизельный' THEN 2
+                WHEN N'Газ' THEN 3
+                WHEN N'Гибридный бензиновый' THEN 4
+                WHEN N'Гибридный дизельный' THEN 5
+                WHEN N'Электрический' THEN 6
                 ELSE 0 
             END AS EngineType,
             cp.EngineSize,
             CASE cp.TransmissionType
-                WHEN N'РђРІС‚РѕРјР°С‚' THEN 1
-                WHEN N'РњРµС…Р°РЅРёРєР°' THEN 2
+                WHEN N'Автомат' THEN 1
+                WHEN N'Механика' THEN 2
                 ELSE 0
             END AS TransmissionType,
             CASE cp.DriveType
-                WHEN N'РџРµСЂРµРґРЅРёР№' THEN 1
-                WHEN N'Р—Р°РґРЅРёР№' THEN 2
-                WHEN N'РџРѕР»РЅС‹Р№' THEN 3  
+                WHEN N'Передний' THEN 1
+                WHEN N'Задний' THEN 2
+                WHEN N'Полный' THEN 3  
                 ELSE 0
             END AS DriveType,
             CASE cp.Condition
-                WHEN N'РќРѕРІС‹Р№' THEN 1
-                WHEN N'РЎ РїСЂРѕР±РµРіРѕРј' THEN 2
-                WHEN N'РђРІР°СЂРёР№РЅС‹Р№' THEN 3
+                WHEN N'Новый' THEN 1
+                WHEN N'С пробегом' THEN 2
+                WHEN N'Аварийный' THEN 3
                 ELSE 0
             END AS Condition,
             cp.Mileage,
             col.ColorId,
             cp.Color,
             CASE cp.SellerType
-                WHEN N'Р§Р°СЃС‚РЅРѕРµ' THEN 1
-                WHEN N'РђРІС‚РѕС…Р°СѓСЃ' THEN 1
-                WHEN N'Р”РёР»РµСЂ' THEN 1
+                WHEN N'Частное' THEN 1
+                WHEN N'Автохаус' THEN 1
+                WHEN N'Дилер' THEN 1
                 ELSE 0
             END AS SellerType,
             cp.IsSwap,
