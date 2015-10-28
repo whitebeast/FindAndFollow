@@ -1,9 +1,13 @@
 ﻿ALTER TABLE dbo.Car
-ADD CONSTRAINT ckCar_BodyType CHECK (BodyType >= 1 AND BodyType <= 9);
+ADD CONSTRAINT ckCar_BodyType CHECK (BodyType >= 1 AND BodyType <= 12);
 GO
 
 ALTER TABLE dbo.Car
 ADD CONSTRAINT ckCar_EngineType CHECK (EngineType >= 1 AND EngineType <= 6);
+GO
+
+ALTER TABLE dbo.Car
+ADD CONSTRAINT ckCar_TransmissionType CHECK (TransmissionType >= 1 AND TransmissionType <= 2);
 GO
 
 ALTER TABLE dbo.Car

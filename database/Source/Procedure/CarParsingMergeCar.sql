@@ -96,8 +96,8 @@ BEGIN
                             cp.Color,
                             CASE cp.SellerType
                                 WHEN N'Частное' THEN 1
-                                WHEN N'Автохаус' THEN 1
-                                WHEN N'Дилер' THEN 1
+                                WHEN N'Автохаус' THEN 2
+                                WHEN N'Дилер' THEN 3
                                 ELSE 0
                             END AS SellerType,
                             cp.IsSwap,
