@@ -1,23 +1,32 @@
 ﻿ CREATE TABLE CarParsing(
     CarParsingId        INT NOT NULL IDENTITY(1,1),
-    CarBrand            NVARCHAR(1000) NULL,
-    Model               NVARCHAR(1000) NULL,
+    CarBrand            NVARCHAR(50) NULL,
+    Model               NVARCHAR(50) NULL,
     SiteId              NVARCHAR(50) NULL,
     SiteUrl             NVARCHAR(2000) NULL,
-    Price               NVARCHAR(1000) NULL,
-    BodyType            NVARCHAR(1000) NULL,
-    ModelYear           NVARCHAR(1000) NULL,
-    EngineType          NVARCHAR(200) NULL,
-    EngineSize          NVARCHAR(1000) NULL,
-    TransmissionType    NVARCHAR(1000) NULL,
-    DriveType           NVARCHAR(1000) NULL,
-    Condition           NVARCHAR(10) NULL,
-    Mileage             NVARCHAR(1000) NULL,
+    Price               NVARCHAR(100) NULL,
+    BodyType            NVARCHAR(100) NULL,
+    ModelYear           NVARCHAR(4) NULL,
+    EngineType          NVARCHAR(100) NULL,
+    EngineSize          NVARCHAR(5) NULL,
+    TransmissionType    NVARCHAR(100) NULL,
+    DriveType           NVARCHAR(100) NULL,
+    Condition           NVARCHAR(100) NULL,
+    Mileage             NVARCHAR(100) NULL,
     Color               NVARCHAR(100) NULL,
     SellerType          NVARCHAR(100) NULL,
-    IsSwap              NVARCHAR(100) NULL,
-    [Description]       NVARCHAR(2000) NULL,
+    IsSwap              NVARCHAR(1) NULL,
+    [Description]       NVARCHAR(1000) NULL,
     PageCreatedOn       NVARCHAR(100) NULL,
     CreatedOn           DATETIME NOT NULL,
-    IsPageExist         BIT
+    IsPageExist         BIT,
+	PageStatusId		TINYINT
     )
+
+	/*
+	PageStatusId:
+	0 - Error merge with Car table 
+	1 - Downloaded page (default)
+	2 - Successfull merge with Car table
+
+	*/

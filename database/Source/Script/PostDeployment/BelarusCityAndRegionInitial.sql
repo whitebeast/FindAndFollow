@@ -3,8 +3,8 @@
 DECLARE @tCityRegion TABLE (City NVARCHAR(100), Region NVARCHAR(100))
 INSERT INTO @tCityRegion
 (
-	City,
-	Region
+    City,
+    Region
 )
 SELECT N'Береза',N'Брестская область' UNION ALL
 SELECT N'Ганцевичи',N'Брестская область' UNION ALL
@@ -149,9 +149,9 @@ SELECT @CountryId = CountryId FROM dbo.Country AS c WHERE NAME = N'Респуб�
 
 INSERT INTO dbo.Place 
     (
-	    CountryId,
-	    RegionId,
-	    CityId
+        CountryId,
+        RegionId,
+        CityId
     )
 SELECT  @CountryId,
         r.RegionId,
@@ -161,5 +161,5 @@ JOIN    dbo.City AS c ON c.Name = t.City
 JOIN    dbo.Region AS r ON r.Name = t.Region
 LEFT JOIN dbo.Place p ON p.CountryId = @CountryId AND p.RegionId = r.RegionId AND p.CityId = c.CityId
 WHERE p.PlaceId IS NULL
-	
-	
+    
+    

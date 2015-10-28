@@ -32,6 +32,10 @@ BodyType:
 7 - Cabriolet
 8 - Minibus
 9 - Van 
+10 - Pickup
+11 - Roadster
+12 - Bus
+0 - Other
 
 EngineType:
 1 - Petrol
@@ -40,23 +44,28 @@ EngineType:
 4 - Hybrid (petrol)
 5 - Hybrid (diesel)
 6 - Electric
+0 - Other
 
 DriveType:
 1 - FWD
 2 - RWD
 3 - 4x4
+0 - Other
 
 Condition:
-1 - Used
-2 - New
+1 - New
+2 - Used
 3 - Wreck
+0 - Other
 
 SellerType:
 1 - Private
 2 - Autohaus
 3 - Dieler
+0 - Other
 
 TransmissionType:
 1 - Automatic
 2 - Manual
+0 - Other
 */
