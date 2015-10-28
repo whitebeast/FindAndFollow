@@ -11,7 +11,7 @@
         TransmissionType      BIT NOT NULL,
         DriveType             TINYINT NOT NULL,
         Condition             TINYINT NOT NULL,
-        Mileage               SMALLINT NOT NULL,
+        Mileage               INT NOT NULL,
         ColorId               TINYINT NOT NULL,
         SellerType            TINYINT NOT NULL,
         IsSwap                BIT NOT NULL,

@@ -171,6 +171,7 @@
     <None Include="Source\Script\PostDeployment\SiteInitial.sql" />
     <Build Include="Source\Procedure\CarParsingSettingsGet_CurrentId.sql" />
     <Build Include="Source\Procedure\CarParsingSettingsUpdate_CurrentId.sql" />
+    <Build Include="Source\Function\XMLToJSON.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />

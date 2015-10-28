@@ -15,10 +15,11 @@ BEGIN TRY
     COMMIT TRANSACTION
     END TRY
     BEGIN CATCH
-        EXECUTE dbo.ErrorInfoGet;
-        -- If we have an open transaction and this sproc opened it then rollback to the save point, unless the
-        -- transaction is doomed. If it is doomed then rollback all transactions if there are no previous transactions.
-        IF (XACT_STATE() = 1) AND (@@TRANCOUNT > 0) ROLLBACK TRANSACTION;
-        ELSE IF (XACT_STATE() = -1) AND (@@TRANCOUNT = 0) ROLLBACK TRANSACTION;
+        IF @@TRANCOUNT > 0
+        BEGIN
+            ROLLBACK TRANSACTION;
+        END
+
+        EXECUTE dbo.ErrorLogInsert;
     END CATCH
 END

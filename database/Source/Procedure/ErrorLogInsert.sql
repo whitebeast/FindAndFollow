@@ -41,7 +41,7 @@ BEGIN
 
     END TRY
     BEGIN CATCH
-        PRINT 'An error occurred in stored procedure uspLogError: ';
+        PRINT 'An error occurred in stored procedure ErrorLogInsert: ';
         EXECUTE [dbo].[ErrorInfoGet];
         RETURN -1;
     END CATCH
