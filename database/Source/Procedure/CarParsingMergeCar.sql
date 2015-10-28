@@ -13,6 +13,7 @@ BEGIN
                 WHEN col.ColorId IS NULL THEN 'Color'
                 ELSE NULL
             END AS ErrorType,
+			cp.CarParsingId,
             cb.CarBrandId,
             cp.CarBrand,
             cm.CarModelId,
@@ -84,6 +85,7 @@ BEGIN
     LEFT JOIN dbo.CarModel cm ON cm.Name = cp.Model AND cm.CarBrandId = cb.CarBrandId
     LEFT JOIN dbo.[Site] s ON s.SiteUrl = cp.SiteId
     LEFT JOIN dbo.Color AS col ON col.Name = cp.Color
+	WHERE cp.PageStatusId = 1 -- Downloaded page (default)
     ;
     BEGIN TRY
         BEGIN TRANSACTION
@@ -124,8 +126,11 @@ BEGIN
         FROM #CarParsing AS cp  
         WHERE cp.ErrorType IS NULL        
         ;   
-        EXEC dbo.CarParsingClean
-        ;
+		UPDATE cp
+		SET PageStatusId = CASE WHEN cp.ErrorType IS NULL THEN 2 ELSE 0 END
+		FROM dbo.CarParsing cp
+		JOIN #CarParsing t ON t.CarParsingId = cp.CarParsingId
+		;
         COMMIT TRANSACTION
     END TRY        
     BEGIN CATCH

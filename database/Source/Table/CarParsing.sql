@@ -19,5 +19,14 @@
     [Description]       NVARCHAR(1000) NULL,
     PageCreatedOn       NVARCHAR(100) NULL,
     CreatedOn           DATETIME NOT NULL,
-    IsPageExist         BIT
+    IsPageExist         BIT,
+	PageStatusId		TINYINT
     )
+
+	/*
+	PageStatusId:
+	0 - Error merge with Car table 
+	1 - Downloaded page (default)
+	2 - Successfull merge with Car table
+
+	*/
