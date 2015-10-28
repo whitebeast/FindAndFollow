@@ -17,7 +17,7 @@ BEGIN
                     WHEN col.ColorId IS NULL THEN 'Color Error'
                     ELSE NULL
                 END AS ErrorType,
-			    cp.CarParsingId,
+                cp.CarParsingId,
                 cb.CarBrandId,
                 cp.CarBrand,
                 cm.CarModelId,
@@ -104,7 +104,7 @@ BEGIN
                             cp.Description,
                             cp.SiteUrl AS OriginalURL
                     FROM    dbo.CarParsing cp
-	                WHERE cp.PageStatusId = 1 -- Downloaded page (default)    	
+                    WHERE cp.PageStatusId = 1 -- Downloaded page (default)    	
         ) AS cp
         LEFT JOIN dbo.CarBrand cb ON cb.Name = cp.CarBrand
         LEFT JOIN dbo.CarModel cm ON cm.Name = cp.Model AND cm.CarBrandId = cb.CarBrandId
@@ -113,29 +113,29 @@ BEGIN
         ;
 
         -- write wrong data info to Log table
-		IF EXISTS (SELECT 1 FROM #CarParsing WHERE ErrorType IS NOT NULL) BEGIN
-		    SELECT @XML = (
+        IF EXISTS (SELECT 1 FROM #CarParsing WHERE ErrorType IS NOT NULL) BEGIN
+            SELECT @XML = (
                 SELECT  cp.ErrorType,
-				        cp.CarBrand,
-				        cp.Model,
-				        cp.SiteId,
-				        cp.Price,
-				        cp.BodyType,
-				        cp.ModelYear,
-				        cp.EngineType,
-				        cp.EngineSize,
-				        cp.TransmissionType,
-				        cp.DriveType,
-				        cp.Condition,
-				        cp.Mileage,
-				        cp.Color,
-				        cp.SellerType,
-				        cp.IsSwap,
-				        cp.Description,
-				        cp.OriginalURL
-		        FROM #CarParsing AS cp 
-		        WHERE cp.ErrorType IS NOT NULL
-		        FOR XML PATH, ROOT
+                        cp.CarBrand,
+                        cp.Model,
+                        cp.SiteId,
+                        cp.Price,
+                        cp.BodyType,
+                        cp.ModelYear,
+                        cp.EngineType,
+                        cp.EngineSize,
+                        cp.TransmissionType,
+                        cp.DriveType,
+                        cp.Condition,
+                        cp.Mileage,
+                        cp.Color,
+                        cp.SellerType,
+                        cp.IsSwap,
+                        cp.Description,
+                        cp.OriginalURL
+                FROM #CarParsing AS cp 
+                WHERE cp.ErrorType IS NOT NULL
+                FOR XML PATH, ROOT
             )
             ;
             INSERT INTO dbo.ErrorLog 
@@ -156,7 +156,7 @@ BEGIN
                     0,
                     dbo.XMLToJSON(@XML)
             ;
-		END
+        END
         ;
         -- insert into Car table
         INSERT INTO [dbo].[Car]
@@ -185,7 +185,7 @@ BEGIN
                 cp.EngineSize,
                 cp.TransmissionType,
                 cp.DriveType,
-                1,--cp.Condition,
+                cp.Condition,
                 cp.Mileage,
                 cp.ColorId,
                 cp.SellerType,
@@ -195,15 +195,15 @@ BEGIN
         FROM #CarParsing AS cp  
         WHERE cp.ErrorType IS NULL        
         ;   
-		UPDATE cp
-		SET PageStatusId = CASE WHEN t.ErrorType IS NULL THEN 2 ELSE 0 END
-		FROM dbo.CarParsing cp
-		JOIN #CarParsing t ON t.CarParsingId = cp.CarParsingId
-		;
+        UPDATE cp
+        SET PageStatusId = CASE WHEN t.ErrorType IS NULL THEN 2 ELSE 0 END
+        FROM dbo.CarParsing cp
+        JOIN #CarParsing t ON t.CarParsingId = cp.CarParsingId
+        ;
         COMMIT TRANSACTION
     END TRY        
     BEGIN CATCH
-		IF @@TRANCOUNT > 0
+        IF @@TRANCOUNT > 0
         BEGIN
             ROLLBACK TRANSACTION;
         END

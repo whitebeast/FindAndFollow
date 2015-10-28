@@ -1,24 +1,24 @@
 ﻿CREATE PROCEDURE dbo.CarParsingInsert
     (
         @pCarBrand          NVARCHAR(1000),
-	    @pModel             NVARCHAR(1000),
-	    @pSiteId            NVARCHAR(50),
+        @pModel             NVARCHAR(1000),
+        @pSiteId            NVARCHAR(50),
         @pSiteURL           NVARCHAR(2000),
-	    @pPrice             NVARCHAR(1000),
-	    @pBodyType          NVARCHAR(1000),
-	    @pModelYear         NVARCHAR(1000),
-	    @pEngineType        NVARCHAR(200),
-	    @pEngineSize        NVARCHAR(1000),
-	    @pTransmissionType  NVARCHAR(1000),
-	    @pDriveType         NVARCHAR(1000),
-	    @pCondition         NVARCHAR(10),
-	    @pMileage           NVARCHAR(1000),
-	    @pColor             NVARCHAR(100),
-	    @pSellerType        NVARCHAR(100),
-	    @pIsSwap            NVARCHAR(100),
-	    @pDescription       NVARCHAR(2000),
-	    @pPageCreatedOn     NVARCHAR(100),
-	    @pIsPageExist       BIT = 0
+        @pPrice             NVARCHAR(1000),
+        @pBodyType          NVARCHAR(1000),
+        @pModelYear         NVARCHAR(1000),
+        @pEngineType        NVARCHAR(200),
+        @pEngineSize        NVARCHAR(1000),
+        @pTransmissionType  NVARCHAR(1000),
+        @pDriveType         NVARCHAR(1000),
+        @pCondition         NVARCHAR(10),
+        @pMileage           NVARCHAR(1000),
+        @pColor             NVARCHAR(100),
+        @pSellerType        NVARCHAR(100),
+        @pIsSwap            NVARCHAR(100),
+        @pDescription       NVARCHAR(2000),
+        @pPageCreatedOn     NVARCHAR(100),
+        @pIsPageExist       BIT = 0
     )
 AS
 BEGIN    
