@@ -1,6 +1,6 @@
 ﻿CREATE FUNCTION [dbo].[XMLToJSON]
 (
-    @XML XML
+    @pXML XML
 )
 RETURNS VARCHAR(MAX)
 AS
@@ -16,7 +16,7 @@ BEGIN
                              FROM x.a.nodes('*') b(c)  
                              FOR XML PATH(''),TYPE).value('(./text())[1]','NVARCHAR(MAX)')
                         ,1,1,'')+'},' + CHAR(10)
-                   FROM @xml.nodes('/root/*') x(a)  
+                   FROM @pXML.nodes('/root/*') x(a)  
                    ) JSON(theLine)  
                   FOR XML PATH(''),TYPE).value('.','NVARCHAR(MAX)' )
                 ,2,0,''))

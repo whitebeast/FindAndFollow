@@ -43,63 +43,19 @@ BEGIN
         FROM    (
                     SELECT  cp.CarParsingId,
                             cp.CarBrand,
-                            CASE 
-                                WHEN cp.Model LIKE 'A4 %' THEN 'A4' 
-                                ELSE cp.Model
-                            END AS Model,
+                            dbo.MappingModel(cp.Model) AS Model,
                             cp.SiteId,
                             cp.Price,
-                            CASE cp.BodyType
-                                WHEN N'Седан' THEN 1
-                                WHEN N'Универсал' THEN 2
-                                WHEN N'Хетчбэк' THEN 3
-                                WHEN N'Минивэн' THEN 4
-                                WHEN N'Внедорожник' THEN 5 
-                                WHEN N'Купе' THEN 6
-                                WHEN N'Кабриолет' THEN 7 
-                                WHEN N'Микроавтобус' THEN 8 
-                                WHEN N'Грузовик' THEN 9
-                                WHEN N'Пикап' THEN 10
-                                WHEN N'Родстер' THEN 11
-                                WHEN N'Автобус' THEN 12
-                                ELSE 0 
-                            END AS BodyType,
+                            dbo.MappingType('BodyType',cp.BodyType) AS BodyType,
                             cp.ModelYear,
-                            CASE cp.EngineType
-                                WHEN N'Бензиновый' THEN 1
-                                WHEN N'Дизельный' THEN 2
-                                WHEN N'Газ' THEN 3
-                                WHEN N'Гибридный бензиновый' THEN 4
-                                WHEN N'Гибридный дизельный' THEN 5
-                                WHEN N'Электрический' THEN 6
-                                ELSE 0 
-                            END AS EngineType,
+                            dbo.MappingType('EngineType',cp.EngineType) AS EngineType,
                             cp.EngineSize,
-                            CASE cp.TransmissionType
-                                WHEN N'Автомат' THEN 1
-                                WHEN N'Механика' THEN 2
-                                ELSE 0
-                            END AS TransmissionType,
-                            CASE cp.DriveType
-                                WHEN N'Передний' THEN 1
-                                WHEN N'Задний' THEN 2
-                                WHEN N'Полный' THEN 3  
-                                ELSE 0
-                            END AS DriveType,
-                            CASE cp.Condition
-                                WHEN N'Новый' THEN 1
-                                WHEN N'С пробегом' THEN 2
-                                WHEN N'Аварийный' THEN 3
-                                ELSE 0
-                            END AS Condition,
+                            dbo.MappingType('TransmissionType',cp.TransmissionType) AS TransmissionType,
+                            dbo.MappingType('DriveType',cp.DriveType) AS DriveType,
+                            dbo.MappingType('Condition',cp.Condition) AS Condition,
                             cp.Mileage,
                             cp.Color,
-                            CASE cp.SellerType
-                                WHEN N'Частное' THEN 1
-                                WHEN N'Автохаус' THEN 2
-                                WHEN N'Дилер' THEN 3
-                                ELSE 0
-                            END AS SellerType,
+                            dbo.MappingType('SellerType',cp.SellerType) AS SellerType,
                             cp.IsSwap,
                             cp.Description,
                             cp.SiteUrl AS OriginalURL

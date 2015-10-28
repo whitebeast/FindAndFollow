@@ -172,6 +172,8 @@
     <Build Include="Source\Procedure\CarParsingSettingsGet_CurrentId.sql" />
     <Build Include="Source\Procedure\CarParsingSettingsUpdate_CurrentId.sql" />
     <Build Include="Source\Function\XMLToJSON.sql" />
+    <Build Include="Source\Function\MappingType.sql" />
+    <Build Include="Source\Function\MappingModel.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
