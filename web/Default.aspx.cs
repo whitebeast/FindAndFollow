@@ -24,7 +24,7 @@ namespace FindAndFollow
             // abw.by
             string[] checkSellerTypeArray = new string[1];
             checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
-            checkSellerTypeArray = Download.GetData(abwUrl + "6776158", checkSellerTypeArray, "abw.by");
+            checkSellerTypeArray = Download.GetData(abwUrl + "8310288", checkSellerTypeArray, "abw.by");
 
             if (checkSellerTypeArray[0] == null)
             {
@@ -37,7 +37,7 @@ namespace FindAndFollow
                 xPathArray = Database.GetCarParsingSettings("abw.by-autoagency");
             }
 
-            Database.CarParsingInsert(abwUrl, xPathArray, 6776158, 6776159, "abw.by");
+            Database.CarParsingInsert(abwUrl, xPathArray, 8310288, 8310289, "abw.by");
 
             // ab.onliner.by
             xPathArray = Database.GetCarParsingSettings("ab.onliner.by");

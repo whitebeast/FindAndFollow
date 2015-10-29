@@ -173,7 +173,7 @@ namespace FindAndFollow
                 xPathArray[10] = dataReader["DriveTypeXPath"].ToString();
                 xPathArray[11] = dataReader["DescriptionXPath"].ToString();
                 xPathArray[12] = dataReader["PageCreatedOnXPath"].ToString();
-                xPathArray[13] = dataReader["PageCreatedOnXPath"].ToString();
+                xPathArray[13] = dataReader["SellerTypeXPath"].ToString();
                 xPathArray[14] = dataReader["ConditionXPath"].ToString();
                 xPathArray[15] = dataReader["IsSwapXPath"].ToString();
             }

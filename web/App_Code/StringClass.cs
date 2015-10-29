@@ -143,6 +143,8 @@ namespace FindAndFollow
                     break;
                 case ("газ"): engineType = "Газ";
                     break;
+                case ("эле"): engineType = "Электрический";
+                    break;
                 case ("гиб"): engineType = EngineTypeGetHybrid(word);
                     break;
                 default: engineType = "Другой";
