@@ -17,7 +17,7 @@ namespace FindAndFollow
             string abUrl = "http://ab.onliner.by/car/";
 
             // av.by
-            string[] xPathArray = Database.GetCarParsingSettings("av.by");
+            string[] xPathArray = Database.CarParsingSettingsGet("av.by");
 
             Database.CarParsingInsert(avUrl, xPathArray, 10708341, 10708342, "av.by");
 
@@ -29,18 +29,18 @@ namespace FindAndFollow
             if (checkSellerTypeArray[0] == null)
             {
                 // private
-                xPathArray = Database.GetCarParsingSettings("abw.by-private");
+                xPathArray = Database.CarParsingSettingsGet("abw.by-private");
             }
             else
             {
                 // auto agency
-                xPathArray = Database.GetCarParsingSettings("abw.by-autoagency");
+                xPathArray = Database.CarParsingSettingsGet("abw.by-autoagency");
             }
 
             Database.CarParsingInsert(abwUrl, xPathArray, 8310288, 8310289, "abw.by");
 
             // ab.onliner.by
-            xPathArray = Database.GetCarParsingSettings("ab.onliner.by");
+            xPathArray = Database.CarParsingSettingsGet("ab.onliner.by");
 
             Database.CarParsingInsert(abUrl, xPathArray, 2339068, 2339069, "ab.onliner.by");
 

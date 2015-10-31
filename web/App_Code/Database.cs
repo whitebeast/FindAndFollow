@@ -143,7 +143,7 @@ namespace FindAndFollow
             sqlConnection.Close();
         }
 
-        public static string[] GetCarParsingSettings(string url)
+        public static string[] CarParsingSettingsGet(string url)
         {
             string[] xPathArray = new string[16];
 
@@ -181,6 +181,25 @@ namespace FindAndFollow
             sqlConnection.Close();
 
             return xPathArray;
+        }
+
+        public static string ErrorLogInsert(string service, string exMessage, string exStackTrace)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(connStr);
+
+            SqlCommand commandInsert = new SqlCommand("ErrorLogInsert", sqlConnection);
+            commandInsert.CommandType = CommandType.StoredProcedure;
+            commandInsert.Parameters.AddWithValue("@pSource", service);
+            commandInsert.Parameters.AddWithValue("@pExMessage", exMessage);
+            commandInsert.Parameters.AddWithValue("@pExStackTrace", exStackTrace);
+
+            sqlConnection.Open();
+            commandInsert.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            return null;
         }
     }
 }
