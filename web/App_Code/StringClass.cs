@@ -348,5 +348,72 @@ namespace FindAndFollow
                 return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
             }
         }
+
+        public static string ConditionGetAb(string word)
+        {
+            try
+            {
+                string condition = word.Trim().ToLower();
+
+                if (condition.Contains("ава"))
+                    condition = "Аварийный";
+                else if (condition.Contains("нов"))
+                    condition = "Новый";
+                else
+                    condition = "С пробегом";
+
+                return condition;
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+            }
+        }
+
+        public static string ConditionGetAv(string word)
+        {
+            try
+            {
+                int mileage = int.Parse(word.Trim());
+                string condition = "";
+
+                if (mileage <= 50)
+                    condition = "Новый";
+                else 
+                    condition = "С пробегом";
+
+                return condition;
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+            }
+        }
+
+        public static string ConditionGetAbw(string word)
+        {
+            try
+            {
+                string condition = word.Substring(0, 3);
+
+                switch (condition)
+                {
+                    case ("ава"): condition = "Аварийный";
+                        break;
+                    case ("нов"): condition = "Новый";
+                        break;
+                    case ("с п"): condition = "С пробегом";
+                        break;
+                    default: condition = "Другой";
+                        break;
+                }
+
+                return condition;
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+            }
+        }
     }
 }

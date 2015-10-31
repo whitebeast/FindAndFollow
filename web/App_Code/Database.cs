@@ -45,7 +45,7 @@ namespace FindAndFollow
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
                         dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:");
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: "));
-                        dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
+                        dataArray[14] = StringClass.ConditionGetAv(StringClass.RemoveText(dataArray[4], "км."));
                     }
 
                     if (webSite == "abw.by")
@@ -59,7 +59,7 @@ namespace FindAndFollow
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ")));
-                        dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
+                        dataArray[14] = StringClass.ConditionGetAbw(dataArray[14]);
                     }
 
                     if (webSite == "ab.onliner.by")
@@ -75,7 +75,7 @@ namespace FindAndFollow
                         dataArray[9] = StringClass.TransmissionGet(StringClass.SelectWordGet(dataArray[9], ',', 2));
                         dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3));
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(dataArray[12]));
-                        dataArray[14] = StringClass.SearchWord(dataArray[14], "1", "0");
+                        dataArray[14] = StringClass.ConditionGetAb(dataArray[14]);
                     }
 
                     commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = dataArray[0] ?? sqlParameters[0].Value;
