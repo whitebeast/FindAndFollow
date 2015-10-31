@@ -45,6 +45,8 @@ namespace FindAndFollow
             Database.CarParsingInsert(abUrl, xPathArray, 2339068, 2339069, "ab.onliner.by");
 
             Database.CarParsingClean();
+
+            Database.CarMerge();
         }
     }
 }

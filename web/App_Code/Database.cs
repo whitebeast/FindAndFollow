@@ -201,5 +201,19 @@ namespace FindAndFollow
 
             return null;
         }
+
+        public static void CarMerge()
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(connStr);
+
+            SqlCommand commandInsert = new SqlCommand("CarParsingMergeCar", sqlConnection);
+            commandInsert.CommandType = CommandType.StoredProcedure;
+
+            sqlConnection.Open();
+            commandInsert.ExecuteNonQuery();
+
+            sqlConnection.Close();
+        }
     }
 }
