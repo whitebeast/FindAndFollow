@@ -23,7 +23,7 @@ INSERT INTO [dbo].[CarParsingSettings]
            ,[DescriptionXPath]
            ,[PageCreatedOnXPath])
 SELECT     'av.by' AS SiteUrlXPath,
-           NULL AS CurrentId,
+           10708341 AS CurrentId,
            'http://www.av.by/public/public.php?event=View&public_id=' AS DownloadMaskURL,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[1]/ul/li[2]/a' AS CarBrandXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[1]/ul/li[3]/a' AS ModelXPath,
@@ -44,7 +44,7 @@ SELECT     'av.by' AS SiteUrlXPath,
 UNION ALL
 -- abw.by-private      
 SELECT     'abw.by-private' AS SiteUrl,
-           NULL AS CurrentId,
+           8310288 AS CurrentId,
            'http://www.abw.by/allpublic/sell/' AS DownloadMaskURL,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
@@ -65,7 +65,7 @@ SELECT     'abw.by-private' AS SiteUrl,
 UNION ALL
 -- abw.by-autoagency      
 SELECT     'abw.by-autoagency' AS SiteUrl,
-           NULL AS CurrentId,
+           8310288 AS CurrentId,
            'http://www.abw.by/allpublic/sell/' AS DownloadMaskURL,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
@@ -86,7 +86,7 @@ SELECT     'abw.by-autoagency' AS SiteUrl,
 UNION ALL
 -- ab.onliner.by
 SELECT     'ab.onliner.by' AS SiteUrl,
-           NULL AS CurrentId,
+           2339068 AS CurrentId,
            'http://ab.onliner.by/car/' AS DownloadMaskURL,
            '//*[@id="minWidth"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong' AS CarBrandXPath,
            '//*[@id="minWidth"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/div/div[1]/p[1]/span[1]/strong' AS ModelXPath,

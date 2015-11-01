@@ -18,13 +18,16 @@ namespace FindAndFollow
 
             // av.by
             string[] xPathArray = Database.CarParsingSettingsGet("av.by");
+            int currentID = Database.CarParsingSettingsCurrentIDGet("av.by");
 
-            Database.CarParsingInsert(avUrl, xPathArray, 10708341, 10708342, "av.by");
+            Database.CarParsingInsert(avUrl, xPathArray, currentID, currentID + 1, "av.by");
 
             // abw.by
             string[] checkSellerTypeArray = new string[1];
+            currentID = Database.CarParsingSettingsCurrentIDGet("abw.by-private");
+
             checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
-            checkSellerTypeArray = Download.GetData(abwUrl + "8310288", checkSellerTypeArray, "abw.by");
+            checkSellerTypeArray = Download.GetData(abwUrl + currentID.ToString(), checkSellerTypeArray, "abw.by");
 
             if (checkSellerTypeArray[0] == null)
             {
@@ -37,12 +40,13 @@ namespace FindAndFollow
                 xPathArray = Database.CarParsingSettingsGet("abw.by-autoagency");
             }
 
-            Database.CarParsingInsert(abwUrl, xPathArray, 8310288, 8310289, "abw.by");
+            Database.CarParsingInsert(abwUrl, xPathArray, currentID, currentID + 1, "abw.by");
 
             // ab.onliner.by
             xPathArray = Database.CarParsingSettingsGet("ab.onliner.by");
+            currentID = Database.CarParsingSettingsCurrentIDGet("ab.onliner.by");
 
-            Database.CarParsingInsert(abUrl, xPathArray, 2339068, 2339069, "ab.onliner.by");
+            Database.CarParsingInsert(abUrl, xPathArray, currentID, currentID + 1, "ab.onliner.by");
 
             Database.CarParsingClean();
 

@@ -215,5 +215,30 @@ namespace FindAndFollow
 
             sqlConnection.Close();
         }
+
+        public static int CarParsingSettingsCurrentIDGet(string url)
+        {
+            int currentID = new int();
+
+            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(connStr);
+
+            SqlCommand commandSelect = new SqlCommand("CarParsingSettingsGet_CurrentId", sqlConnection);
+            commandSelect.CommandType = CommandType.StoredProcedure;
+            commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
+
+            sqlConnection.Open();
+
+            // Get data from db
+            SqlDataReader dataReader = commandSelect.ExecuteReader();
+            while (dataReader.Read())
+            {
+                currentID = int.Parse(dataReader["CurrentID"].ToString());
+            }
+
+            sqlConnection.Close();
+
+            return currentID;
+        }
     }
 }
