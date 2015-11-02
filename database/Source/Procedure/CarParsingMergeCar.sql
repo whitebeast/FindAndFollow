@@ -38,7 +38,8 @@ BEGIN
                 cp.SellerType,
                 cp.IsSwap,
                 cp.Description,
-                cp.OriginalURL
+                cp.OriginalURL,
+                cp.PageCreatedOn
         INTO    #CarParsing
         FROM    (
                     SELECT  cp.CarParsingId,
@@ -58,7 +59,8 @@ BEGIN
                             dbo.MappingType('SellerType',cp.SellerType) AS SellerType,
                             cp.IsSwap,
                             cp.Description,
-                            cp.SiteUrl AS OriginalURL
+                            cp.SiteUrl AS OriginalURL,
+                            cp.PageCreatedOn
                     FROM    dbo.CarParsing cp
                     WHERE cp.PageStatusId = 1 -- Downloaded page (default)    	
         ) AS cp
@@ -88,7 +90,8 @@ BEGIN
                         cp.SellerType,
                         cp.IsSwap,
                         cp.Description,
-                        cp.OriginalURL
+                        cp.OriginalURL,
+                        cp.PageCreatedOn
                 FROM #CarParsing AS cp 
                 WHERE cp.ErrorType IS NOT NULL
                 FOR XML PATH, ROOT
@@ -131,7 +134,8 @@ BEGIN
                ,[SellerType]
                ,[IsSwap]
                ,[Description]
-               ,[OriginalURL])
+               ,[OriginalURL]
+               ,[PageCreatedOn])
         SELECT  cp.CarModelId,
                 cp.SiteId,
                 cp.Price,
@@ -147,7 +151,8 @@ BEGIN
                 cp.SellerType,
                 cp.IsSwap,
                 cp.Description,
-                cp.OriginalURL
+                cp.OriginalURL,
+                cp.PageCreatedOn
         FROM #CarParsing AS cp  
         WHERE cp.ErrorType IS NULL        
         ;   

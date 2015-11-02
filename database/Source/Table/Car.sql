@@ -17,6 +17,7 @@
         IsSwap                BIT NOT NULL,
         Description           NVARCHAR(1000) NULL,
         OriginalURL           VARCHAR(1000),
+        PageCreatedOn         DATETIME2 NULL,
         CreatedOn             DATETIME2 NOT NULL
     )
     ;
