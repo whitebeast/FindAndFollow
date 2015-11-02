@@ -1,87 +1,69 @@
 ﻿CREATE PROCEDURE [dbo].[ErrorLogInsert]
     (
-        @pSource         NVARCHAR(20) = NULL,
-        @pExMessage      NVARCHAR(1000) = NULL,
-        @pExStackTrace   NVARCHAR(2000) = NULL
+        @pErrorNumber       INT = NULL, 
+        @pErrorSeverity     INT = NULL, 
+        @pErrorState        INT = NULL, 
+        @pErrorObject       NVARCHAR(126) = NULL, 
+        @pIsService         BIT = 0,
+        @pErrorLine         INT = NULL, 
+        @pErrorMessageShort NVARCHAR(1000) = NULL,
+        @pErrorMessageFull  NVARCHAR(4000) = NULL        
     )
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    IF @pSource = 'SERVICE'
-    BEGIN
-        BEGIN TRY
-            INSERT [dbo].[ErrorLog] 
-                (
-                [UserName], 
-                [ErrorNumber], 
-                [ErrorSeverity], 
-                [ErrorState], 
-                [ErrorProcedure], 
-                [ErrorLine], 
-                [ErrorMessage]
-                ) 
-            VALUES 
-                (
-                CONVERT(sysname, SUSER_NAME()), 
-                0,
-                NULL,
-                NULL,
-                @pExMessage,
-                NULL,
-                @pExStackTrace
-                );
-        END TRY
-        BEGIN CATCH
-            PRINT 'An error occurred in stored procedure ErrorLogInsert: service';
-            EXECUTE [dbo].[ErrorInfoGet];
-            RETURN -1;
-        END CATCH
-    END
+    SELECT  @pErrorNumber       = COALESCE(@pErrorNumber, ERROR_NUMBER()),  
+            @pErrorSeverity     = COALESCE(@pErrorSeverity, ERROR_SEVERITY()),
+            @pErrorState        = COALESCE(@pErrorState, ERROR_STATE()),
+            @pErrorObject       = COALESCE(@pErrorObject, ERROR_PROCEDURE()),
+            @pErrorLine         = COALESCE(@pErrorLine, ERROR_LINE()),
+            @pErrorMessageFull  = COALESCE(@pErrorMessageFull, ERROR_MESSAGE())
+    ;
+    BEGIN TRY
+        -- Return if there is no error information to log
+        IF ERROR_NUMBER() IS NULL
+            RETURN;
 
-    IF @pSource IS NULL
-    BEGIN
-        BEGIN TRY
-            -- Return if there is no error information to log
-            IF ERROR_NUMBER() IS NULL
-                RETURN;
+        -- Return if inside an uncommittable transaction.
+        -- Data insertion/modification is not allowed when 
+        -- a transaction is in an uncommittable state.
+        IF XACT_STATE() = -1
+        BEGIN
+            PRINT 'Cannot log error since the current transaction is in an uncommittable state. ' 
+                + 'Rollback the transaction before executing uspLogError in order to successfully log error information.';
+            RETURN;
+        END
 
-            -- Return if inside an uncommittable transaction.
-            -- Data insertion/modification is not allowed when 
-            -- a transaction is in an uncommittable state.
-            IF XACT_STATE() = -1
-            BEGIN
-                PRINT 'Cannot log error since the current transaction is in an uncommittable state. ' 
-                    + 'Rollback the transaction before executing uspLogError in order to successfully log error information.';
-                RETURN;
-            END
+        INSERT [dbo].[ErrorLog] 
+            (
+            [ErrorNumber],
+	        [ErrorSeverity],
+	        [ErrorState],
+	        [ErrorObject],
+            [IsService],
+	        [ErrorLine],
+            [ErrorMessageShort],
+            [ErrorMessageFull],
+            [UserName]
+            ) 
+        VALUES 
+            (
+            @pErrorNumber, 
+            @pErrorSeverity, 
+            @pErrorState, 
+            @pErrorObject,
+            @pIsService, 
+            @pErrorLine, 
+            @pErrorMessageShort,
+            @pErrorMessageFull,
+            CONVERT(sysname, SUSER_NAME())
+            );
 
-            INSERT [dbo].[ErrorLog] 
-                (
-                [UserName], 
-                [ErrorNumber], 
-                [ErrorSeverity], 
-                [ErrorState], 
-                [ErrorProcedure], 
-                [ErrorLine], 
-                [ErrorMessage]
-                ) 
-            VALUES 
-                (
-                CONVERT(sysname, SUSER_NAME()), 
-                ERROR_NUMBER(),
-                ERROR_SEVERITY(),
-                ERROR_STATE(),
-                ERROR_PROCEDURE(),
-                ERROR_LINE(),
-                ERROR_MESSAGE()
-                );
-
-        END TRY
-        BEGIN CATCH
-            PRINT 'An error occurred in stored procedure ErrorLogInsert: database';
-            EXECUTE [dbo].[ErrorInfoGet];
-            RETURN -1;
-        END CATCH
-    END
+    END TRY
+    BEGIN CATCH
+        PRINT 'An error occurred in stored procedure ErrorLogInsert:';
+        EXECUTE [dbo].[ErrorInfoGet];
+        RETURN -1;
+    END CATCH
 END;

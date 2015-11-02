@@ -97,24 +97,30 @@ BEGIN
                 FOR XML PATH, ROOT
             )
             ;
-            INSERT INTO dbo.ErrorLog 
+            INSERT [dbo].[ErrorLog] 
                 (
-                    [UserName]
-                   ,[ErrorNumber]
-                   ,[ErrorSeverity]
-                   ,[ErrorState]
-                   ,[ErrorProcedure]
-                   ,[ErrorLine]
-                   ,[ErrorMessage]    
-                )
-            SELECT  CONVERT(sysname, SUSER_NAME()),
-                    0,
-                    16,
-                    0,
-                    OBJECT_NAME(@@PROCID),
-                    0,
-                    dbo.XMLToJSON(@XML)
-            ;
+                [ErrorNumber],
+	            [ErrorSeverity],
+	            [ErrorState],
+	            [ErrorObject],
+                [IsService],
+	            [ErrorLine],
+                [ErrorMessageShort],
+                [ErrorMessageFull],
+                [UserName]
+                ) 
+            VALUES 
+                (
+                0, 
+                16, 
+                0, 
+                OBJECT_NAME(@@PROCID),
+                0, 
+                0, 
+                '',
+                dbo.XMLToJSON(@XML),
+                CONVERT(sysname, SUSER_NAME())
+                );
         END
         ;
         -- insert into Car table
