@@ -104,7 +104,7 @@ BEGIN
                    ,[ErrorLine]
                    ,[ErrorMessage]    
                 )
-            SELECT  CONVERT(sysname, CURRENT_USER),
+            SELECT  CONVERT(sysname, SUSER_NAME()),
                     0,
                     16,
                     0,

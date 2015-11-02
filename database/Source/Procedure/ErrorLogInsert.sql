@@ -23,7 +23,7 @@ BEGIN
                 ) 
             VALUES 
                 (
-                CONVERT(sysname, CURRENT_USER), 
+                CONVERT(sysname, SUSER_NAME()), 
                 0,
                 NULL,
                 NULL,
@@ -68,7 +68,7 @@ BEGIN
                 ) 
             VALUES 
                 (
-                CONVERT(sysname, CURRENT_USER), 
+                CONVERT(sysname, SUSER_NAME()), 
                 ERROR_NUMBER(),
                 ERROR_SEVERITY(),
                 ERROR_STATE(),
