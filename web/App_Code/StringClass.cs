@@ -4,7 +4,7 @@ namespace FindAndFollow
 {
     public class StringClass
     {
-        public static string ConcatenateSpaces(string word)
+        public static string ConcatenateSpaces(string word, string url)
         {
             try
             {
@@ -12,11 +12,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
-        public static string RemoveText(string word, string removeWord)
+        public static string RemoveText(string word, string removeWord, string url)
         {
             try
             {
@@ -24,11 +24,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string DatetimeFormat(string word)
+        public static string DatetimeFormat(string word, string url)
         {
             try
             {
@@ -37,11 +37,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string MultiplyValue(string word, int value)
+        public static string MultiplyValue(string word, int value, string url)
         {
             try
             {
@@ -50,11 +50,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string ReplaceText(string word, string oldChar, string newChar)
+        public static string ReplaceText(string word, string oldChar, string newChar, string url)
         {
             try
             {
@@ -62,11 +62,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string SelectWordGet(string word, char delimeter, int wordNumber)
+        public static string SelectWordGet(string word, char delimeter, int wordNumber, string url)
         {
             try
             {
@@ -75,11 +75,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string ColorGet(string word)
+        public static string ColorGet(string word, string url)
         {
             try
             {
@@ -117,11 +117,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string SearchWord(string word, string resultTrue, string resultFalse)
+        public static string SearchWord(string word, string resultTrue, string resultFalse, string url)
         {
             if (word != null)
             {
@@ -136,7 +136,7 @@ namespace FindAndFollow
             }
         }
 
-        public static string TransmissionGet(string word)
+        public static string TransmissionGet(string word, string url)
         {
             try
             {
@@ -160,11 +160,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string DriveTypeGet(string word)
+        public static string DriveTypeGet(string word, string url)
         {
             try
             {
@@ -190,11 +190,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string EngineTypeGet(string word)
+        public static string EngineTypeGet(string word, string url)
         {
             try
             {
@@ -210,7 +210,7 @@ namespace FindAndFollow
                         break;
                     case ("эле"): engineType = "Электрический";
                         break;
-                    case ("гиб"): engineType = EngineTypeGetHybrid(word);
+                    case ("гиб"): engineType = EngineTypeGetHybrid(word, url);
                         break;
                     default: engineType = "Другой";
                         break;
@@ -220,11 +220,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string EngineTypeGetHybrid(string word)
+        public static string EngineTypeGetHybrid(string word, string url)
         {
             try
             {
@@ -248,11 +248,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string BodyTypeGet(string word)
+        public static string BodyTypeGet(string word, string url)
         {
             try
             {
@@ -298,18 +298,18 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string MonthConvert(string word)
+        public static string MonthConvert(string word, string url)
         {
             try
             {
                 string currentYear = DateTime.Now.Year.ToString();
-                string monthNumber = SelectWordGet(word, ' ', 2);
-                string dateNumber = SelectWordGet(word, ' ', 1);
-                string timeNumber = SelectWordGet(word, ' ', 4);
+                string monthNumber = SelectWordGet(word, ' ', 2, url);
+                string dateNumber = SelectWordGet(word, ' ', 1, url);
+                string timeNumber = SelectWordGet(word, ' ', 4, url);
 
                 switch (monthNumber.Substring(0, 3).ToLower())
                 {
@@ -345,11 +345,11 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string ConditionGetAb(string word)
+        public static string ConditionGetAb(string word, string url)
         {
             try
             {
@@ -366,31 +366,28 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string ConditionGetAv(string word)
+        public static string ConditionGetAv(string word, string url)
         {
             try
             {
                 int mileage = int.Parse(word.Trim());
                 string condition = "";
 
-                if (mileage <= 50)
-                    condition = "Новый";
-                else 
-                    condition = "С пробегом";
+                condition = mileage <= 50 ? "Новый" : "С пробегом";
 
                 return condition;
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
 
-        public static string ConditionGetAbw(string word)
+        public static string ConditionGetAbw(string word, string url)
         {
             try
             {
@@ -412,7 +409,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert("SERVICE", ex.Message.ToString(), ex.StackTrace.ToString());
+                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
             }
         }
     }

@@ -7,7 +7,7 @@ namespace FindAndFollow
 {
     public class Download
     {
-        public static string[] GetData(string url, string[] XPathArray, string webSite)
+        public static string[] GetData(string url, string[] xPathArray, string webSite)
         {
             WebClient webGet = new WebClient();
             HtmlDocument doc = new HtmlDocument();
@@ -25,13 +25,13 @@ namespace FindAndFollow
                 doc.LoadHtml(html);
             }
 
-            string[] returnArray = new string[XPathArray.Length];
+            string[] returnArray = new string[xPathArray.Length];
 
-            for (int i = 0; i < XPathArray.Length; i++)
+            for (int i = 0; i < xPathArray.Length; i++)
             {
                 try
                 {
-                    HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(XPathArray[i]);
+                    HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPathArray[i]);
                     returnArray[i] = bodyNode.InnerHtml.Trim();
                 }
                 catch (Exception)

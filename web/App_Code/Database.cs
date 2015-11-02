@@ -35,47 +35,47 @@ namespace FindAndFollow
 
                     if (webSite == "av.by")
                     {
-                        dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], "р."));
-                        dataArray[4] = StringClass.RemoveText(dataArray[4], "км.");
-                        dataArray[5] = StringClass.RemoveText(dataArray[5], "см");
-                        dataArray[6] = StringClass.ColorGet(dataArray[6]);
-                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7]);
-                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8]);
-                        dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
-                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
-                        dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:");
-                        dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: "));
-                        dataArray[14] = StringClass.ConditionGetAv(StringClass.RemoveText(dataArray[4], "км."));
+                        dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], "р.", url + i), url + i);
+                        dataArray[4] = StringClass.RemoveText(dataArray[4], "км.", url + i);
+                        dataArray[5] = StringClass.RemoveText(dataArray[5], "см", url + i);
+                        dataArray[6] = StringClass.ColorGet(dataArray[6], url + i);
+                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7], url + i);
+                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8], url + i);
+                        dataArray[9] = StringClass.TransmissionGet(dataArray[9], url + i);
+                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10], url + i);
+                        dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:", url + i);
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: ", url + i), url + i);
+                        dataArray[14] = StringClass.ConditionGetAv(StringClass.RemoveText(dataArray[4], "км.", url + i), url + i);
                     }
 
                     if (webSite == "abw.by")
                     {
-                        dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р."), 1000000);
-                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км"), 1000);
-                        dataArray[5] = StringClass.RemoveText(dataArray[5], " см3");
-                        dataArray[6] = StringClass.ColorGet(dataArray[6]);
-                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7]);
-                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8]);
-                        dataArray[9] = StringClass.TransmissionGet(dataArray[9]);
-                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10]);
-                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ")));
-                        dataArray[14] = StringClass.ConditionGetAbw(dataArray[14]);
+                        dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р.", url + i), 1000000, url + i);
+                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км", url + i), 1000, url + i);
+                        dataArray[5] = StringClass.RemoveText(dataArray[5], " см3", url + i);
+                        dataArray[6] = StringClass.ColorGet(dataArray[6], url + i);
+                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7], url + i);
+                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8], url + i);
+                        dataArray[9] = StringClass.TransmissionGet(dataArray[9], url + i);
+                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10], url + i);
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ", url + i), url + i), url + i);
+                        dataArray[14] = StringClass.ConditionGetAbw(dataArray[14], url + i);
                     }
 
                     if (webSite == "ab.onliner.by")
                     {
-                        dataArray[0] = StringClass.SelectWordGet(dataArray[0], ' ', 1);
-                        dataArray[1] = StringClass.SelectWordGet(dataArray[1], ' ', 2);
-                        dataArray[3] = StringClass.ConcatenateSpaces(dataArray[3]);
-                        dataArray[4] = StringClass.ConcatenateSpaces(dataArray[4]);
-                        dataArray[5] = StringClass.MultiplyValue(dataArray[5], 1000);
-                        dataArray[6] = StringClass.ColorGet(StringClass.SelectWordGet(dataArray[6], ',', 1));
-                        dataArray[7] = StringClass.BodyTypeGet(StringClass.SelectWordGet(dataArray[7], ',', 2));
-                        dataArray[8] = StringClass.EngineTypeGet(StringClass.SelectWordGet(dataArray[8], ',', 3));
-                        dataArray[9] = StringClass.TransmissionGet(StringClass.SelectWordGet(dataArray[9], ',', 2));
-                        dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3));
-                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(dataArray[12]));
-                        dataArray[14] = StringClass.ConditionGetAb(dataArray[14]);
+                        dataArray[0] = StringClass.SelectWordGet(dataArray[0], ' ', 1, url + i);
+                        dataArray[1] = StringClass.SelectWordGet(dataArray[1], ' ', 2, url + i);
+                        dataArray[3] = StringClass.ConcatenateSpaces(dataArray[3], url + i);
+                        dataArray[4] = StringClass.ConcatenateSpaces(dataArray[4], url + i);
+                        dataArray[5] = StringClass.MultiplyValue(dataArray[5], 1000, url + i);
+                        dataArray[6] = StringClass.ColorGet(StringClass.SelectWordGet(dataArray[6], ',', 1, url + i), url + i);
+                        dataArray[7] = StringClass.BodyTypeGet(StringClass.SelectWordGet(dataArray[7], ',', 2, url + i), url + i);
+                        dataArray[8] = StringClass.EngineTypeGet(StringClass.SelectWordGet(dataArray[8], ',', 3, url + i), url + i);
+                        dataArray[9] = StringClass.TransmissionGet(StringClass.SelectWordGet(dataArray[9], ',', 2, url + i), url + i);
+                        dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3, url + i), url + i);
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(dataArray[12], url + i), url + i);
+                        dataArray[14] = StringClass.ConditionGetAb(dataArray[14], url + i);
                     }
 
                     commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = dataArray[0] ?? sqlParameters[0].Value;
@@ -183,16 +183,18 @@ namespace FindAndFollow
             return xPathArray;
         }
 
-        public static string ErrorLogInsert(string service, string exMessage, string exStackTrace)
+        public static string ErrorLogInsert(string exMessage, string exStackTrace, string url)
         {
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
 
             SqlCommand commandInsert = new SqlCommand("ErrorLogInsert", sqlConnection);
             commandInsert.CommandType = CommandType.StoredProcedure;
-            commandInsert.Parameters.AddWithValue("@pSource", service);
-            commandInsert.Parameters.AddWithValue("@pExMessage", exMessage);
-            commandInsert.Parameters.AddWithValue("@pExStackTrace", exStackTrace);
+            commandInsert.Parameters.AddWithValue("@pErrorNumber", 1);
+            commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
+            commandInsert.Parameters.AddWithValue("@pErrorObject", url);
+            commandInsert.Parameters.AddWithValue("@pErrorMessageShort", exMessage);
+            commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);
 
             sqlConnection.Open();
             commandInsert.ExecuteNonQuery();
@@ -207,18 +209,19 @@ namespace FindAndFollow
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
 
+            sqlConnection.Open();
+
             SqlCommand commandInsert = new SqlCommand("CarParsingMergeCar", sqlConnection);
             commandInsert.CommandType = CommandType.StoredProcedure;
 
-            sqlConnection.Open();
             commandInsert.ExecuteNonQuery();
 
             sqlConnection.Close();
         }
 
-        public static int CarParsingSettingsCurrentIDGet(string url)
+        public static int CarParsingSettingsCurrentIdGet(string url)
         {
-            int currentID = new int();
+            int currentId = new int();
 
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
@@ -233,12 +236,12 @@ namespace FindAndFollow
             SqlDataReader dataReader = commandSelect.ExecuteReader();
             while (dataReader.Read())
             {
-                currentID = int.Parse(dataReader["CurrentID"].ToString());
+                currentId = int.Parse(dataReader["CurrentID"].ToString());
             }
 
             sqlConnection.Close();
 
-            return currentID;
+            return currentId;
         }
     }
 }
