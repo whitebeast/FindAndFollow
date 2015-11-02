@@ -33,6 +33,7 @@ namespace FindAndFollow
                 {
                     dataArray = Download.GetData(url + i.ToString(), xPathArray, webSite);
 
+                    #region "if av.by"
                     if (webSite == "av.by")
                     {
                         dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], "р.", url + i), url + i);
@@ -47,7 +48,9 @@ namespace FindAndFollow
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: ", url + i), url + i);
                         dataArray[14] = StringClass.ConditionGetAv(StringClass.RemoveText(dataArray[4], "км.", url + i), url + i);
                     }
+                    #endregion "if av.by"
 
+                    #region "if abw.by"
                     if (webSite == "abw.by")
                     {
                         dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р.", url + i), 1000000, url + i);
@@ -61,7 +64,9 @@ namespace FindAndFollow
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ", url + i), url + i), url + i);
                         dataArray[14] = StringClass.ConditionGetAbw(dataArray[14], url + i);
                     }
+                    #endregion "if abw.by"
 
+                    #region "if ab.onliner.by"
                     if (webSite == "ab.onliner.by")
                     {
                         dataArray[0] = StringClass.SelectWordGet(dataArray[0], ' ', 1, url + i);
@@ -77,6 +82,7 @@ namespace FindAndFollow
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(dataArray[12], url + i), url + i);
                         dataArray[14] = StringClass.ConditionGetAb(dataArray[14], url + i);
                     }
+                    #endregion "if ab.onliner.by"
 
                     commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = dataArray[0] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 1000).Value = dataArray[1] ?? sqlParameters[0].Value;
@@ -122,7 +128,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
-                }
+                    }
             }
             sqlConnection.Close();
         }
@@ -191,6 +197,7 @@ namespace FindAndFollow
             SqlCommand commandInsert = new SqlCommand("ErrorLogInsert", sqlConnection);
             commandInsert.CommandType = CommandType.StoredProcedure;
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
+            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ")));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);

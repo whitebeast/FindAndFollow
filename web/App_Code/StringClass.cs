@@ -24,7 +24,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -37,7 +37,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -50,7 +50,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -62,7 +62,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -75,7 +75,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -117,7 +117,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -160,7 +160,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -190,7 +190,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -220,7 +220,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -248,7 +248,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -298,7 +298,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -345,7 +345,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -366,7 +366,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -383,7 +383,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
 
@@ -409,7 +409,7 @@ namespace FindAndFollow
             }
             catch (Exception ex)
             {
-                return Database.ErrorLogInsert(ex.Message, ex.Message, url);
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
     }
