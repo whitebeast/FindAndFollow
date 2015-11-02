@@ -15,12 +15,12 @@
     Mileage             NVARCHAR(100) NULL,
     Color               NVARCHAR(100) NULL,
     SellerType          NVARCHAR(100) NULL,
-    IsSwap              NVARCHAR(1) NULL,
+    IsSwap              CHAR(1) NULL,
     [Description]       NVARCHAR(1000) NULL,
     PageCreatedOn       NVARCHAR(100) NULL,
     CreatedOn           DATETIME NOT NULL,
-    IsPageExist         BIT,
-	PageStatusId		TINYINT
+    IsPageExist         BIT NOT NULL,
+	PageStatusId		TINYINT NOT NULL
     )
 
 	/*
