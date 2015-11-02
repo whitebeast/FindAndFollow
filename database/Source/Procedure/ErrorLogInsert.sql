@@ -22,7 +22,7 @@ BEGIN
     ;
     BEGIN TRY
         -- Return if there is no error information to log
-        IF ERROR_NUMBER() IS NULL
+        IF @pErrorNumber IS NULL
             RETURN;
 
         -- Return if inside an uncommittable transaction.

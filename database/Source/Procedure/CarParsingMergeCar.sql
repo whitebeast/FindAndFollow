@@ -5,7 +5,13 @@ BEGIN
     ;
     IF OBJECT_ID('tempdb..#CarParsing') IS NOT NULL DROP TABLE #CarParsing
     ;
-    DECLARE @XML XML
+    DECLARE @XML                XML,
+            @ErrorNumber        INT             = 0, 
+            @ErrorSeverity      INT             = 1,
+            @ErrorState         INT             = 16,
+            @ErrorObject        NVARCHAR(126)   = OBJECT_NAME(@@PROCID),
+            @ErrorMessageShort  NVARCHAR(1000),
+            @ErrorMessageFull   NVARCHAR(4000)
     ;
     BEGIN TRY
         BEGIN TRANSACTION
@@ -97,30 +103,17 @@ BEGIN
                 FOR XML PATH, ROOT
             )
             ;
-            INSERT [dbo].[ErrorLog] 
-                (
-                [ErrorNumber],
-	            [ErrorSeverity],
-	            [ErrorState],
-	            [ErrorObject],
-                [IsService],
-	            [ErrorLine],
-                [ErrorMessageShort],
-                [ErrorMessageFull],
-                [UserName]
-                ) 
-            VALUES 
-                (
-                0, 
-                16, 
-                0, 
-                OBJECT_NAME(@@PROCID),
-                0, 
-                0, 
-                '',
-                dbo.XMLToJSON(@XML),
-                CONVERT(sysname, SUSER_NAME())
-                );
+            SELECT  @ErrorMessageShort = 'Wrong data in CarParsing table',
+                    @ErrorMessageFull = dbo.XMLToJSON(@XML)
+            ;
+            EXECUTE dbo.ErrorLogInsert
+                        @pErrorNumber = @ErrorNumber, 
+                        @pErrorSeverity = @ErrorSeverity,
+                        @pErrorState = @ErrorState,
+                        @pErrorObject = @ErrorObject,
+                        @pErrorMessageShort = @ErrorMessageShort,
+                        @pErrorMessageFull = @ErrorMessageFull
+            ;
         END
         ;
         -- insert into Car table
@@ -181,3 +174,9 @@ BEGIN
     ;
     
 END
+
+/*
+
+exec [dbo].[CarParsingMergeCar]
+
+*/
