@@ -190,10 +190,9 @@ namespace FindAndFollow
 
             SqlCommand commandInsert = new SqlCommand("ErrorLogInsert", sqlConnection);
             commandInsert.CommandType = CommandType.StoredProcedure;
-            commandInsert.Parameters.AddWithValue("@pErrorNumber", 1);
+            commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
-            commandInsert.Parameters.AddWithValue("@pErrorObject", url);
-            commandInsert.Parameters.AddWithValue("@pErrorMessageShort", exMessage);
+            commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);
 
             sqlConnection.Open();
