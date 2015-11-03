@@ -6,7 +6,7 @@
         @pErrorObject       NVARCHAR(126) = NULL, 
         @pIsService         BIT = 0,
         @pErrorLine         INT = NULL, 
-        @pErrorMessageShort NVARCHAR(1000) = NULL,
+        @pErrorMessageShort NVARCHAR(1000) = 'System error',
         @pErrorMessageFull  NVARCHAR(4000) = NULL        
     )
 AS
@@ -59,6 +59,8 @@ BEGIN
             @pErrorMessageFull,
             CONVERT(sysname, SUSER_NAME())
             );
+
+        EXECUTE [dbo].[ErrorInfoGet];
 
     END TRY
     BEGIN CATCH

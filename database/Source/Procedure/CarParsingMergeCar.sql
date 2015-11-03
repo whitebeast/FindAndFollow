@@ -167,7 +167,6 @@ BEGIN
         BEGIN
             ROLLBACK TRANSACTION;
         END
-
         EXECUTE dbo.ErrorLogInsert;
     END CATCH
     IF OBJECT_ID('tempdb..#CarParsing') IS NOT NULL DROP TABLE #CarParsing
