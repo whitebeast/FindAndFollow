@@ -78,6 +78,7 @@
     <Folder Include="Source\Script" />
     <Folder Include="Source\Script\PostDeployment" />
     <Folder Include="Source\Script\Test Data" />
+    <Folder Include="Source\System\Permission" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Source\Table\Constraint\Check\Car.sql" />
@@ -182,6 +183,7 @@
     <None Include="Properties\FindAndFollow.DEV.ReCreate.publish.xml" />
     <None Include="Source\Script\PostDeployment\BelarusCityAndRegionInitial.sql" />
     <None Include="Source\Script\Test Data\CarParsing.sql" />
+    <None Include="Source\System\Permission\service_acc.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

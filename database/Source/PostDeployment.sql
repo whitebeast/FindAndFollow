@@ -6,6 +6,8 @@ USE [$(msdb)]
 GO
 :r .\System\SQLJob\GetDailyCurrencyRates.sql
 GO
+:r .\System\Permission\service_acc.sql
+GO
 USE [$(FindAndFollow)]
 GO
 :r .\Script\PostDeployment\CurrencyInitial.sql 
