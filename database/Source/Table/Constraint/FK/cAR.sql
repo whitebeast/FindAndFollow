@@ -15,3 +15,9 @@ ALTER TABLE dbo.Car
     FOREIGN KEY (ColorId) 
     REFERENCES dbo.Color (ColorId) 
 GO
+
+ALTER TABLE dbo.Car 
+    ADD CONSTRAINT fkCar_Place 
+    FOREIGN KEY (PlaceId) 
+    REFERENCES dbo.Place (PlaceId) 
+GO

@@ -3,6 +3,7 @@
         CarId                 INT IDENTITY(1, 1) NOT NULL,
         CarModelId            INT NOT NULL,
         SiteId                INT NOT NULL,
+        PlaceId               INT NOT NULL,
         Price                 MONEY NOT NULL,
         BodyType              TINYINT NOT NULL,
         ModelYear             SMALLINT NOT NULL,
