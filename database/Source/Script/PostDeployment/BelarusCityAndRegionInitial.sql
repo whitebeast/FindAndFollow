@@ -1,5 +1,5 @@
 ﻿SET NOCOUNT ON;
-
+PRINT 'Populate Country, Region, City and Place tables...'
 DECLARE @tCityRegion TABLE (City NVARCHAR(100), Region NVARCHAR(100))
 INSERT INTO @tCityRegion
 (
