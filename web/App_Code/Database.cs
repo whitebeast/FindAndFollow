@@ -51,7 +51,7 @@ namespace FindAndFollow
                     #endregion "if av.by"
 
                     #region "if abw.by"
-                    if (webSite == "abw.by")
+                    if (webSite == "abw")
                     {
                         dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р.", url + i), 1000000, url + i);
                         dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км", url + i), 1000, url + i);
@@ -197,7 +197,7 @@ namespace FindAndFollow
             SqlCommand commandInsert = new SqlCommand("ErrorLogInsert", sqlConnection);
             commandInsert.CommandType = CommandType.StoredProcedure;
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
-            //commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ")));
+            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ")));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);

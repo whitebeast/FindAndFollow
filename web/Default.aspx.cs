@@ -7,7 +7,6 @@ namespace FindAndFollow
         protected void Page_Load(object sender, EventArgs e)
         {
             // loading page..
-            string[] abw = Download.GetDataAbw("", "", "");
         }
 
         protected void BtnUploadData_Click(object sender, EventArgs e)
@@ -31,7 +30,7 @@ namespace FindAndFollow
 
             xPathArray = Database.CarParsingSettingsGet(checkSellerTypeArray[0] == null ? "abw.by-private" : "abw.by-autoagency");
 
-            Database.CarParsingInsert(abwUrl, xPathArray, currentId, currentId + 1, "abw.by");
+            Database.CarParsingInsert(abwUrl, xPathArray, currentId, currentId + 1, "abw");
 
             // ab.onliner.by
             xPathArray = Database.CarParsingSettingsGet("ab.onliner.by");

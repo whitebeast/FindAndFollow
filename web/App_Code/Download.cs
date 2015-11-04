@@ -3,8 +3,6 @@ using System.IO;
 using System.Net;
 using HtmlAgilityPack;
 using System.Collections.Generic;
-using System.Linq;
-using System.Collections;
 
 namespace FindAndFollow
 {
@@ -30,6 +28,10 @@ namespace FindAndFollow
 
             string[] returnArray = new string[xPathArray.Length];
 
+            string[] returnArrayAbw = new string[9];
+            if (webSite == "abw") 
+                returnArrayAbw = GetDataAbw("//*[@id=\"news\"]/tr[2]/td/div[2]/table", doc);
+
             for (int i = 0; i < xPathArray.Length; i++)
             {
                 try
@@ -42,6 +44,20 @@ namespace FindAndFollow
                     returnArray[i] = null;
                 }
             }
+
+            if (webSite == "abw")
+            {
+                returnArray[2] = returnArrayAbw[0];
+                returnArray[4] = returnArrayAbw[2];
+                returnArray[5] = returnArrayAbw[4];
+                returnArray[6] = returnArrayAbw[1];
+                returnArray[7] = returnArrayAbw[6];
+                returnArray[8] = returnArrayAbw[3];
+                returnArray[9] = returnArrayAbw[5];
+                returnArray[10] = returnArrayAbw[7];
+                returnArray[14] = returnArrayAbw[8];
+            }
+
             return returnArray;
         }
 
@@ -74,23 +90,11 @@ namespace FindAndFollow
             return s;
         }
 
-        public static string[] GetDataAbw(string url, string xPath, string webSite)
+        public static string[] GetDataAbw(string xPath, HtmlDocument doc)
         {
-            WebClient webGet = new WebClient();
-            HtmlDocument doc = new HtmlDocument();
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            string[] returnArray = new string[10];
-
-            webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
-
-            //http://www.abw.by/allpublic/sell/8281453/
-            // //*[@id="news"]/tr[2]/td/div[2]/table
-            var html = webGet.DownloadString("http://www.abw.by/allpublic/sell/8281453/");
-            doc.LoadHtml(html);
-
-            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("//*[@id=\"news\"]/tr[2]/td/div[2]/table");
-
-            List<int> lstCapParams = new List<int>();
+            List<int> lstCarParams = new List<int>();
 
             int counter = 0;
 
@@ -98,23 +102,23 @@ namespace FindAndFollow
             {
                 switch (node.InnerText)
                 {
-                    case ("Год выпуска:"): lstCapParams.Insert(0, counter);
+                    case ("Год выпуска:"): lstCarParams.Insert(0, counter);
                         break;
-                    case ("Цвет:"): lstCapParams.Insert(1, counter);
+                    case ("Цвет:"): lstCarParams.Insert(1, counter);
                         break;
-                    case ("Пробег:"): lstCapParams.Insert(2, counter);
+                    case ("Пробег:"): lstCarParams.Insert(2, counter);
                         break;
-                    case ("Двигатель:"): lstCapParams.Insert(3, counter);
+                    case ("Двигатель:"): lstCarParams.Insert(3, counter);
                         break;
-                    case ("Объем:"): lstCapParams.Insert(4, counter);
+                    case ("Объем:"): lstCarParams.Insert(4, counter);
                         break;
-                    case ("Трансмиссия:"): lstCapParams.Insert(5, counter);
+                    case ("Трансмиссия:"): lstCarParams.Insert(5, counter);
                         break;
-                    case ("Кузов:"): lstCapParams.Insert(6, counter);
+                    case ("Кузов:"): lstCarParams.Insert(6, counter);
                         break;
-                    case ("Привод:"): lstCapParams.Insert(7, counter);
+                    case ("Привод:"): lstCarParams.Insert(7, counter);
                         break;
-                    case ("Состояние:"): lstCapParams.Insert(8, counter);
+                    case ("Состояние:"): lstCarParams.Insert(8, counter);
                         break;
                 }
 
@@ -123,24 +127,24 @@ namespace FindAndFollow
 
             counter = 0;
 
-            List<string> lstCapValues = new List<string>();
+            List<string> lstCarValues = new List<string>();
 
             foreach (HtmlNode node in bodyNode.SelectNodes("//td[@class='adv_right']"))
             {
-                if (counter == lstCapParams[0]) lstCapValues.Insert(0, node.InnerHtml);
-                if (counter == lstCapParams[1]) lstCapValues.Insert(1, node.InnerHtml);
-                if (counter == lstCapParams[2]) lstCapValues.Insert(2, node.InnerHtml);
-                if (counter == lstCapParams[3]) lstCapValues.Insert(3, node.InnerHtml);
-                if (counter == lstCapParams[4]) lstCapValues.Insert(4, node.InnerHtml);
-                if (counter == lstCapParams[5]) lstCapValues.Insert(5, node.InnerHtml);
-                if (counter == lstCapParams[6]) lstCapValues.Insert(6, node.InnerHtml);
-                if (counter == lstCapParams[7]) lstCapValues.Insert(7, node.InnerHtml);
-                if (counter == lstCapParams[8]) lstCapValues.Insert(8, node.InnerHtml);
+                if (counter == lstCarParams[0]) lstCarValues.Insert(0, node.InnerHtml);
+                if (counter == lstCarParams[1]) lstCarValues.Insert(1, node.InnerHtml);
+                if (counter == lstCarParams[2]) lstCarValues.Insert(2, node.InnerHtml);
+                if (counter == lstCarParams[3]) lstCarValues.Insert(3, node.InnerHtml);
+                if (counter == lstCarParams[4]) lstCarValues.Insert(4, node.InnerHtml);
+                if (counter == lstCarParams[5]) lstCarValues.Insert(5, node.InnerHtml);
+                if (counter == lstCarParams[6]) lstCarValues.Insert(6, node.InnerHtml);
+                if (counter == lstCarParams[7]) lstCarValues.Insert(7, node.InnerHtml);
+                if (counter == lstCarParams[8]) lstCarValues.Insert(8, node.InnerHtml);
 
                 counter++;
             }
 
-            return lstCapValues.ToArray();
+            return lstCarValues.ToArray();
         }
 
     }
