@@ -7,6 +7,7 @@ namespace FindAndFollow
         protected void Page_Load(object sender, EventArgs e)
         {
             // loading page..
+            string[] abw = Download.GetDataAbw("", "", "");
         }
 
         protected void BtnUploadData_Click(object sender, EventArgs e)
