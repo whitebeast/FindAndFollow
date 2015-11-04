@@ -206,6 +206,8 @@ namespace FindAndFollow
                         break;
                     case ("диз"): engineType = "Дизельный";
                         break;
+                    case ("тур"): engineType = "Дизельный";
+                        break;
                     case ("газ"): engineType = "Газ";
                         break;
                     case ("эле"): engineType = "Электрический";
@@ -391,7 +393,7 @@ namespace FindAndFollow
         {
             try
             {
-                string condition = word.Substring(0, 3);
+                string condition = word.Trim().Substring(0, 3);
 
                 switch (condition)
                 {
