@@ -29,8 +29,8 @@ namespace FindAndFollow
             string[] returnArray = new string[xPathArray.Length];
 
             string[] returnArrayAbw = new string[9];
-            if (webSite == "abw") 
-                returnArrayAbw = GetDataAbw("//*[@id=\"news\"]/tr[2]/td/div[2]/table", doc);
+            if (webSite == "abw")
+                returnArrayAbw = GetDataAbw("/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]", doc);
 
             for (int i = 0; i < xPathArray.Length; i++)
             {

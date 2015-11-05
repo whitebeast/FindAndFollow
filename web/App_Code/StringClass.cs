@@ -268,6 +268,8 @@ namespace FindAndFollow
                         break;
                     case ("хетч"): bodyType = "Хетчбэк";
                         break;
+                    case ("хэтч"): bodyType = "Хетчбэк";
+                        break;
                     case ("мини"): bodyType = "Минивэн";
                         break;
                     case ("внед"): bodyType = "Внедорожник";
