@@ -60,7 +60,7 @@ BEGIN
             CONVERT(sysname, SUSER_NAME())
             );
 
-        EXECUTE [dbo].[ErrorInfoGet];
+        IF ERROR_MESSAGE() IS NOT NULL EXECUTE [dbo].[ErrorInfoGet];
 
     END TRY
     BEGIN CATCH

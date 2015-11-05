@@ -1,4 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[CarParsingMergeCar]
+(
+    @pDebug BIT = 0
+)
 AS
 BEGIN
     SET NOCOUNT ON
@@ -123,7 +126,10 @@ BEGIN
                         @pErrorMessageShort = @ErrorMessageShort,
                         @pErrorMessageFull = @ErrorMessageFull
             ;
-            RAISERROR(@ErrorMessageFull,0,1) WITH NOWAIT
+            IF @pDebug = 1 BEGIN
+                PRINT 'Merge errors:';
+                RAISERROR(@ErrorMessageFull,0,1) WITH NOWAIT;
+            END
             ;
         END
         ;
