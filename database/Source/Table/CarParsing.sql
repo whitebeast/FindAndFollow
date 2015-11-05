@@ -4,6 +4,7 @@
     Model               NVARCHAR(50) NULL,
     SiteId              NVARCHAR(50) NULL,
     SiteUrl             NVARCHAR(2000) NULL,
+    City                NVARCHAR(200) NULL,
     Price               NVARCHAR(100) NULL,
     BodyType            NVARCHAR(100) NULL,
     ModelYear           NVARCHAR(4) NULL,

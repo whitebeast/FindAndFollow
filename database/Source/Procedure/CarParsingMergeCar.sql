@@ -20,6 +20,8 @@ BEGIN
                     WHEN cb.CarBrandId IS NULL THEN 'CarBrand Error'
                     WHEN cm.CarModelId IS NULL THEN 'CarModel Error' 
                     WHEN s.SiteId IS NULL THEN 'Site Error'
+                    WHEN c.CityId IS NULL THEN 'City Error'
+                    WHEN pl.PlaceId IS NULL THEN 'Place Error'
                     WHEN col.ColorId IS NULL THEN 'Color Error'
                     ELSE NULL
                 END AS ErrorType,
@@ -30,6 +32,9 @@ BEGIN
                 cp.Model,
                 s.SiteId,
                 cp.SiteId AS SiteURL,
+                c.CityId,
+                cp.City,
+                pl.PlaceId,
                 cp.Price,
                 cp.BodyType,
                 cp.ModelYear,
@@ -52,6 +57,7 @@ BEGIN
                             cp.CarBrand,
                             dbo.MappingModel(cp.Model) AS Model,
                             cp.SiteId,
+                            cp.City,
                             cp.Price,
                             dbo.MappingType('BodyType',cp.BodyType) AS BodyType,
                             cp.ModelYear,
@@ -70,10 +76,12 @@ BEGIN
                     FROM    dbo.CarParsing cp
                     WHERE cp.PageStatusId = 1 -- Downloaded page (default)    	
         ) AS cp
-        LEFT JOIN dbo.CarBrand cb ON cb.Name = cp.CarBrand
-        LEFT JOIN dbo.CarModel cm ON cm.Name = cp.Model AND cm.CarBrandId = cb.CarBrandId
-        LEFT JOIN dbo.[Site] s ON s.SiteUrl = cp.SiteId
+        LEFT JOIN dbo.CarBrand AS cb ON cb.Name = cp.CarBrand
+        LEFT JOIN dbo.CarModel AS cm ON cm.Name = cp.Model AND cm.CarBrandId = cb.CarBrandId
+        LEFT JOIN dbo.[Site] AS s ON s.SiteUrl = cp.SiteId
         LEFT JOIN dbo.Color AS col ON col.Name = cp.Color
+        LEFT JOIN dbo.City AS c ON c.Name = cp.City
+        LEFT JOIN dbo.Place AS pl ON pl.CityId = c.CityId AND pl.CountryId = s.CountryId
         ;
 
         -- write wrong data info to Log table
@@ -83,6 +91,7 @@ BEGIN
                         cp.CarBrand,
                         cp.Model,
                         cp.SiteId,
+                        cp.City,
                         cp.Price,
                         cp.BodyType,
                         cp.ModelYear,
@@ -114,12 +123,15 @@ BEGIN
                         @pErrorMessageShort = @ErrorMessageShort,
                         @pErrorMessageFull = @ErrorMessageFull
             ;
+            RAISERROR(@ErrorMessageFull,0,1) WITH NOWAIT
+            ;
         END
         ;
         -- insert into Car table
         INSERT INTO [dbo].[Car]
                ([CarModelId]
                ,[SiteId]
+               ,[PlaceId]
                ,[Price]
                ,[BodyType]
                ,[ModelYear]
@@ -137,6 +149,7 @@ BEGIN
                ,[PageCreatedOn])
         SELECT  cp.CarModelId,
                 cp.SiteId,
+                cp.PlaceId,
                 cp.Price,
                 cp.BodyType,
                 cp.ModelYear,

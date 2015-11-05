@@ -6,6 +6,7 @@
     DownloadMaskURL         NVARCHAR(100)  NOT NULL,
     CarBrandXPath           NVARCHAR(1000) NULL,
     ModelXPath              NVARCHAR(1000) NULL,
+    CityXPath               NVARCHAR(1000) NULL,
     PriceXPath              NVARCHAR(1000) NULL,
     BodyTypeXPath           NVARCHAR(1000) NULL,
     ModelYearXPath          NVARCHAR(1000) NULL,

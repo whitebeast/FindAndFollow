@@ -7,6 +7,7 @@ BEGIN
     SELECT  CarBrandXPath, 
             ModelXPath, 
             ModelYearXPath, 
+            CityXPath,
             PriceXPath, 
             MileageXPath, 
             EngineSizeXPath,	
