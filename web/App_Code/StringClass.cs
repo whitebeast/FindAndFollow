@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace FindAndFollow
 {
@@ -410,6 +411,25 @@ namespace FindAndFollow
                 }
 
                 return condition;
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
+        public static string CityGetAbw(string word, string url)
+        {
+            // TODO: optimize method
+            try
+            {
+                int startCut = word.IndexOf("<div align=\"center\">Продавец:");
+                string city = RemoveText(word.Trim().Substring(startCut, 130), "<div align=\"center\">Продавец:</b>", url);
+                int endCut = city.IndexOf(")");
+
+
+                return city.Substring(0, endCut).Split(' ').LastOrDefault();
+
             }
             catch (Exception ex)
             {

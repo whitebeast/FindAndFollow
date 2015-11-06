@@ -64,6 +64,7 @@ namespace FindAndFollow
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10], urlFull);
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ", urlFull), urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAbw(dataArray[14], urlFull);
+                        dataArray[16] = StringClass.CityGetAbw(dataArray[16], urlFull);
                     }
                     #endregion "if abw.by"
 
@@ -122,6 +123,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pEngineType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = urlFull.ToString();
                     commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;

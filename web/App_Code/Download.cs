@@ -22,8 +22,15 @@ namespace FindAndFollow
             }
             else
             {
-                var html = webGet.DownloadString(url);
-                doc.LoadHtml(html);
+                try
+                {
+                    var html = webGet.DownloadString(url);
+                    doc.LoadHtml(html);
+                }
+                catch (Exception ex)
+                {
+                   Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+                }
             }
 
             string[] returnArray = new string[xPathArray.Length];
@@ -94,7 +101,7 @@ namespace FindAndFollow
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<int> lstCarParams = new List<int>();
+            List<string> lstCarParams = new List<string>();
 
             int counter = 0;
 
@@ -102,23 +109,25 @@ namespace FindAndFollow
             {
                 switch (node.InnerText)
                 {
-                    case ("Год выпуска:"): lstCarParams.Insert(0, counter);
+                    case ("Год выпуска:"): lstCarParams.Insert(counter, "modelYear");
                         break;
-                    case ("Цвет:"): lstCarParams.Insert(1, counter);
+                    case ("Цвет:"): lstCarParams.Insert(counter, "color");
                         break;
-                    case ("Пробег:"): lstCarParams.Insert(2, counter);
+                    case ("Пробег:"): lstCarParams.Insert(counter, "mileAge");
                         break;
-                    case ("Двигатель:"): lstCarParams.Insert(3, counter);
+                    case ("Двигатель:"): lstCarParams.Insert(counter, "engineType");
                         break;
-                    case ("Объем:"): lstCarParams.Insert(4, counter);
+                    case ("Объем:"): lstCarParams.Insert(counter, "engineSize");
                         break;
-                    case ("Трансмиссия:"): lstCarParams.Insert(5, counter);
+                    case ("Трансмиссия:"): lstCarParams.Insert(counter, "transmission");
                         break;
-                    case ("Кузов:"): lstCarParams.Insert(6, counter);
+                    case ("Кузов:"): lstCarParams.Insert(counter, "bodyType");
                         break;
-                    case ("Привод:"): lstCarParams.Insert(7, counter);
+                    case ("Привод:"): lstCarParams.Insert(counter, "driveType");
                         break;
-                    case ("Состояние:"): lstCarParams.Insert(8, counter);
+                    case ("Состояние:"): lstCarParams.Insert(counter, "condition");
+                        break;
+                    default: lstCarParams.Insert(counter, "other");
                         break;
                 }
 
@@ -128,18 +137,36 @@ namespace FindAndFollow
             counter = 0;
 
             List<string> lstCarValues = new List<string>();
+            for (int i = 0; i < 9; i++)
+            {
+                lstCarValues.Insert(i, "");
+            }
+
 
             foreach (HtmlNode node in bodyNode.SelectNodes("//td[@class='adv_right']"))
             {
-                if (counter == lstCarParams[0]) lstCarValues.Insert(0, node.InnerHtml);
-                if (counter == lstCarParams[1]) lstCarValues.Insert(1, node.InnerHtml);
-                if (counter == lstCarParams[2]) lstCarValues.Insert(2, node.InnerHtml);
-                if (counter == lstCarParams[3]) lstCarValues.Insert(3, node.InnerHtml);
-                if (counter == lstCarParams[4]) lstCarValues.Insert(4, node.InnerHtml);
-                if (counter == lstCarParams[5]) lstCarValues.Insert(5, node.InnerHtml);
-                if (counter == lstCarParams[6]) lstCarValues.Insert(6, node.InnerHtml);
-                if (counter == lstCarParams[7]) lstCarValues.Insert(7, node.InnerHtml);
-                if (counter == lstCarParams[8]) lstCarValues.Insert(8, node.InnerHtml);
+                switch (lstCarParams[counter])
+                {
+                    case ("modelYear"): lstCarValues[0] = node.InnerHtml;
+                        break;
+                    case ("color"): lstCarValues[1] = node.InnerHtml;
+                        break;
+                    case ("mileAge"): lstCarValues[2] = node.InnerHtml;
+                        break;
+                    case ("engineType"): lstCarValues[3] = node.InnerHtml;
+                        break;
+                    case ("engineSize"): lstCarValues[4] = node.InnerHtml;
+                        break;
+                    case ("transmission"): lstCarValues[5] = node.InnerHtml;
+                        break;
+                    case ("bodyType"): lstCarValues[6] = node.InnerHtml;
+                        break;
+                    case ("driveType"): lstCarValues[7] = node.InnerHtml;
+                        break;
+                    case ("condition"): lstCarValues[8] = node.InnerHtml;
+                        break;
+                    default: break;
+                }
 
                 counter++;
             }
