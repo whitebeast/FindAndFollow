@@ -29,7 +29,7 @@ namespace FindAndFollow
             string[] returnArray = new string[xPathArray.Length];
 
             string[] returnArrayAbw = new string[9];
-            if (webSite == "abw")
+            if (webSite == "abw.by")
                 returnArrayAbw = GetDataAbw("/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[3]", doc);
 
             for (int i = 0; i < xPathArray.Length; i++)
@@ -45,7 +45,7 @@ namespace FindAndFollow
                 }
             }
 
-            if (webSite == "abw")
+            if (webSite == "abw.by")
             {
                 returnArray[2] = returnArrayAbw[0];
                 returnArray[4] = returnArrayAbw[2];

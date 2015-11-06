@@ -52,7 +52,7 @@ namespace FindAndFollow
                     #endregion "if av.by"
 
                     #region "if abw.by"
-                    if (webSite == "abw")
+                    if (webSite == "abw.by")
                     {
                         dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р.", url + urlFull), 1000000, url + urlFull);
                         dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км", url + urlFull), 1000, url + urlFull);

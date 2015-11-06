@@ -26,11 +26,11 @@ namespace FindAndFollow
             currentId = Database.CarParsingSettingsCurrentIdGet("abw.by-private");
 
             checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
-            checkSellerTypeArray = Download.GetData(abwUrl + currentId.ToString(), checkSellerTypeArray, "abw.by");
+            checkSellerTypeArray = Download.GetData(abwUrl + currentId.ToString(), checkSellerTypeArray, "abw");
 
             xPathArray = Database.CarParsingSettingsGet(checkSellerTypeArray[0] == null ? "abw.by-private" : "abw.by-autoagency");
 
-            Database.CarParsingInsert(abwUrl, xPathArray, currentId, currentId + 1, "abw");
+            Database.CarParsingInsert(abwUrl, xPathArray, currentId, currentId + 1, "abw.by");
 
             // ab.onliner.by
             xPathArray = Database.CarParsingSettingsGet("ab.onliner.by");
