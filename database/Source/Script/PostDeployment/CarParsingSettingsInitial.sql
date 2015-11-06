@@ -46,7 +46,7 @@ SELECT     'av.by' AS SiteUrlXPath,
 UNION ALL
 -- abw.by-private      
 SELECT     'abw.by-private' AS SiteUrl,
-           8310288 AS CurrentId,
+           8346113 AS CurrentId,
            'http://www.abw.by/allpublic/sell/' AS DownloadMaskURL,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[3]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
@@ -62,14 +62,14 @@ SELECT     'abw.by-private' AS SiteUrl,
            '//*[@id=\"news\"]/tr[2]/td/div[2]/table/tr[2]/td[2]' AS ColorXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]' AS SellerTypeXPath,
            NULL AS IsSwapXPath,
-           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]' AS DescriptionXPath,
+           '//*[@id="news"]/tr[2]/td/div[6]/font' AS DescriptionXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]' AS PageCreatedOnXPath,
-           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/table[1]/tbody[1]/tr[1]/td[2]' AS CityXPath
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CityXPath
 
 UNION ALL
 -- abw.by-autoagency      
 SELECT     'abw.by-autoagency' AS SiteUrl,
-           8310288 AS CurrentId,
+           8346113 AS CurrentId,
            'http://www.abw.by/allpublic/sell/' AS DownloadMaskURL,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[1]' AS CarBrandXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[4]/tr[1]/td[1]/div[1]/span[1]/a[2]' AS ModelXPath,
@@ -87,7 +87,7 @@ SELECT     'abw.by-autoagency' AS SiteUrl,
            NULL AS IsSwapXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]' AS DescriptionXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]' AS PageCreatedOnXPath,
-           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/table[1]/tbody[1]/tr[1]/td[2]' AS CityXPath
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CityXPath
 UNION ALL
 -- ab.onliner.by
 SELECT     'ab.onliner.by' AS SiteUrl,
