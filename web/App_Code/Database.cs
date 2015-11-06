@@ -37,33 +37,33 @@ namespace FindAndFollow
                     #region "if av.by"
                     if (webSite == "av.by")
                     {
-                        dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], "р.", url + urlFull), url + urlFull);
-                        dataArray[4] = StringClass.RemoveText(dataArray[4], "км.", url + urlFull);
-                        dataArray[5] = StringClass.RemoveText(dataArray[5], "см", url + urlFull);
-                        dataArray[6] = StringClass.ColorGet(dataArray[6], url + urlFull);
-                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7], url + urlFull);
-                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8], url + urlFull);
-                        dataArray[9] = StringClass.TransmissionGet(dataArray[9], url + urlFull);
-                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10], url + urlFull);
-                        dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:", url + urlFull);
-                        dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: ", url + urlFull), url + urlFull);
-                        dataArray[14] = StringClass.ConditionGetAv(StringClass.RemoveText(dataArray[4], "км.", url + urlFull), url + urlFull);
+                        dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], "р.", urlFull), urlFull);
+                        dataArray[4] = StringClass.RemoveText(dataArray[4], "км.", urlFull);
+                        dataArray[5] = StringClass.RemoveText(dataArray[5], "см", urlFull);
+                        dataArray[6] = StringClass.ColorGet(dataArray[6], urlFull);
+                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7], urlFull);
+                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8], urlFull);
+                        dataArray[9] = StringClass.TransmissionGet(dataArray[9], urlFull);
+                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10], urlFull);
+                        dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:", urlFull);
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: ", urlFull), urlFull);
+                        dataArray[14] = StringClass.ConditionGetAv(StringClass.RemoveText(dataArray[4], "км.", urlFull), urlFull);
                     }
                     #endregion "if av.by"
 
                     #region "if abw.by"
                     if (webSite == "abw.by")
                     {
-                        dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р.", url + urlFull), 1000000, url + urlFull);
-                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км", url + urlFull), 1000, url + urlFull);
-                        dataArray[5] = StringClass.RemoveText(dataArray[5], " см3", url + urlFull);
-                        dataArray[6] = StringClass.ColorGet(dataArray[6], url + urlFull);
-                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7], url + urlFull);
-                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8], url + urlFull);
-                        dataArray[9] = StringClass.TransmissionGet(dataArray[9], url + urlFull);
-                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10], url + urlFull);
-                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ", url + urlFull), url + urlFull), url + urlFull);
-                        dataArray[14] = StringClass.ConditionGetAbw(dataArray[14], url + urlFull);
+                        dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р.", urlFull), 1000000, urlFull);
+                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км", urlFull), 1000, urlFull);
+                        dataArray[5] = StringClass.RemoveText(dataArray[5], " см3", urlFull);
+                        dataArray[6] = StringClass.ColorGet(dataArray[6], urlFull);
+                        dataArray[7] = StringClass.BodyTypeGet(dataArray[7], urlFull);
+                        dataArray[8] = StringClass.EngineTypeGet(dataArray[8], urlFull);
+                        dataArray[9] = StringClass.TransmissionGet(dataArray[9], urlFull);
+                        dataArray[10] = StringClass.DriveTypeGet(dataArray[10], urlFull);
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ", urlFull), urlFull), urlFull);
+                        dataArray[14] = StringClass.ConditionGetAbw(dataArray[14], urlFull);
                     }
                     #endregion "if abw.by"
 
