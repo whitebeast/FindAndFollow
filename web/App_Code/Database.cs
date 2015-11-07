@@ -107,6 +107,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = dataArray[14] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1000).Value = dataArray[15] == null ? "0" : "1";
                     commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 1000).Value = dataArray[16] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
                 }
@@ -132,6 +133,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
                     }
@@ -157,7 +159,7 @@ namespace FindAndFollow
 
         public static string[] CarParsingSettingsGet(string url)
         {
-            string[] xPathArray = new string[17];
+            string[] xPathArray = new string[18];
 
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
@@ -189,6 +191,7 @@ namespace FindAndFollow
                 xPathArray[14] = dataReader["ConditionXPath"].ToString();
                 xPathArray[15] = dataReader["IsSwapXPath"].ToString();
                 xPathArray[16] = dataReader["CityXPath"].ToString();
+                xPathArray[17] = dataReader["OwnerPhoneXPath"].ToString();
             }
 
             sqlConnection.Close();
