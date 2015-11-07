@@ -184,6 +184,7 @@
     <None Include="Source\Script\PostDeployment\BelarusCityAndRegionInitial.sql" />
     <None Include="Source\Script\Test Data\CarParsing.sql" />
     <None Include="Source\System\Permission\service_acc.sql" />
+    <None Include="Properties\FindAndFollow.HOME.ReCreate.publish.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

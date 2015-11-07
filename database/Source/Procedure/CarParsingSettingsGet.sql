@@ -17,6 +17,7 @@ BEGIN
             TransmissionTypeXPath, 
             DriveTypeXPath,		
             DescriptionXPath, 
+			OwnerPhoneXPath,
             PageCreatedOnXPath, 
             SellerTypeXPath, 
             ConditionXPath, 

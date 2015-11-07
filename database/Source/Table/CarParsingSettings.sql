@@ -20,5 +20,6 @@
     SellerTypeXPath         NVARCHAR(1000) NULL,
     IsSwapXPath             NVARCHAR(1000) NULL,
     DescriptionXPath        NVARCHAR(1000) NULL,
+	OwnerPhoneXPath			NVARCHAR(1000) NULL,
     PageCreatedOnXPath      NVARCHAR(1000) NULL,
 )
