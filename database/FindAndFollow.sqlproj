@@ -79,6 +79,7 @@
     <Folder Include="Source\Script\PostDeployment" />
     <Folder Include="Source\Script\Test Data" />
     <Folder Include="Source\System\Permission" />
+    <Folder Include="Source\Script\PreDeployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Source\Table\Constraint\Check\Car.sql" />
@@ -185,6 +186,7 @@
     <None Include="Source\Script\Test Data\CarParsing.sql" />
     <None Include="Source\System\Permission\service_acc.sql" />
     <None Include="Properties\FindAndFollow.HOME.ReCreate.publish.publish.xml" />
+    <None Include="Source\Script\PreDeployment\EmailProfile.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
