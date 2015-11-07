@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using HtmlAgilityPack;
 using System.Collections.Generic;
+using System.Web.Script.Serialization;
 
 namespace FindAndFollow
 {
@@ -174,5 +175,34 @@ namespace FindAndFollow
             return lstCarValues.ToArray();
         }
 
+        public static string[] GetOwnerPhoneAv (string xPath)
+        {
+            WebClient webGet = new WebClient();
+            HtmlDocument doc = new HtmlDocument();
+
+            webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
+
+            var html = webGet.DownloadString("http://av.by/public/public.php?event=View&public_id=10708341");
+            doc.LoadHtml(html);
+
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+
+            List<string> lstOwnerPhones = new List<string>();
+
+            foreach (HtmlNode node in bodyNode.SelectNodes("//li"))
+            {
+                    lstOwnerPhones.Add(node.InnerHtml);
+            }
+
+            var keyValues = new Dictionary<string, string>
+               {
+                   { "OwnerPhone", lstOwnerPhones[0]},
+               };
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            string json = js.Serialize(keyValues);
+
+            return lstOwnerPhones.ToArray();
+        }
     }
 }
