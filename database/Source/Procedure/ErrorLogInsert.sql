@@ -59,6 +59,13 @@ BEGIN
             @pErrorMessageFull,
             CONVERT(sysname, SUSER_NAME())
             );
+        
+        EXEC msdb.dbo.sp_send_dbmail
+			@recipients = 'Administrator',
+			@subject = N'Error notification',
+			@body = @pErrorMessageFull,
+			@body_format = 'HTML',
+			@profile_name = 'FindAndFollow.Notification Mailer';
 
         IF ERROR_MESSAGE() IS NOT NULL EXECUTE [dbo].[ErrorInfoGet];
 
