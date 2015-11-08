@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Web;
 using System.Net;
 using HtmlAgilityPack;
 using System.Collections.Generic;
-using System.Web.Script.Serialization;
 
 namespace FindAndFollow
 {
@@ -65,6 +65,9 @@ namespace FindAndFollow
                 returnArray[10] = returnArrayAbw[7];
                 returnArray[14] = returnArrayAbw[8];
             }
+
+            if (webSite == "av.by")
+                returnArray[17] = GetOwnerPhoneAv(doc, xPathArray[17], url);
 
             return returnArray;
         }
@@ -175,52 +178,18 @@ namespace FindAndFollow
             return lstCarValues.ToArray();
         }
 
-        public class OwnerPhone
+        public static string GetOwnerPhoneAv(HtmlDocument doc, string xPath, string url)
         {
-            public string name { get; set; }
-            public string phoneNumber { get; set; }
-        }
-
-        public static string GetOwnerPhoneAv (string xPath)
-        {
-            WebClient webGet = new WebClient();
-            HtmlDocument doc = new HtmlDocument();
-
-            webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
-
-            //webGet.Encoding = System.Text.Encoding.UTF8;
-            var html = webGet.DownloadString("http://av.by/public/public.php?event=View&public_id=10708341");
-            doc.LoadHtml(html);
-
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
             List<string> lstOwnerPhones = new List<string>();
 
             foreach (HtmlNode node in bodyNode.SelectNodes(".//li"))
             {
-                    lstOwnerPhones.Add(node.InnerHtml);
+                lstOwnerPhones.Add(node.InnerHtml);
             }
 
-            //var keyValues = new Dictionary<string, string>
-            //   {
-            //       {"OwnerPhone", lstOwnerPhones[0]},
-            //   };
-            //
-            //JavaScriptSerializer js = new JavaScriptSerializer();
-            //string json = js.Serialize(keyValues);
-
-            var OwnerPhones = new List<OwnerPhone>();
-
-            for (int i = 0; i < lstOwnerPhones.Count; i++)
-            {
-                if (lstOwnerPhones[i] != "")
-                OwnerPhones.Add(new OwnerPhone() { name = "OwnerPhone", phoneNumber = StringClass.OwnerPhoneGetAv(lstOwnerPhones[i], "http://av.by/public/public.php?event=View&public_id=10708341") });
-            }
-
-            var serializer = new JavaScriptSerializer();
-            var serializedResult = serializer.Serialize(OwnerPhones);
-
-            return serializedResult.ToString();
+            return Serialization.SerializePhoneAv(lstOwnerPhones, url);
         }
     }
 }
