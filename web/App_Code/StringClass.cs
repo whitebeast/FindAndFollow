@@ -427,9 +427,23 @@ namespace FindAndFollow
                 string city = RemoveText(word.Trim().Substring(startCut, 130), "<div align=\"center\">Продавец:</b>", url);
                 int endCut = city.IndexOf(")");
 
-
                 return city.Substring(0, endCut).Split(' ').LastOrDefault();
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
 
+        public static string OwnerPhoneGetAv(string word, string url)
+        {
+            try
+            {
+                int startCut = word.IndexOf("+375 29");
+                int endCut = word.IndexOf("</b>");
+                string phoneNumber = RemoveText(word.Substring(startCut, endCut - startCut), "<b>", url);
+
+                return phoneNumber.Trim();
             }
             catch (Exception ex)
             {

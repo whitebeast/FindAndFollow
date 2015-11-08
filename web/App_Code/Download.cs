@@ -175,13 +175,20 @@ namespace FindAndFollow
             return lstCarValues.ToArray();
         }
 
-        public static string[] GetOwnerPhoneAv (string xPath)
+        public class OwnerPhone
+        {
+            public string name { get; set; }
+            public string phoneNumber { get; set; }
+        }
+
+        public static string GetOwnerPhoneAv (string xPath)
         {
             WebClient webGet = new WebClient();
             HtmlDocument doc = new HtmlDocument();
 
             webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
 
+            //webGet.Encoding = System.Text.Encoding.UTF8;
             var html = webGet.DownloadString("http://av.by/public/public.php?event=View&public_id=10708341");
             doc.LoadHtml(html);
 
@@ -189,20 +196,31 @@ namespace FindAndFollow
 
             List<string> lstOwnerPhones = new List<string>();
 
-            foreach (HtmlNode node in bodyNode.SelectNodes("//li"))
+            foreach (HtmlNode node in bodyNode.SelectNodes(".//li"))
             {
                     lstOwnerPhones.Add(node.InnerHtml);
             }
 
-            var keyValues = new Dictionary<string, string>
-               {
-                   { "OwnerPhone", lstOwnerPhones[0]},
-               };
+            //var keyValues = new Dictionary<string, string>
+            //   {
+            //       {"OwnerPhone", lstOwnerPhones[0]},
+            //   };
+            //
+            //JavaScriptSerializer js = new JavaScriptSerializer();
+            //string json = js.Serialize(keyValues);
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string json = js.Serialize(keyValues);
+            var OwnerPhones = new List<OwnerPhone>();
 
-            return lstOwnerPhones.ToArray();
+            for (int i = 0; i < lstOwnerPhones.Count; i++)
+            {
+                if (lstOwnerPhones[i] != "")
+                OwnerPhones.Add(new OwnerPhone() { name = "OwnerPhone", phoneNumber = StringClass.OwnerPhoneGetAv(lstOwnerPhones[i], "http://av.by/public/public.php?event=View&public_id=10708341") });
+            }
+
+            var serializer = new JavaScriptSerializer();
+            var serializedResult = serializer.Serialize(OwnerPhones);
+
+            return serializedResult.ToString();
         }
     }
 }
