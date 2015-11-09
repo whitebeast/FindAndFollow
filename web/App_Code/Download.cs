@@ -69,6 +69,9 @@ namespace FindAndFollow
             if (webSite == "av.by")
                 returnArray[17] = GetOwnerPhoneAv(doc, xPathArray[17], url);
 
+            if (webSite == "ab.onliner.by")
+                returnArray[17] = GetOwnerPhoneAb(doc, xPathArray[17], url);
+
             return returnArray;
         }
 
@@ -190,6 +193,20 @@ namespace FindAndFollow
             }
 
             return Serialization.SerializePhoneAv(lstOwnerPhones, url);
+        }
+
+        public static string GetOwnerPhoneAb(HtmlDocument doc, string xPath, string url)
+        {
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+
+            List<string> lstOwnerPhones = new List<string>();
+
+            foreach (HtmlNode node in bodyNode.SelectNodes(".//span[@class='c-bl']"))
+            {
+                lstOwnerPhones.Add(node.InnerHtml);
+            }
+
+            return Serialization.SerializePhoneAb(lstOwnerPhones, url);
         }
     }
 }

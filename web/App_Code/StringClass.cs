@@ -450,5 +450,17 @@ namespace FindAndFollow
                 return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
+        //+375 (25) 618-92-54
+        public static string OwnerPhoneGetAb(string word, string url)
+        {
+            try
+            {
+                return RemoveText(RemoveText(ReplaceText(word, "-", " ", url), ")", url), "(", url);
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
     }
 }
