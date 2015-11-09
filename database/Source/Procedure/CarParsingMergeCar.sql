@@ -154,7 +154,7 @@ BEGIN
                ,[SellerType]
                ,[IsSwap]
                ,[Description]
-                ,[OwnerPhone]
+               ,[OwnerPhone]
                ,[OriginalURL]
                ,[PageCreatedOn])
         SELECT  cp.CarModelId,
