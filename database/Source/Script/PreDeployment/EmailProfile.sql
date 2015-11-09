@@ -1,31 +1,28 @@
-﻿DECLARE @AccountName VARCHAR(100) = 'FindAndFollow.Notification@gmail.com',
-		@ProfileName VARCHAR(100) = 'FindAndFollow.Notification Mailer';
-		
-IF NOT EXISTS (SELECT 1 FROM msdb.dbo.sysmail_account AS sa WHERE NAME = @AccountName) BEGIN 
+﻿IF NOT EXISTS (SELECT 1 FROM msdb.dbo.sysmail_account AS sa WHERE NAME = 'FindAndFollow.Notification@gmail.com') BEGIN 
 	PRINT 'Configuring Email account';
 	EXECUTE msdb.dbo.sysmail_add_account_sp
-			@account_name = @AccountName,
-			@description = N'Notification account for FindAndFollow project',
-			@email_address = @AccountName,
+			@account_name = 'FindAndFollow.Notification@gmail.com',
+			@email_address = 'FindAndFollow.Notification@gmail.com',
 			@display_name = N'Notification service',
-			@replyto_address = 'no-reply@gmail.com',
+			@description = N'Notification account for FindAndFollow project',
 			@mailserver_name = 'smtp.gmail.com',
 			@port = 587,
-			@username = @AccountName,
+			@username = 'FindAndFollow.Notification@gmail.com',
 			@password = 'VsKexibt!',
-			@enable_ssl = 1;
+			@use_default_credentials = 0,
+			@enable_ssl = 1
 END;	
 
-IF NOT EXISTS (SELECT 1 FROM msdb.dbo.sysmail_profile AS sp WHERE NAME = @ProfileName) BEGIN
+IF NOT EXISTS (SELECT 1 FROM msdb.dbo.sysmail_profile AS sp WHERE NAME = 'FindAndFollow.Notification Mailer') BEGIN
 	PRINT 'Configuring Email profile';	
 	EXECUTE msdb.dbo.sysmail_add_profile_sp
-			@profile_name = @ProfileName
+			@profile_name = 'FindAndFollow.Notification Mailer'
 	EXECUTE msdb.dbo.sysmail_add_profileaccount_sp
-			@profile_name = @ProfileName,
-			@account_name = @AccountName,
+			@profile_name = 'FindAndFollow.Notification Mailer',
+			@account_name = 'FindAndFollow.Notification@gmail.com',
 			@sequence_number = 1;
 	EXECUTE msdb.dbo.sysmail_add_principalprofile_sp
-			@profile_name = @ProfileName,
+			@profile_name = 'FindAndFollow.Notification Mailer',
 			@principal_id = 0,
 			@is_default = 1;
 END;
