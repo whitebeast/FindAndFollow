@@ -18,7 +18,7 @@
         @pSellerType        NVARCHAR(100),
         @pIsSwap            CHAR(1),
         @pDescription       NVARCHAR(1000),
-		@pOwnerPhone		NVARCHAR(100),
+        @pOwnerPhone        NVARCHAR(100),
         @pPageCreatedOn     NVARCHAR(100),
         @pIsPageExist       BIT = 0
     )
@@ -47,7 +47,7 @@ BEGIN
                     SellerType,
                     IsSwap,
                     [Description],
-					OwnerPhone,
+                    OwnerPhone,
                     PageCreatedOn,
                     IsPageExist
                 )
@@ -70,7 +70,7 @@ BEGIN
                     @pSellerType,
                     @pIsSwap,
                     @pDescription,
-					@pOwnerPhone,
+                    @pOwnerPhone,
                     @pPageCreatedOn,
                     @pIsPageExist
             ;

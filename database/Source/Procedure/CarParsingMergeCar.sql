@@ -52,7 +52,7 @@ BEGIN
                 cp.SellerType,
                 cp.IsSwap,
                 cp.Description,
-				cp.OwnerPhone,
+                cp.OwnerPhone,
                 cp.OriginalURL,
                 cp.PageCreatedOn
         INTO    #CarParsing
@@ -75,7 +75,7 @@ BEGIN
                             dbo.MappingType('SellerType',cp.SellerType) AS SellerType,
                             cp.IsSwap,
                             cp.Description,
-							cp.OwnerPhone,
+                            cp.OwnerPhone,
                             cp.SiteUrl AS OriginalURL,
                             cp.PageCreatedOn
                     FROM    dbo.CarParsing cp
@@ -110,7 +110,7 @@ BEGIN
                         cp.SellerType,
                         cp.IsSwap,
                         cp.Description,
-						cp.OwnerPhone,
+                        cp.OwnerPhone,
                         cp.OriginalURL,
                         cp.PageCreatedOn
                 FROM #CarParsing AS cp 
@@ -154,7 +154,7 @@ BEGIN
                ,[SellerType]
                ,[IsSwap]
                ,[Description]
-			   ,[OwnerPhone]
+                ,[OwnerPhone]
                ,[OriginalURL]
                ,[PageCreatedOn])
         SELECT  cp.CarModelId,
@@ -173,7 +173,7 @@ BEGIN
                 cp.SellerType,
                 cp.IsSwap,
                 cp.Description,
-				cp.OwnerPhone,
+                cp.OwnerPhone,
                 cp.OriginalURL,
                 cp.PageCreatedOn
         FROM #CarParsing AS cp  

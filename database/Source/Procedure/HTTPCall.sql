@@ -6,12 +6,12 @@
 AS 
 BEGIN
     -- for installing Proxy use "proxycfg -u"
-    DECLARE  @OLEObject        Int
-            ,@HTTPStatus        Int
+    DECLARE  @OLEObject      Int
+            ,@HTTPStatus     Int
             ,@ErrCode        Int
-            ,@ErrMethod        SysName
-            ,@ErrSource        SysName
-            ,@ErrDescription    SysName
+            ,@ErrMethod      SysName
+            ,@ErrSource      SysName
+            ,@ErrDescription SysName
 
     EXEC @ErrCode = sys.sp_OACreate 'MSXML2.ServerXMLHTTP', @OLEObject OUT
     IF (@ErrCode = 0) BEGIN

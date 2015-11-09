@@ -15,16 +15,16 @@ BEGIN
     IF OBJECT_ID('tempdb..##tErrorLog')  IS NOT NULL DROP TABLE ##tErrorLog;
     CREATE TABLE ##tErrorLog 
         (
-	        [ErrorNumber] [int] NOT NULL,
-	        [ErrorSeverity] [int] NULL,
-	        [ErrorState] [int] NULL,
-	        [ErrorObject] [nvarchar](126) NULL,
-	        [IsService] [bit] NULL,
-	        [ErrorLine] [int] NULL,
-	        [ErrorMessageShort] [nvarchar](1000) NOT NULL,
-	        [ErrorMessageFull] [nvarchar](4000) NOT NULL,
-	        [UserName] [sysname] NOT NULL,
-	        [CreatedOn] [datetime2](7) NOT NULL
+            [ErrorNumber] [int] NOT NULL,
+            [ErrorSeverity] [int] NULL,
+            [ErrorState] [int] NULL,
+            [ErrorObject] [nvarchar](126) NULL,
+            [IsService] [bit] NULL,
+            [ErrorLine] [int] NULL,
+            [ErrorMessageShort] [nvarchar](1000) NOT NULL,
+            [ErrorMessageFull] [nvarchar](4000) NOT NULL,
+            [UserName] [sysname] NOT NULL,
+            [CreatedOn] [datetime2](7) NOT NULL
         )
     ;
     DECLARE @tableHTML NVARCHAR(MAX)
@@ -53,44 +53,44 @@ BEGIN
 
         INSERT [dbo].[ErrorLog] 
             (
-            [ErrorNumber],
-	        [ErrorSeverity],
-	        [ErrorState],
-	        [ErrorObject],
-            [IsService],
-	        [ErrorLine],
-            [ErrorMessageShort],
-            [ErrorMessageFull],
-            [UserName]
+                [ErrorNumber],
+                [ErrorSeverity],
+                [ErrorState],
+                [ErrorObject],
+                [IsService],
+                [ErrorLine],
+                [ErrorMessageShort],
+                [ErrorMessageFull],
+                [UserName]
             ) 
         OUTPUT 
             inserted.ErrorNumber,
-	        inserted.ErrorSeverity,
-	        inserted.ErrorState,
-	        inserted.ErrorObject,
-	        inserted.IsService,
-	        inserted.ErrorLine,
-	        inserted.ErrorMessageShort,
-	        inserted.ErrorMessageFull,
-	        inserted.UserName,
-	        inserted.CreatedOn
+            inserted.ErrorSeverity,
+            inserted.ErrorState,
+            inserted.ErrorObject,
+            inserted.IsService,
+            inserted.ErrorLine,
+            inserted.ErrorMessageShort,
+            inserted.ErrorMessageFull,
+            inserted.UserName,
+            inserted.CreatedOn
         INTO ##tErrorLog
         VALUES 
             (
-            @pErrorNumber, 
-            @pErrorSeverity, 
-            @pErrorState, 
-            @pErrorObject,
-            @pIsService, 
-            @pErrorLine, 
-            @pErrorMessageShort,
-            @pErrorMessageFull,
-            CONVERT(sysname, SUSER_NAME())
+                @pErrorNumber, 
+                @pErrorSeverity, 
+                @pErrorState, 
+                @pErrorObject,
+                @pIsService, 
+                @pErrorLine, 
+                @pErrorMessageShort,
+                @pErrorMessageFull,
+                CONVERT(sysname, SUSER_NAME())
             );
         
         SET @tableHTML =
-                     N'<H2>Error notification from database service.</H2>' +
-                     N'<table border="1">';
+                N'<H2>Error notification from database service.</H2>' +
+                N'<table border="1">';
         
         SET @tableHTML = @tableHTML +
         N'<tr>'+
@@ -107,16 +107,16 @@ BEGIN
         N'</tr>' +
                 CAST ( ( 
                     SELECT  
-                           td=REPLACE([ErrorNumber],'"',''),'',
-	                       td=REPLACE([ErrorSeverity],'"',''),'',
-	                       td=REPLACE([ErrorState],'"',''),'',
-	                       td=REPLACE([ErrorObject],'"',''),'',
-	                       td=REPLACE([IsService],'"',''),'',
-	                       td=REPLACE([ErrorLine],'"',''),'',
-	                       td=REPLACE([ErrorMessageShort],'"',''),'',
-	                       td=REPLACE([ErrorMessageFull],'"',''),'',
-	                       td=REPLACE([UserName],'"',''),'',
-                           td=REPLACE(CONVERT(VARCHAR,[CreatedOn],121),'"','') 
+                        td=REPLACE([ErrorNumber],'"',''),'',
+                        td=REPLACE([ErrorSeverity],'"',''),'',
+                        td=REPLACE([ErrorState],'"',''),'',
+                        td=REPLACE([ErrorObject],'"',''),'',
+                        td=REPLACE([IsService],'"',''),'',
+                        td=REPLACE([ErrorLine],'"',''),'',
+                        td=REPLACE([ErrorMessageShort],'"',''),'',
+                        td=REPLACE([ErrorMessageFull],'"',''),'',
+                        td=REPLACE([UserName],'"',''),'',
+                        td=REPLACE(CONVERT(VARCHAR,[CreatedOn],121),'"','') 
                     FROM ##tErrorLog 
                     FOR XML PATH('tr'), TYPE 
                 ) AS NVARCHAR(MAX) ) +
@@ -124,11 +124,11 @@ BEGIN
         ;
 
         EXEC msdb.dbo.sp_send_dbmail
-			@recipients = 'aliaksandr.anisimau@outlook.com;whitebeast@tut.by',
-			@subject = N'Error notification',
-			@body = @tableHTML,
-			@body_format = 'HTML',
-			@profile_name = 'FindAndFollow.Notification Mailer',
+            @recipients = 'aliaksandr.anisimau@outlook.com;whitebeast@tut.by',
+            @subject = N'Error notification',
+            @body = @tableHTML,
+            @body_format = 'HTML',
+            @profile_name = 'FindAndFollow.Notification Mailer',
             @importance = 'high';
 
         IF ERROR_MESSAGE() IS NOT NULL EXECUTE [dbo].[ErrorInfoGet];
