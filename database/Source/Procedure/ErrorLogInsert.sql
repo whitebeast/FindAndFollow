@@ -12,6 +12,22 @@
 AS
 BEGIN
     SET NOCOUNT ON;
+    IF OBJECT_ID('tempdb..##tErrorLog')  IS NOT NULL DROP TABLE ##tErrorLog;
+    CREATE TABLE ##tErrorLog 
+        (
+	        [ErrorNumber] [int] NOT NULL,
+	        [ErrorSeverity] [int] NULL,
+	        [ErrorState] [int] NULL,
+	        [ErrorObject] [nvarchar](126) NULL,
+	        [IsService] [bit] NULL,
+	        [ErrorLine] [int] NULL,
+	        [ErrorMessageShort] [nvarchar](1000) NOT NULL,
+	        [ErrorMessageFull] [nvarchar](4000) NOT NULL,
+	        [UserName] [sysname] NOT NULL,
+	        [CreatedOn] [datetime2](7) NOT NULL
+        )
+    ;
+    DECLARE @tableHTML NVARCHAR(MAX)
 
     SELECT  @pErrorNumber       = COALESCE(@pErrorNumber, ERROR_NUMBER()),  
             @pErrorSeverity     = COALESCE(@pErrorSeverity, ERROR_SEVERITY()),
@@ -47,6 +63,18 @@ BEGIN
             [ErrorMessageFull],
             [UserName]
             ) 
+        OUTPUT 
+            inserted.ErrorNumber,
+	        inserted.ErrorSeverity,
+	        inserted.ErrorState,
+	        inserted.ErrorObject,
+	        inserted.IsService,
+	        inserted.ErrorLine,
+	        inserted.ErrorMessageShort,
+	        inserted.ErrorMessageFull,
+	        inserted.UserName,
+	        inserted.CreatedOn
+        INTO ##tErrorLog
         VALUES 
             (
             @pErrorNumber, 
@@ -60,12 +88,48 @@ BEGIN
             CONVERT(sysname, SUSER_NAME())
             );
         
+        SET @tableHTML =
+                     N'<H2>Error notification from database service.</H2>' +
+                     N'<table border="1">';
+        
+        SET @tableHTML = @tableHTML +
+        N'<tr>'+
+            N'<th>ErrorNumber</th>' +
+            N'<th>ErrorSeverity</th>' +
+            N'<th>ErrorState</th>' +
+            N'<th>ErrorObject</th>' +
+            N'<th>IsService</th>' +
+            N'<th>ErrorLine</th>' +
+            N'<th>ErrorMessageShort</th>' +
+            N'<th>ErrorMessageFull</th>' +
+            N'<th>UserName</th>' +
+            N'<th>CreatedOn</th>' +
+        N'</tr>' +
+                CAST ( ( 
+                    SELECT  
+                           td=REPLACE([ErrorNumber],'"',''),'',
+	                       td=REPLACE([ErrorSeverity],'"',''),'',
+	                       td=REPLACE([ErrorState],'"',''),'',
+	                       td=REPLACE([ErrorObject],'"',''),'',
+	                       td=REPLACE([IsService],'"',''),'',
+	                       td=REPLACE([ErrorLine],'"',''),'',
+	                       td=REPLACE([ErrorMessageShort],'"',''),'',
+	                       td=REPLACE([ErrorMessageFull],'"',''),'',
+	                       td=REPLACE([UserName],'"',''),'',
+                           td=REPLACE(CONVERT(VARCHAR,[CreatedOn],121),'"','') 
+                    FROM ##tErrorLog 
+                    FOR XML PATH('tr'), TYPE 
+                ) AS NVARCHAR(MAX) ) +
+        N'</table>';   
+        ;
+
         EXEC msdb.dbo.sp_send_dbmail
-			@recipients = 'Administrator',
+			@recipients = 'aliaksandr.anisimau@outlook.com;whitebeast@tut.by',
 			@subject = N'Error notification',
-			@body = @pErrorMessageFull,
+			@body = @tableHTML,
 			@body_format = 'HTML',
-			@profile_name = 'FindAndFollow.Notification Mailer';
+			@profile_name = 'FindAndFollow.Notification Mailer',
+            @importance = 'high';
 
         IF ERROR_MESSAGE() IS NOT NULL EXECUTE [dbo].[ErrorInfoGet];
 
@@ -75,4 +139,5 @@ BEGIN
         EXECUTE [dbo].[ErrorInfoGet];
         RETURN -1;
     END CATCH
+    IF OBJECT_ID('tempdb..##tErrorLog')  IS NOT NULL DROP TABLE ##tErrorLog;
 END;
