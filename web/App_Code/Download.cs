@@ -149,7 +149,6 @@ namespace FindAndFollow
                 lstCarValues.Insert(i, "");
             }
 
-
             foreach (HtmlNode node in bodyNode.SelectNodes("//td[@class='adv_right']"))
             {
                 switch (lstCarParams[counter])

@@ -83,7 +83,7 @@ namespace FindAndFollow
                         dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3, urlFull), urlFull);
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(dataArray[12], urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAb(dataArray[14], urlFull);
-                        dataArray[16] = StringClass.SelectWordGet(dataArray[16], ' ', 1, urlFull);
+                        dataArray[16] = StringClass.RemoveText(StringClass.SelectWordGet(dataArray[16], ' ', 1, urlFull), ",", urlFull);
                     }
                     #endregion "if ab.onliner.by"
 
