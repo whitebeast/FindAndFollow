@@ -187,6 +187,12 @@
     <None Include="Source\System\Permission\service_acc.sql" />
     <None Include="Properties\FindAndFollow.HOME.ReCreate.publish.publish.xml" />
     <None Include="Source\Script\PreDeployment\EmailProfile.sql" />
+    <Build Include="Source\Table\Index\CarModel.sql" />
+    <Build Include="Source\Table\Index\CarBrand.sql" />
+    <Build Include="Source\Table\Index\Site.sql" />
+    <Build Include="Source\Table\Index\Color.sql" />
+    <Build Include="Source\Table\Index\City.sql" />
+    <Build Include="Source\Table\Index\Place.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
