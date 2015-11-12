@@ -17,7 +17,7 @@ namespace FindAndFollow
         {
             try
             {
-                var OwnerPhones = new List<OwnerPhone>();
+                var ownerPhones = new List<OwnerPhone>();
 
                 for (int i = 0; i < lstOwnerPhones.Count; i++)
                 {
@@ -25,16 +25,16 @@ namespace FindAndFollow
                     {
                         StringWriter myWriter = new StringWriter();
 
-                        OwnerPhones.Add(new OwnerPhone() { phoneNumber = StringClass.OwnerPhoneGetAv(lstOwnerPhones[i], url) });
-                        HttpUtility.HtmlDecode(OwnerPhones[i].phoneNumber.ToString(), myWriter);
-                        OwnerPhones[i].phoneNumber = myWriter.ToString();
+                        ownerPhones.Add(new OwnerPhone() { phoneNumber = StringClass.OwnerPhoneGetAv(lstOwnerPhones[i], url) });
+                        HttpUtility.HtmlDecode(ownerPhones[i].phoneNumber, myWriter);
+                        ownerPhones[i].phoneNumber = myWriter.ToString();
                     }
                 }
 
                 var serializer = new JavaScriptSerializer();
-                var serializedResult = serializer.Serialize(OwnerPhones);
+                var serializedResult = serializer.Serialize(ownerPhones);
 
-                return serializedResult.Trim().ToString();
+                return serializedResult.Trim();
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace FindAndFollow
         {
             try
             {
-                var OwnerPhones = new List<OwnerPhone>();
+                var ownerPhones = new List<OwnerPhone>();
 
                 for (int i = 0; i < lstOwnerPhones.Count; i++)
                 {
@@ -54,16 +54,16 @@ namespace FindAndFollow
                     {
                         StringWriter myWriter = new StringWriter();
 
-                        OwnerPhones.Add(new OwnerPhone() { phoneNumber = StringClass.OwnerPhoneGetAb(lstOwnerPhones[i], url) });
-                        HttpUtility.HtmlDecode(OwnerPhones[i].phoneNumber.ToString(), myWriter);
-                        OwnerPhones[i].phoneNumber = myWriter.ToString();
+                        ownerPhones.Add(new OwnerPhone() { phoneNumber = StringClass.OwnerPhoneGetAb(lstOwnerPhones[i], url) });
+                        HttpUtility.HtmlDecode(ownerPhones[i].phoneNumber, myWriter);
+                        ownerPhones[i].phoneNumber = myWriter.ToString();
                     }
                 }
 
                 var serializer = new JavaScriptSerializer();
-                var serializedResult = serializer.Serialize(OwnerPhones);
+                var serializedResult = serializer.Serialize(ownerPhones);
 
-                return serializedResult.Trim().ToString();
+                return serializedResult.Trim();
             }
             catch (Exception ex)
             {

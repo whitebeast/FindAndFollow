@@ -24,15 +24,13 @@ namespace FindAndFollow
             sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000);
             sqlParameters[0].Value = DBNull.Value;
 
-            string[] dataArray;
-
             // Insert data
             for (int i = startId; i < finishId; i++)
             {
                 string urlFull = url + i;
                 if (Download.IsPageExist(urlFull))
                 {
-                    dataArray = Download.GetData(urlFull, xPathArray, webSite);
+                    var dataArray = Download.GetData(urlFull, xPathArray, webSite);
 
                     #region "if av.by"
                     if (webSite == "av.by")
@@ -100,7 +98,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 1000).Value = dataArray[10] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 4000).Value = dataArray[11] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = dataArray[12] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = urlFull.ToString();
+                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = urlFull;
                     commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = true;
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = dataArray[13] == null ? "Частное" : "Автохаус";
@@ -126,7 +124,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = urlFull.ToString();
+                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = urlFull;
                     commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = false;
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
@@ -207,7 +205,7 @@ namespace FindAndFollow
             SqlCommand commandInsert = new SqlCommand("ErrorLogInsert", sqlConnection);
             commandInsert.CommandType = CommandType.StoredProcedure;
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
-            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ")));
+            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);

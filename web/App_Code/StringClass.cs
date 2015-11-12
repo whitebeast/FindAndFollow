@@ -380,7 +380,7 @@ namespace FindAndFollow
             try
             {
                 int mileage = int.Parse(word.Trim());
-                string condition = "";
+                string condition;
 
                 condition = mileage <= 50 ? "Новый" : "С пробегом";
 
