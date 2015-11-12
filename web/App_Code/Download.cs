@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Web;
 using System.Net;
 using HtmlAgilityPack;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FindAndFollow
 {
@@ -97,11 +97,18 @@ namespace FindAndFollow
             WebClient client = new WebClient();
 
             Stream data = client.OpenRead(uri);
-            StreamReader reader = new StreamReader(data);
-            string s = reader.ReadToEnd();
-            data.Close();
-            reader.Close();
-            return s;
+            if (data != null)
+            {
+                StreamReader reader = new StreamReader(data);
+                string s = reader.ReadToEnd();
+                data.Close();
+                reader.Close();
+                return s;
+            }
+            else
+            {
+                return "404";
+            }
         }
 
         public static string[] GetDataAbw(string xPath, HtmlDocument doc)
@@ -149,7 +156,6 @@ namespace FindAndFollow
                 lstCarValues.Insert(i, "");
             }
 
-
             foreach (HtmlNode node in bodyNode.SelectNodes("//td[@class='adv_right']"))
             {
                 switch (lstCarParams[counter])
@@ -172,7 +178,6 @@ namespace FindAndFollow
                         break;
                     case ("condition"): lstCarValues[8] = node.InnerHtml;
                         break;
-                    default: break;
                 }
 
                 counter++;
@@ -185,12 +190,7 @@ namespace FindAndFollow
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstOwnerPhones = new List<string>();
-
-            foreach (HtmlNode node in bodyNode.SelectNodes(".//li"))
-            {
-                lstOwnerPhones.Add(node.InnerHtml);
-            }
+            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li").Select(node => node.InnerHtml).ToList();
 
             return Serialization.SerializePhoneAv(lstOwnerPhones, url);
         }
@@ -199,12 +199,7 @@ namespace FindAndFollow
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstOwnerPhones = new List<string>();
-
-            foreach (HtmlNode node in bodyNode.SelectNodes(".//span[@class='c-bl']"))
-            {
-                lstOwnerPhones.Add(node.InnerHtml);
-            }
+            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//span[@class='c-bl']").Select(node => node.InnerHtml).ToList();
 
             return Serialization.SerializePhoneAb(lstOwnerPhones, url);
         }

@@ -380,7 +380,7 @@ namespace FindAndFollow
             try
             {
                 int mileage = int.Parse(word.Trim());
-                string condition = "";
+                string condition;
 
                 condition = mileage <= 50 ? "Новый" : "С пробегом";
 
@@ -450,7 +450,7 @@ namespace FindAndFollow
                 return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
-        //+375 (25) 618-92-54
+
         public static string OwnerPhoneGetAb(string word, string url)
         {
             try
