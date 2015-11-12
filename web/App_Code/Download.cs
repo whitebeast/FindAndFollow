@@ -203,5 +203,14 @@ namespace FindAndFollow
 
             return Serialization.SerializePhoneAb(lstOwnerPhones, url);
         }
+
+        public static string GetCarImagesAv(HtmlDocument doc, string xPath, string url)
+        {
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+
+            List<string> lstCarImages = bodyNode.SelectNodes("a[@href]").Select(node => node.Attributes["href"].Value).ToList();
+
+            return Serialization.SerializeCarImages(lstCarImages, url);
+        }
     }
 }

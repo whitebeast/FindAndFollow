@@ -13,6 +13,11 @@ namespace FindAndFollow
             public string phoneNumber { get; set; }
         }
 
+        public class CarImage
+        {
+            public string imageUrl { get; set; }
+        }
+
         public static string SerializePhoneAv(List<string> lstOwnerPhones, string url)
         {
             try
@@ -62,6 +67,32 @@ namespace FindAndFollow
 
                 var serializer = new JavaScriptSerializer();
                 var serializedResult = serializer.Serialize(ownerPhones);
+
+                return serializedResult.Trim();
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
+        public static string SerializeCarImages(List<string> lstCarImages, string url)
+        {
+            try
+            {
+                var carImages = new List<CarImage>();
+
+                for (int i = 0; i < lstCarImages.Count; i++)
+                {
+                    StringWriter myWriter = new StringWriter();
+
+                    carImages.Add(new CarImage() { imageUrl = lstCarImages[i] });
+                    HttpUtility.HtmlDecode(carImages[i].imageUrl, myWriter);
+                    carImages[i].imageUrl = myWriter.ToString();
+                }
+
+                var serializer = new JavaScriptSerializer();
+                var serializedResult = serializer.Serialize(carImages);
 
                 return serializedResult.Trim();
             }
