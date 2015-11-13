@@ -25,7 +25,7 @@
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <Parameterization>SIMPLE</Parameterization>
     <ReadCommittedSnapshot>True</ReadCommittedSnapshot>
-    <DefaultCollation>Cyrillic_General_100_CI_AS</DefaultCollation>
+    <DefaultCollation>Cyrillic_General_CI_AS</DefaultCollation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
