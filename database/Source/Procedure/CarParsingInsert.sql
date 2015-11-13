@@ -3,7 +3,7 @@
         @pCarBrand          NVARCHAR(50),
         @pModel             NVARCHAR(50),
         @pSiteId            NVARCHAR(50),
-        @pSiteURL           NVARCHAR(2000),
+        @pSiteURL           NVARCHAR(1000),
         @pCity              NVARCHAR(200),
         @pPrice             NVARCHAR(100),
         @pBodyType          NVARCHAR(100),
@@ -18,7 +18,7 @@
         @pSellerType        NVARCHAR(100),
         @pIsSwap            CHAR(1),
         @pDescription       NVARCHAR(1000),
-        @pOwnerPhone        NVARCHAR(100),
+        @pOwnerPhone        NVARCHAR(300),
         @pCarImages         NVARCHAR(4000),
         @pPageCreatedOn     NVARCHAR(100),
         @pIsPageExist       BIT = 0

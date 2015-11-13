@@ -8,6 +8,15 @@ BEGIN
     ;
     IF OBJECT_ID('tempdb..#CarParsing') IS NOT NULL DROP TABLE #CarParsing
     ;
+    IF OBJECT_ID('tempdb..#CarOwnerPhone') IS NOT NULL DROP TABLE #CarOwnerPhone
+    ;
+    CREATE TABLE #CarOwnerPhone 
+        (
+            CarId       INT,
+            OwnerPhone  NVARCHAR(300),
+            OriginalURL NVARCHAR(1000)
+        )
+    ;
     DECLARE @XML                XML,
             @ErrorNumber        INT             = 0, 
             @ErrorSeverity      INT             = 1,
@@ -53,6 +62,7 @@ BEGIN
                 cp.IsSwap,
                 cp.Description,
                 cp.OwnerPhone,
+                cp.CarImages,
                 cp.OriginalURL,
                 cp.PageCreatedOn
         INTO    #CarParsing
@@ -76,6 +86,7 @@ BEGIN
                             cp.IsSwap,
                             cp.Description,
                             cp.OwnerPhone,
+                            cp.CarImages,
                             cp.SiteUrl AS OriginalURL,
                             cp.PageCreatedOn
                     FROM    dbo.CarParsing cp
@@ -111,6 +122,7 @@ BEGIN
                         cp.IsSwap,
                         cp.Description,
                         cp.OwnerPhone,
+                        cp.CarImages,
                         cp.OriginalURL,
                         cp.PageCreatedOn
                 FROM #CarParsing AS cp 
@@ -154,9 +166,14 @@ BEGIN
                ,[SellerType]
                ,[IsSwap]
                ,[Description]
-               ,[OwnerPhone]
                ,[OriginalURL]
-               ,[PageCreatedOn])
+               ,[PageCreatedOn]
+               ,[CarImages])
+        OUTPUT
+            inserted.CarId,
+            NULL,
+            inserted.OriginalURL
+        INTO #CarOwnerPhone
         SELECT  cp.CarModelId,
                 cp.SiteId,
                 cp.PlaceId,
@@ -173,12 +190,19 @@ BEGIN
                 cp.SellerType,
                 cp.IsSwap,
                 cp.Description,
-                cp.OwnerPhone,
                 cp.OriginalURL,
-                cp.PageCreatedOn
+                cp.PageCreatedOn,
+                cp.CarImages
         FROM #CarParsing AS cp  
         WHERE cp.ErrorType IS NULL        
         ;   
+        UPDATE cop
+        SET cop.OwnerPhone = cp.OwnerPhone
+        FROM #CarOwnerPhone cop
+        JOIN CarParsing cp ON cp.SiteUrl = cop.OriginalURL
+        ;
+        EXEC dbo.CarOwnerPhoneInsert
+        ;
         UPDATE cp
         SET PageStatusId = CASE WHEN t.ErrorType IS NULL THEN 2 ELSE 0 END
         FROM dbo.CarParsing cp
@@ -194,6 +218,8 @@ BEGIN
         EXECUTE dbo.ErrorLogInsert;
     END CATCH
     IF OBJECT_ID('tempdb..#CarParsing') IS NOT NULL DROP TABLE #CarParsing
+    ;
+    IF OBJECT_ID('tempdb..#CarOwnerPhone') IS NOT NULL DROP TABLE #CarOwnerPhone
     ;
     
 END
