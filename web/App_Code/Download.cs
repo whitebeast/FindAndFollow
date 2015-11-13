@@ -64,12 +64,13 @@ namespace FindAndFollow
                 returnArray[9] = returnArrayAbw[5];
                 returnArray[10] = returnArrayAbw[7];
                 returnArray[14] = returnArrayAbw[8];
+                returnArray[18] = GetCarImages(doc, xPathArray[18], url, ".//a[@rel='group']");
             }
 
             if (webSite == "av.by")
             {
                 returnArray[17] = GetOwnerPhoneAv(doc, xPathArray[17], url);
-                returnArray[18] = GetCarImagesAv(doc, xPathArray[18], url);
+                returnArray[18] = GetCarImages(doc, xPathArray[18], url, "a[@href]");
             }
 
             if (webSite == "ab.onliner.by")
@@ -209,11 +210,11 @@ namespace FindAndFollow
             return Serialization.SerializePhoneAb(lstOwnerPhones, url);
         }
 
-        public static string GetCarImagesAv(HtmlDocument doc, string xPath, string url)
+        public static string GetCarImages(HtmlDocument doc, string xPath, string url, string nodeValue)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstCarImages = bodyNode.SelectNodes("a[@href]").Select(node => node.Attributes["href"].Value).ToList();
+            List<string> lstCarImages = bodyNode.SelectNodes(nodeValue).Select(node => node.Attributes["href"].Value).ToList();
 
             return Serialization.SerializeCarImages(lstCarImages, url);
         }
