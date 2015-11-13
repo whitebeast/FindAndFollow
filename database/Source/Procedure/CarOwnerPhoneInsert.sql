@@ -14,7 +14,8 @@ BEGIN
                     f.Stringvalue 
             FROM #CarOwnerPhone t
             CROSS APPLY dbo.ParseJSON (t.OwnerPhone) f
-            WHERE f.Name = 'phoneNumber'
+            WHERE   f.Name = 'phoneNumber'
+                AND t.OwnerPhone IS NOT NULL
             ;
         COMMIT TRANSACTION
     END TRY
