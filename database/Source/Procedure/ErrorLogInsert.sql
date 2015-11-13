@@ -101,7 +101,7 @@ BEGIN
             N'<th>IsService</th>' +
             N'<th>ErrorLine</th>' +
             N'<th>ErrorMessageShort</th>' +
-            N'<th>ErrorMessageFull</th>' +
+            --N'<th>ErrorMessageFull</th>' +
             N'<th>UserName</th>' +
             N'<th>CreatedOn</th>' +
         N'</tr>' +
@@ -114,7 +114,7 @@ BEGIN
                         td=REPLACE([IsService],'"',''),'',
                         td=REPLACE([ErrorLine],'"',''),'',
                         td=REPLACE([ErrorMessageShort],'"',''),'',
-                        td=REPLACE([ErrorMessageFull],'"',''),'',
+                        --td=REPLACE([ErrorMessageFull],'"',''),'',
                         td=REPLACE([UserName],'"',''),'',
                         td=REPLACE(CONVERT(VARCHAR,[CreatedOn],121),'"','') 
                     FROM ##tErrorLog 
@@ -129,7 +129,9 @@ BEGIN
             @body = @tableHTML,
             @body_format = 'HTML',
             @profile_name = 'FindAndFollow.Notification Mailer',
-            @importance = 'high';
+            @importance = 'high',
+            @query = 'SELECT * FROM ##tErrorLog',
+            @attach_query_result_as_file = 1 ;
 
         IF ERROR_MESSAGE() IS NOT NULL EXECUTE [dbo].[ErrorInfoGet];
 
