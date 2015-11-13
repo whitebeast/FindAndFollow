@@ -19,6 +19,7 @@
         @pIsSwap            CHAR(1),
         @pDescription       NVARCHAR(1000),
         @pOwnerPhone        NVARCHAR(100),
+        @pCarImages         NVARCHAR(4000),
         @pPageCreatedOn     NVARCHAR(100),
         @pIsPageExist       BIT = 0
     )
@@ -48,6 +49,7 @@ BEGIN
                     IsSwap,
                     [Description],
                     OwnerPhone,
+                    CarImages,
                     PageCreatedOn,
                     IsPageExist
                 )
@@ -71,6 +73,7 @@ BEGIN
                     @pIsSwap,
                     @pDescription,
                     @pOwnerPhone,
+                    @pCarImages,
                     @pPageCreatedOn,
                     @pIsPageExist
             ;

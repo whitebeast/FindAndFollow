@@ -19,6 +19,7 @@
     IsSwap              CHAR(1) NULL,
     [Description]       NVARCHAR(1000) NULL,
 	OwnerPhone			NVARCHAR(100) NULL,
+    CarImages           NVARCHAR(4000) NULL,
     PageCreatedOn       NVARCHAR(100) NULL,
     CreatedOn           DATETIME NOT NULL,
     IsPageExist         BIT NOT NULL,
