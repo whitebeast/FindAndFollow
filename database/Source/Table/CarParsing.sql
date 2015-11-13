@@ -18,18 +18,18 @@
     SellerType          NVARCHAR(100) NULL,
     IsSwap              CHAR(1) NULL,
     [Description]       NVARCHAR(1000) NULL,
-	OwnerPhone			NVARCHAR(300) NULL,
+    OwnerPhone          NVARCHAR(300) NULL,
     CarImages           NVARCHAR(4000) NULL,
     PageCreatedOn       NVARCHAR(100) NULL,
     CreatedOn           DATETIME NOT NULL,
     IsPageExist         BIT NOT NULL,
-	PageStatusId		TINYINT NOT NULL
+    PageStatusId    TINYINT NOT NULL
     )
 
-	/*
-	PageStatusId:
-	0 - Error merge with Car table 
-	1 - Downloaded page (default)
-	2 - Successfull merge with Car table
-
-	*/
+    /*
+    PageStatusId:
+    0 - Error merge with Car table 
+    1 - Downloaded page (default)
+    2 - Successfull merge with Car table
+    
+    */
