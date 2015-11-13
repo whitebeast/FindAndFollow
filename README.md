@@ -20,3 +20,4 @@ Commit types:
 	* minor - minor fixes(functionality, design and etc.)
 	* refactoring - change functionality out of scope
 	* design - view of application
+	* revert - remove some functionality back
