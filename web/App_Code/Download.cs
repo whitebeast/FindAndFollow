@@ -67,10 +67,15 @@ namespace FindAndFollow
             }
 
             if (webSite == "av.by")
+            {
                 returnArray[17] = GetOwnerPhoneAv(doc, xPathArray[17], url);
+                returnArray[18] = GetCarImagesAv(doc, xPathArray[18], url);
+            }
 
             if (webSite == "ab.onliner.by")
+            {
                 returnArray[17] = GetOwnerPhoneAb(doc, xPathArray[17], url);
+            }
 
             return returnArray;
         }

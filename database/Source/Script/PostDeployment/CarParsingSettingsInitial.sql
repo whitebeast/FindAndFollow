@@ -23,7 +23,8 @@ INSERT INTO [dbo].[CarParsingSettings]
            ,[DescriptionXPath]
            ,[PageCreatedOnXPath]
            ,CityXPath
-           ,OwnerPhoneXPath)
+           ,OwnerPhoneXPath
+           ,CarImagesXPath)
 SELECT     'av.by' AS SiteUrlXPath,
            10708341 AS CurrentId,
            'http://www.av.by/public/public.php?event=View&public_id=' AS DownloadMaskURL,
@@ -44,7 +45,8 @@ SELECT     'av.by' AS SiteUrlXPath,
            '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[3]/p[1]' AS DescriptionXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/header/ul/li[3]' AS PageCreatedOnXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/p' AS CityXPath,
-           '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/ul' AS OwnerPhoneXPath
+           '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/ul' AS OwnerPhoneXPath,
+           '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]' AS CarImagesXPath
 UNION ALL
 -- abw.by-private      
 SELECT     'abw.by-private' AS SiteUrl,
@@ -67,7 +69,8 @@ SELECT     'abw.by-private' AS SiteUrl,
            '//*[@id="news"]/tr[2]/td/div[6]/font' AS DescriptionXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]' AS PageCreatedOnXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CityXPath,
-           NULL AS OwnerPhoneXPath
+           NULL AS OwnerPhoneXPath,
+           NULL AS CarImagesXPath
 
 UNION ALL
 -- abw.by-autoagency      
@@ -91,7 +94,8 @@ SELECT     'abw.by-autoagency' AS SiteUrl,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[5]/font[1]' AS DescriptionXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/p[5]' AS PageCreatedOnXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CityXPath,
-           NULL AS OwnerPhoneXPath
+           NULL AS OwnerPhoneXPath,
+           NULL AS CarImagesXPath
 UNION ALL
 -- ab.onliner.by
 SELECT     'ab.onliner.by' AS SiteUrl,
@@ -114,6 +118,7 @@ SELECT     'ab.onliner.by' AS SiteUrl,
            '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/p[4]/p[1]' AS DescriptionXPath,
            '//*[@id="minWidth"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/small/text()' AS PageCreatedOnXPath,
            '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/p[3]' AS CityXPath,
-           '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[2]/div[1]' AS OwnerPhoneXPath
+           '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[2]/div[1]' AS OwnerPhoneXPath,
+           NULL AS CarImagesXPath
 ;
 

@@ -85,53 +85,55 @@ namespace FindAndFollow
                     }
                     #endregion "if ab.onliner.by"
 
-                    commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = dataArray[0] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 1000).Value = dataArray[1] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pModelYear", SqlDbType.NVarChar, 4000).Value = dataArray[2] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pPrice", SqlDbType.NVarChar, 1000).Value = dataArray[3] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pMileage", SqlDbType.NVarChar, 1000).Value = dataArray[4] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pEngineSize", SqlDbType.NVarChar, 1000).Value = dataArray[5] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pColor", SqlDbType.NVarChar, 1000).Value = dataArray[6] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pBodyType", SqlDbType.NVarChar, 1000).Value = dataArray[7] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pEngineType", SqlDbType.NVarChar, 1000).Value = dataArray[8] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 1000).Value = dataArray[9] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 1000).Value = dataArray[10] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 4000).Value = dataArray[11] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = dataArray[12] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = urlFull;
+                    commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 50).Value = dataArray[0] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 50).Value = dataArray[1] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pModelYear", SqlDbType.NVarChar, 4).Value = dataArray[2] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pPrice", SqlDbType.NVarChar, 100).Value = dataArray[3] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pMileage", SqlDbType.NVarChar, 100).Value = dataArray[4] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pEngineSize", SqlDbType.NVarChar, 5).Value = dataArray[5] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pColor", SqlDbType.NVarChar, 100).Value = dataArray[6] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pBodyType", SqlDbType.NVarChar, 100).Value = dataArray[7] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pEngineType", SqlDbType.NVarChar, 100).Value = dataArray[8] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 100).Value = dataArray[9] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 100).Value = dataArray[10] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 1000).Value = dataArray[11] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 100).Value = dataArray[12] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 2000).Value = urlFull;
                     commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = true;
-                    commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = dataArray[13] == null ? "Частное" : "Автохаус";
-                    commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = dataArray[14] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1000).Value = dataArray[15] == null ? "0" : "1";
-                    commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 1000).Value = dataArray[16] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 100).Value = dataArray[13] == null ? "Частное" : "Автохаус";
+                    commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 100).Value = dataArray[14] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1).Value = dataArray[15] == null ? "0" : "1";
+                    commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 100).Value = dataArray[16] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 100).Value = dataArray[17] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = dataArray[18] ?? sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
                 }
                 else
                 {
-                    commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pModelYear", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pPrice", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pMileage", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pEngineSize", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pColor", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pBodyType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pEngineType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 50).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 50).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pModelYear", SqlDbType.NVarChar, 4).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pPrice", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pMileage", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pEngineSize", SqlDbType.NVarChar, 5).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pColor", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pBodyType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pEngineType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 4000).Value = urlFull;
+                    commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 2000).Value = urlFull;
                     commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
                     commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = false;
-                    commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
                     }
@@ -157,7 +159,7 @@ namespace FindAndFollow
 
         public static string[] CarParsingSettingsGet(string url)
         {
-            string[] xPathArray = new string[18];
+            string[] xPathArray = new string[19];
 
             string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
@@ -190,6 +192,7 @@ namespace FindAndFollow
                 xPathArray[15] = dataReader["IsSwapXPath"].ToString();
                 xPathArray[16] = dataReader["CityXPath"].ToString();
                 xPathArray[17] = dataReader["OwnerPhoneXPath"].ToString();
+                xPathArray[18] = dataReader["CarImagesXPath"].ToString();
             }
 
             sqlConnection.Close();
