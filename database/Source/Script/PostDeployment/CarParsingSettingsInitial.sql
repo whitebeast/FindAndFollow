@@ -119,6 +119,6 @@ SELECT     'ab.onliner.by' AS SiteUrl,
            '//*[@id="minWidth"]/div/div[4]/div/div[2]/div[1]/div/ul/li/div/div/small/text()' AS PageCreatedOnXPath,
            '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/p[3]' AS CityXPath,
            '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[2]/div[1]' AS OwnerPhoneXPath,
-           NULL AS CarImagesXPath
+           '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/table[1]/tr[1]' AS CarImagesXPath
 ;
 
