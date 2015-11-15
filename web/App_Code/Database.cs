@@ -7,17 +7,23 @@ namespace FindAndFollow
 {
     public class Database
     {
-        // db logic
-        public static void CarParsingInsert(string url, string[] xPathArray, int startId, int finishId, string webSite)
+        public static SqlCommand sqlCommandGet(string connectionString, string pocedureName)
         {
-            // Set up SQL Server connection
-            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings[connectionString].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
 
             sqlConnection.Open();
 
-            SqlCommand commandInsert = new SqlCommand("CarParsingInsert", sqlConnection);
-            commandInsert.CommandType = CommandType.StoredProcedure;
+            SqlCommand command = new SqlCommand(pocedureName, sqlConnection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            return command;
+        }
+
+        // db logic
+        public static void CarParsingInsert(string url, string[] xPathArray, int startId, int finishId, string webSite)
+        {
+            SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "CarParsingInsert");
 
             // Set DB Null value
             SqlParameter[] sqlParameters = new SqlParameter[1];
@@ -138,37 +144,21 @@ namespace FindAndFollow
                     commandInsert.ExecuteNonQuery();
                     }
             }
-            sqlConnection.Close();
         }
 
         public static void CarParsingClean()
         {
-            // Set up SQL Server connection
-            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
-            SqlConnection sqlConnection = new SqlConnection(connStr);
-
-            sqlConnection.Open();
-            SqlCommand commandDelete = new SqlCommand("CarParsingClean", sqlConnection);
-
-            // Clean "left" data
-            commandDelete.CommandType = CommandType.StoredProcedure;
+            SqlCommand commandDelete = sqlCommandGet("FindAndFollowConnectionString", "CarParsingClean");
             commandDelete.ExecuteNonQuery();
-
-            sqlConnection.Close();
         }
 
         public static string[] CarParsingSettingsGet(string url)
         {
             string[] xPathArray = new string[19];
 
-            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
-            SqlConnection sqlConnection = new SqlConnection(connStr);
+            SqlCommand commandSelect = sqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
 
-            SqlCommand commandSelect = new SqlCommand("CarParsingSettingsGet", sqlConnection);
-            commandSelect.CommandType = CommandType.StoredProcedure;
             commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
-
-            sqlConnection.Open();
 
             // Get data from db
             SqlDataReader dataReader = commandSelect.ExecuteReader();
@@ -195,59 +185,36 @@ namespace FindAndFollow
                 xPathArray[18] = dataReader["CarImagesXPath"].ToString();
             }
 
-            sqlConnection.Close();
-
             return xPathArray;
         }
 
         public static string ErrorLogInsert(string exMessage, string exStackTrace, string url)
         {
-            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
-            SqlConnection sqlConnection = new SqlConnection(connStr);
+            SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "ErrorLogInsert");
 
-            SqlCommand commandInsert = new SqlCommand("ErrorLogInsert", sqlConnection);
-            commandInsert.CommandType = CommandType.StoredProcedure;
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
             commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);
 
-            sqlConnection.Open();
             commandInsert.ExecuteNonQuery();
-
-            sqlConnection.Close();
 
             return null;
         }
 
         public static void CarMerge()
         {
-            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
-            SqlConnection sqlConnection = new SqlConnection(connStr);
-
-            sqlConnection.Open();
-
-            SqlCommand commandInsert = new SqlCommand("CarParsingMergeCar", sqlConnection);
-            commandInsert.CommandType = CommandType.StoredProcedure;
-
+            SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "CarParsingMergeCar");
             commandInsert.ExecuteNonQuery();
-
-            sqlConnection.Close();
         }
 
         public static int CarParsingSettingsCurrentIdGet(string url)
         {
             int currentId = new int();
 
-            string connStr = ConfigurationManager.ConnectionStrings["FindAndFollowConnectionString"].ConnectionString;
-            SqlConnection sqlConnection = new SqlConnection(connStr);
-
-            SqlCommand commandSelect = new SqlCommand("CarParsingSettingsGet_CurrentId", sqlConnection);
-            commandSelect.CommandType = CommandType.StoredProcedure;
+            SqlCommand commandSelect = sqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet_CurrentId");
             commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
-
-            sqlConnection.Open();
 
             // Get data from db
             SqlDataReader dataReader = commandSelect.ExecuteReader();
@@ -255,8 +222,6 @@ namespace FindAndFollow
             {
                 currentId = int.Parse(dataReader["CurrentID"].ToString());
             }
-
-            sqlConnection.Close();
 
             return currentId;
         }
