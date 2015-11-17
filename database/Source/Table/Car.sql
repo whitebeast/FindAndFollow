@@ -20,6 +20,7 @@
         OriginalURL           NVARCHAR(1000),
         PageCreatedOn         DATETIME2 NULL,
         CarImages             NVARCHAR(4000) NULL,
+        OptionList            NVARCHAR(4000) NULL,
         CreatedOn             DATETIME2 NOT NULL
     )
     ;

@@ -22,5 +22,6 @@
     DescriptionXPath        NVARCHAR(1000) NULL,
     OwnerPhoneXPath         NVARCHAR(1000) NULL,
     CarImagesXPath          NVARCHAR(1000) NULL,
+    OptionListXPath         NVARCHAR(1000) NULL,
     PageCreatedOnXPath      NVARCHAR(1000) NULL,
 )

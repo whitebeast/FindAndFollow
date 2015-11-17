@@ -20,6 +20,7 @@
         @pDescription       NVARCHAR(1000),
         @pOwnerPhone        NVARCHAR(300),
         @pCarImages         NVARCHAR(4000),
+        @pOptionList        NVARCHAR(4000),
         @pPageCreatedOn     NVARCHAR(100),
         @pIsPageExist       BIT = 0
     )
@@ -50,6 +51,7 @@ BEGIN
                     [Description],
                     OwnerPhone,
                     CarImages,
+                    OptionList,
                     PageCreatedOn,
                     IsPageExist
                 )
@@ -74,6 +76,7 @@ BEGIN
                     @pDescription,
                     @pOwnerPhone,
                     @pCarImages,
+                    @pOptionList,
                     @pPageCreatedOn,
                     @pIsPageExist
             ;

@@ -20,6 +20,7 @@
     [Description]       NVARCHAR(1000) NULL,
     OwnerPhone          NVARCHAR(300) NULL,
     CarImages           NVARCHAR(4000) NULL,
+    OptionList          NVARCHAR(4000) NULL,
     PageCreatedOn       NVARCHAR(100) NULL,
     CreatedOn           DATETIME NOT NULL,
     IsPageExist         BIT NOT NULL,

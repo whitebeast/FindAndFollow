@@ -63,6 +63,7 @@ BEGIN
                 cp.Description,
                 cp.OwnerPhone,
                 cp.CarImages,
+                cp.OptionList,
                 cp.OriginalURL,
                 cp.PageCreatedOn
         INTO    #CarParsing
@@ -87,6 +88,7 @@ BEGIN
                             cp.Description,
                             cp.OwnerPhone,
                             cp.CarImages,
+                            cp.OptionList,
                             cp.SiteUrl AS OriginalURL,
                             cp.PageCreatedOn
                     FROM    dbo.CarParsing cp
@@ -123,6 +125,7 @@ BEGIN
                         cp.Description,
                         cp.OwnerPhone,
                         cp.CarImages,
+                        cp.OptionList,
                         cp.OriginalURL,
                         cp.PageCreatedOn
                 FROM #CarParsing AS cp 
@@ -168,7 +171,8 @@ BEGIN
                ,[Description]
                ,[OriginalURL]
                ,[PageCreatedOn]
-               ,[CarImages])
+               ,[CarImages]
+               ,[OptionList])
         OUTPUT
             inserted.CarId,
             NULL,
@@ -192,7 +196,8 @@ BEGIN
                 cp.Description,
                 cp.OriginalURL,
                 cp.PageCreatedOn,
-                cp.CarImages
+                cp.CarImages,
+                cp.OptionList
         FROM #CarParsing AS cp  
         WHERE cp.ErrorType IS NULL        
         ;   

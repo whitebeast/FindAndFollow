@@ -22,7 +22,8 @@ BEGIN
             IsSwapXPath,          
             DescriptionXPath,     
             OwnerPhoneXPath,		
-            CarImagesXPath,       
+            CarImagesXPath,     
+            OptionListXPath,  
             PageCreatedOnXPath   
     FROM    dbo.CarParsingSettings
     WHERE   SiteURL = @pSiteUrl
