@@ -18,6 +18,11 @@ namespace FindAndFollow
             public string imageUrl { get; set; }
         }
 
+        public class CarOption
+        {
+            public string optionValue { get; set; }
+        }
+
         public static string PhoneSerializeAv(List<string> lstOwnerPhones, string url)
         {
             try
@@ -57,11 +62,7 @@ namespace FindAndFollow
                 {
                     if (lstOwnerPhones[i].Contains("+375"))
                     {
-                        StringWriter myWriter = new StringWriter();
-
                         ownerPhones.Add(new OwnerPhone() { phoneNumber = StringClass.OwnerPhoneGetAb(lstOwnerPhones[i], url) });
-                        HttpUtility.HtmlDecode(ownerPhones[i].phoneNumber, myWriter);
-                        ownerPhones[i].phoneNumber = myWriter.ToString();
                     }
                 }
 
@@ -84,15 +85,33 @@ namespace FindAndFollow
 
                 for (int i = 0; i < lstCarImages.Count; i++)
                 {
-                    StringWriter myWriter = new StringWriter();
-
                     carImages.Add(new CarImage() { imageUrl = lstCarImages[i] });
-                    HttpUtility.HtmlDecode(carImages[i].imageUrl, myWriter);
-                    carImages[i].imageUrl = myWriter.ToString();
                 }
 
                 var serializer = new JavaScriptSerializer();
                 var serializedResult = serializer.Serialize(carImages);
+
+                return serializedResult.Trim();
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
+        public static string CarOptionListSerialize(List<string> lstCarOption, string url)
+        {
+            try
+            {
+                var carOptionList = new List<CarOption>();
+
+                for (int i = 0; i < lstCarOption.Count; i++)
+                {
+                    carOptionList.Add(new CarOption() { optionValue = lstCarOption[i] });
+                }
+
+                var serializer = new JavaScriptSerializer();
+                var serializedResult = serializer.Serialize(carOptionList);
 
                 return serializedResult.Trim();
             }
