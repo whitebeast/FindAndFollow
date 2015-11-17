@@ -64,19 +64,19 @@ namespace FindAndFollow
                 returnArray[9] = returnArrayAbw[5];
                 returnArray[10] = returnArrayAbw[7];
                 returnArray[14] = returnArrayAbw[8];
-                returnArray[18] = GetCarImages(doc, xPathArray[18], url, ".//a[@rel='group']", "href");
+                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, ".//a[@rel='group']", "href");
             }
 
             if (webSite == "av.by")
             {
-                returnArray[17] = GetOwnerPhoneAv(doc, xPathArray[17], url);
-                returnArray[18] = GetCarImages(doc, xPathArray[18], url, "a[@href]", "href");
+                returnArray[17] = OwnerPhoneGetAv(doc, xPathArray[17], url);
+                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, "a[@href]", "href");
             }
 
             if (webSite == "ab.onliner.by")
             {
-                returnArray[17] = GetOwnerPhoneAb(doc, xPathArray[17], url);
-                returnArray[18] = GetCarImages(doc, xPathArray[18], url, ".//img[@src]", "src");
+                returnArray[17] = OwnerPhoneGetAb(doc, xPathArray[17], url);
+                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, ".//img[@src]", "src");
             }
 
             return returnArray;
@@ -193,31 +193,31 @@ namespace FindAndFollow
             return lstCarValues.ToArray();
         }
 
-        public static string GetOwnerPhoneAv(HtmlDocument doc, string xPath, string url)
+        public static string OwnerPhoneGetAv(HtmlDocument doc, string xPath, string url)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
             List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li").Select(node => node.InnerHtml).ToList();
 
-            return Serialization.SerializePhoneAv(lstOwnerPhones, url);
+            return Serialization.PhoneSerializeAv(lstOwnerPhones, url);
         }
 
-        public static string GetOwnerPhoneAb(HtmlDocument doc, string xPath, string url)
+        public static string OwnerPhoneGetAb(HtmlDocument doc, string xPath, string url)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
             List<string> lstOwnerPhones = bodyNode.SelectNodes(".//span[@class='c-bl']").Select(node => node.InnerHtml).ToList();
 
-            return Serialization.SerializePhoneAb(lstOwnerPhones, url);
+            return Serialization.PhoneSerializeAb(lstOwnerPhones, url);
         }
 
-        public static string GetCarImages(HtmlDocument doc, string xPath, string url, string nodeValue, string attributeValue)
+        public static string CarImagesGet(HtmlDocument doc, string xPath, string url, string nodeValue, string attributeValue)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
             List<string> lstCarImages = bodyNode.SelectNodes(nodeValue).Select(node => node.Attributes[attributeValue].Value).ToList();
 
-            return Serialization.SerializeCarImages(lstCarImages, url);
+            return Serialization.CarImagesSerialize(lstCarImages, url);
         }
     }
 }

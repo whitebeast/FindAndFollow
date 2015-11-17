@@ -113,6 +113,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 100).Value = dataArray[16] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 100).Value = dataArray[17] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = dataArray[18] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = dataArray[19] ?? sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
                 }
@@ -140,6 +141,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
                     }
@@ -154,7 +156,7 @@ namespace FindAndFollow
 
         public static string[] CarParsingSettingsGet(string url)
         {
-            string[] xPathArray = new string[19];
+            string[] xPathArray = new string[20];
 
             SqlCommand commandSelect = sqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
 
@@ -183,6 +185,7 @@ namespace FindAndFollow
                 xPathArray[16] = dataReader["CityXPath"].ToString();
                 xPathArray[17] = dataReader["OwnerPhoneXPath"].ToString();
                 xPathArray[18] = dataReader["CarImagesXPath"].ToString();
+                xPathArray[19] = dataReader["OptionListXPath"].ToString();
             }
 
             return xPathArray;

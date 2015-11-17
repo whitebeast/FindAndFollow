@@ -18,7 +18,7 @@ namespace FindAndFollow
             public string imageUrl { get; set; }
         }
 
-        public static string SerializePhoneAv(List<string> lstOwnerPhones, string url)
+        public static string PhoneSerializeAv(List<string> lstOwnerPhones, string url)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace FindAndFollow
             }
         }
 
-        public static string SerializePhoneAb(List<string> lstOwnerPhones, string url)
+        public static string PhoneSerializeAb(List<string> lstOwnerPhones, string url)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace FindAndFollow
             }
         }
 
-        public static string SerializeCarImages(List<string> lstCarImages, string url)
+        public static string CarImagesSerialize(List<string> lstCarImages, string url)
         {
             try
             {
