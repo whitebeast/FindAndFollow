@@ -79,6 +79,7 @@ namespace FindAndFollow
             {
                 returnArray[17] = OwnerPhoneGetAb(doc, xPathArray[17], url);
                 returnArray[18] = CarImagesGet(doc, xPathArray[18], url, ".//img[@src]", "src");
+                returnArray[19] = OptionListGetAb(doc, xPathArray[19], url);
             }
 
             return returnArray;
@@ -101,11 +102,11 @@ namespace FindAndFollow
         }
 
 
-        public static string DownloadPage(string uri)
+        public static string DownloadPage(string url)
         {
             WebClient client = new WebClient();
 
-            Stream data = client.OpenRead(uri);
+            Stream data = client.OpenRead(url);
             if (data != null)
             {
                 StreamReader reader = new StreamReader(data);
@@ -236,6 +237,15 @@ namespace FindAndFollow
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
             List<string> lstOwnerPhones = bodyNode.SelectNodes(".//tr/td").Select(node => StringClass.RemoveText(node.InnerHtml, "-", url)).ToList();
+
+            return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
+        }
+
+        public static string OptionListGetAb(HtmlDocument doc, string xPath, string url)
+        {
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+
+            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li[not(@class='none')]").Select(node => node.InnerHtml).ToList();
 
             return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
         }
