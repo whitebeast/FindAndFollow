@@ -65,6 +65,7 @@ namespace FindAndFollow
                 returnArray[10] = returnArrayAbw[7];
                 returnArray[14] = returnArrayAbw[8];
                 returnArray[18] = CarImagesGet(doc, xPathArray[18], url, ".//a[@rel='group']", "href");
+                returnArray[19] = OptionListGetAbw(doc, xPathArray[19], url);
             }
 
             if (webSite == "av.by")
@@ -226,6 +227,15 @@ namespace FindAndFollow
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
             List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li").Select(node => node.InnerHtml).ToList();
+
+            return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
+        }
+
+        public static string OptionListGetAbw(HtmlDocument doc, string xPath, string url)
+        {
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+
+            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//tr/td").Select(node => StringClass.RemoveText(node.InnerHtml, "-", url)).ToList();
 
             return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
         }

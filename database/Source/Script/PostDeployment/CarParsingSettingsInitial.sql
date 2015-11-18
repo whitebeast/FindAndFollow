@@ -73,7 +73,7 @@ SELECT     'abw.by-private' AS SiteUrl,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CityXPath,
            NULL AS OwnerPhoneXPath,
            '//*[@id="news"]/tr[2]/td/div[2]/div[3]' AS CarImagesXPath,
-           NULL AS OptionListXPath
+           '//*[@id="news"]/tr[2]/td/div[5]/table/tbody' AS OptionListXPath
 
 UNION ALL
 -- abw.by-autoagency      
@@ -99,7 +99,7 @@ SELECT     'abw.by-autoagency' AS SiteUrl,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CityXPath,
            NULL AS OwnerPhoneXPath,
            '//*[@id="news"]/tr[2]/td/div[2]/div[3]' AS CarImagesXPath,
-           NULL AS OptionListXPath
+           '//*[@id="news"]/tr[2]/td/div[5]/table/tbody' AS OptionListXPath
 UNION ALL
 -- ab.onliner.by
 SELECT     'ab.onliner.by' AS SiteUrl,
