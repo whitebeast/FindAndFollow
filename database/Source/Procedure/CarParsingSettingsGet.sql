@@ -24,7 +24,8 @@ BEGIN
             OwnerPhoneXPath,		
             CarImagesXPath,     
             OptionListXPath,  
-            PageCreatedOnXPath   
+            PageCreatedOnXPath,
+            DownloadMaskURL  
     FROM    dbo.CarParsingSettings
     WHERE   SiteURL = @pSiteUrl
     ;
