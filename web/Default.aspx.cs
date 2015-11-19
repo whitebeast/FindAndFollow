@@ -11,32 +11,37 @@ namespace FindAndFollow
 
         protected void BtnUploadData_Click(object sender, EventArgs e)
         {
-            string avUrl = "http://www.av.by/public/public.php?event=View&public_id=";
-            string abwUrl = "http://www.abw.by/allpublic/sell/";
-            string abUrl = "http://ab.onliner.by/car/";
+            string siteAv = "av.by";
+            string siteAbwP = "abw.by-private";
+            string siteAbwA = "abw.by-autoagency";
+            string siteAb = "ab.onliner.by";
+
+            string urlAv = Database.CarParsingSettingsDownloadMaskUrl(siteAv);
+            string urlAbw = Database.CarParsingSettingsDownloadMaskUrl(siteAbwP);
+            string urlAb = Database.CarParsingSettingsDownloadMaskUrl(siteAb);
 
             // av.by
-            string[] xPathArray = Database.CarParsingSettingsGet("av.by");
-            int currentId = Database.CarParsingSettingsCurrentIdGet("av.by");
+            string[] xPathArray = Database.CarParsingSettingsGet(siteAv);
+            int currentId = Database.CarParsingSettingsCurrentIdGet(siteAv);
 
-            Database.CarParsingInsert(avUrl, xPathArray, currentId, currentId + 1, "av.by");
+            Database.CarParsingInsert(urlAv, xPathArray, currentId, currentId + 1, siteAv);
 
             // abw.by
             string[] checkSellerTypeArray = new string[1];
-            currentId = Database.CarParsingSettingsCurrentIdGet("abw.by-private");
+            currentId = Database.CarParsingSettingsCurrentIdGet(siteAbwP);
 
             checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
-            checkSellerTypeArray = Download.GetData(abwUrl + currentId.ToString(), checkSellerTypeArray, "abw");
+            checkSellerTypeArray = Download.GetData(urlAbw + currentId.ToString(), checkSellerTypeArray, "abw");
 
-            xPathArray = Database.CarParsingSettingsGet(checkSellerTypeArray[0] == null ? "abw.by-private" : "abw.by-autoagency");
+            xPathArray = Database.CarParsingSettingsGet(checkSellerTypeArray[0] == null ? siteAbwP : siteAbwA);
 
-            Database.CarParsingInsert(abwUrl, xPathArray, currentId, currentId + 1, "abw.by");
+            Database.CarParsingInsert(urlAbw, xPathArray, currentId, currentId + 1, "abw.by");
 
             // ab.onliner.by
-            xPathArray = Database.CarParsingSettingsGet("ab.onliner.by");
-            currentId = Database.CarParsingSettingsCurrentIdGet("ab.onliner.by");
+            xPathArray = Database.CarParsingSettingsGet(siteAb);
+            currentId = Database.CarParsingSettingsCurrentIdGet(siteAb);
 
-            Database.CarParsingInsert(abUrl, xPathArray, currentId, currentId + 1, "ab.onliner.by");
+            Database.CarParsingInsert(urlAb, xPathArray, currentId, currentId + 1, siteAb);
 
             Database.CarParsingClean();
 

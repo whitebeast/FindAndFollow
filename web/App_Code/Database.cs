@@ -191,6 +191,23 @@ namespace FindAndFollow
             return xPathArray;
         }
 
+        public static string CarParsingSettingsDownloadMaskUrl(string url)
+        {
+            string downloadMaskUrl = "";
+
+            SqlCommand commandSelect = sqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
+
+            commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
+
+            // Get data from db
+            SqlDataReader dataReader = commandSelect.ExecuteReader();
+            while (dataReader.Read())
+            {
+                downloadMaskUrl = dataReader["DownloadMaskURL"].ToString();
+            }
+            return downloadMaskUrl;
+        }
+
         public static string ErrorLogInsert(string exMessage, string exStackTrace, string url)
         {
             SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "ErrorLogInsert");
