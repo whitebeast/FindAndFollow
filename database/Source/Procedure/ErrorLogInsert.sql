@@ -33,7 +33,7 @@ BEGIN
             @pErrorSeverity     = COALESCE(@pErrorSeverity, ERROR_SEVERITY()),
             @pErrorState        = COALESCE(@pErrorState, ERROR_STATE()),
             @pErrorObject       = COALESCE(@pErrorObject, ERROR_PROCEDURE()),
-            @pErrorLine         = COALESCE(@pErrorLine, ERROR_LINE()),
+            @pErrorLine         = COALESCE(@pErrorLine, ERROR_LINE(),0),
             @pErrorMessageFull  = COALESCE(@pErrorMessageFull, ERROR_MESSAGE())
     ;
     BEGIN TRY
@@ -114,7 +114,7 @@ BEGIN
                         td=REPLACE([IsService],'"',''),'',
                         td=REPLACE([ErrorLine],'"',''),'',
                         td=REPLACE([ErrorMessageShort],'"',''),'',
-                        td=REPLACE([ErrorMessageFull],'"',''),'',
+                        td=REPLACE(CASE WHEN LEN([ErrorMessageFull]) > 1000 THEN 'Error message is too long. See details in ErrorLog table.' ELSE [ErrorMessageFull] END,'"',''),'',
                         td=REPLACE([UserName],'"',''),'',
                         td=REPLACE(CONVERT(VARCHAR,[CreatedOn],121),'"','') 
                     FROM ##tErrorLog 

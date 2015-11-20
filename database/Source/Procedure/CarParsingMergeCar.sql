@@ -145,8 +145,7 @@ BEGIN
                         @pErrorMessageFull = @ErrorMessageFull
             ;
             IF @pDebug = 1 BEGIN
-                PRINT 'Merge errors:';
-                RAISERROR(@ErrorMessageFull,0,1) WITH NOWAIT;
+                PRINT 'Merge errors:' + CHAR(10) + @ErrorMessageFull;
             END
             ;
         END
