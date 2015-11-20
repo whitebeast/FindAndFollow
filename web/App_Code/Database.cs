@@ -34,10 +34,10 @@ namespace FindAndFollow
             int[] urlIds = Download.UrlsGet(urlSiteAv, "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[3]", webSite);
 
             // Insert data
-            //foreach (int i in urlIds)
-            //{
-            for (int i = 10995290; i < 10995291; i++)
+            foreach (int i in urlIds)
             {
+            //for (int i = 10995290; i < 10995291; i++)
+            //{
                 string urlFull = url + i;
                 if (Download.IsPageExist(urlFull))
                 {
@@ -243,7 +243,7 @@ namespace FindAndFollow
             SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "ErrorLogInsert");
 
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
-            //commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
+            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);

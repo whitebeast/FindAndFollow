@@ -45,7 +45,7 @@ SELECT     'av.by' AS SiteUrlXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[4]/h5' AS IsSwapXPath,
            '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[3]/p[1]' AS DescriptionXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/header/ul/li[3]' AS PageCreatedOnXPath,
-           '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/p' AS CityXPath,
+           '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]' AS CityXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/ul' AS OwnerPhoneXPath,
            '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]' AS CarImagesXPath,
            '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[5]' AS OptionListXPath

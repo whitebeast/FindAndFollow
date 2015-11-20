@@ -55,6 +55,7 @@ namespace FindAndFollow
 
             if (webSite == "av.by")
             {
+                returnArray[16] = CityGetGetAv(doc, xPathArray[16], url);
                 returnArray[17] = OwnerPhoneGetAv(doc, xPathArray[17], url);
                 returnArray[18] = CarImagesGet(doc, xPathArray[18], url, "a[@href]", "href");
                 returnArray[19] = OptionListGetAv(doc, xPathArray[19], url);
@@ -336,5 +337,23 @@ namespace FindAndFollow
 
             return ids;
         }
+
+        public static string CityGetGetAv(HtmlDocument doc, string xPath, string url)
+        {
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+
+            try
+            {
+                List<string> lstCities = bodyNode.SelectNodes(".//p").Select(node => node.InnerHtml).ToList();
+                
+                //return Serialization.CarOptionListSerialize(lstCities, url);
+                return lstCities.Last();
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
     }
 }
