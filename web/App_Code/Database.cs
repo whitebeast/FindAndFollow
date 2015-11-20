@@ -30,8 +30,13 @@ namespace FindAndFollow
             sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000);
             sqlParameters[0].Value = DBNull.Value;
 
+            string urlSiteAv = "http://av.by/public/search.php?name_form=search_form&event=Search&country_id=0&body_type_id=0&class_id=0&engine_type_all=1&volume_value=0&volume_value_max=0&cylinders_number=0&run_value=0&run_value_max=0&run_unit=-1&transmission_id=0&year_id=0&year_id_max=0&price_value=0&price_value_max=0&currency_id=USD&door_id=0&region_id=0&city_id=Array&public_pass_rf=0&public_new=0&public_exchange=0&public_image=0&public_show_id=0&order_id=2&category_parent[0]=0&category_id[0]=0&";
+            int[] urlIds = Download.UrlsGet(urlSiteAv, "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[3]", webSite);
+
             // Insert data
-            for (int i = startId; i < finishId; i++)
+            //foreach (int i in urlIds)
+            //{
+            for (int i = 10995290; i < 10995291; i++)
             {
                 string urlFull = url + i;
                 if (Download.IsPageExist(urlFull))
@@ -52,6 +57,7 @@ namespace FindAndFollow
                         dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:", urlFull);
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: ", urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAv(StringClass.RemoveText(dataArray[4], "км.", urlFull), urlFull);
+                        dataArray[16] = StringClass.SelectWordGet(dataArray[16], ',', 1, urlFull);
                     }
                     #endregion "if av.by"
 
@@ -144,7 +150,31 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
-                    }
+                }
+
+                commandInsert.Parameters.RemoveAt("@pCarBrand");
+                commandInsert.Parameters.RemoveAt("@pModel");
+                commandInsert.Parameters.RemoveAt("@pModelYear");
+                commandInsert.Parameters.RemoveAt("@pPrice");
+                commandInsert.Parameters.RemoveAt("@pMileage");
+                commandInsert.Parameters.RemoveAt("@pEngineSize");
+                commandInsert.Parameters.RemoveAt("@pColor");
+                commandInsert.Parameters.RemoveAt("@pBodyType");
+                commandInsert.Parameters.RemoveAt("@pEngineType");
+                commandInsert.Parameters.RemoveAt("@pTransmissionType");
+                commandInsert.Parameters.RemoveAt("@pDriveType");
+                commandInsert.Parameters.RemoveAt("@pDescription");
+                commandInsert.Parameters.RemoveAt("@pPageCreatedOn");
+                commandInsert.Parameters.RemoveAt("@pSiteUrl");
+                commandInsert.Parameters.RemoveAt("@pSiteID");
+                commandInsert.Parameters.RemoveAt("@pIsPageExist");
+                commandInsert.Parameters.RemoveAt("@pSellerType");
+                commandInsert.Parameters.RemoveAt("@pCondition");
+                commandInsert.Parameters.RemoveAt("@pIsSwap");
+                commandInsert.Parameters.RemoveAt("@pCity");
+                commandInsert.Parameters.RemoveAt("@pOwnerPhone");
+                commandInsert.Parameters.RemoveAt("@pCarImages");
+                commandInsert.Parameters.RemoveAt("@pOptionList");
             }
         }
 
@@ -213,7 +243,7 @@ namespace FindAndFollow
             SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "ErrorLogInsert");
 
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
-            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
+            //commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);

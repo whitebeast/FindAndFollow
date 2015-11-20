@@ -53,6 +53,13 @@ namespace FindAndFollow
                 }
             }
 
+            if (webSite == "av.by")
+            {
+                returnArray[17] = OwnerPhoneGetAv(doc, xPathArray[17], url);
+                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, "a[@href]", "href");
+                returnArray[19] = OptionListGetAv(doc, xPathArray[19], url);
+            }
+
             if (webSite == "abw.by")
             {
                 returnArray[2] = returnArrayAbw[0];
@@ -66,13 +73,6 @@ namespace FindAndFollow
                 returnArray[14] = returnArrayAbw[8];
                 returnArray[18] = CarImagesGet(doc, xPathArray[18], url, ".//a[@rel='group']", "href");
                 returnArray[19] = OptionListGetAbw(doc, xPathArray[19], url);
-            }
-
-            if (webSite == "av.by")
-            {
-                returnArray[17] = OwnerPhoneGetAv(doc, xPathArray[17], url);
-                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, "a[@href]", "href");
-                returnArray[19] = OptionListGetAv(doc, xPathArray[19], url);
             }
 
             if (webSite == "ab.onliner.by")
@@ -200,54 +200,141 @@ namespace FindAndFollow
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li").Select(node => node.InnerHtml).ToList();
-
-            return Serialization.PhoneSerializeAv(lstOwnerPhones, url);
+            try
+            {
+                List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li").Select(node => node.InnerHtml).ToList();
+                return Serialization.PhoneSerializeAv(lstOwnerPhones, url);
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
         }
 
         public static string OwnerPhoneGetAb(HtmlDocument doc, string xPath, string url)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//span[@class='c-bl']").Select(node => node.InnerHtml).ToList();
-
-            return Serialization.PhoneSerializeAb(lstOwnerPhones, url);
+            try
+            {
+                List<string> lstOwnerPhones = bodyNode.SelectNodes(".//span[@class='c-bl']").Select(node => node.InnerHtml).ToList();
+                return Serialization.PhoneSerializeAb(lstOwnerPhones, url);
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
         }
 
         public static string CarImagesGet(HtmlDocument doc, string xPath, string url, string nodeValue, string attributeValue)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstCarImages = bodyNode.SelectNodes(nodeValue).Select(node => node.Attributes[attributeValue].Value).ToList();
+            // check for empty page
+            if (bodyNode == null)
+                return "[{\"imageUrl\":\"\"}]";
 
-            return Serialization.CarImagesSerialize(lstCarImages, url);
+            try
+            {
+                List<string> lstCarImages = bodyNode.SelectNodes(nodeValue).Select(node => node.Attributes[attributeValue].Value).ToList();
+                return Serialization.CarImagesSerialize(lstCarImages, url);
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
         }
 
         public static string OptionListGetAv(HtmlDocument doc, string xPath, string url)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li").Select(node => node.InnerHtml).ToList();
+            // check for empty page
+            if (bodyNode == null)
+                return "[{\"optionValue\":\"\"}]";
 
-            return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
+            try
+            {
+                List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li").Select(node => node.InnerHtml).ToList();
+                return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
         }
 
         public static string OptionListGetAbw(HtmlDocument doc, string xPath, string url)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//tr/td").Select(node => StringClass.RemoveText(node.InnerHtml, "-", url)).ToList();
+            // check for empty page
+            if (bodyNode == null)
+                return "[{\"optionValue\":\"\"}]";
 
-            return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
+            try
+            {
+                List<string> lstOwnerPhones = bodyNode.SelectNodes(".//tr/td").Select(node => StringClass.RemoveText(node.InnerHtml, "-", url)).ToList();
+                return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
         }
 
         public static string OptionListGetAb(HtmlDocument doc, string xPath, string url)
         {
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li[not(@class='none')]").Select(node => node.InnerHtml).ToList();
+            // check for empty page
+            if (bodyNode == null)
+                return "[{\"optionValue\":\"\"}]";
 
-            return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
+            try
+            {
+                List<string> lstOwnerPhones = bodyNode.SelectNodes(".//li[not(@class='none')]").Select(node => node.InnerHtml).ToList();
+                return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
+        public static int[] UrlsGet(string url, string xPath, string webSite)
+        {
+            WebClient webGet = new WebClient();
+            HtmlDocument doc = new HtmlDocument();
+
+            webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
+
+            if (webSite == "ab.onliner.by")
+            {
+                webGet.Encoding = System.Text.Encoding.UTF8;
+                doc.LoadHtml(DownloadPage(url));
+            }
+            else
+            {
+                try
+                {
+                    var html = webGet.DownloadString(url);
+                    doc.LoadHtml(html);
+                }
+                catch (Exception ex)
+                {
+                    Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+                }
+            }
+
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+
+            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//div[@class='b-listing-item-title']//a[@href]").Select(node => StringClass.RemoveText(node.Attributes["href"].Value, "public.php?event=View&public_id=", url)).ToList();
+
+            // convert to int
+            int[] ids = Array.ConvertAll(lstOwnerPhones.ToArray(), int.Parse);
+
+            return ids;
         }
     }
 }

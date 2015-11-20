@@ -439,7 +439,7 @@ namespace FindAndFollow
         {
             try
             {
-                int startCut = word.IndexOf("+375 29");
+                int startCut = word.IndexOf("+375 ");
                 int endCut = word.IndexOf("</b>");
                 string phoneNumber = RemoveText(word.Substring(startCut, endCut - startCut), "<b>", url);
 
