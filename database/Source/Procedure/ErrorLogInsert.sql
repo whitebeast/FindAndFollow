@@ -7,7 +7,7 @@
         @pIsService         BIT = 0,
         @pErrorLine         INT = NULL, 
         @pErrorMessageShort NVARCHAR(1000) = 'System error',
-        @pErrorMessageFull  NVARCHAR(4000) = NULL        
+        @pErrorMessageFull  NVARCHAR(MAX) = NULL        
     )
 AS
 BEGIN
@@ -22,7 +22,7 @@ BEGIN
             [IsService] [bit] NULL,
             [ErrorLine] [int] NULL,
             [ErrorMessageShort] [nvarchar](1000) NOT NULL,
-            [ErrorMessageFull] [nvarchar](4000) NOT NULL,
+            [ErrorMessageFull] [nvarchar](MAX) NOT NULL,
             [UserName] [sysname] NOT NULL,
             [CreatedOn] [datetime2](7) NOT NULL
         )

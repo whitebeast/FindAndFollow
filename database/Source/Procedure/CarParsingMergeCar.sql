@@ -23,7 +23,7 @@ BEGIN
             @ErrorState         INT             = 16,
             @ErrorObject        NVARCHAR(126)   = OBJECT_NAME(@@PROCID),
             @ErrorMessageShort  NVARCHAR(1000),
-            @ErrorMessageFull   NVARCHAR(4000)
+            @ErrorMessageFull   NVARCHAR(MAX)
     ;
     BEGIN TRY
         BEGIN TRANSACTION

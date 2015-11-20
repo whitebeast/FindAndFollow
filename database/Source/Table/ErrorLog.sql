@@ -7,7 +7,7 @@
     [IsService]             [bit] NULL,
     [ErrorLine]             [int] NULL,
     [ErrorMessageShort]     [nvarchar](1000) NOT NULL,
-    [ErrorMessageFull]      [nvarchar](4000) NOT NULL,
+    [ErrorMessageFull]      [nvarchar](MAX) NOT NULL,
     [UserName]              [sysname] NOT NULL,
     [CreatedOn]             [datetime2] NOT NULL
 )
