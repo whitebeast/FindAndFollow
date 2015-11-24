@@ -48,7 +48,7 @@ SELECT     'av.by' AS SiteUrlXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]' AS CityXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/ul' AS OwnerPhoneXPath,
            '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]' AS CarImagesXPath,
-           '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[5]' AS OptionListXPath
+           '//div[contains(@class,''b-card-options'')]' AS OptionListXPath
 UNION ALL
 -- abw.by-private      
 SELECT     'abw.by-private' AS SiteUrl,
