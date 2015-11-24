@@ -7,7 +7,7 @@ namespace FindAndFollow
 {
     public class Database
     {
-        public static SqlCommand sqlCommandGet(string connectionString, string pocedureName)
+        public static SqlCommand SqlCommandGet(string connectionString, string pocedureName)
         {
             string connStr = ConfigurationManager.ConnectionStrings[connectionString].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
@@ -23,21 +23,20 @@ namespace FindAndFollow
         // db logic
         public static void CarParsingInsert(string url, string[] xPathArray, int startId, int finishId, string webSite)
         {
-            SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "CarParsingInsert");
+            SqlCommand commandInsert = SqlCommandGet("FindAndFollowConnectionString", "CarParsingInsert");
 
             // Set DB Null value
             SqlParameter[] sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000);
-            sqlParameters[0].Value = DBNull.Value;
+            sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000) {Value = DBNull.Value};
 
             string urlSiteAv = "http://av.by/public/search.php?name_form=search_form&event=Search&country_id=0&body_type_id=0&class_id=0&engine_type_all=1&volume_value=0&volume_value_max=0&cylinders_number=0&run_value=0&run_value_max=0&run_unit=-1&transmission_id=0&year_id=0&year_id_max=0&price_value=0&price_value_max=0&currency_id=USD&door_id=0&region_id=0&city_id=Array&public_pass_rf=0&public_new=0&public_exchange=0&public_image=0&public_show_id=0&order_id=2&category_parent[0]=0&category_id[0]=0&";
             int[] urlIds = Download.UrlsGet(urlSiteAv, "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[3]", webSite);
 
             // Insert data
-            foreach (int i in urlIds)
-            {
-            //for (int i = 10995290; i < 10995291; i++)
+            //foreach (int i in urlIds)
             //{
+            for (int i = 11005488; i < 11005489; i++)
+            {
                 string urlFull = url + i;
                 if (Download.IsPageExist(urlFull))
                 {
@@ -180,7 +179,7 @@ namespace FindAndFollow
 
         public static void CarParsingClean()
         {
-            SqlCommand commandDelete = sqlCommandGet("FindAndFollowConnectionString", "CarParsingClean");
+            SqlCommand commandDelete = SqlCommandGet("FindAndFollowConnectionString", "CarParsingClean");
             commandDelete.ExecuteNonQuery();
         }
 
@@ -188,7 +187,7 @@ namespace FindAndFollow
         {
             string[] xPathArray = new string[20];
 
-            SqlCommand commandSelect = sqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
+            SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
 
             commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
 
@@ -225,7 +224,7 @@ namespace FindAndFollow
         {
             string downloadMaskUrl = "";
 
-            SqlCommand commandSelect = sqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
+            SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
 
             commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
 
@@ -240,10 +239,10 @@ namespace FindAndFollow
 
         public static string ErrorLogInsert(string exMessage, string exStackTrace, string url)
         {
-            SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "ErrorLogInsert");
+            SqlCommand commandInsert = SqlCommandGet("FindAndFollowConnectionString", "ErrorLogInsert");
 
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
-            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
+            //commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);
@@ -255,7 +254,7 @@ namespace FindAndFollow
 
         public static void CarMerge()
         {
-            SqlCommand commandInsert = sqlCommandGet("FindAndFollowConnectionString", "CarParsingMergeCar");
+            SqlCommand commandInsert = SqlCommandGet("FindAndFollowConnectionString", "CarParsingMergeCar");
             commandInsert.ExecuteNonQuery();
         }
 
@@ -263,7 +262,7 @@ namespace FindAndFollow
         {
             int currentId = new int();
 
-            SqlCommand commandSelect = sqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet_CurrentId");
+            SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet_CurrentId");
             commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
 
             // Get data from db

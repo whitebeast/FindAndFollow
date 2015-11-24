@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 namespace FindAndFollow
@@ -47,7 +48,7 @@ namespace FindAndFollow
             try
             {
                 double myNumber = double.Parse(word);
-                return (myNumber * value).ToString().Trim();
+                return (myNumber * value).ToString(CultureInfo.InvariantCulture).Trim();
             }
             catch (Exception ex)
             {
@@ -380,9 +381,8 @@ namespace FindAndFollow
             try
             {
                 int mileage = int.Parse(word.Trim());
-                string condition;
 
-                condition = mileage <= 50 ? "Новый" : "С пробегом";
+                var condition = mileage <= 50 ? "Новый" : "С пробегом";
 
                 return condition;
             }
@@ -423,9 +423,9 @@ namespace FindAndFollow
             // TODO: optimize method
             try
             {
-                int startCut = word.IndexOf("<div align=\"center\">Продавец:");
+                int startCut = word.IndexOf("<div align=\"center\">Продавец:", StringComparison.Ordinal);
                 string city = RemoveText(word.Trim().Substring(startCut, 130), "<div align=\"center\">Продавец:</b>", url);
-                int endCut = city.IndexOf(")");
+                int endCut = city.IndexOf(")", StringComparison.Ordinal);
 
                 return city.Substring(0, endCut).Split(' ').LastOrDefault();
             }
@@ -439,8 +439,8 @@ namespace FindAndFollow
         {
             try
             {
-                int startCut = word.IndexOf("+375 ");
-                int endCut = word.IndexOf("</b>");
+                int startCut = word.IndexOf("+375 ", StringComparison.Ordinal);
+                int endCut = word.IndexOf("</b>", StringComparison.Ordinal);
                 string phoneNumber = RemoveText(word.Substring(startCut, endCut - startCut), "<b>", url);
 
                 return phoneNumber.Trim();
