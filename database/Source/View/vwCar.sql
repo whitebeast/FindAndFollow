@@ -1,5 +1,4 @@
 ﻿CREATE VIEW [dbo].[vwCar]
 	AS 
-	SELECT 
-			*  
+	SELECT *  
 	FROM Car
