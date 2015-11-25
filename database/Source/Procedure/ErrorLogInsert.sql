@@ -7,7 +7,8 @@
         @pIsService         BIT = 0,
         @pErrorLine         INT = NULL, 
         @pErrorMessageShort NVARCHAR(1000) = 'System error',
-        @pErrorMessageFull  NVARCHAR(MAX) = NULL        
+        @pErrorMessageFull  NVARCHAR(MAX) = NULL,
+        @pSendEmail         BIT = 0
     )
 AS
 BEGIN
@@ -123,13 +124,14 @@ BEGIN
         N'</table>';   
         ;
 
-        EXEC msdb.dbo.sp_send_dbmail
-            @recipients = 'aliaksandr.anisimau@outlook.com;whitebeast@tut.by',
-            @subject = N'Error notification',
-            @body = @tableHTML,
-            @body_format = 'HTML',
-            @profile_name = 'FindAndFollow.Notification Mailer',
-            @importance = 'high';
+        IF @pSendEmail = 1
+            EXEC msdb.dbo.sp_send_dbmail
+                @recipients = 'aliaksandr.anisimau@outlook.com;whitebeast@tut.by',
+                @subject = N'Error notification',
+                @body = @tableHTML,
+                @body_format = 'HTML',
+                @profile_name = 'FindAndFollow.Notification Mailer',
+                @importance = 'high';
 
         IF ERROR_MESSAGE() IS NOT NULL EXECUTE [dbo].[ErrorInfoGet];
 

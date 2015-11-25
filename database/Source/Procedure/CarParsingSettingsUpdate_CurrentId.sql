@@ -20,6 +20,6 @@ BEGIN TRY
             ROLLBACK TRANSACTION;
         END
 
-        EXECUTE dbo.ErrorLogInsert;
+        EXECUTE dbo.ErrorLogInsert @pSendEmail = 1;
     END CATCH
 END

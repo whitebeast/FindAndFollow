@@ -142,7 +142,8 @@ BEGIN
                         @pErrorState = @ErrorState,
                         @pErrorObject = @ErrorObject,
                         @pErrorMessageShort = @ErrorMessageShort,
-                        @pErrorMessageFull = @ErrorMessageFull
+                        @pErrorMessageFull = @ErrorMessageFull,
+                        @pSendEmail = 1
             ;
             IF @pDebug = 1 BEGIN
                 PRINT 'Merge errors:' + CHAR(10) + @ErrorMessageFull;
@@ -219,7 +220,7 @@ BEGIN
         BEGIN
             ROLLBACK TRANSACTION;
         END
-        EXECUTE dbo.ErrorLogInsert;
+        EXECUTE dbo.ErrorLogInsert @pSendEmail = 1;
     END CATCH
     IF OBJECT_ID('tempdb..#CarParsing') IS NOT NULL DROP TABLE #CarParsing
     ;
