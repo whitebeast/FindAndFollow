@@ -23,7 +23,7 @@ BEGIN
             @ErrorState         INT             = 16,
             @ErrorObject        NVARCHAR(126)   = OBJECT_NAME(@@PROCID),
             @ErrorMessageShort  NVARCHAR(1000),
-            @ErrorMessageFull   NVARCHAR(4000)
+            @ErrorMessageFull   NVARCHAR(MAX)
     ;
     BEGIN TRY
         BEGIN TRANSACTION
@@ -142,11 +142,11 @@ BEGIN
                         @pErrorState = @ErrorState,
                         @pErrorObject = @ErrorObject,
                         @pErrorMessageShort = @ErrorMessageShort,
-                        @pErrorMessageFull = @ErrorMessageFull
+                        @pErrorMessageFull = @ErrorMessageFull,
+                        @pSendEmail = 1
             ;
             IF @pDebug = 1 BEGIN
-                PRINT 'Merge errors:';
-                RAISERROR(@ErrorMessageFull,0,1) WITH NOWAIT;
+                PRINT 'Merge errors:' + CHAR(10) + @ErrorMessageFull;
             END
             ;
         END
@@ -220,7 +220,7 @@ BEGIN
         BEGIN
             ROLLBACK TRANSACTION;
         END
-        EXECUTE dbo.ErrorLogInsert;
+        EXECUTE dbo.ErrorLogInsert @pSendEmail = 1;
     END CATCH
     IF OBJECT_ID('tempdb..#CarParsing') IS NOT NULL DROP TABLE #CarParsing
     ;

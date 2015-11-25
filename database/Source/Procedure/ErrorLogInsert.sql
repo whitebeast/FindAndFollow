@@ -7,7 +7,8 @@
         @pIsService         BIT = 0,
         @pErrorLine         INT = NULL, 
         @pErrorMessageShort NVARCHAR(1000) = 'System error',
-        @pErrorMessageFull  NVARCHAR(4000) = NULL        
+        @pErrorMessageFull  NVARCHAR(MAX) = NULL,
+        @pSendEmail         BIT = 0
     )
 AS
 BEGIN
@@ -22,7 +23,7 @@ BEGIN
             [IsService] [bit] NULL,
             [ErrorLine] [int] NULL,
             [ErrorMessageShort] [nvarchar](1000) NOT NULL,
-            [ErrorMessageFull] [nvarchar](4000) NOT NULL,
+            [ErrorMessageFull] [nvarchar](MAX) NOT NULL,
             [UserName] [sysname] NOT NULL,
             [CreatedOn] [datetime2](7) NOT NULL
         )
@@ -33,7 +34,7 @@ BEGIN
             @pErrorSeverity     = COALESCE(@pErrorSeverity, ERROR_SEVERITY()),
             @pErrorState        = COALESCE(@pErrorState, ERROR_STATE()),
             @pErrorObject       = COALESCE(@pErrorObject, ERROR_PROCEDURE()),
-            @pErrorLine         = COALESCE(@pErrorLine, ERROR_LINE()),
+            @pErrorLine         = COALESCE(@pErrorLine, ERROR_LINE(),0),
             @pErrorMessageFull  = COALESCE(@pErrorMessageFull, ERROR_MESSAGE())
     ;
     BEGIN TRY
@@ -114,7 +115,7 @@ BEGIN
                         td=REPLACE([IsService],'"',''),'',
                         td=REPLACE([ErrorLine],'"',''),'',
                         td=REPLACE([ErrorMessageShort],'"',''),'',
-                        td=REPLACE([ErrorMessageFull],'"',''),'',
+                        td=REPLACE(CASE WHEN LEN([ErrorMessageFull]) > 1000 THEN 'Error message is too long. See details in ErrorLog table.' ELSE [ErrorMessageFull] END,'"',''),'',
                         td=REPLACE([UserName],'"',''),'',
                         td=REPLACE(CONVERT(VARCHAR,[CreatedOn],121),'"','') 
                     FROM ##tErrorLog 
@@ -123,13 +124,14 @@ BEGIN
         N'</table>';   
         ;
 
-        EXEC msdb.dbo.sp_send_dbmail
-            @recipients = 'aliaksandr.anisimau@outlook.com;whitebeast@tut.by',
-            @subject = N'Error notification',
-            @body = @tableHTML,
-            @body_format = 'HTML',
-            @profile_name = 'FindAndFollow.Notification Mailer',
-            @importance = 'high';
+        IF @pSendEmail = 1
+            EXEC msdb.dbo.sp_send_dbmail
+                @recipients = 'aliaksandr.anisimau@outlook.com;whitebeast@tut.by',
+                @subject = N'Error notification',
+                @body = @tableHTML,
+                @body_format = 'HTML',
+                @profile_name = 'FindAndFollow.Notification Mailer',
+                @importance = 'high';
 
         IF ERROR_MESSAGE() IS NOT NULL EXECUTE [dbo].[ErrorInfoGet];
 
