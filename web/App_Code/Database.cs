@@ -117,7 +117,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 100).Value = dataArray[14] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1).Value = dataArray[15] == null ? "0" : "1";
                     commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 100).Value = dataArray[16] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 100).Value = dataArray[17] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 300).Value = dataArray[17] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = dataArray[18] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = dataArray[19] ?? sqlParameters[0].Value;
 
@@ -145,7 +145,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 300).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
 
