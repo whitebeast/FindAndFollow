@@ -462,5 +462,28 @@ namespace FindAndFollow
                 return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
             }
         }
+
+        public static string MileToKm(string word, string url)
+        {
+            try
+            {
+                if (word.Contains("миль"))
+                {
+                    float mileage = Int32.Parse(RemoveText(word, "миль", url).Trim());
+                    string delimeter = ReplaceText(word, "миль", "км.", url);
+
+                    return ((int)(mileage/1.609)).ToString();
+                }
+                else
+                {
+                    return word;
+                }
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
     }
 }

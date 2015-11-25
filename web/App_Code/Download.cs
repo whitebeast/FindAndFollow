@@ -102,6 +102,45 @@ namespace FindAndFollow
             }
         }
 
+        public static bool IsContentExist(string url, string webSite)
+        {
+            WebClient webGet = new WebClient();
+            HtmlDocument doc = new HtmlDocument();
+
+            webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
+
+            if (webSite == "ab.onliner.by")
+            {
+                webGet.Encoding = System.Text.Encoding.UTF8;
+                doc.LoadHtml(DownloadPage(url));
+            }
+            else
+            {
+                try
+                {
+                    var html = webGet.DownloadString(url);
+                    doc.LoadHtml(html);
+                }
+                catch (Exception ex)
+                {
+                    Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+                }
+            }
+
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]");
+            string pageText = bodyNode.InnerHtml;
+
+            // *Объявление №11009027 не найдено !*
+            if (pageText.Contains("не найдено"))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
 
         public static string DownloadPage(string url)
         {
@@ -232,7 +271,7 @@ namespace FindAndFollow
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
             // check for empty page
-            if (bodyNode == null)
+            if (bodyNode == null || bodyNode.SelectSingleNode(nodeValue) == null)
                 return "[{\"imageUrl\":\"\"}]";
 
             try
@@ -251,7 +290,7 @@ namespace FindAndFollow
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
             // check for empty page
-            if (bodyNode == null)
+            if (bodyNode == null || bodyNode.SelectSingleNode(".//li") == null)
                 return "[{\"optionValue\":\"\"}]";
 
             try
