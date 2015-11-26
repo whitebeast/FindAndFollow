@@ -175,6 +175,7 @@
     <Build Include="Source\Table\OwnerPhone.sql" />
     <Build Include="Source\Procedure\CarOwnerPhoneInsert.sql" />
     <None Include="Source\Script\PostDeployment\BelarusCityAndRegionInitial.sql" />
+    <Build Include="Source\View\vwCarBrandModel.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
