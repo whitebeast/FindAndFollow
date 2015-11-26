@@ -180,7 +180,7 @@
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
     <None Include="Properties\FindAndFollow.DEV.Update.publish.xml" />
     <None Include="Properties\FindAndFollow.DEV.ReCreate.publish.xml" />
-    <None Include="Source\Script\PostDeployment\RussianCityAndRegionInitial.sql" />
+    <None Include="Source\Script\PostDeployment\RussiaCityAndRegionInitial.sql" />
     <None Include="Source\Script\Test Data\CarParsing.sql" />
     <None Include="Source\System\Permission\service_acc.sql" />
     <None Include="Properties\FindAndFollow.HOME.ReCreate.publish.publish.xml" />

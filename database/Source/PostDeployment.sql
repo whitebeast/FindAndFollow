@@ -22,6 +22,8 @@ GO
 GO
 :r .\Script\PostDeployment\BelarusCityAndRegionInitial.sql 
 GO
+:r .\Script\PostDeployment\RussiaCityAndRegionInitial.sql 
+GO
 :r .\Script\PostDeployment\SiteInitial.sql 
 GO
 PRINT '---- End Post-Deployment script----'
