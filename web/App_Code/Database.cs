@@ -122,66 +122,32 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = dataArray[19] ?? sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
-                }
-                else
-                {
-                    commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 50).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 50).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pModelYear", SqlDbType.NVarChar, 4).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pPrice", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pMileage", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pEngineSize", SqlDbType.NVarChar, 5).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pColor", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pBodyType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pEngineType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 1000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 2000).Value = urlFull;
-                    commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
-                    commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = false;
-                    commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pCity", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 300).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = sqlParameters[0].Value;
 
-                    commandInsert.ExecuteNonQuery();
+                    commandInsert.Parameters.RemoveAt("@pCarBrand");
+                    commandInsert.Parameters.RemoveAt("@pModel");
+                    commandInsert.Parameters.RemoveAt("@pModelYear");
+                    commandInsert.Parameters.RemoveAt("@pPrice");
+                    commandInsert.Parameters.RemoveAt("@pMileage");
+                    commandInsert.Parameters.RemoveAt("@pEngineSize");
+                    commandInsert.Parameters.RemoveAt("@pColor");
+                    commandInsert.Parameters.RemoveAt("@pBodyType");
+                    commandInsert.Parameters.RemoveAt("@pEngineType");
+                    commandInsert.Parameters.RemoveAt("@pTransmissionType");
+                    commandInsert.Parameters.RemoveAt("@pDriveType");
+                    commandInsert.Parameters.RemoveAt("@pDescription");
+                    commandInsert.Parameters.RemoveAt("@pPageCreatedOn");
+                    commandInsert.Parameters.RemoveAt("@pSiteUrl");
+                    commandInsert.Parameters.RemoveAt("@pSiteID");
+                    commandInsert.Parameters.RemoveAt("@pIsPageExist");
+                    commandInsert.Parameters.RemoveAt("@pSellerType");
+                    commandInsert.Parameters.RemoveAt("@pCondition");
+                    commandInsert.Parameters.RemoveAt("@pIsSwap");
+                    commandInsert.Parameters.RemoveAt("@pCity");
+                    commandInsert.Parameters.RemoveAt("@pOwnerPhone");
+                    commandInsert.Parameters.RemoveAt("@pCarImages");
+                    commandInsert.Parameters.RemoveAt("@pOptionList");
                 }
-
-                commandInsert.Parameters.RemoveAt("@pCarBrand");
-                commandInsert.Parameters.RemoveAt("@pModel");
-                commandInsert.Parameters.RemoveAt("@pModelYear");
-                commandInsert.Parameters.RemoveAt("@pPrice");
-                commandInsert.Parameters.RemoveAt("@pMileage");
-                commandInsert.Parameters.RemoveAt("@pEngineSize");
-                commandInsert.Parameters.RemoveAt("@pColor");
-                commandInsert.Parameters.RemoveAt("@pBodyType");
-                commandInsert.Parameters.RemoveAt("@pEngineType");
-                commandInsert.Parameters.RemoveAt("@pTransmissionType");
-                commandInsert.Parameters.RemoveAt("@pDriveType");
-                commandInsert.Parameters.RemoveAt("@pDescription");
-                commandInsert.Parameters.RemoveAt("@pPageCreatedOn");
-                commandInsert.Parameters.RemoveAt("@pSiteUrl");
-                commandInsert.Parameters.RemoveAt("@pSiteID");
-                commandInsert.Parameters.RemoveAt("@pIsPageExist");
-                commandInsert.Parameters.RemoveAt("@pSellerType");
-                commandInsert.Parameters.RemoveAt("@pCondition");
-                commandInsert.Parameters.RemoveAt("@pIsSwap");
-                commandInsert.Parameters.RemoveAt("@pCity");
-                commandInsert.Parameters.RemoveAt("@pOwnerPhone");
-                commandInsert.Parameters.RemoveAt("@pCarImages");
-                commandInsert.Parameters.RemoveAt("@pOptionList");
             }
-        }
-
-        public static void CarParsingClean()
-        {
-            SqlCommand commandDelete = SqlCommandGet("FindAndFollowConnectionString", "CarParsingClean");
-            commandDelete.ExecuteNonQuery();
         }
 
         public static string[] CarParsingSettingsGet(string url)
