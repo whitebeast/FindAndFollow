@@ -70,7 +70,7 @@ BEGIN
         FROM    (
                     SELECT  cp.CarParsingId,
                             cp.CarBrand,
-                            dbo.MappingModel(cp.Model) AS Model,
+                            cp.Model AS Model,
                             cp.SiteId,
                             cp.City,
                             cp.Price,
