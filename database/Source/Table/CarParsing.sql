@@ -23,8 +23,7 @@
     OptionList          NVARCHAR(4000) NULL,
     PageCreatedOn       NVARCHAR(100) NULL,
     CreatedOn           DATETIME NOT NULL,
-    IsPageExist         BIT NOT NULL,
-    PageStatusId    TINYINT NOT NULL
+    PageStatusId        TINYINT NOT NULL
     )
 
     /*

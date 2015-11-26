@@ -21,8 +21,7 @@
         @pOwnerPhone        NVARCHAR(300),
         @pCarImages         NVARCHAR(4000),
         @pOptionList        NVARCHAR(4000),
-        @pPageCreatedOn     NVARCHAR(100),
-        @pIsPageExist       BIT = 0
+        @pPageCreatedOn     NVARCHAR(100)
     )
 AS
 BEGIN    
@@ -52,8 +51,7 @@ BEGIN
                     OwnerPhone,
                     CarImages,
                     OptionList,
-                    PageCreatedOn,
-                    IsPageExist
+                    PageCreatedOn
                 )
             SELECT
                     @pCarBrand,
@@ -77,8 +75,7 @@ BEGIN
                     @pOwnerPhone,
                     @pCarImages,
                     @pOptionList,
-                    @pPageCreatedOn,
-                    @pIsPageExist
+                    @pPageCreatedOn
             ;
         COMMIT TRANSACTION
     END TRY
