@@ -112,7 +112,6 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 100).Value = dataArray[12] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 2000).Value = urlFull;
                     commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
-                    commandInsert.Parameters.Add("@pIsPageExist", SqlDbType.Bit).Value = true;
                     commandInsert.Parameters.Add("@pSellerType", SqlDbType.NVarChar, 100).Value = dataArray[13] == null ? "Частное" : "Автохаус";
                     commandInsert.Parameters.Add("@pCondition", SqlDbType.NVarChar, 100).Value = dataArray[14] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pIsSwap", SqlDbType.NVarChar, 1).Value = dataArray[15] == null ? "0" : "1";
@@ -138,7 +137,6 @@ namespace FindAndFollow
                     commandInsert.Parameters.RemoveAt("@pPageCreatedOn");
                     commandInsert.Parameters.RemoveAt("@pSiteUrl");
                     commandInsert.Parameters.RemoveAt("@pSiteID");
-                    commandInsert.Parameters.RemoveAt("@pIsPageExist");
                     commandInsert.Parameters.RemoveAt("@pSellerType");
                     commandInsert.Parameters.RemoveAt("@pCondition");
                     commandInsert.Parameters.RemoveAt("@pIsSwap");
