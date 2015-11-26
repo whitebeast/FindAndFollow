@@ -74,8 +74,6 @@ namespace FindAndFollow
 
             //Database.CarParsingInsert(urlAb, xPathArray, currentId, currentId + 1, siteAb);
 
-            Database.CarParsingClean();
-
             Database.CarMerge();
         }
     }
