@@ -8,6 +8,7 @@ BEGIN
             CarBrandXPath,    
             ModelXPath,           
             CityXPath,            
+            CountryXPath,
             PriceXPath,           
             BodyTypeXPath,        
             ModelYearXPath,       

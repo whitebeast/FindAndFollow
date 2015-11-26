@@ -33,6 +33,7 @@ BEGIN
                     WHEN cm.CarModelId IS NULL THEN 'CarModel Error' 
                     WHEN s.SiteId IS NULL THEN 'Site Error'
                     WHEN c.CityId IS NULL THEN 'City Error'
+                    WHEN cn.CountryId IS NULL THEN 'Country Error'
                     WHEN pl.PlaceId IS NULL THEN 'Place Error'
                     WHEN col.ColorId IS NULL THEN 'Color Error'
                     ELSE NULL
@@ -46,6 +47,8 @@ BEGIN
                 cp.SiteId AS SiteURL,
                 c.CityId,
                 cp.City,
+                cn.CountryId,
+                cp.Country,
                 pl.PlaceId,
                 cp.Price,
                 cp.BodyType,
@@ -73,6 +76,7 @@ BEGIN
                             cp.Model AS Model,
                             cp.SiteId,
                             cp.City,
+                            cp.Country,
                             cp.Price,
                             dbo.MappingType('BodyType',cp.BodyType) AS BodyType,
                             cp.ModelYear,
@@ -99,7 +103,8 @@ BEGIN
         LEFT JOIN dbo.[Site] AS s ON s.SiteUrl = cp.SiteId
         LEFT JOIN dbo.Color AS col ON col.Name = cp.Color
         LEFT JOIN dbo.City AS c ON c.Name = cp.City
-        LEFT JOIN dbo.Place AS pl ON pl.CityId = c.CityId AND pl.CountryId = s.CountryId
+        LEFT JOIN dbo.Country AS cn ON cn.Name = cp.Country
+        LEFT JOIN dbo.Place AS pl ON pl.CityId = c.CityId AND pl.CountryId = cn.CountryId
         ;
 
         -- write wrong data info to Log table
@@ -110,6 +115,7 @@ BEGIN
                         cp.Model,
                         cp.SiteId,
                         cp.City,
+                        cp.Country,
                         cp.Price,
                         cp.BodyType,
                         cp.ModelYear,
