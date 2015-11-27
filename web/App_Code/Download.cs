@@ -102,7 +102,7 @@ namespace FindAndFollow
             }
         }
 
-        public static bool IsContentExist(string url, string webSite)
+        public static bool IsContentExist(string url, string xPath, string webSite)
         {
             WebClient webGet = new WebClient();
             HtmlDocument doc = new HtmlDocument();
@@ -126,8 +126,12 @@ namespace FindAndFollow
                     Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
                 }
             }
-
-            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]");
+            // xPath = /html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+            if (bodyNode == null)
+            {
+                return true;
+            }
             string pageText = bodyNode.InnerHtml;
 
             // *Объявление №11009027 не найдено !*
@@ -342,7 +346,7 @@ namespace FindAndFollow
             }
         }
 
-        public static int[] UrlsGet(string url, string xPath, string webSite)
+        public static int[] UrlsGet(string url, string xPath, string webSite, string nodeValue, string attributeValue, string removeText)
         {
             WebClient webGet = new WebClient();
             HtmlDocument doc = new HtmlDocument();
@@ -369,10 +373,18 @@ namespace FindAndFollow
 
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            List<string> lstOwnerPhones = bodyNode.SelectNodes(".//div[@class='b-listing-item-title']//a[@href]").Select(node => StringClass.RemoveText(node.Attributes["href"].Value, "public.php?event=View&public_id=", url)).ToList();
+            // noveValue= .//div[@class='b-listing-item-title']//a[@href]
+            // attributeValue = href
+            // removeText = public.php?event=View&public_id=
+            List<string> lstUrls = bodyNode.SelectNodes(nodeValue).Select(node => StringClass.RemoveText(node.Attributes[attributeValue].Value, removeText, url)).ToList();
 
             // convert to int
-            int[] ids = Array.ConvertAll(lstOwnerPhones.ToArray(), int.Parse);
+            for (int i = 0; i < lstUrls.Count; i++)
+            {
+                lstUrls[i] = StringClass.ReplaceText(lstUrls[i], "/", "", url);
+            }
+
+            int[] ids = Array.ConvertAll(lstUrls.ToArray(), int.Parse);
 
             return ids;
         }

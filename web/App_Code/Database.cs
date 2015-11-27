@@ -21,7 +21,7 @@ namespace FindAndFollow
         }
 
         // db logic
-        public static void CarParsingInsert(string url, string[] xPathArray, int startId, int finishId, string webSite)
+        public static void CarParsingInsert(string url, string[] xPathArray, int[] urlIds, string isContentExistPath, string webSite)
         {
             SqlCommand commandInsert = SqlCommandGet("FindAndFollowConnectionString", "CarParsingInsert");
 
@@ -29,17 +29,13 @@ namespace FindAndFollow
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("nvarchar", SqlDbType.NVarChar, 4000) {Value = DBNull.Value};
 
-            string urlSiteAv = "http://av.by/public/search.php?name_form=search_form&event=Search&country_id=0&body_type_id=0&class_id=0&engine_type_all=1&volume_value=0&volume_value_max=0&cylinders_number=0&run_value=0&run_value_max=0&run_unit=-1&transmission_id=0&year_id=0&year_id_max=0&price_value=0&price_value_max=0&currency_id=USD&door_id=0&region_id=0&city_id=Array&public_pass_rf=0&public_new=0&public_exchange=0&public_image=0&public_show_id=0&order_id=2&category_parent[0]=0&category_id[0]=0&";
-            //string urlSiteAv = "http://av.by/public/search.php?name_form=search_form&event=Search&country_id=0&body_type_id=0&class_id=0&engine_type_all=1&volume_value=0&volume_value_max=0&cylinders_number=0&run_value=0&run_value_max=0&run_unit=-1&transmission_id=0&year_id=0&year_id_max=0&price_value=0&price_value_max=0&currency_id=USD&door_id=0&region_id=0&city_id=Array&public_pass_rf=0&public_new=0&public_exchange=0&public_image=0&public_show_id=0&order_id=2&category_parent[0]=0&category_id[0]=0&page=5";
-            int[] urlIds = Download.UrlsGet(urlSiteAv, "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[3]", webSite);
-
             // Insert data
-            //foreach (int i in urlIds)
-            //{
-            for (int i = 11014131; i < 11014153; i++)
+            foreach (int i in urlIds)
             {
+            //for (int i = 11014131; i < 11014153; i++)
+            //{
                 string urlFull = url + i;
-                if (Download.IsPageExist(urlFull) && Download.IsContentExist(urlFull, webSite))
+                if (Download.IsPageExist(urlFull) && Download.IsContentExist(urlFull, isContentExistPath, webSite))
                 {
                     var dataArray = Download.GetData(urlFull, xPathArray, webSite);
 

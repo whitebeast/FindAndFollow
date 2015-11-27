@@ -52,25 +52,33 @@ namespace FindAndFollow
             string urlAb = Database.CarParsingSettingsDownloadMaskUrl(siteAb);
 
             // av.by
-            string[] xPathArray = Database.CarParsingSettingsGet(siteAv);
-            int currentId = Database.CarParsingSettingsCurrentIdGet(siteAv);
+            string urlSiteAv = "http://av.by/public/search.php?name_form=search_form&event=Search&country_id=0&body_type_id=0&class_id=0&engine_type_all=1&volume_value=0&volume_value_max=0&cylinders_number=0&run_value=0&run_value_max=0&run_unit=-1&transmission_id=0&year_id=0&year_id_max=0&price_value=0&price_value_max=0&currency_id=USD&door_id=0&region_id=0&city_id=Array&public_pass_rf=0&public_new=0&public_exchange=0&public_image=0&public_show_id=0&order_id=2&category_parent[0]=0&category_id[0]=0&";
 
-            Database.CarParsingInsert(urlAv, xPathArray, currentId, currentId + 1, siteAv);
+            int[] urlIds = Download.UrlsGet(urlSiteAv, "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[3]", siteAv, ".//div[@class='b-listing-item-title']//a[@href]", "href", "public.php?event=View&public_id=");
+
+            string[] xPathArray = Database.CarParsingSettingsGet(siteAv);
+            //int currentId = Database.CarParsingSettingsCurrentIdGet(siteAv);
+
+            Database.CarParsingInsert(urlAv, xPathArray, urlIds, "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]", siteAv);
 
             // abw.by
+            string urlSiteAbw = "http://www.abw.by/index.php?set_small_form_1=1&act=public_search&do=search&index=1&adv_type=1&adv_group=&marka%5B%5D=&model%5B%5D=&type_engine=&transmission=&vol1=&vol2=&year1=1960&year2=2015&cost_val1=&cost_val2=&u_country=&u_city=&period=&sort=&na_rf=&type_body=&privod=&probeg_col1=&probeg_col2=&key_word_a=&volume1=&volume2=&cylinders=&doors=&probeg_type=&class=&photo=&adv_type=1&period=&sort=date_add";
+
+            urlIds = Download.UrlsGet(urlSiteAbw, "//*[@id=\"advertsListContainer\"]", siteAbwA, ".//div[@class='a_m_o']//a[@href]", "href", "/allpublic/sell/");
+
             string[] checkSellerTypeArray = new string[1];
-            currentId = Database.CarParsingSettingsCurrentIdGet(siteAbwP);
+            //currentId = Database.CarParsingSettingsCurrentIdGet(siteAbwP);
 
-            checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
-            checkSellerTypeArray = Download.GetData(urlAbw + currentId.ToString(), checkSellerTypeArray, "abw");
+            //checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
+            //checkSellerTypeArray = Download.GetData(urlAbw + currentId.ToString(), checkSellerTypeArray, "abw");
 
-            //xPathArray = Database.CarParsingSettingsGet(checkSellerTypeArray[0] == null ? siteAbwP : siteAbwA);
+            xPathArray = Database.CarParsingSettingsGet(checkSellerTypeArray[0] == null ? siteAbwP : siteAbwA);
 
-            Database.CarParsingInsert(urlAbw, xPathArray, currentId, currentId + 1, "abw.by");
+            Database.CarParsingInsert(urlAbw, xPathArray, urlIds, "/html/body/div/h1", "abw.by");
 
             // ab.onliner.by
             xPathArray = Database.CarParsingSettingsGet(siteAb);
-            currentId = Database.CarParsingSettingsCurrentIdGet(siteAb);
+            //currentId = Database.CarParsingSettingsCurrentIdGet(siteAb);
 
             //Database.CarParsingInsert(urlAb, xPathArray, currentId, currentId + 1, siteAb);
 
