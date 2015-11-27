@@ -115,6 +115,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 300).Value = dataArray[17] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = dataArray[18] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = dataArray[19] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pCountry", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
 
@@ -140,6 +141,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.RemoveAt("@pOwnerPhone");
                     commandInsert.Parameters.RemoveAt("@pCarImages");
                     commandInsert.Parameters.RemoveAt("@pOptionList");
+                    commandInsert.Parameters.RemoveAt("@pCountry");
                 }
             }
         }
