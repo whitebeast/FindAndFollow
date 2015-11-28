@@ -373,9 +373,6 @@ namespace FindAndFollow
 
             HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
 
-            // noveValue= .//div[@class='b-listing-item-title']//a[@href]
-            // attributeValue = href
-            // removeText = public.php?event=View&public_id=
             List<string> lstUrls = bodyNode.SelectNodes(nodeValue).Select(node => StringClass.RemoveText(node.Attributes[attributeValue].Value, removeText, url)).ToList();
 
             // convert to int

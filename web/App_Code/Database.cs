@@ -9,6 +9,7 @@ namespace FindAndFollow
     {
         public static SqlCommand SqlCommandGet(string connectionString, string pocedureName)
         {
+            // SQL Connection
             string connStr = ConfigurationManager.ConnectionStrings[connectionString].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connStr);
 
@@ -20,7 +21,6 @@ namespace FindAndFollow
             return command;
         }
 
-        // db logic
         public static void CarParsingInsert(string url, string[] xPathArray, int[] urlIds, string isContentExistPath, string webSite)
         {
             SqlCommand commandInsert = SqlCommandGet("FindAndFollowConnectionString", "CarParsingInsert");
@@ -32,11 +32,23 @@ namespace FindAndFollow
             // Insert data
             foreach (int i in urlIds)
             {
-            //for (int i = 11014131; i < 11014153; i++)
+            //for (int i = 8455386; i < 8455387; i++)
             //{
+                string[] checkSellerTypeArray = new string[1];
                 string urlFull = url + i;
+
                 if (Download.IsPageExist(urlFull) && Download.IsContentExist(urlFull, isContentExistPath, webSite))
                 {
+                    // Get XPath by seller type
+                    if (webSite == "abw.by")
+                    {
+                        checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
+                        checkSellerTypeArray = Download.GetData(urlFull.ToString(), checkSellerTypeArray, "abw");
+
+                        xPathArray = CarParsingSettingsGet(checkSellerTypeArray[0] == null ? "abw.by-private" : "abw.by-autoagency");
+                    }
+
+                    // Get Data
                     var dataArray = Download.GetData(urlFull, xPathArray, webSite);
 
                     #region "if av.by"
@@ -148,13 +160,13 @@ namespace FindAndFollow
 
         public static string[] CarParsingSettingsGet(string url)
         {
+            // Get XPaths
             string[] xPathArray = new string[20];
 
             SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
 
             commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
 
-            // Get data from db
             SqlDataReader dataReader = commandSelect.ExecuteReader();
             while (dataReader.Read())
             {
@@ -185,18 +197,20 @@ namespace FindAndFollow
 
         public static string CarParsingSettingsDownloadMaskUrl(string url)
         {
+            // Get Url masks
             string downloadMaskUrl = "";
 
             SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
 
             commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
 
-            // Get data from db
             SqlDataReader dataReader = commandSelect.ExecuteReader();
+
             while (dataReader.Read())
             {
                 downloadMaskUrl = dataReader["DownloadMaskURL"].ToString();
             }
+
             return downloadMaskUrl;
         }
 
@@ -205,7 +219,7 @@ namespace FindAndFollow
             SqlCommand commandInsert = SqlCommandGet("FindAndFollowConnectionString", "ErrorLogInsert");
 
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
-            //commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
+            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);
@@ -228,7 +242,6 @@ namespace FindAndFollow
             SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet_CurrentId");
             commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
 
-            // Get data from db
             SqlDataReader dataReader = commandSelect.ExecuteReader();
             while (dataReader.Read())
             {
