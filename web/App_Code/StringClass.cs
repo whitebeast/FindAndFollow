@@ -86,6 +86,9 @@ namespace FindAndFollow
 
         public static string ColorGet(string word, string url)
         {
+            // check for empty color
+            if (word == "") return "Другой";
+
             try
             {
                 string color = word.Substring(0, 4).ToLower();
@@ -113,6 +116,8 @@ namespace FindAndFollow
                     case ("фиол"): color = "Фиолетовый";
                         break;
                     case ("черн"): color = "Черный";
+                        break;
+                    case (null): color = "Другой";
                         break;
                     default: color = "Другой";
                         break;
