@@ -45,6 +45,9 @@ namespace FindAndFollow
 
         public static string MultiplyValue(string word, int value, string url)
         {
+            // check for empty mileage
+            if (word == "") return null;
+
             try
             {
                 double myNumber = double.Parse(word);
