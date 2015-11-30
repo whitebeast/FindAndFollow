@@ -5,6 +5,7 @@
 AS
 BEGIN
     SELECT  
+            DownloadMaskURL,
             CarBrandXPath,    
             ModelXPath,           
             CityXPath,            
@@ -26,7 +27,13 @@ BEGIN
             CarImagesXPath,     
             OptionListXPath,  
             PageCreatedOnXPath,
-            DownloadMaskURL  
+            MainPageUrlsXPath,            
+            MainPageUrlsXPathNodeValue,     
+            MainPageUrlsXPathAttributeValue,
+            MainPageUrlsXPathRemoveText,    
+            IsContentExistXpath,            
+            CarImagesNodeValue,             
+            CarImagesAttributeValue        
     FROM    dbo.CarParsingSettings
     WHERE   SiteURL = @pSiteUrl
     ;

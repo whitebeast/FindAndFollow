@@ -1,6 +1,5 @@
 ﻿PRINT 'Populate CarParsingSettings table...'
 ;
--- av.by
 IF NOT EXISTS (SELECT 1 FROM dbo.CarParsingSettings)
 INSERT INTO [dbo].[CarParsingSettings]
            ([SiteUrl]
@@ -22,10 +21,19 @@ INSERT INTO [dbo].[CarParsingSettings]
            ,[IsSwapXPath]
            ,[DescriptionXPath]
            ,[PageCreatedOnXPath]
-           ,CityXPath
-           ,OwnerPhoneXPath
-           ,CarImagesXPath
-           ,OptionListXPath)
+           ,[CityXPath]
+           ,[OwnerPhoneXPath]
+           ,[CarImagesXPath]
+           ,[OptionListXPath]
+           ,[MainPageUrlsXPath]              
+           ,[MainPageUrlsXPathNodeValue]     
+           ,[MainPageUrlsXPathAttributeValue]
+           ,[MainPageUrlsXPathRemoveText]    
+           ,[IsContentExistXpath]            
+           ,[CarImagesNodeValue]             
+           ,[CarImagesAttributeValue]        
+           )
+-- av.by
 SELECT     'av.by' AS SiteUrlXPath,
            10708341 AS CurrentId,
            'http://www.av.by/public/public.php?event=View&public_id=' AS DownloadMaskURL,
@@ -48,7 +56,14 @@ SELECT     'av.by' AS SiteUrlXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]' AS CityXPath,
            '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]/ul' AS OwnerPhoneXPath,
            '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]' AS CarImagesXPath,
-           '//div[contains(@class,''b-card-options'')]' AS OptionListXPath
+           '//div[contains(@class,''b-card-options'')]' AS OptionListXPath,
+           '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[3]' AS MainPageUrlsXPath,
+           './/div[@class=''b-listing-item-title'']//a[@href]' AS MainPageUrlsXPathNodeValue,
+           'href' AS MainPageUrlsXPathAttributeValue,
+           'public.php?event=View&public_id=' AS MainPageUrlsXPathRemoveText,
+           '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]' AS IsContentExistXpath,
+           'a[@href]' AS CarImagesNodeValue,
+           'href' AS CarImagesAttributeValue
 UNION ALL
 -- abw.by-private      
 SELECT     'abw.by-private' AS SiteUrl,
@@ -73,8 +88,14 @@ SELECT     'abw.by-private' AS SiteUrl,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CityXPath,
            NULL AS OwnerPhoneXPath,
            '//*[@id="news"]/tr[2]/td/div[2]/div[3]' AS CarImagesXPath,
-           '//*[@id="news"]/tr[2]/td/div[5]/table/tbody' AS OptionListXPath
-
+           '//*[@id="news"]/tr[2]/td/div[5]/table/tbody' AS OptionListXPath,
+           '//*[@id=\"advertsListContainer\"]' AS MainPageUrlsXPath,            
+           './/div[@class=''a_m_o'']//a[@href]' AS MainPageUrlsXPathNodeValue,     
+           'href' AS MainPageUrlsXPathAttributeValue,
+           '/allpublic/sell/' AS MainPageUrlsXPathRemoveText,    
+           '/html/body/div/h1' AS IsContentExistXpath,            
+           './/a[@rel=''group'']' AS CarImagesNodeValue,             
+           'href' AS CarImagesAttributeValue  
 UNION ALL
 -- abw.by-autoagency      
 SELECT     'abw.by-autoagency' AS SiteUrl,
@@ -99,7 +120,14 @@ SELECT     'abw.by-autoagency' AS SiteUrl,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CityXPath,
            NULL AS OwnerPhoneXPath,
            '//*[@id="news"]/tr[2]/td/div[2]/div[3]' AS CarImagesXPath,
-           '//*[@id="news"]/tr[2]/td/div[5]/table/tbody' AS OptionListXPath
+           '//*[@id="news"]/tr[2]/td/div[5]/table/tbody' AS OptionListXPath,
+           '//*[@id=\"advertsListContainer\"]' AS MainPageUrlsXPath,            
+           './/div[@class=''a_m_o'']//a[@href]' AS MainPageUrlsXPathNodeValue,     
+           'href' AS MainPageUrlsXPathAttributeValue,
+           '/allpublic/sell/' AS MainPageUrlsXPathRemoveText,    
+           '/html/body/div/h1' AS IsContentExistXpath,            
+           './/a[@rel=''group'']' AS CarImagesNodeValue,             
+           'href' AS CarImagesAttributeValue  
 UNION ALL
 -- ab.onliner.by
 SELECT     'ab.onliner.by' AS SiteUrl,
@@ -124,6 +152,13 @@ SELECT     'ab.onliner.by' AS SiteUrl,
            '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/p[3]' AS CityXPath,
            '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[2]/div[1]' AS OwnerPhoneXPath,
            '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/table[1]/tr[1]' AS CarImagesXPath,
-           '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/div[3]' AS OptionListXPath
+           '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/div[3]' AS OptionListXPath,
+           NULL AS MainPageUrlsXPath,            
+           NULL AS MainPageUrlsXPathNodeValue,     
+           NULL AS MainPageUrlsXPathAttributeValue,
+           NULL AS MainPageUrlsXPathRemoveText,    
+           NULL AS IsContentExistXpath,            
+           './/img[@src]' AS CarImagesNodeValue,             
+           'src' AS CarImagesAttributeValue  
 ;
 
