@@ -12,7 +12,7 @@ IF NOT EXISTS (SELECT 1 FROM dbo.Color)
     UNION ALL
     SELECT N'Красный'
     UNION ALL
-    SELECT N'Оранжевой'
+    SELECT N'Оранжевый'
     UNION ALL
     SELECT N'Серебристый'
     UNION ALL
