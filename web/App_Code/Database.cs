@@ -116,7 +116,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pEngineType", SqlDbType.NVarChar, 100).Value = dataArray[8] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pTransmissionType", SqlDbType.NVarChar, 100).Value = dataArray[9] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pDriveType", SqlDbType.NVarChar, 100).Value = dataArray[10] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 1000).Value = dataArray[11] ?? sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pDescription", SqlDbType.NVarChar, 4000).Value = dataArray[11] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pPageCreatedOn", SqlDbType.NVarChar, 100).Value = dataArray[12] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pSiteUrl", SqlDbType.NVarChar, 2000).Value = urlFull;
                     commandInsert.Parameters.Add("@pSiteID", SqlDbType.NVarChar, 50).Value = webSite;
