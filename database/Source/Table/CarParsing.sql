@@ -18,7 +18,7 @@
     Color               NVARCHAR(100) NULL,
     SellerType          NVARCHAR(100) NULL,
     IsSwap              CHAR(1) NULL,
-    [Description]       NVARCHAR(1000) NULL,
+    [Description]       NVARCHAR(4000) NULL,
     OwnerPhone          NVARCHAR(300) NULL,
     CarImages           NVARCHAR(4000) NULL,
     OptionList          NVARCHAR(4000) NULL,

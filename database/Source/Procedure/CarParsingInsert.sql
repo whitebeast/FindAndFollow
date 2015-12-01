@@ -18,7 +18,7 @@
         @pColor             NVARCHAR(100),
         @pSellerType        NVARCHAR(100),
         @pIsSwap            CHAR(1),
-        @pDescription       NVARCHAR(1000),
+        @pDescription       NVARCHAR(4000),
         @pOwnerPhone        NVARCHAR(300),
         @pCarImages         NVARCHAR(4000),
         @pOptionList        NVARCHAR(4000),
