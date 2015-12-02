@@ -4,18 +4,9 @@ DECLARE @tMask TABLE (Mask VARCHAR(100), CarBrand NVARCHAR(100), NotMask VARCHAR
 DECLARE @tCarModelMapping TABLE (ModelMask VARCHAR(100), ModelNotMask VARCHAR(100), CarBrandId INT, CarModelId INT)
 ;
 INSERT INTO @tMask
+    --Audi
     SELECT N'A4%',N'Audi','' UNION ALL
     SELECT N'A6%',N'Audi','' UNION ALL
-    SELECT N'Astra%',N'Opel','' UNION ALL
-    SELECT N'Golf%',N'Volkswagen','%Plus%' UNION ALL 
-    SELECT N'Passat%',N'Volkswagen','%CC%' UNION ALL
-    SELECT N'T1%',N'Volkswagen','' UNION ALL
-    SELECT N'T2%',N'Volkswagen','' UNION ALL
-    SELECT N'T3%',N'Volkswagen','' UNION ALL
-    SELECT N'T4%',N'Volkswagen','' UNION ALL
-    SELECT N'T5%',N'Volkswagen','' UNION ALL
-    SELECT N'Carina%',N'Toyota','' UNION ALL
-    SELECT N'Scenic%',N'Renault','' UNION ALL
     --BMW
     SELECT N'1%',N'BMW','' UNION ALL
     SELECT N'2%',N'BMW','' UNION ALL
@@ -25,6 +16,13 @@ INSERT INTO @tMask
     SELECT N'6%',N'BMW','' UNION ALL
     SELECT N'7%',N'BMW','' UNION ALL
     SELECT N'8%',N'BMW','' UNION ALL
+    --Citroen
+    SELECT N'C5%',N'Citroen','' UNION ALL
+    --Opel
+    SELECT N'Astra%',N'Opel','' UNION ALL
+    --Renault
+    SELECT N'Scenic%',N'Renault','' UNION ALL
+    SELECT N'Laguna%',N'Renault','' UNION ALL
     --Mercedes
     SELECT N'A%',N'Mercedes','' UNION ALL
     SELECT N'B%',N'Mercedes','' UNION ALL
@@ -49,7 +47,17 @@ INSERT INTO @tMask
     SELECT N'SLK%',N'Mercedes','' UNION ALL
     SELECT N'V%',N'Mercedes','V[a-Z]%' UNION ALL
     SELECT N'T1%',N'Mercedes','' UNION ALL
-    SELECT N'T2%',N'Mercedes',''
+    SELECT N'T2%',N'Mercedes','' UNION ALL
+    --Toyota
+    SELECT N'Carina%',N'Toyota','' UNION ALL
+    --Volkswagen
+    SELECT N'Golf%',N'Volkswagen','%Plus%' UNION ALL 
+    SELECT N'Passat%',N'Volkswagen','%CC%' UNION ALL
+    SELECT N'T1%',N'Volkswagen','' UNION ALL
+    SELECT N'T2%',N'Volkswagen','' UNION ALL
+    SELECT N'T3%',N'Volkswagen','' UNION ALL
+    SELECT N'T4%',N'Volkswagen','' UNION ALL
+    SELECT N'T5%',N'Volkswagen','' 
 ;
 INSERT INTO @tCarModelMapping
     (
