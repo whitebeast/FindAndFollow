@@ -42,7 +42,8 @@ BEGIN
                 cb.CarBrandId,
                 cp.CarBrand,
                 COALESCE(cm.CarModelId,cmm.CarModelId) AS CarModelId,
-                cp.Model,
+                COALESCE(cm.Name,cm2.Name) AS Model,
+                cp.Model AS OriginalCarModel,
                 s.SiteId,
                 cp.SiteId AS SiteURL,
                 c.CityId,
@@ -110,6 +111,7 @@ BEGIN
             AND cp.Model LIKE cmm.ModelMask 
             AND cp.Model NOT LIKE cmm.ModelNotMask 
             AND cmm.CarBrandId = cb.CarBrandId
+        LEFT JOIN dbo.CarModel AS cm2 ON cm2.CarModelId = cmm.CarModelId
         ;
 
         -- write wrong data info to Log table
@@ -183,7 +185,8 @@ BEGIN
                ,[OriginalURL]
                ,[PageCreatedOn]
                ,[CarImages]
-               ,[OptionList])
+               ,[OptionList]
+               ,[OriginalCarModel])
         OUTPUT
             inserted.CarId,
             NULL,
@@ -208,7 +211,8 @@ BEGIN
                 cp.OriginalURL,
                 cp.PageCreatedOn,
                 cp.CarImages,
-                cp.OptionList
+                cp.OptionList,
+                cp.OriginalCarModel
         FROM #CarParsing AS cp  
         WHERE cp.ErrorType IS NULL        
         ;   
