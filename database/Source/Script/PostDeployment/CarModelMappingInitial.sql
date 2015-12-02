@@ -66,6 +66,23 @@ INSERT INTO @tCarModelMapping
         CarBrandId,
 	    CarModelId
     )
+SELECT
+        'Strea M',
+        '',
+        cb.CarBrandId,
+        cm.CarModelId
+FROM    dbo.CarModel cm
+JOIN    dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
+WHERE   cb.Name = N'Honda' 
+    AND cm.Name = 'Stream'
+;
+INSERT INTO @tCarModelMapping
+    (
+	    ModelMask,
+	    ModelNotMask,
+        CarBrandId,
+	    CarModelId
+    )
 SELECT  t.Mask, 
         t.NotMask, 
         cb.CarBrandId,
@@ -93,4 +110,3 @@ LEFT JOIN dbo.CarModelMapping AS cmm
     AND cmm.CarModelId = t.CarModelId
 WHERE cmm.CarModelMappingId IS NULL
 ;    
-	       
