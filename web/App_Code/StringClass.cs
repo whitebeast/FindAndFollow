@@ -532,5 +532,24 @@ namespace FindAndFollow
             }
         }
 
+        public static string CountryGetAbw(string word, string url)
+        {
+            try
+            {
+                int startCut = word.IndexOf("<div align=\"center\">Продавец:", StringComparison.Ordinal);
+                string country = RemoveText(word.Trim().Substring(startCut, 130), "<div align=\"center\">Продавец:</b>", url);
+                
+                int endCut = country.IndexOf(")", StringComparison.Ordinal);
+                startCut = country.IndexOf("(", StringComparison.Ordinal);
+
+                return country.Substring(startCut + 1, endCut).Split(',').FirstOrDefault();
+
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
     }
 }

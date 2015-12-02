@@ -84,6 +84,7 @@ namespace FindAndFollow
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ", urlFull), urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAbw(dataArray[14], urlFull);
                         dataArray[16] = StringClass.CityGetAbw(dataArray[16], urlFull);
+                        dataArray[20] = StringClass.CountryGetAbw(dataArray[20], urlFull);
                     }
                     #endregion "if abw.by"
 

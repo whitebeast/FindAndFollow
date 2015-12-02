@@ -98,7 +98,7 @@ SELECT     'abw.by-private' AS SiteUrl,
            '/html/body/div/h1' AS IsContentExistXpath,            
            './/a[@rel=''group'']' AS CarImagesNodeValue,             
            'href' AS CarImagesAttributeValue,
-           NULL AS CountryXPath
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CountryXPath
 UNION ALL
 -- abw.by-autoagency      
 SELECT     'abw.by-autoagency' AS SiteUrl,
@@ -131,7 +131,7 @@ SELECT     'abw.by-autoagency' AS SiteUrl,
            '/html/body/div/h1' AS IsContentExistXpath,            
            './/a[@rel=''group'']' AS CarImagesNodeValue,             
            'href' AS CarImagesAttributeValue,
-           NULL AS CountryXPath
+           '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]' AS CountryXPath
 UNION ALL
 -- ab.onliner.by
 SELECT     'ab.onliner.by' AS SiteUrl,
