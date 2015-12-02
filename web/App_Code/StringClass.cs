@@ -436,7 +436,7 @@ namespace FindAndFollow
                 string city = RemoveText(word.Trim().Substring(startCut, 130), "<div align=\"center\">Продавец:</b>", url);
                 int endCut = city.IndexOf(")", StringComparison.Ordinal);
 
-                return city.Substring(0, endCut).Split(' ').LastOrDefault();
+                return city.Substring(0, endCut).Split(new [] {", "}, StringSplitOptions.None).LastOrDefault();
             }
             catch (Exception ex)
             {
