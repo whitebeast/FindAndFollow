@@ -28,8 +28,9 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION
         -- load and parse data
-        SELECT  CASE 
-                    WHEN cb.CarBrandId IS NULL THEN 'CarBrand Error'
+        SELECT  
+                CASE 
+                    WHEN COALESCE(cb.CarBrandId,cbm.CarBrandId) IS NULL THEN 'CarBrand Error'
                     WHEN COALESCE(cm.CarModelId,cmm.CarModelId) IS NULL THEN 'CarModel Error' 
                     WHEN s.SiteId IS NULL THEN 'Site Error'
                     WHEN c.CityId IS NULL THEN 'City Error'
@@ -39,8 +40,9 @@ BEGIN
                     ELSE NULL
                 END AS ErrorType,
                 cp.CarParsingId,
-                cb.CarBrandId,
-                cp.CarBrand,
+                COALESCE(cb.CarBrandId,cbm.CarBrandId) AS CarBrandId,
+                COALESCE(cb.Name,cb2.Name) AS CarBrand,
+                cp.CarBrand AS OriginalCarBrand,
                 COALESCE(cm.CarModelId,cmm.CarModelId) AS CarModelId,
                 COALESCE(cm.Name,cm2.Name) AS Model,
                 cp.Model AS OriginalCarModel,
@@ -74,7 +76,7 @@ BEGIN
         FROM    (
                     SELECT  cp.CarParsingId,
                             cp.CarBrand,
-                            cp.Model AS Model,
+                            cp.Model,
                             cp.SiteId,
                             cp.City,
                             cp.Country,
@@ -100,7 +102,11 @@ BEGIN
                     WHERE cp.PageStatusId = 1 -- Downloaded page (default)    	
         ) AS cp
         LEFT JOIN dbo.CarBrand AS cb ON cb.Name = cp.CarBrand
-        LEFT JOIN dbo.CarModel AS cm ON cm.Name = cp.Model AND cm.CarBrandId = cb.CarBrandId
+        LEFT JOIN dbo.CarBrandMapping AS cbm 
+            ON  cb.CarBrandId IS NULL
+            AND cp.CarBrand LIKE cbm.BrandMask
+        LEFT JOIN dbo.CarBrand AS cb2 ON cb2.CarBrandId = cbm.CarBrandId
+        LEFT JOIN dbo.CarModel AS cm ON cm.Name = cp.Model AND cm.CarBrandId = COALESCE(cb.CarBrandId,cb2.CarBrandId)
         LEFT JOIN dbo.[Site] AS s ON s.SiteUrl = cp.SiteId
         LEFT JOIN dbo.Color AS col ON col.Name = cp.Color
         LEFT JOIN dbo.City AS c ON c.Name = cp.City
@@ -187,6 +193,7 @@ BEGIN
                ,[PageCreatedOn]
                ,[CarImages]
                ,[OptionList]
+               ,[OriginalCarBrand]
                ,[OriginalCarModel])
         OUTPUT
             inserted.CarId,
@@ -213,6 +220,7 @@ BEGIN
                 cp.PageCreatedOn,
                 cp.CarImages,
                 cp.OptionList,
+                cp.OriginalCarBrand,
                 cp.OriginalCarModel
         FROM #CarParsing AS cp  
         WHERE cp.ErrorType IS NULL        

@@ -178,6 +178,10 @@
     <Build Include="Source\Table\Constraint\PK\CarModelMapping.sql" />
     <Build Include="Source\Table\Constraint\FK\CarModelMapping.sql" />
     <None Include="Source\Script\PostDeployment\CarModelMappingInitial.sql" />
+    <Build Include="Source\Table\CarBrandMapping.sql" />
+    <Build Include="Source\Table\Constraint\PK\CarBrandMapping.sql" />
+    <Build Include="Source\Table\Constraint\FK\CarBrandMapping.sql" />
+    <None Include="Source\Script\PostDeployment\CarBrandMappingInitial.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
