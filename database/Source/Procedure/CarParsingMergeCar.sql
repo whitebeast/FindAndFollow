@@ -118,6 +118,7 @@ BEGIN
         IF EXISTS (SELECT 1 FROM #CarParsing WHERE ErrorType IS NOT NULL) BEGIN
             SELECT @XML = (
                 SELECT  cp.ErrorType,
+                        cp.CarParsingId,
                         cp.CarBrand,
                         cp.Model,
                         cp.SiteId,
