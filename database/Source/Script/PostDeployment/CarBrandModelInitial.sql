@@ -1,0 +1,1746 @@
+﻿PRINT 'Populate CarBrand and CarModel tables...'
+DECLARE @tModel TABLE (Brand NVARCHAR(100), Model NVARCHAR(100))
+;
+INSERT INTO @tModel (Brand, Model)
+SELECT N'Acura', N'CL' UNION ALL
+SELECT N'Acura', N'ILX' UNION ALL
+SELECT N'Acura', N'MDX' UNION ALL
+SELECT N'Acura', N'RDX' UNION ALL
+SELECT N'Acura', N'RL' UNION ALL
+SELECT N'Acura', N'RSX' UNION ALL
+SELECT N'Acura', N'SLX' UNION ALL
+SELECT N'Acura', N'TL' UNION ALL
+SELECT N'Acura', N'TLX' UNION ALL
+SELECT N'Acura', N'TSX' UNION ALL
+SELECT N'Acura', N'Vigor' UNION ALL
+SELECT N'Acura', N'ZDX' UNION ALL
+SELECT N'Adler', N'Diplomat' UNION ALL
+SELECT N'Adler', N'Standard' UNION ALL
+SELECT N'Adler', N'Trumpf Junior' UNION ALL
+SELECT N'Adler', N'Trumpf Karman' UNION ALL
+SELECT N'Alfa Romeo', N'145' UNION ALL
+SELECT N'Alfa Romeo', N'146' UNION ALL
+SELECT N'Alfa Romeo', N'147' UNION ALL
+SELECT N'Alfa Romeo', N'155' UNION ALL
+SELECT N'Alfa Romeo', N'156' UNION ALL
+SELECT N'Alfa Romeo', N'159' UNION ALL
+SELECT N'Alfa Romeo', N'164' UNION ALL
+SELECT N'Alfa Romeo', N'166' UNION ALL
+SELECT N'Alfa Romeo', N'33' UNION ALL
+SELECT N'Alfa Romeo', N'75' UNION ALL
+SELECT N'Alfa Romeo', N'90' UNION ALL
+SELECT N'Alfa Romeo', N'Alfetta' UNION ALL
+SELECT N'Alfa Romeo', N'Brera' UNION ALL
+SELECT N'Alfa Romeo', N'Giulietta' UNION ALL
+SELECT N'Alfa Romeo', N'GT' UNION ALL
+SELECT N'Alfa Romeo', N'GTV' UNION ALL
+SELECT N'Alfa Romeo', N'MiTo' UNION ALL
+SELECT N'Alfa Romeo', N'Spider' UNION ALL
+SELECT N'Alpina', N'B3' UNION ALL
+SELECT N'Alpina', N'B4' UNION ALL
+SELECT N'Alpina', N'B5' UNION ALL
+SELECT N'Alpina', N'B6' UNION ALL
+SELECT N'Alpina', N'B7' UNION ALL
+SELECT N'Alpina', N'D3' UNION ALL
+SELECT N'Alpina', N'D4' UNION ALL
+SELECT N'Alpina', N'D5' UNION ALL
+SELECT N'Alpina', N'XD3' UNION ALL
+SELECT N'Aro', N'240' UNION ALL
+SELECT N'Aro', N'243' UNION ALL
+SELECT N'Aro', N'244' UNION ALL
+SELECT N'Aro', N'246' UNION ALL
+SELECT N'Aro', N'266' UNION ALL
+SELECT N'Aro', N'323' UNION ALL
+SELECT N'Aro', N'324' UNION ALL
+SELECT N'Aro', N'328' UNION ALL
+SELECT N'Aro', N'330' UNION ALL
+SELECT N'Asia', N'Rocsta' UNION ALL
+SELECT N'Asia', N'Towner' UNION ALL
+SELECT N'Aston Martin', N'DB9' UNION ALL
+SELECT N'Aston Martin', N'V12 Vantage' UNION ALL
+SELECT N'Aston Martin', N'V8 Vantage' UNION ALL
+SELECT N'Audi', N'100' UNION ALL
+SELECT N'Audi', N'200' UNION ALL
+SELECT N'Audi', N'50' UNION ALL
+SELECT N'Audi', N'80' UNION ALL
+SELECT N'Audi', N'90' UNION ALL
+SELECT N'Audi', N'A1' UNION ALL
+SELECT N'Audi', N'A2' UNION ALL
+SELECT N'Audi', N'A3' UNION ALL
+SELECT N'Audi', N'A4' UNION ALL
+SELECT N'Audi', N'A5' UNION ALL
+SELECT N'Audi', N'A6' UNION ALL
+SELECT N'Audi', N'A7' UNION ALL
+SELECT N'Audi', N'A8' UNION ALL
+SELECT N'Audi', N'Cabriolet' UNION ALL
+SELECT N'Audi', N'Coupe' UNION ALL
+SELECT N'Audi', N'Q3' UNION ALL
+SELECT N'Audi', N'Q5' UNION ALL
+SELECT N'Audi', N'Q7' UNION ALL
+SELECT N'Audi', N'R8' UNION ALL
+SELECT N'Audi', N'RS3' UNION ALL
+SELECT N'Audi', N'RS4' UNION ALL
+SELECT N'Audi', N'RS5' UNION ALL
+SELECT N'Audi', N'RS6' UNION ALL
+SELECT N'Audi', N'S3' UNION ALL
+SELECT N'Audi', N'S4' UNION ALL
+SELECT N'Audi', N'S5' UNION ALL
+SELECT N'Audi', N'S6' UNION ALL
+SELECT N'Audi', N'S8' UNION ALL
+SELECT N'Audi', N'TT' UNION ALL
+SELECT N'Audi', N'V8' UNION ALL
+SELECT N'Austin', N'Allegro' UNION ALL
+SELECT N'Austin', N'Princess' UNION ALL
+SELECT N'Avia', N'A15' UNION ALL
+SELECT N'Avia', N'A21' UNION ALL
+SELECT N'Avia', N'A31' UNION ALL
+SELECT N'Avia', N'A75' UNION ALL
+SELECT N'Avia', N'D-Line' UNION ALL
+SELECT N'Avia', N'Ikarus 553' UNION ALL
+SELECT N'Avia', N'S430' UNION ALL
+SELECT N'Barkas', N'B1000' UNION ALL
+SELECT N'BAW', N'Fenix' UNION ALL
+SELECT N'Bentley', N'Arnage' UNION ALL
+SELECT N'Bentley', N'Azure' UNION ALL
+SELECT N'Bentley', N'Brooklands' UNION ALL
+SELECT N'Bentley', N'Continental GT' UNION ALL
+SELECT N'Bentley', N'Continental' UNION ALL
+SELECT N'Bentley', N'Flying Spur' UNION ALL
+SELECT N'Bentley', N'Mulsanne' UNION ALL
+SELECT N'Bentley', N'Turbo R' UNION ALL
+SELECT N'BMW', N'1-Series' UNION ALL
+SELECT N'BMW', N'2-Series' UNION ALL
+SELECT N'BMW', N'3-Series' UNION ALL
+SELECT N'BMW', N'4-Series' UNION ALL
+SELECT N'BMW', N'5-Series' UNION ALL
+SELECT N'BMW', N'6-Series' UNION ALL
+SELECT N'BMW', N'7-Series' UNION ALL
+SELECT N'BMW', N'8-Series' UNION ALL
+SELECT N'BMW', N'Gran Coupe' UNION ALL
+SELECT N'BMW', N'Gran Turismo' UNION ALL
+SELECT N'BMW', N'i3' UNION ALL
+SELECT N'BMW', N'i8' UNION ALL
+SELECT N'BMW', N'X1' UNION ALL
+SELECT N'BMW', N'X3' UNION ALL
+SELECT N'BMW', N'X4' UNION ALL
+SELECT N'BMW', N'X5' UNION ALL
+SELECT N'BMW', N'X6' UNION ALL
+SELECT N'BMW', N'M1' UNION ALL
+SELECT N'BMW', N'M3' UNION ALL
+SELECT N'BMW', N'M5' UNION ALL
+SELECT N'BMW', N'X5 M' UNION ALL
+SELECT N'BMW', N'X6 M' UNION ALL
+SELECT N'BMW', N'Z3' UNION ALL
+SELECT N'BMW', N'Z4' UNION ALL
+SELECT N'BMW', N'Z8' UNION ALL
+SELECT N'Brilliance', N'BC3' UNION ALL
+SELECT N'Brilliance', N'BS2' UNION ALL
+SELECT N'Brilliance', N'BS4' UNION ALL
+SELECT N'Brilliance', N'BS6' UNION ALL
+SELECT N'Brilliance', N'H530' UNION ALL
+SELECT N'Brilliance', N'V5' UNION ALL
+SELECT N'Bugatti', N'Veyron' UNION ALL
+SELECT N'Buick', N'Apollo' UNION ALL
+SELECT N'Buick', N'Century' UNION ALL
+SELECT N'Buick', N'Electra Wagon' UNION ALL
+SELECT N'Buick', N'Enclave' UNION ALL
+SELECT N'Buick', N'Encore' UNION ALL
+SELECT N'Buick', N'GL8' UNION ALL
+SELECT N'Buick', N'LaCrosse' UNION ALL
+SELECT N'Buick', N'Le Sabre' UNION ALL
+SELECT N'Buick', N'Lucerne' UNION ALL
+SELECT N'Buick', N'Park Avenue' UNION ALL
+SELECT N'Buick', N'Reatta' UNION ALL
+SELECT N'Buick', N'Regal' UNION ALL
+SELECT N'Buick', N'Rendez Vous' UNION ALL
+SELECT N'Buick', N'Rivera' UNION ALL
+SELECT N'Buick', N'Roadmaster' UNION ALL
+SELECT N'Buick', N'Skylark' UNION ALL
+SELECT N'BYD', N'E6' UNION ALL
+SELECT N'BYD', N'F0' UNION ALL
+SELECT N'BYD', N'F3' UNION ALL
+SELECT N'BYD', N'F6' UNION ALL
+SELECT N'BYD', N'Flyer' UNION ALL
+SELECT N'BYD', N'G3' UNION ALL
+SELECT N'BYD', N'G6' UNION ALL
+SELECT N'BYD', N'L3' UNION ALL
+SELECT N'BYD', N'M6' UNION ALL
+SELECT N'BYD', N'S6' UNION ALL
+SELECT N'Cadillac', N'Allante' UNION ALL
+SELECT N'Cadillac', N'ATS' UNION ALL
+SELECT N'Cadillac', N'BLS' UNION ALL
+SELECT N'Cadillac', N'Brogham' UNION ALL
+SELECT N'Cadillac', N'Catera' UNION ALL
+SELECT N'Cadillac', N'Cimarron' UNION ALL
+SELECT N'Cadillac', N'CTS' UNION ALL
+SELECT N'Cadillac', N'De Ville' UNION ALL
+SELECT N'Cadillac', N'DTS' UNION ALL
+SELECT N'Cadillac', N'Eldorado' UNION ALL
+SELECT N'Cadillac', N'Escalade' UNION ALL
+SELECT N'Cadillac', N'Evoq' UNION ALL
+SELECT N'Cadillac', N'Flitwood' UNION ALL
+SELECT N'Cadillac', N'GLS' UNION ALL
+SELECT N'Cadillac', N'Seville' UNION ALL
+SELECT N'Cadillac', N'SRX' UNION ALL
+SELECT N'Cadillac', N'STS' UNION ALL
+SELECT N'Cadillac', N'Superior' UNION ALL
+SELECT N'Cadillac', N'Vizon' UNION ALL
+SELECT N'Cadillac', N'XLR' UNION ALL
+SELECT N'Changan', N'CS35' UNION ALL
+SELECT N'Changan', N'Eado' UNION ALL
+SELECT N'Changan', N'Raeton' UNION ALL
+SELECT N'Chery', N'A1' UNION ALL
+SELECT N'Chery', N'A13' UNION ALL
+SELECT N'Chery', N'A5' UNION ALL
+SELECT N'Chery', N'Amulet' UNION ALL
+SELECT N'Chery', N'Arrizo' UNION ALL
+SELECT N'Chery', N'Bonus' UNION ALL
+SELECT N'Chery', N'Cowin' UNION ALL
+SELECT N'Chery', N'Cross Eastar' UNION ALL
+SELECT N'Chery', N'Indis' UNION ALL
+SELECT N'Chery', N'Kimo' UNION ALL
+SELECT N'Chery', N'M11' UNION ALL
+SELECT N'Chery', N'Oriental Son' UNION ALL
+SELECT N'Chery', N'QQ' UNION ALL
+SELECT N'Chery', N'QQ6' UNION ALL
+SELECT N'Chery', N'Tiggo' UNION ALL
+SELECT N'Chery', N'V5' UNION ALL
+SELECT N'Chery', N'Very' UNION ALL
+SELECT N'Chevrolet', N'Alero' UNION ALL
+SELECT N'Chevrolet', N'Astro Van' UNION ALL
+SELECT N'Chevrolet', N'Avalanche' UNION ALL
+SELECT N'Chevrolet', N'Aveo' UNION ALL
+SELECT N'Chevrolet', N'Beretta' UNION ALL
+SELECT N'Chevrolet', N'Blazer' UNION ALL
+SELECT N'Chevrolet', N'C1500' UNION ALL
+SELECT N'Chevrolet', N'Camaro' UNION ALL
+SELECT N'Chevrolet', N'Caprice' UNION ALL
+SELECT N'Chevrolet', N'Captiva' UNION ALL
+SELECT N'Chevrolet', N'Cavalier' UNION ALL
+SELECT N'Chevrolet', N'Celebrity' UNION ALL
+SELECT N'Chevrolet', N'Cobalt' UNION ALL
+SELECT N'Chevrolet', N'Colorado' UNION ALL
+SELECT N'Chevrolet', N'Corsica' UNION ALL
+SELECT N'Chevrolet', N'Corvette' UNION ALL
+SELECT N'Chevrolet', N'Cruze' UNION ALL
+SELECT N'Chevrolet', N'CSV CR8' UNION ALL
+SELECT N'Chevrolet', N'Epica' UNION ALL
+SELECT N'Chevrolet', N'Equinox' UNION ALL
+SELECT N'Chevrolet', N'Express' UNION ALL
+SELECT N'Chevrolet', N'Geo Storm' UNION ALL
+SELECT N'Chevrolet', N'HHR' UNION ALL
+SELECT N'Chevrolet', N'Impala' UNION ALL
+SELECT N'Chevrolet', N'Kalos' UNION ALL
+SELECT N'Chevrolet', N'Lacetti' UNION ALL
+SELECT N'Chevrolet', N'Lanos' UNION ALL
+SELECT N'Chevrolet', N'Lumina' UNION ALL
+SELECT N'Chevrolet', N'Malibu' UNION ALL
+SELECT N'Chevrolet', N'Matiz' UNION ALL
+SELECT N'Chevrolet', N'Metro' UNION ALL
+SELECT N'Chevrolet', N'Monte Carlo' UNION ALL
+SELECT N'Chevrolet', N'Niva' UNION ALL
+SELECT N'Chevrolet', N'Nova' UNION ALL
+SELECT N'Chevrolet', N'Nubira' UNION ALL
+SELECT N'Chevrolet', N'Optra' UNION ALL
+SELECT N'Chevrolet', N'Orlando' UNION ALL
+SELECT N'Chevrolet', N'Prizm' UNION ALL
+SELECT N'Chevrolet', N'Rezzo' UNION ALL
+SELECT N'Chevrolet', N'Shevi-Van' UNION ALL
+SELECT N'Chevrolet', N'Silver' UNION ALL
+SELECT N'Chevrolet', N'Spark' UNION ALL
+SELECT N'Chevrolet', N'Spectrum' UNION ALL
+SELECT N'Chevrolet', N'Sprint' UNION ALL
+SELECT N'Chevrolet', N'Suburban' UNION ALL
+SELECT N'Chevrolet', N'Tahoe' UNION ALL
+SELECT N'Chevrolet', N'Tracker' UNION ALL
+SELECT N'Chevrolet', N'Trail Blazer' UNION ALL
+SELECT N'Chevrolet', N'Trans Sport' UNION ALL
+SELECT N'Chevrolet', N'Trax' UNION ALL
+SELECT N'Chevrolet', N'Uplander' UNION ALL
+SELECT N'Chevrolet', N'Van' UNION ALL
+SELECT N'Chevrolet', N'Venture' UNION ALL
+SELECT N'Chevrolet', N'Volt' UNION ALL
+SELECT N'Chevrolet', N'Yukon' UNION ALL
+SELECT N'Chevrolet', N'Zafira' UNION ALL
+SELECT N'Chrysler', N'200' UNION ALL
+SELECT N'Chrysler', N'300' UNION ALL
+SELECT N'Chrysler', N'Aspen' UNION ALL
+SELECT N'Chrysler', N'Caravan' UNION ALL
+SELECT N'Chrysler', N'Cirrus' UNION ALL
+SELECT N'Chrysler', N'Concorde' UNION ALL
+SELECT N'Chrysler', N'Crossfire' UNION ALL
+SELECT N'Chrysler', N'Daytona' UNION ALL
+SELECT N'Chrysler', N'Grand Voyager' UNION ALL
+SELECT N'Chrysler', N'GTS' UNION ALL
+SELECT N'Chrysler', N'Imperial' UNION ALL
+SELECT N'Chrysler', N'Intrepid' UNION ALL
+SELECT N'Chrysler', N'Le Baron' UNION ALL
+SELECT N'Chrysler', N'LHS' UNION ALL
+SELECT N'Chrysler', N'Neon' UNION ALL
+SELECT N'Chrysler', N'New Yorker' UNION ALL
+SELECT N'Chrysler', N'Pacifica' UNION ALL
+SELECT N'Chrysler', N'PT Cruiser' UNION ALL
+SELECT N'Chrysler', N'Saratoga' UNION ALL
+SELECT N'Chrysler', N'Sebring' UNION ALL
+SELECT N'Chrysler', N'Stratus' UNION ALL
+SELECT N'Chrysler', N'Town&Country' UNION ALL
+SELECT N'Chrysler', N'Viper' UNION ALL
+SELECT N'Chrysler', N'Vision' UNION ALL
+SELECT N'Chrysler', N'Voyager' UNION ALL
+SELECT N'Citroen', N'2 CV' UNION ALL
+SELECT N'Citroen', N'AX' UNION ALL
+SELECT N'Citroen', N'Berlingo' UNION ALL
+SELECT N'Citroen', N'BX' UNION ALL
+SELECT N'Citroen', N'C1' UNION ALL
+SELECT N'Citroen', N'C2' UNION ALL
+SELECT N'Citroen', N'C25' UNION ALL
+SELECT N'Citroen', N'C3 Picasso' UNION ALL
+SELECT N'Citroen', N'C3' UNION ALL
+SELECT N'Citroen', N'C4 AirCross' UNION ALL
+SELECT N'Citroen', N'C4 Grand Picasso' UNION ALL
+SELECT N'Citroen', N'C4 Picasso' UNION ALL
+SELECT N'Citroen', N'C4' UNION ALL
+SELECT N'Citroen', N'C5' UNION ALL
+SELECT N'Citroen', N'C6' UNION ALL
+SELECT N'Citroen', N'C8' UNION ALL
+SELECT N'Citroen', N'C-Crosser' UNION ALL
+SELECT N'Citroen', N'C-ELYS\u00c9E' UNION ALL
+SELECT N'Citroen', N'CX' UNION ALL
+SELECT N'Citroen', N'DS3' UNION ALL
+SELECT N'Citroen', N'DS4' UNION ALL
+SELECT N'Citroen', N'DS5' UNION ALL
+SELECT N'Citroen', N'Evasion' UNION ALL
+SELECT N'Citroen', N'GSA' UNION ALL
+SELECT N'Citroen', N'Jumper' UNION ALL
+SELECT N'Citroen', N'Jumpy' UNION ALL
+SELECT N'Citroen', N'Nemo' UNION ALL
+SELECT N'Citroen', N'Saxo' UNION ALL
+SELECT N'Citroen', N'SM' UNION ALL
+SELECT N'Citroen', N'Visa' UNION ALL
+SELECT N'Citroen', N'Xantia' UNION ALL
+SELECT N'Citroen', N'XM' UNION ALL
+SELECT N'Citroen', N'Xsara Picasso' UNION ALL
+SELECT N'Citroen', N'Xsara' UNION ALL
+SELECT N'Citroen', N'ZX' UNION ALL
+SELECT N'Dacia', N'1300' UNION ALL
+SELECT N'Dacia', N'1310' UNION ALL
+SELECT N'Dacia', N'Duster' UNION ALL
+SELECT N'Dacia', N'Lodgy' UNION ALL
+SELECT N'Dacia', N'Logan' UNION ALL
+SELECT N'Dacia', N'Pick Up' UNION ALL
+SELECT N'Dacia', N'Sandero' UNION ALL
+SELECT N'Daewoo', N'Espero' UNION ALL
+SELECT N'Daewoo', N'Evanda' UNION ALL
+SELECT N'Daewoo', N'Gentra' UNION ALL
+SELECT N'Daewoo', N'Kalos' UNION ALL
+SELECT N'Daewoo', N'Korando' UNION ALL
+SELECT N'Daewoo', N'Lacetti' UNION ALL
+SELECT N'Daewoo', N'Lanos' UNION ALL
+SELECT N'Daewoo', N'Leganza' UNION ALL
+SELECT N'Daewoo', N'Magnus' UNION ALL
+SELECT N'Daewoo', N'Matiz' UNION ALL
+SELECT N'Daewoo', N'Musso' UNION ALL
+SELECT N'Daewoo', N'Nexia' UNION ALL
+SELECT N'Daewoo', N'Nubira' UNION ALL
+SELECT N'Daewoo', N'Rezzo' UNION ALL
+SELECT N'Daewoo', N'Tacuma' UNION ALL
+SELECT N'Daewoo', N'Tico' UNION ALL
+SELECT N'DAF', N'200' UNION ALL
+SELECT N'DAF', N'400' UNION ALL
+SELECT N'DAF', N'46' UNION ALL
+SELECT N'DAF', N'66' UNION ALL
+SELECT N'Daihatsu', N'Applause' UNION ALL
+SELECT N'Daihatsu', N'Charade' UNION ALL
+SELECT N'Daihatsu', N'Charmant' UNION ALL
+SELECT N'Daihatsu', N'Copen' UNION ALL
+SELECT N'Daihatsu', N'Cuore' UNION ALL
+SELECT N'Daihatsu', N'Feroza/Sportrak' UNION ALL
+SELECT N'Daihatsu', N'Freeclimber' UNION ALL
+SELECT N'Daihatsu', N'Gran Move' UNION ALL
+SELECT N'Daihatsu', N'Hijet' UNION ALL
+SELECT N'Daihatsu', N'Materia' UNION ALL
+SELECT N'Daihatsu', N'Move' UNION ALL
+SELECT N'Daihatsu', N'Rocky/Fourtrak' UNION ALL
+SELECT N'Daihatsu', N'Sirion' UNION ALL
+SELECT N'Daihatsu', N'Terios' UNION ALL
+SELECT N'Daihatsu', N'Trevis' UNION ALL
+SELECT N'Daihatsu', N'YRV' UNION ALL
+SELECT N'Datsun', N'1000' UNION ALL
+SELECT N'Datsun', N'Bluebird 310' UNION ALL
+SELECT N'Datsun', N'Go' UNION ALL
+SELECT N'Datsun', N'Go+' UNION ALL
+SELECT N'Datsun', N'mi-DO' UNION ALL
+SELECT N'Datsun', N'on-DO' UNION ALL
+SELECT N'Datsun', N'Sunny B10' UNION ALL
+SELECT N'Derways', N'Antelope' UNION ALL
+SELECT N'Derways', N'Aurora' UNION ALL
+SELECT N'Derways', N'Cowboy' UNION ALL
+SELECT N'Derways', N'Land Crown' UNION ALL
+SELECT N'Derways', N'Plutus' UNION ALL
+SELECT N'Derways', N'Saladin' UNION ALL
+SELECT N'Derways', N'Shuttle' UNION ALL
+SELECT N'Dodge', N'1500' UNION ALL
+SELECT N'Dodge', N'2500' UNION ALL
+SELECT N'Dodge', N'3500' UNION ALL
+SELECT N'Dodge', N'Aspen' UNION ALL
+SELECT N'Dodge', N'Avenger' UNION ALL
+SELECT N'Dodge', N'Caliber' UNION ALL
+SELECT N'Dodge', N'Caravan' UNION ALL
+SELECT N'Dodge', N'Challenger' UNION ALL
+SELECT N'Dodge', N'Charger' UNION ALL
+SELECT N'Dodge', N'Colt' UNION ALL
+SELECT N'Dodge', N'D150' UNION ALL
+SELECT N'Dodge', N'D250' UNION ALL
+SELECT N'Dodge', N'D350' UNION ALL
+SELECT N'Dodge', N'Dakota' UNION ALL
+SELECT N'Dodge', N'Dart' UNION ALL
+SELECT N'Dodge', N'Daytona' UNION ALL
+SELECT N'Dodge', N'Durango Hybrid' UNION ALL
+SELECT N'Dodge', N'Durango' UNION ALL
+SELECT N'Dodge', N'Dynasty' UNION ALL
+SELECT N'Dodge', N'Grand Caravan' UNION ALL
+SELECT N'Dodge', N'Intrepid' UNION ALL
+SELECT N'Dodge', N'Journey' UNION ALL
+SELECT N'Dodge', N'Magnum' UNION ALL
+SELECT N'Dodge', N'Monaco' UNION ALL
+SELECT N'Dodge', N'Neon' UNION ALL
+SELECT N'Dodge', N'Nitro' UNION ALL
+SELECT N'Dodge', N'Omni' UNION ALL
+SELECT N'Dodge', N'Ram' UNION ALL
+SELECT N'Dodge', N'Roadtrek' UNION ALL
+SELECT N'Dodge', N'Shadow' UNION ALL
+SELECT N'Dodge', N'Spirit' UNION ALL
+SELECT N'Dodge', N'Stealth' UNION ALL
+SELECT N'Dodge', N'Stratus' UNION ALL
+SELECT N'Dodge', N'Van' UNION ALL
+SELECT N'Dodge', N'Viper' UNION ALL
+SELECT N'Dodge', N'W150' UNION ALL
+SELECT N'Dodge', N'W250' UNION ALL
+SELECT N'Dodge', N'W350' UNION ALL
+SELECT N'Dongfeng', N'H30' UNION ALL
+SELECT N'Dongfeng', N'S30' UNION ALL
+SELECT N'Eagle', N'Premier' UNION ALL
+SELECT N'FAW', N'6371' UNION ALL
+SELECT N'FAW', N'Besturn B' UNION ALL
+SELECT N'FAW', N'Jinn' UNION ALL
+SELECT N'FAW', N'Vela' UNION ALL
+SELECT N'FAW', N'Vita Sedan' UNION ALL
+SELECT N'FAW', N'Vita' UNION ALL
+SELECT N'FAW', N'Vizi V5' UNION ALL
+SELECT N'FAW', N'Xiali N5' UNION ALL
+SELECT N'Ferrari', N'150 GTO' UNION ALL
+SELECT N'Ferrari', N'250 GTO' UNION ALL
+SELECT N'Ferrari', N'328' UNION ALL
+SELECT N'Ferrari', N'330' UNION ALL
+SELECT N'Ferrari', N'360 Modena' UNION ALL
+SELECT N'Ferrari', N'365' UNION ALL
+SELECT N'Ferrari', N'456 GT/GTA' UNION ALL
+SELECT N'Ferrari', N'512 M' UNION ALL
+SELECT N'Ferrari', N'550 Maranello' UNION ALL
+SELECT N'Ferrari', N'575 Maranello' UNION ALL
+SELECT N'Ferrari', N'626' UNION ALL
+SELECT N'Ferrari', N'California' UNION ALL
+SELECT N'Ferrari', N'F355 Berlinetta' UNION ALL
+SELECT N'Ferrari', N'F40' UNION ALL
+SELECT N'Ferrari', N'F50' UNION ALL
+SELECT N'Ferrari', N'Mondial' UNION ALL
+SELECT N'Fiat', N'124' UNION ALL
+SELECT N'Fiat', N'125' UNION ALL
+SELECT N'Fiat', N'126' UNION ALL
+SELECT N'Fiat', N'127' UNION ALL
+SELECT N'Fiat', N'128' UNION ALL
+SELECT N'Fiat', N'130' UNION ALL
+SELECT N'Fiat', N'131' UNION ALL
+SELECT N'Fiat', N'238' UNION ALL
+SELECT N'Fiat', N'500' UNION ALL
+SELECT N'Fiat', N'Albea' UNION ALL
+SELECT N'Fiat', N'Argenta' UNION ALL
+SELECT N'Fiat', N'Barchetta' UNION ALL
+SELECT N'Fiat', N'Brava' UNION ALL
+SELECT N'Fiat', N'Bravo' UNION ALL
+SELECT N'Fiat', N'Cinquecento' UNION ALL
+SELECT N'Fiat', N'Coupe' UNION ALL
+SELECT N'Fiat', N'Croma' UNION ALL
+SELECT N'Fiat', N'Dino' UNION ALL
+SELECT N'Fiat', N'Doblo' UNION ALL
+SELECT N'Fiat', N'Ducato' UNION ALL
+SELECT N'Fiat', N'Fiorino' UNION ALL
+SELECT N'Fiat', N'Freemont' UNION ALL
+SELECT N'Fiat', N'Grande Punto' UNION ALL
+SELECT N'Fiat', N'Idea' UNION ALL
+SELECT N'Fiat', N'Lancia' UNION ALL
+SELECT N'Fiat', N'Linea' UNION ALL
+SELECT N'Fiat', N'Marea' UNION ALL
+SELECT N'Fiat', N'Marengo' UNION ALL
+SELECT N'Fiat', N'Multipla' UNION ALL
+SELECT N'Fiat', N'Palio' UNION ALL
+SELECT N'Fiat', N'Panda' UNION ALL
+SELECT N'Fiat', N'Punto' UNION ALL
+SELECT N'Fiat', N'Qubo' UNION ALL
+SELECT N'Fiat', N'Regata' UNION ALL
+SELECT N'Fiat', N'Ritmo' UNION ALL
+SELECT N'Fiat', N'Scudo' UNION ALL
+SELECT N'Fiat', N'Sedici' UNION ALL
+SELECT N'Fiat', N'Seicento' UNION ALL
+SELECT N'Fiat', N'Siena' UNION ALL
+SELECT N'Fiat', N'Spider Europa' UNION ALL
+SELECT N'Fiat', N'Stilo' UNION ALL
+SELECT N'Fiat', N'Strada' UNION ALL
+SELECT N'Fiat', N'Tempra' UNION ALL
+SELECT N'Fiat', N'Tipo' UNION ALL
+SELECT N'Fiat', N'Ulysse' UNION ALL
+SELECT N'Fiat', N'Uno' UNION ALL
+SELECT N'Fiat', N'X 1/9' UNION ALL
+SELECT N'Ford', N'Aerostar' UNION ALL
+SELECT N'Ford', N'B-Max' UNION ALL
+SELECT N'Ford', N'Bronco' UNION ALL
+SELECT N'Ford', N'Capri' UNION ALL
+SELECT N'Ford', N'C-Max' UNION ALL
+SELECT N'Ford', N'Contour' UNION ALL
+SELECT N'Ford', N'Cougar' UNION ALL
+SELECT N'Ford', N'Courier' UNION ALL
+SELECT N'Ford', N'Crown Victoria' UNION ALL
+SELECT N'Ford', N'Econoline' UNION ALL
+SELECT N'Ford', N'Econovan' UNION ALL
+SELECT N'Ford', N'EcoSport' UNION ALL
+SELECT N'Ford', N'Edge' UNION ALL
+SELECT N'Ford', N'Escape' UNION ALL
+SELECT N'Ford', N'Escort' UNION ALL
+SELECT N'Ford', N'Excursion' UNION ALL
+SELECT N'Ford', N'Expedition' UNION ALL
+SELECT N'Ford', N'Explorer' UNION ALL
+SELECT N'Ford', N'Express' UNION ALL
+SELECT N'Ford', N'F150' UNION ALL
+SELECT N'Ford', N'F250' UNION ALL
+SELECT N'Ford', N'F350' UNION ALL
+SELECT N'Ford', N'Fairlane' UNION ALL
+SELECT N'Ford', N'Fairmont' UNION ALL
+SELECT N'Ford', N'Falcon' UNION ALL
+SELECT N'Ford', N'Fiesta' UNION ALL
+SELECT N'Ford', N'Flex' UNION ALL
+SELECT N'Ford', N'Focus' UNION ALL
+SELECT N'Ford', N'Freestar' UNION ALL
+SELECT N'Ford', N'Freestyle' UNION ALL
+SELECT N'Ford', N'Fusion' UNION ALL
+SELECT N'Ford', N'Galaxy' UNION ALL
+SELECT N'Ford', N'Granada' UNION ALL
+SELECT N'Ford', N'Grand C-Max' UNION ALL
+SELECT N'Ford', N'GT' UNION ALL
+SELECT N'Ford', N'Ka' UNION ALL
+SELECT N'Ford', N'Kuga' UNION ALL
+SELECT N'Ford', N'Maverick' UNION ALL
+SELECT N'Ford', N'Mercury' UNION ALL
+SELECT N'Ford', N'Model 40A' UNION ALL
+SELECT N'Ford', N'Mondeo' UNION ALL
+SELECT N'Ford', N'Mustang' UNION ALL
+SELECT N'Ford', N'Orion' UNION ALL
+SELECT N'Ford', N'Probe' UNION ALL
+SELECT N'Ford', N'Puma' UNION ALL
+SELECT N'Ford', N'Ranger' UNION ALL
+SELECT N'Ford', N'Scorpio' UNION ALL
+SELECT N'Ford', N'Sierra' UNION ALL
+SELECT N'Ford', N'S-Max' UNION ALL
+SELECT N'Ford', N'Sportka' UNION ALL
+SELECT N'Ford', N'Streetka' UNION ALL
+SELECT N'Ford', N'Taunus' UNION ALL
+SELECT N'Ford', N'Taurus' UNION ALL
+SELECT N'Ford', N'Tempo' UNION ALL
+SELECT N'Ford', N'Thunderbird' UNION ALL
+SELECT N'Ford', N'Tourneo Custom' UNION ALL
+SELECT N'Ford', N'Tourneo' UNION ALL
+SELECT N'Ford', N'Transit' UNION ALL
+SELECT N'Ford', N'Windstar' UNION ALL
+SELECT N'Foton', N'Aumark' UNION ALL
+SELECT N'Foton', N'Forland' UNION ALL
+SELECT N'Foton', N'Ollin' UNION ALL
+SELECT N'Foton', N'Saga' UNION ALL
+SELECT N'Foton', N'Sup' UNION ALL
+SELECT N'Foton', N'View' UNION ALL
+SELECT N'FSO', N'Polonez' UNION ALL
+SELECT N'FSO', N'Warszawa' UNION ALL
+SELECT N'Geely', N'CK' UNION ALL
+SELECT N'Geely', N'EC7' UNION ALL
+SELECT N'Geely', N'Emgrand 7' UNION ALL
+SELECT N'Geely', N'Emgrand 8' UNION ALL
+SELECT N'Geely', N'Emgrand' UNION ALL
+SELECT N'Geely', N'EX7' UNION ALL
+SELECT N'Geely', N'FC' UNION ALL
+SELECT N'Geely', N'LC' UNION ALL
+SELECT N'Geely', N'MK' UNION ALL
+SELECT N'Geely', N'SC7' UNION ALL
+SELECT N'GMC', N'Acadia' UNION ALL
+SELECT N'GMC', N'Envoy' UNION ALL
+SELECT N'GMC', N'Jimmy' UNION ALL
+SELECT N'GMC', N'Safari' UNION ALL
+SELECT N'GMC', N'Savana' UNION ALL
+SELECT N'GMC', N'Sierra' UNION ALL
+SELECT N'GMC', N'Sonoma' UNION ALL
+SELECT N'GMC', N'Syclone' UNION ALL
+SELECT N'GMC', N'Terrain' UNION ALL
+SELECT N'GMC', N'Typhoon' UNION ALL
+SELECT N'GMC', N'Vandura' UNION ALL
+SELECT N'GMC', N'Yukon' UNION ALL
+SELECT N'Great Wall', N'Deer' UNION ALL
+SELECT N'Great Wall', N'Florid' UNION ALL
+SELECT N'Great Wall', N'H3' UNION ALL
+SELECT N'Great Wall', N'H5' UNION ALL
+SELECT N'Great Wall', N'H6' UNION ALL
+SELECT N'Great Wall', N'Hover' UNION ALL
+SELECT N'Great Wall', N'M4' UNION ALL
+SELECT N'Great Wall', N'Pegasus' UNION ALL
+SELECT N'Great Wall', N'Peri' UNION ALL
+SELECT N'Great Wall', N'Safe' UNION ALL
+SELECT N'Great Wall', N'Sing' UNION ALL
+SELECT N'Great Wall', N'Voleex C30' UNION ALL
+SELECT N'Great Wall', N'Wingle' UNION ALL
+SELECT N'Hafei', N'Brio' UNION ALL
+SELECT N'Hafei', N'Lobo' UNION ALL
+SELECT N'Hafei', N'Minyi' UNION ALL
+SELECT N'Hafei', N'Princip' UNION ALL
+SELECT N'Hafei', N'Simbo' UNION ALL
+SELECT N'Haima', N'1' UNION ALL
+SELECT N'Haima', N'2' UNION ALL
+SELECT N'Haima', N'3' UNION ALL
+SELECT N'Haima', N'7' UNION ALL
+SELECT N'Haima', N'Family' UNION ALL
+SELECT N'Haima', N'Freema' UNION ALL
+SELECT N'Haima', N'Fstar' UNION ALL
+SELECT N'Haima', N'Happin' UNION ALL
+SELECT N'Haima', N'M3' UNION ALL
+SELECT N'Haima', N'M5' UNION ALL
+SELECT N'Haima', N'M8' UNION ALL
+SELECT N'Haima', N'S5' UNION ALL
+SELECT N'Haima', N'S7' UNION ALL
+SELECT N'Honda', N'Accord' UNION ALL
+SELECT N'Honda', N'Aerodeck' UNION ALL
+SELECT N'Honda', N'City' UNION ALL
+SELECT N'Honda', N'Civic' UNION ALL
+SELECT N'Honda', N'Concerto' UNION ALL
+SELECT N'Honda', N'Crosstour' UNION ALL
+SELECT N'Honda', N'CR-V' UNION ALL
+SELECT N'Honda', N'CRX' UNION ALL
+SELECT N'Honda', N'CR-Z' UNION ALL
+SELECT N'Honda', N'Element' UNION ALL
+SELECT N'Honda', N'Fit' UNION ALL
+SELECT N'Honda', N'FR-V' UNION ALL
+SELECT N'Honda', N'HR-V' UNION ALL
+SELECT N'Honda', N'Insight' UNION ALL
+SELECT N'Honda', N'Integra' UNION ALL
+SELECT N'Honda', N'Jazz' UNION ALL
+SELECT N'Honda', N'Legend' UNION ALL
+SELECT N'Honda', N'Logo' UNION ALL
+SELECT N'Honda', N'NSX' UNION ALL
+SELECT N'Honda', N'Odyssey' UNION ALL
+SELECT N'Honda', N'Passport' UNION ALL
+SELECT N'Honda', N'Pilot' UNION ALL
+SELECT N'Honda', N'Prelude' UNION ALL
+SELECT N'Honda', N'Ridgeline' UNION ALL
+SELECT N'Honda', N'S1000' UNION ALL
+SELECT N'Honda', N'S2000' UNION ALL
+SELECT N'Honda', N'Shuttle' UNION ALL
+SELECT N'Honda', N'Stream' UNION ALL
+SELECT N'Honda', N'Vigor' UNION ALL
+SELECT N'Hummer', N'H1' UNION ALL
+SELECT N'Hummer', N'H2' UNION ALL
+SELECT N'Hummer', N'H3' UNION ALL
+SELECT N'Hyundai', N'Accent' UNION ALL
+SELECT N'Hyundai', N'Atos' UNION ALL
+SELECT N'Hyundai', N'Avante' UNION ALL
+SELECT N'Hyundai', N'Azera' UNION ALL
+SELECT N'Hyundai', N'Coupe' UNION ALL
+SELECT N'Hyundai', N'Elantra' UNION ALL
+SELECT N'Hyundai', N'Equus' UNION ALL
+SELECT N'Hyundai', N'Excel' UNION ALL
+SELECT N'Hyundai', N'Galloper' UNION ALL
+SELECT N'Hyundai', N'Genesis' UNION ALL
+SELECT N'Hyundai', N'Getz' UNION ALL
+SELECT N'Hyundai', N'Grand Starex' UNION ALL
+SELECT N'Hyundai', N'Grandeur' UNION ALL
+SELECT N'Hyundai', N'H 100' UNION ALL
+SELECT N'Hyundai', N'H 200' UNION ALL
+SELECT N'Hyundai', N'H-1' UNION ALL
+SELECT N'Hyundai', N'i10' UNION ALL
+SELECT N'Hyundai', N'i20' UNION ALL
+SELECT N'Hyundai', N'i30' UNION ALL
+SELECT N'Hyundai', N'i40' UNION ALL
+SELECT N'Hyundai', N'i50' UNION ALL
+SELECT N'Hyundai', N'ix20' UNION ALL
+SELECT N'Hyundai', N'ix35' UNION ALL
+SELECT N'Hyundai', N'ix55' UNION ALL
+SELECT N'Hyundai', N'Lantra' UNION ALL
+SELECT N'Hyundai', N'Matrix' UNION ALL
+SELECT N'Hyundai', N'Maxcruz' UNION ALL
+SELECT N'Hyundai', N'Pony' UNION ALL
+SELECT N'Hyundai', N'Porter' UNION ALL
+SELECT N'Hyundai', N'Santa Fe' UNION ALL
+SELECT N'Hyundai', N'Santamo' UNION ALL
+SELECT N'Hyundai', N'S-Coupe' UNION ALL
+SELECT N'Hyundai', N'Solaris' UNION ALL
+SELECT N'Hyundai', N'Sonata' UNION ALL
+SELECT N'Hyundai', N'Starex' UNION ALL
+SELECT N'Hyundai', N'Terracan' UNION ALL
+SELECT N'Hyundai', N'Tiburon' UNION ALL
+SELECT N'Hyundai', N'Trajet' UNION ALL
+SELECT N'Hyundai', N'Tucson' UNION ALL
+SELECT N'Hyundai', N'Veloster' UNION ALL
+SELECT N'Hyundai', N'Veracruz' UNION ALL
+SELECT N'Hyundai', N'XG 25' UNION ALL
+SELECT N'Hyundai', N'XG 30' UNION ALL
+SELECT N'Hyundai', N'XG 350' UNION ALL
+SELECT N'Infiniti', N'EX' UNION ALL
+SELECT N'Infiniti', N'FX' UNION ALL
+SELECT N'Infiniti', N'G' UNION ALL
+SELECT N'Infiniti', N'JX' UNION ALL
+SELECT N'Infiniti', N'M' UNION ALL
+SELECT N'Infiniti', N'Q' UNION ALL
+SELECT N'Infiniti', N'QX' UNION ALL
+SELECT N'Intrall', N'Lublin' UNION ALL
+SELECT N'Iran Khordo', N'Samand' UNION ALL
+SELECT N'Isuzu', N'Amigo' UNION ALL
+SELECT N'Isuzu', N'Aska' UNION ALL
+SELECT N'Isuzu', N'Axiom' UNION ALL
+SELECT N'Isuzu', N'Campo' UNION ALL
+SELECT N'Isuzu', N'D-Max' UNION ALL
+SELECT N'Isuzu', N'Gemini' UNION ALL
+SELECT N'Isuzu', N'Midi' UNION ALL
+SELECT N'Isuzu', N'Pick Up' UNION ALL
+SELECT N'Isuzu', N'Rodeo' UNION ALL
+SELECT N'Isuzu', N'Stylus' UNION ALL
+SELECT N'Isuzu', N'Trooper' UNION ALL
+SELECT N'Isuzu', N'Vehiсross' UNION ALL
+SELECT N'Iveco', N'Daily' UNION ALL
+SELECT N'JAC', N'HFC' UNION ALL
+SELECT N'JAC', N'HK' UNION ALL
+SELECT N'JAC', N'J2' UNION ALL
+SELECT N'JAC', N'MPV' UNION ALL
+SELECT N'JAC', N'Refine' UNION ALL
+SELECT N'JAC', N'Rein' UNION ALL
+SELECT N'JAC', N'S5' UNION ALL
+SELECT N'JAC', N'SRV' UNION ALL
+SELECT N'JAC', N'Tojoy' UNION ALL
+SELECT N'Jaguar', N'Daimler' UNION ALL
+SELECT N'Jaguar', N'E-Type' UNION ALL
+SELECT N'Jaguar', N'F-Type' UNION ALL
+SELECT N'Jaguar', N'MK II' UNION ALL
+SELECT N'Jaguar', N'S-Type' UNION ALL
+SELECT N'Jaguar', N'XF' UNION ALL
+SELECT N'Jaguar', N'XJ' UNION ALL
+SELECT N'Jaguar', N'XK' UNION ALL
+SELECT N'Jaguar', N'XKR' UNION ALL
+SELECT N'Jaguar', N'X-Type' UNION ALL
+SELECT N'Jeep', N'Cherokee' UNION ALL
+SELECT N'Jeep', N'CJ' UNION ALL
+SELECT N'Jeep', N'Comanche' UNION ALL
+SELECT N'Jeep', N'Commander' UNION ALL
+SELECT N'Jeep', N'Compass' UNION ALL
+SELECT N'Jeep', N'Grand Cherokee' UNION ALL
+SELECT N'Jeep', N'Patriot' UNION ALL
+SELECT N'Jeep', N'Renegade' UNION ALL
+SELECT N'Jeep', N'Wagoneer' UNION ALL
+SELECT N'Jeep', N'Willys' UNION ALL
+SELECT N'Jeep', N'Wrangler' UNION ALL
+SELECT N'Jiangling', N'Landwind' UNION ALL
+SELECT N'Kia', N'Avella' UNION ALL
+SELECT N'Kia', N'Besta' UNION ALL
+SELECT N'Kia', N'Cadenza' UNION ALL
+SELECT N'Kia', N'Capital' UNION ALL
+SELECT N'Kia', N'Carens' UNION ALL
+SELECT N'Kia', N'Carnival' UNION ALL
+SELECT N'Kia', N'Cee''d' UNION ALL
+SELECT N'Kia', N'Cerato' UNION ALL
+SELECT N'Kia', N'Clarus' UNION ALL
+SELECT N'Kia', N'Elan' UNION ALL
+SELECT N'Kia', N'Forte' UNION ALL
+SELECT N'Kia', N'Joice' UNION ALL
+SELECT N'Kia', N'K2500' UNION ALL
+SELECT N'Kia', N'K2700' UNION ALL
+SELECT N'Kia', N'K3' UNION ALL
+SELECT N'Kia', N'K5' UNION ALL
+SELECT N'Kia', N'K7' UNION ALL
+SELECT N'Kia', N'K9' UNION ALL
+SELECT N'Kia', N'Leo' UNION ALL
+SELECT N'Kia', N'Magentis' UNION ALL
+SELECT N'Kia', N'Mentor' UNION ALL
+SELECT N'Kia', N'Mini' UNION ALL
+SELECT N'Kia', N'Mohave' UNION ALL
+SELECT N'Kia', N'Opirus' UNION ALL
+SELECT N'Kia', N'Optima' UNION ALL
+SELECT N'Kia', N'Picanto' UNION ALL
+SELECT N'Kia', N'Pregio' UNION ALL
+SELECT N'Kia', N'Pride' UNION ALL
+SELECT N'Kia', N'Pro Cee''d' UNION ALL
+SELECT N'Kia', N'Retona' UNION ALL
+SELECT N'Kia', N'Rio' UNION ALL
+SELECT N'Kia', N'Roadster' UNION ALL
+SELECT N'Kia', N'Rocsta' UNION ALL
+SELECT N'Kia', N'Sephia' UNION ALL
+SELECT N'Kia', N'Shuma' UNION ALL
+SELECT N'Kia', N'Sorento' UNION ALL
+SELECT N'Kia', N'Soul' UNION ALL
+SELECT N'Kia', N'Spectra' UNION ALL
+SELECT N'Kia', N'Sportage' UNION ALL
+SELECT N'Kia', N'Vegna' UNION ALL
+SELECT N'Kia', N'Venga' UNION ALL
+SELECT N'Kia', N'X-Trek' UNION ALL
+SELECT N'Lamborghini', N'Aventador' UNION ALL
+SELECT N'Lamborghini', N'Countach' UNION ALL
+SELECT N'Lamborghini', N'Diablo' UNION ALL
+SELECT N'Lamborghini', N'Gallardo' UNION ALL
+SELECT N'Lamborghini', N'Murcielago' UNION ALL
+SELECT N'Lamborghini', N'Reventon' UNION ALL
+SELECT N'Lancia', N'Beta' UNION ALL
+SELECT N'Lancia', N'Dedra' UNION ALL
+SELECT N'Lancia', N'Delta' UNION ALL
+SELECT N'Lancia', N'Flaminia' UNION ALL
+SELECT N'Lancia', N'Fulvia' UNION ALL
+SELECT N'Lancia', N'Gamma' UNION ALL
+SELECT N'Lancia', N'Kappa' UNION ALL
+SELECT N'Lancia', N'Lybra' UNION ALL
+SELECT N'Lancia', N'Musa' UNION ALL
+SELECT N'Lancia', N'Phedra' UNION ALL
+SELECT N'Lancia', N'Prisma' UNION ALL
+SELECT N'Lancia', N'Stratos' UNION ALL
+SELECT N'Lancia', N'Thema' UNION ALL
+SELECT N'Lancia', N'Thesis' UNION ALL
+SELECT N'Lancia', N'Ypsilon' UNION ALL
+SELECT N'Lancia', N'Zeta' UNION ALL
+SELECT N'Land Rover', N'Defender' UNION ALL
+SELECT N'Land Rover', N'Discovery' UNION ALL
+SELECT N'Land Rover', N'Freelander' UNION ALL
+SELECT N'Land Rover', N'Range Rover Evoque' UNION ALL
+SELECT N'Land Rover', N'Range Rover Sport' UNION ALL
+SELECT N'Land Rover', N'Range Rover' UNION ALL
+SELECT N'LDV', N'Convoy' UNION ALL
+SELECT N'LDV', N'Maxus' UNION ALL
+SELECT N'LDV', N'Pilot' UNION ALL
+SELECT N'Lexus', N'CT' UNION ALL
+SELECT N'Lexus', N'ES' UNION ALL
+SELECT N'Lexus', N'GS' UNION ALL
+SELECT N'Lexus', N'GX' UNION ALL
+SELECT N'Lexus', N'HS' UNION ALL
+SELECT N'Lexus', N'IS' UNION ALL
+SELECT N'Lexus', N'LS' UNION ALL
+SELECT N'Lexus', N'LX' UNION ALL
+SELECT N'Lexus', N'NX' UNION ALL
+SELECT N'Lexus', N'RX' UNION ALL
+SELECT N'Lexus', N'SC' UNION ALL
+SELECT N'Lifan', N'320' UNION ALL
+SELECT N'Lifan', N'520' UNION ALL
+SELECT N'Lifan', N'620' UNION ALL
+SELECT N'Lifan', N'Breez' UNION ALL
+SELECT N'Lifan', N'Cebrium' UNION ALL
+SELECT N'Lifan', N'Celliya' UNION ALL
+SELECT N'Lifan', N'Smily' UNION ALL
+SELECT N'Lifan', N'Solano' UNION ALL
+SELECT N'Lifan', N'X60' UNION ALL
+SELECT N'Lincoln', N'Aviator' UNION ALL
+SELECT N'Lincoln', N'Blackwood' UNION ALL
+SELECT N'Lincoln', N'Continental' UNION ALL
+SELECT N'Lincoln', N'LS' UNION ALL
+SELECT N'Lincoln', N'Mark LT' UNION ALL
+SELECT N'Lincoln', N'Mark VII' UNION ALL
+SELECT N'Lincoln', N'Mark VIII' UNION ALL
+SELECT N'Lincoln', N'MKS' UNION ALL
+SELECT N'Lincoln', N'MKT' UNION ALL
+SELECT N'Lincoln', N'MKX' UNION ALL
+SELECT N'Lincoln', N'MKZ' UNION ALL
+SELECT N'Lincoln', N'Navigator' UNION ALL
+SELECT N'Lincoln', N'Town Car' UNION ALL
+SELECT N'Lincoln', N'Zephir' UNION ALL
+SELECT N'Maserati', N'228' UNION ALL
+SELECT N'Maserati', N'3200GT' UNION ALL
+SELECT N'Maserati', N'Coupe Cambiocorsa' UNION ALL
+SELECT N'Maserati', N'Ghibli' UNION ALL
+SELECT N'Maserati', N'GranTurismo' UNION ALL
+SELECT N'Maserati', N'M138 Spyder' UNION ALL
+SELECT N'Maserati', N'Quattroporte' UNION ALL
+SELECT N'Maybach', N'57' UNION ALL
+SELECT N'Maybach', N'62' UNION ALL
+SELECT N'Mazda', N'121' UNION ALL
+SELECT N'Mazda', N'2' UNION ALL
+SELECT N'Mazda', N'3' UNION ALL
+SELECT N'Mazda', N'323' UNION ALL
+SELECT N'Mazda', N'5' UNION ALL
+SELECT N'Mazda', N'6' UNION ALL
+SELECT N'Mazda', N'626' UNION ALL
+SELECT N'Mazda', N'929' UNION ALL
+SELECT N'Mazda', N'B1800' UNION ALL
+SELECT N'Mazda', N'B2000' UNION ALL
+SELECT N'Mazda', N'B2200' UNION ALL
+SELECT N'Mazda', N'B2500' UNION ALL
+SELECT N'Mazda', N'B2600' UNION ALL
+SELECT N'Mazda', N'B3000' UNION ALL
+SELECT N'Mazda', N'B3400' UNION ALL
+SELECT N'Mazda', N'BT-50' UNION ALL
+SELECT N'Mazda', N'Capella' UNION ALL
+SELECT N'Mazda', N'CX-5' UNION ALL
+SELECT N'Mazda', N'CX-7' UNION ALL
+SELECT N'Mazda', N'CX-9' UNION ALL
+SELECT N'Mazda', N'Demio' UNION ALL
+SELECT N'Mazda', N'E2200' UNION ALL
+SELECT N'Mazda', N'Luce' UNION ALL
+SELECT N'Mazda', N'Millenia' UNION ALL
+SELECT N'Mazda', N'MPV' UNION ALL
+SELECT N'Mazda', N'MX-3' UNION ALL
+SELECT N'Mazda', N'MX-5' UNION ALL
+SELECT N'Mazda', N'MX-6' UNION ALL
+SELECT N'Mazda', N'Navajo' UNION ALL
+SELECT N'Mazda', N'Premacy' UNION ALL
+SELECT N'Mazda', N'Protege' UNION ALL
+SELECT N'Mazda', N'RX-7' UNION ALL
+SELECT N'Mazda', N'RX-8' UNION ALL
+SELECT N'Mazda', N'Tribute' UNION ALL
+SELECT N'Mazda', N'Xedos 6' UNION ALL
+SELECT N'Mazda', N'Xedos 9' UNION ALL
+SELECT N'MCC Smart', N'City Coupe' UNION ALL
+SELECT N'MCC Smart', N'Crossblade' UNION ALL
+SELECT N'MCC Smart', N'Forfour' UNION ALL
+SELECT N'MCC Smart', N'Fortwo' UNION ALL
+SELECT N'MCC Smart', N'Roadster' UNION ALL
+SELECT N'Mercedes', N'190' UNION ALL
+SELECT N'Mercedes', N'A-Class' UNION ALL
+SELECT N'Mercedes', N'B-Class' UNION ALL
+SELECT N'Mercedes', N'C-Class' UNION ALL
+SELECT N'Mercedes', N'CL-Class' UNION ALL
+SELECT N'Mercedes', N'CLA-Class' UNION ALL
+SELECT N'Mercedes', N'CLC-Class' UNION ALL
+SELECT N'Mercedes', N'CLK-Class' UNION ALL
+SELECT N'Mercedes', N'CLS-Class' UNION ALL
+SELECT N'Mercedes', N'E-Class' UNION ALL
+SELECT N'Mercedes', N'G-Class' UNION ALL
+SELECT N'Mercedes', N'GL-Class' UNION ALL
+SELECT N'Mercedes', N'GLA-Class' UNION ALL
+SELECT N'Mercedes', N'GLC-Class' UNION ALL
+SELECT N'Mercedes', N'GLK-Class' UNION ALL
+SELECT N'Mercedes', N'MB100' UNION ALL
+SELECT N'Mercedes', N'ML-Class' UNION ALL
+SELECT N'Mercedes', N'R-Class' UNION ALL
+SELECT N'Mercedes', N'S-Class' UNION ALL
+SELECT N'Mercedes', N'SL-Class' UNION ALL
+SELECT N'Mercedes', N'SLK-Class' UNION ALL
+SELECT N'Mercedes', N'SLR-Class' UNION ALL
+SELECT N'Mercedes', N'SLS-Class' UNION ALL
+SELECT N'Mercedes', N'Sprinter' UNION ALL
+SELECT N'Mercedes', N'T1' UNION ALL
+SELECT N'Mercedes', N'T2' UNION ALL
+SELECT N'Mercedes', N'V-Class' UNION ALL
+SELECT N'Mercedes', N'Vaneo' UNION ALL
+SELECT N'Mercedes', N'Vario' UNION ALL
+SELECT N'Mercedes', N'Viano' UNION ALL
+SELECT N'Mercedes', N'Vito' UNION ALL
+SELECT N'Mercury', N'Capri' UNION ALL
+SELECT N'Mercury', N'Colony Park' UNION ALL
+SELECT N'Mercury', N'Cougar' UNION ALL
+SELECT N'Mercury', N'Grand Marquis' UNION ALL
+SELECT N'Mercury', N'Marauder' UNION ALL
+SELECT N'Mercury', N'Mariner' UNION ALL
+SELECT N'Mercury', N'Milan' UNION ALL
+SELECT N'Mercury', N'Montego' UNION ALL
+SELECT N'Mercury', N'Monterey' UNION ALL
+SELECT N'Mercury', N'Mountaineer' UNION ALL
+SELECT N'Mercury', N'Mystique' UNION ALL
+SELECT N'Mercury', N'Sable' UNION ALL
+SELECT N'Mercury', N'Topaz' UNION ALL
+SELECT N'Mercury', N'Tracer' UNION ALL
+SELECT N'Mercury', N'Villager' UNION ALL
+SELECT N'MG', N'3' UNION ALL
+SELECT N'MG', N'350' UNION ALL
+SELECT N'MG', N'5' UNION ALL
+SELECT N'MG', N'550' UNION ALL
+SELECT N'MG', N'6' UNION ALL
+SELECT N'MG', N'750' UNION ALL
+SELECT N'MG', N'950' UNION ALL
+SELECT N'MG', N'ZR' UNION ALL
+SELECT N'MG', N'ZS' UNION ALL
+SELECT N'MG', N'ZT' UNION ALL
+SELECT N'Mini', N'1000' UNION ALL
+SELECT N'Mini', N'1300' UNION ALL
+SELECT N'Mini', N'Clubman' UNION ALL
+SELECT N'Mini', N'Cooper' UNION ALL
+SELECT N'Mini', N'Countryman' UNION ALL
+SELECT N'Mini', N'John Cooper Works' UNION ALL
+SELECT N'Mini', N'One' UNION ALL
+SELECT N'Mitsubishi', N'3000GT' UNION ALL
+SELECT N'Mitsubishi', N'ASX' UNION ALL
+SELECT N'Mitsubishi', N'Carisma' UNION ALL
+SELECT N'Mitsubishi', N'Colt' UNION ALL
+SELECT N'Mitsubishi', N'Delica' UNION ALL
+SELECT N'Mitsubishi', N'Diamante' UNION ALL
+SELECT N'Mitsubishi', N'Eclipse' UNION ALL
+SELECT N'Mitsubishi', N'Endeavor' UNION ALL
+SELECT N'Mitsubishi', N'Galant' UNION ALL
+SELECT N'Mitsubishi', N'Grandis' UNION ALL
+SELECT N'Mitsubishi', N'i-MiEV' UNION ALL
+SELECT N'Mitsubishi', N'L200' UNION ALL
+SELECT N'Mitsubishi', N'L300' UNION ALL
+SELECT N'Mitsubishi', N'L400' UNION ALL
+SELECT N'Mitsubishi', N'Lancer Evolution' UNION ALL
+SELECT N'Mitsubishi', N'Lancer' UNION ALL
+SELECT N'Mitsubishi', N'Mirage' UNION ALL
+SELECT N'Mitsubishi', N'Montero' UNION ALL
+SELECT N'Mitsubishi', N'Outlander' UNION ALL
+SELECT N'Mitsubishi', N'Pajero Sport' UNION ALL
+SELECT N'Mitsubishi', N'Pajero' UNION ALL
+SELECT N'Mitsubishi', N'Raider' UNION ALL
+SELECT N'Mitsubishi', N'RVR' UNION ALL
+SELECT N'Mitsubishi', N'Sigma' UNION ALL
+SELECT N'Mitsubishi', N'Space Gear' UNION ALL
+SELECT N'Mitsubishi', N'Space Runner' UNION ALL
+SELECT N'Mitsubishi', N'Space Star' UNION ALL
+SELECT N'Mitsubishi', N'Space Wagon' UNION ALL
+SELECT N'Mudan', N'MD' UNION ALL
+SELECT N'Nissan', N'100NX' UNION ALL
+SELECT N'Nissan', N'200SX' UNION ALL
+SELECT N'Nissan', N'240SX' UNION ALL
+SELECT N'Nissan', N'300ZX' UNION ALL
+SELECT N'Nissan', N'350Z' UNION ALL
+SELECT N'Nissan', N'Almera Tino' UNION ALL
+SELECT N'Nissan', N'Almera' UNION ALL
+SELECT N'Nissan', N'Altima' UNION ALL
+SELECT N'Nissan', N'Armada' UNION ALL
+SELECT N'Nissan', N'Bluebird' UNION ALL
+SELECT N'Nissan', N'Cabstar' UNION ALL
+SELECT N'Nissan', N'Cedric' UNION ALL
+SELECT N'Nissan', N'Cefiro' UNION ALL
+SELECT N'Nissan', N'Cherry' UNION ALL
+SELECT N'Nissan', N'Cube' UNION ALL
+SELECT N'Nissan', N'Frontier' UNION ALL
+SELECT N'Nissan', N'GT-R' UNION ALL
+SELECT N'Nissan', N'Interstar' UNION ALL
+SELECT N'Nissan', N'Juke' UNION ALL
+SELECT N'Nissan', N'L50' UNION ALL
+SELECT N'Nissan', N'Laurel' UNION ALL
+SELECT N'Nissan', N'Leaf' UNION ALL
+SELECT N'Nissan', N'Liberta Villa' UNION ALL
+SELECT N'Nissan', N'Maxima' UNION ALL
+SELECT N'Nissan', N'Micra' UNION ALL
+SELECT N'Nissan', N'Murano' UNION ALL
+SELECT N'Nissan', N'Navara' UNION ALL
+SELECT N'Nissan', N'Note' UNION ALL
+SELECT N'Nissan', N'NP300 PICK UP' UNION ALL
+SELECT N'Nissan', N'NV200' UNION ALL
+SELECT N'Nissan', N'Pathfinder' UNION ALL
+SELECT N'Nissan', N'Patrol' UNION ALL
+SELECT N'Nissan', N'Pixo' UNION ALL
+SELECT N'Nissan', N'Prairie' UNION ALL
+SELECT N'Nissan', N'Primastar' UNION ALL
+SELECT N'Nissan', N'Primera' UNION ALL
+SELECT N'Nissan', N'Qashqai' UNION ALL
+SELECT N'Nissan', N'Qashqai+2' UNION ALL
+SELECT N'Nissan', N'Quest' UNION ALL
+SELECT N'Nissan', N'Rogue' UNION ALL
+SELECT N'Nissan', N'Sentra' UNION ALL
+SELECT N'Nissan', N'Serena' UNION ALL
+SELECT N'Nissan', N'Silvia' UNION ALL
+SELECT N'Nissan', N'Skyline GT-R' UNION ALL
+SELECT N'Nissan', N'Skyline' UNION ALL
+SELECT N'Nissan', N'Stanza' UNION ALL
+SELECT N'Nissan', N'Sunny' UNION ALL
+SELECT N'Nissan', N'Teana' UNION ALL
+SELECT N'Nissan', N'Terrano' UNION ALL
+SELECT N'Nissan', N'Tiida' UNION ALL
+SELECT N'Nissan', N'Tino' UNION ALL
+SELECT N'Nissan', N'Titan' UNION ALL
+SELECT N'Nissan', N'Trade' UNION ALL
+SELECT N'Nissan', N'Urvan' UNION ALL
+SELECT N'Nissan', N'Vanette' UNION ALL
+SELECT N'Nissan', N'Versa' UNION ALL
+SELECT N'Nissan', N'Xterra' UNION ALL
+SELECT N'Nissan', N'X-Trail' UNION ALL
+SELECT N'Nysa', N'501' UNION ALL
+SELECT N'Nysa', N'521' UNION ALL
+SELECT N'Nysa', N'522' UNION ALL
+SELECT N'Oldsmobile', N'Aurora' UNION ALL
+SELECT N'Oldsmobile', N'Bravada' UNION ALL
+SELECT N'Oldsmobile', N'Custom Cruiser' UNION ALL
+SELECT N'Oldsmobile', N'Cutlass' UNION ALL
+SELECT N'Oldsmobile', N'Delta 88' UNION ALL
+SELECT N'Oldsmobile', N'Firenza' UNION ALL
+SELECT N'Oldsmobile', N'Silhouette' UNION ALL
+SELECT N'Oldsmobile', N'Supreme' UNION ALL
+SELECT N'Oldsmobile', N'Toronado' UNION ALL
+SELECT N'Oltcit', N'Club' UNION ALL
+SELECT N'Oltcit', N'Special' UNION ALL
+SELECT N'Opel', N'Adam' UNION ALL
+SELECT N'Opel', N'Agila' UNION ALL
+SELECT N'Opel', N'Ampera' UNION ALL
+SELECT N'Opel', N'Antara' UNION ALL
+SELECT N'Opel', N'Arena' UNION ALL
+SELECT N'Opel', N'Ascona' UNION ALL
+SELECT N'Opel', N'Astra' UNION ALL
+SELECT N'Opel', N'Calibra' UNION ALL
+SELECT N'Opel', N'Campo' UNION ALL
+SELECT N'Opel', N'Cascada' UNION ALL
+SELECT N'Opel', N'Cavalier' UNION ALL
+SELECT N'Opel', N'Combo' UNION ALL
+SELECT N'Opel', N'Commodore' UNION ALL
+SELECT N'Opel', N'Corsa' UNION ALL
+SELECT N'Opel', N'Diplomat' UNION ALL
+SELECT N'Opel', N'Frontera' UNION ALL
+SELECT N'Opel', N'GT' UNION ALL
+SELECT N'Opel', N'Insignia' UNION ALL
+SELECT N'Opel', N'Kadett' UNION ALL
+SELECT N'Opel', N'Kapitan' UNION ALL
+SELECT N'Opel', N'Manta' UNION ALL
+SELECT N'Opel', N'Meriva' UNION ALL
+SELECT N'Opel', N'Mokka' UNION ALL
+SELECT N'Opel', N'Monterey' UNION ALL
+SELECT N'Opel', N'Monza' UNION ALL
+SELECT N'Opel', N'Movano' UNION ALL
+SELECT N'Opel', N'Nova' UNION ALL
+SELECT N'Opel', N'Olympia' UNION ALL
+SELECT N'Opel', N'Omega' UNION ALL
+SELECT N'Opel', N'Pick Up' UNION ALL
+SELECT N'Opel', N'Rekord' UNION ALL
+SELECT N'Opel', N'Senator' UNION ALL
+SELECT N'Opel', N'Signum' UNION ALL
+SELECT N'Opel', N'Sintra' UNION ALL
+SELECT N'Opel', N'Speedster' UNION ALL
+SELECT N'Opel', N'Tigra' UNION ALL
+SELECT N'Opel', N'Vectra' UNION ALL
+SELECT N'Opel', N'Vivaro' UNION ALL
+SELECT N'Opel', N'Zafira' UNION ALL
+SELECT N'Peugeot', N'1007' UNION ALL
+SELECT N'Peugeot', N'104' UNION ALL
+SELECT N'Peugeot', N'106' UNION ALL
+SELECT N'Peugeot', N'107' UNION ALL
+SELECT N'Peugeot', N'204' UNION ALL
+SELECT N'Peugeot', N'205' UNION ALL
+SELECT N'Peugeot', N'206' UNION ALL
+SELECT N'Peugeot', N'207' UNION ALL
+SELECT N'Peugeot', N'208' UNION ALL
+SELECT N'Peugeot', N'3008' UNION ALL
+SELECT N'Peugeot', N'301' UNION ALL
+SELECT N'Peugeot', N'304' UNION ALL
+SELECT N'Peugeot', N'305' UNION ALL
+SELECT N'Peugeot', N'306' UNION ALL
+SELECT N'Peugeot', N'307' UNION ALL
+SELECT N'Peugeot', N'308' UNION ALL
+SELECT N'Peugeot', N'309' UNION ALL
+SELECT N'Peugeot', N'4007' UNION ALL
+SELECT N'Peugeot', N'4008' UNION ALL
+SELECT N'Peugeot', N'404' UNION ALL
+SELECT N'Peugeot', N'405' UNION ALL
+SELECT N'Peugeot', N'406' UNION ALL
+SELECT N'Peugeot', N'407' UNION ALL
+SELECT N'Peugeot', N'408' UNION ALL
+SELECT N'Peugeot', N'5008' UNION ALL
+SELECT N'Peugeot', N'504' UNION ALL
+SELECT N'Peugeot', N'505' UNION ALL
+SELECT N'Peugeot', N'508' UNION ALL
+SELECT N'Peugeot', N'604' UNION ALL
+SELECT N'Peugeot', N'605' UNION ALL
+SELECT N'Peugeot', N'607' UNION ALL
+SELECT N'Peugeot', N'805' UNION ALL
+SELECT N'Peugeot', N'806' UNION ALL
+SELECT N'Peugeot', N'807' UNION ALL
+SELECT N'Peugeot', N'Bipper Tepee' UNION ALL
+SELECT N'Peugeot', N'Bipper' UNION ALL
+SELECT N'Peugeot', N'Boxer' UNION ALL
+SELECT N'Peugeot', N'Expert Tepee' UNION ALL
+SELECT N'Peugeot', N'Expert' UNION ALL
+SELECT N'Peugeot', N'iOn' UNION ALL
+SELECT N'Peugeot', N'J5' UNION ALL
+SELECT N'Peugeot', N'J9' UNION ALL
+SELECT N'Peugeot', N'Pars' UNION ALL
+SELECT N'Peugeot', N'Partner Tepee' UNION ALL
+SELECT N'Peugeot', N'Partner' UNION ALL
+SELECT N'Peugeot', N'RCZ' UNION ALL
+SELECT N'Peugeot', N'TePee' UNION ALL
+SELECT N'Pinzgauer', N'710K' UNION ALL
+SELECT N'Pinzgauer', N'710M' UNION ALL
+SELECT N'Pinzgauer', N'712K' UNION ALL
+SELECT N'Pinzgauer', N'712M' UNION ALL
+SELECT N'Pinzgauer', N'716' UNION ALL
+SELECT N'Plymouth', N'Breeze' UNION ALL
+SELECT N'Plymouth', N'Grand Voyager' UNION ALL
+SELECT N'Plymouth', N'Horizon' UNION ALL
+SELECT N'Plymouth', N'Neon' UNION ALL
+SELECT N'Plymouth', N'Reliant' UNION ALL
+SELECT N'Plymouth', N'Sundance' UNION ALL
+SELECT N'Plymouth', N'Voyager' UNION ALL
+SELECT N'Pontiac', N'6000' UNION ALL
+SELECT N'Pontiac', N'Aztek' UNION ALL
+SELECT N'Pontiac', N'Bonneville' UNION ALL
+SELECT N'Pontiac', N'Fiero' UNION ALL
+SELECT N'Pontiac', N'Firebird' UNION ALL
+SELECT N'Pontiac', N'G3' UNION ALL
+SELECT N'Pontiac', N'G5' UNION ALL
+SELECT N'Pontiac', N'G6' UNION ALL
+SELECT N'Pontiac', N'G8' UNION ALL
+SELECT N'Pontiac', N'Grand Am' UNION ALL
+SELECT N'Pontiac', N'Grand Prix' UNION ALL
+SELECT N'Pontiac', N'GTO' UNION ALL
+SELECT N'Pontiac', N'LeMans' UNION ALL
+SELECT N'Pontiac', N'Montana' UNION ALL
+SELECT N'Pontiac', N'Solstice' UNION ALL
+SELECT N'Pontiac', N'Sunbird' UNION ALL
+SELECT N'Pontiac', N'Sunfire' UNION ALL
+SELECT N'Pontiac', N'T1000' UNION ALL
+SELECT N'Pontiac', N'Torrent' UNION ALL
+SELECT N'Pontiac', N'Trans Sport' UNION ALL
+SELECT N'Pontiac', N'Vibe' UNION ALL
+SELECT N'Porsche', N'911' UNION ALL
+SELECT N'Porsche', N'912' UNION ALL
+SELECT N'Porsche', N'914' UNION ALL
+SELECT N'Porsche', N'924' UNION ALL
+SELECT N'Porsche', N'928' UNION ALL
+SELECT N'Porsche', N'944' UNION ALL
+SELECT N'Porsche', N'968' UNION ALL
+SELECT N'Porsche', N'996' UNION ALL
+SELECT N'Porsche', N'Boxster' UNION ALL
+SELECT N'Porsche', N'Carrera GT' UNION ALL
+SELECT N'Porsche', N'Cayenne' UNION ALL
+SELECT N'Porsche', N'Cayman' UNION ALL
+SELECT N'Porsche', N'Macan' UNION ALL
+SELECT N'Porsche', N'Panamera' UNION ALL
+SELECT N'Proton', N'300-Series' UNION ALL
+SELECT N'Proton', N'400-Series' UNION ALL
+SELECT N'Proton', N'Perdana' UNION ALL
+SELECT N'Proton', N'Persona' UNION ALL
+SELECT N'Proton', N'Salon Airoback' UNION ALL
+SELECT N'Proton', N'Satria' UNION ALL
+SELECT N'Proton', N'Waja' UNION ALL
+SELECT N'Proton', N'Wira' UNION ALL
+SELECT N'Renault', N'11' UNION ALL
+SELECT N'Renault', N'14' UNION ALL
+SELECT N'Renault', N'17' UNION ALL
+SELECT N'Renault', N'18' UNION ALL
+SELECT N'Renault', N'19' UNION ALL
+SELECT N'Renault', N'20' UNION ALL
+SELECT N'Renault', N'21' UNION ALL
+SELECT N'Renault', N'25' UNION ALL
+SELECT N'Renault', N'30' UNION ALL
+SELECT N'Renault', N'4' UNION ALL
+SELECT N'Renault', N'5' UNION ALL
+SELECT N'Renault', N'6' UNION ALL
+SELECT N'Renault', N'9' UNION ALL
+SELECT N'Renault', N'Alpine' UNION ALL
+SELECT N'Renault', N'Avantime' UNION ALL
+SELECT N'Renault', N'Clio' UNION ALL
+SELECT N'Renault', N'Coupe' UNION ALL
+SELECT N'Renault', N'Dokker' UNION ALL
+SELECT N'Renault', N'Duster' UNION ALL
+SELECT N'Renault', N'Espace' UNION ALL
+SELECT N'Renault', N'Express' UNION ALL
+SELECT N'Renault', N'Fluence' UNION ALL
+SELECT N'Renault', N'Fuego' UNION ALL
+SELECT N'Renault', N'Grand Espace' UNION ALL
+SELECT N'Renault', N'Grand Modus' UNION ALL
+SELECT N'Renault', N'Grand Scenic' UNION ALL
+SELECT N'Renault', N'Kangoo' UNION ALL
+SELECT N'Renault', N'Koleos' UNION ALL
+SELECT N'Renault', N'Laguna' UNION ALL
+SELECT N'Renault', N'Latitude' UNION ALL
+SELECT N'Renault', N'Lodgy' UNION ALL
+SELECT N'Renault', N'Logan' UNION ALL
+SELECT N'Renault', N'Manager' UNION ALL
+SELECT N'Renault', N'Mascott' UNION ALL
+SELECT N'Renault', N'Master' UNION ALL
+SELECT N'Renault', N'Maxity' UNION ALL
+SELECT N'Renault', N'Megane Scenic' UNION ALL
+SELECT N'Renault', N'Megane' UNION ALL
+SELECT N'Renault', N'Messenger' UNION ALL
+SELECT N'Renault', N'Modus' UNION ALL
+SELECT N'Renault', N'P1400' UNION ALL
+SELECT N'Renault', N'Rapid' UNION ALL
+SELECT N'Renault', N'Safrane' UNION ALL
+SELECT N'Renault', N'Sandero' UNION ALL
+SELECT N'Renault', N'Scenic' UNION ALL
+SELECT N'Renault', N'Spider' UNION ALL
+SELECT N'Renault', N'Symbol' UNION ALL
+SELECT N'Renault', N'Thalia' UNION ALL
+SELECT N'Renault', N'Trafic' UNION ALL
+SELECT N'Renault', N'Twingo' UNION ALL
+SELECT N'Renault', N'Twizy' UNION ALL
+SELECT N'Renault', N'Vel Satis' UNION ALL
+SELECT N'Renault', N'Wind' UNION ALL
+SELECT N'Rolls-Royce', N'Ghost' UNION ALL
+SELECT N'Rolls-Royce', N'Phantom' UNION ALL
+SELECT N'Rolls-Royce', N'Silver Spirit' UNION ALL
+SELECT N'Rover', N'100-Series' UNION ALL
+SELECT N'Rover', N'111' UNION ALL
+SELECT N'Rover', N'200-Series' UNION ALL
+SELECT N'Rover', N'25' UNION ALL
+SELECT N'Rover', N'3500' UNION ALL
+SELECT N'Rover', N'400-Series' UNION ALL
+SELECT N'Rover', N'45' UNION ALL
+SELECT N'Rover', N'600-Series' UNION ALL
+SELECT N'Rover', N'75' UNION ALL
+SELECT N'Rover', N'800-Series' UNION ALL
+SELECT N'Rover', N'Austin' UNION ALL
+SELECT N'Rover', N'Maestro' UNION ALL
+SELECT N'Rover', N'Metro' UNION ALL
+SELECT N'Rover', N'MGF' UNION ALL
+SELECT N'Rover', N'Mini' UNION ALL
+SELECT N'Rover', N'Montego' UNION ALL
+SELECT N'Rover', N'Ostin' UNION ALL
+SELECT N'Rover', N'Vitesse' UNION ALL
+SELECT N'Saab', N'3-Sep' UNION ALL
+SELECT N'Saab', N'5-Sep' UNION ALL
+SELECT N'Saab', N'9 - 7X' UNION ALL
+SELECT N'Saab', N'900' UNION ALL
+SELECT N'Saab', N'9000' UNION ALL
+SELECT N'Saab', N'9-2X' UNION ALL
+SELECT N'Saab', N'99' UNION ALL
+SELECT N'Saipa', N'111' UNION ALL
+SELECT N'Saipa', N'131' UNION ALL
+SELECT N'Saipa', N'132' UNION ALL
+SELECT N'Saipa', N'141' UNION ALL
+SELECT N'Saipa', N'151' UNION ALL
+SELECT N'Saipa', N'2' UNION ALL
+SELECT N'Saipa', N'Cerato' UNION ALL
+SELECT N'Saipa', N'CS35' UNION ALL
+SELECT N'Saipa', N'Eado' UNION ALL
+SELECT N'Saipa', N'H230' UNION ALL
+SELECT N'Saipa', N'H320' UNION ALL
+SELECT N'Saipa', N'H330' UNION ALL
+SELECT N'Saipa', N'Kolius' UNION ALL
+SELECT N'Saipa', N'Padra' UNION ALL
+SELECT N'Saipa', N'S300' UNION ALL
+SELECT N'Saipa', N'Saina' UNION ALL
+SELECT N'Saipa', N'Tiba' UNION ALL
+SELECT N'Saipa', N'Tondar' UNION ALL
+SELECT N'Saipa', N'V5' UNION ALL
+SELECT N'Santana', N'Anibal' UNION ALL
+SELECT N'Saturn', N'L' UNION ALL
+SELECT N'Saturn', N'LS' UNION ALL
+SELECT N'Saturn', N'LW' UNION ALL
+SELECT N'Saturn', N'Outlook' UNION ALL
+SELECT N'Saturn', N'SC' UNION ALL
+SELECT N'Saturn', N'Sky' UNION ALL
+SELECT N'Saturn', N'SL' UNION ALL
+SELECT N'Saturn', N'SW' UNION ALL
+SELECT N'Saturn', N'VUE' UNION ALL
+SELECT N'Scion', N'FR-S' UNION ALL
+SELECT N'Scion', N'tC' UNION ALL
+SELECT N'Scion', N'xA' UNION ALL
+SELECT N'Scion', N'xB' UNION ALL
+SELECT N'Seat', N'Alhambra' UNION ALL
+SELECT N'Seat', N'Altea' UNION ALL
+SELECT N'Seat', N'Arosa' UNION ALL
+SELECT N'Seat', N'Cordoba' UNION ALL
+SELECT N'Seat', N'Exeo' UNION ALL
+SELECT N'Seat', N'Ibiza' UNION ALL
+SELECT N'Seat', N'Inca' UNION ALL
+SELECT N'Seat', N'Leon' UNION ALL
+SELECT N'Seat', N'Malaga' UNION ALL
+SELECT N'Seat', N'Marbella' UNION ALL
+SELECT N'Seat', N'Terra' UNION ALL
+SELECT N'Seat', N'Toledo' UNION ALL
+SELECT N'Shuanghuan', N'CEO' UNION ALL
+SELECT N'Shuanghuan', N'Laibao' UNION ALL
+SELECT N'Shuanghuan', N'Noble' UNION ALL
+SELECT N'Simca-Chrysler', N'1307' UNION ALL
+SELECT N'Simca-Chrysler', N'1308' UNION ALL
+SELECT N'Simca-Chrysler', N'1309' UNION ALL
+SELECT N'Skoda', N'105' UNION ALL
+SELECT N'Skoda', N'120' UNION ALL
+SELECT N'Skoda', N'1203' UNION ALL
+SELECT N'Skoda', N'130' UNION ALL
+SELECT N'Skoda', N'Citygo' UNION ALL
+SELECT N'Skoda', N'Fabia' UNION ALL
+SELECT N'Skoda', N'Favorit' UNION ALL
+SELECT N'Skoda', N'Felicia' UNION ALL
+SELECT N'Skoda', N'Forman' UNION ALL
+SELECT N'Skoda', N'Octavia' UNION ALL
+SELECT N'Skoda', N'Praktik' UNION ALL
+SELECT N'Skoda', N'Rapid' UNION ALL
+SELECT N'Skoda', N'Roomster' UNION ALL
+SELECT N'Skoda', N'Superb' UNION ALL
+SELECT N'Skoda', N'Yeti' UNION ALL
+SELECT N'Spyker', N'C8' UNION ALL
+SELECT N'SsangYong', N'Actyon' UNION ALL
+SELECT N'SsangYong', N'Chairman' UNION ALL
+SELECT N'SsangYong', N'Family' UNION ALL
+SELECT N'SsangYong', N'Istana' UNION ALL
+SELECT N'SsangYong', N'Kallista' UNION ALL
+SELECT N'SsangYong', N'Korando' UNION ALL
+SELECT N'SsangYong', N'Kyron' UNION ALL
+SELECT N'SsangYong', N'Musso' UNION ALL
+SELECT N'SsangYong', N'Rexton' UNION ALL
+SELECT N'SsangYong', N'Rodius' UNION ALL
+SELECT N'Steyr', N'220' UNION ALL
+SELECT N'Steyr', N'50' UNION ALL
+SELECT N'Steyr', N'55' UNION ALL
+SELECT N'Subaru', N'Baja' UNION ALL
+SELECT N'Subaru', N'BRZ' UNION ALL
+SELECT N'Subaru', N'Forester' UNION ALL
+SELECT N'Subaru', N'Impreza' UNION ALL
+SELECT N'Subaru', N'Justy' UNION ALL
+SELECT N'Subaru', N'Legacy' UNION ALL
+SELECT N'Subaru', N'Leone' UNION ALL
+SELECT N'Subaru', N'Libero' UNION ALL
+SELECT N'Subaru', N'Outback' UNION ALL
+SELECT N'Subaru', N'SVX' UNION ALL
+SELECT N'Subaru', N'Trezia' UNION ALL
+SELECT N'Subaru', N'Tribeca' UNION ALL
+SELECT N'Subaru', N'Vivio' UNION ALL
+SELECT N'Subaru', N'XV' UNION ALL
+SELECT N'Suzuki', N'Aerio' UNION ALL
+SELECT N'Suzuki', N'Alto' UNION ALL
+SELECT N'Suzuki', N'Baleno' UNION ALL
+SELECT N'Suzuki', N'Carry' UNION ALL
+SELECT N'Suzuki', N'Equator' UNION ALL
+SELECT N'Suzuki', N'Forenza' UNION ALL
+SELECT N'Suzuki', N'Grand Vitara' UNION ALL
+SELECT N'Suzuki', N'Ignis' UNION ALL
+SELECT N'Suzuki', N'Jimny' UNION ALL
+SELECT N'Suzuki', N'Kizashi' UNION ALL
+SELECT N'Suzuki', N'Liana' UNION ALL
+SELECT N'Suzuki', N'Reno' UNION ALL
+SELECT N'Suzuki', N'Samurai' UNION ALL
+SELECT N'Suzuki', N'Splash' UNION ALL
+SELECT N'Suzuki', N'Super Carry' UNION ALL
+SELECT N'Suzuki', N'Swift' UNION ALL
+SELECT N'Suzuki', N'SX4' UNION ALL
+SELECT N'Suzuki', N'Verona' UNION ALL
+SELECT N'Suzuki', N'Vitara' UNION ALL
+SELECT N'Suzuki', N'Wagon R' UNION ALL
+SELECT N'Suzuki', N'XL7' UNION ALL
+SELECT N'Syrena', N'100' UNION ALL
+SELECT N'Syrena', N'101' UNION ALL
+SELECT N'Syrena', N'102' UNION ALL
+SELECT N'Syrena', N'103' UNION ALL
+SELECT N'Syrena', N'104' UNION ALL
+SELECT N'Syrena', N'105' UNION ALL
+SELECT N'Talbot', N'Horizon' UNION ALL
+SELECT N'Talbot', N'Solara' UNION ALL
+SELECT N'Tata', N'Aria' UNION ALL
+SELECT N'Tata', N'Indica' UNION ALL
+SELECT N'Tata', N'Indigo' UNION ALL
+SELECT N'Tata', N'Manza' UNION ALL
+SELECT N'Tata', N'Nano' UNION ALL
+SELECT N'Tata', N'Safari Dicor' UNION ALL
+SELECT N'Tata', N'Safari Storme' UNION ALL
+SELECT N'Tata', N'Sumo Gold' UNION ALL
+SELECT N'Tata', N'Sumo Grande' UNION ALL
+SELECT N'Tata', N'Telcoline' UNION ALL
+SELECT N'Tata', N'Venture' UNION ALL
+SELECT N'Tata', N'Vista' UNION ALL
+SELECT N'Tata', N'Xenon XT' UNION ALL
+SELECT N'Tesla', N'Model S' UNION ALL
+SELECT N'Toyota', N'4Runner' UNION ALL
+SELECT N'Toyota', N'Alphard' UNION ALL
+SELECT N'Toyota', N'Altezza' UNION ALL
+SELECT N'Toyota', N'Auris' UNION ALL
+SELECT N'Toyota', N'Avalon' UNION ALL
+SELECT N'Toyota', N'Avensis' UNION ALL
+SELECT N'Toyota', N'Aygo' UNION ALL
+SELECT N'Toyota', N'BB' UNION ALL
+SELECT N'Toyota', N'Camry' UNION ALL
+SELECT N'Toyota', N'Carina' UNION ALL
+SELECT N'Toyota', N'Celica' UNION ALL
+SELECT N'Toyota', N'Chaser' UNION ALL
+SELECT N'Toyota', N'Corolla' UNION ALL
+SELECT N'Toyota', N'Corolla Verso' UNION ALL
+SELECT N'Toyota', N'Corona' UNION ALL
+SELECT N'Toyota', N'Cressida' UNION ALL
+SELECT N'Toyota', N'Cresta' UNION ALL
+SELECT N'Toyota', N'Crown' UNION ALL
+SELECT N'Toyota', N'Echo' UNION ALL
+SELECT N'Toyota', N'FJ Cruiser' UNION ALL
+SELECT N'Toyota', N'Fortuner' UNION ALL
+SELECT N'Toyota', N'GT 86' UNION ALL
+SELECT N'Toyota', N'HiAce' UNION ALL
+SELECT N'Toyota', N'Highlander' UNION ALL
+SELECT N'Toyota', N'Hilux' UNION ALL
+SELECT N'Toyota', N'IQ' UNION ALL
+SELECT N'Toyota', N'Land Cruiser' UNION ALL
+SELECT N'Toyota', N'LiteAce' UNION ALL
+SELECT N'Toyota', N'Mark' UNION ALL
+SELECT N'Toyota', N'Matrix' UNION ALL
+SELECT N'Toyota', N'Model F' UNION ALL
+SELECT N'Toyota', N'MR2' UNION ALL
+SELECT N'Toyota', N'Paseo' UNION ALL
+SELECT N'Toyota', N'Picnic' UNION ALL
+SELECT N'Toyota', N'Previa' UNION ALL
+SELECT N'Toyota', N'Prius' UNION ALL
+SELECT N'Toyota', N'RAV4' UNION ALL
+SELECT N'Toyota', N'Sequoia' UNION ALL
+SELECT N'Toyota', N'Sienna' UNION ALL
+SELECT N'Toyota', N'Soarer' UNION ALL
+SELECT N'Toyota', N'Solara' UNION ALL
+SELECT N'Toyota', N'Starlet' UNION ALL
+SELECT N'Toyota', N'Supra' UNION ALL
+SELECT N'Toyota', N'Tacoma' UNION ALL
+SELECT N'Toyota', N'Tercel' UNION ALL
+SELECT N'Toyota', N'Tundra' UNION ALL
+SELECT N'Toyota', N'Urban Cruiser' UNION ALL
+SELECT N'Toyota', N'Venza' UNION ALL
+SELECT N'Toyota', N'Verso' UNION ALL
+SELECT N'Toyota', N'Vista' UNION ALL
+SELECT N'Toyota', N'Yaris' UNION ALL
+SELECT N'Trabant', N'1.1' UNION ALL
+SELECT N'Trabant', N'601' UNION ALL
+SELECT N'Trabant', N'P50' UNION ALL
+SELECT N'Trabant', N'P60' UNION ALL
+SELECT N'Trabant', N'P70' UNION ALL
+SELECT N'Vauxhall', N'Adam' UNION ALL
+SELECT N'Vauxhall', N'Ampera' UNION ALL
+SELECT N'Vauxhall', N'Antara' UNION ALL
+SELECT N'Vauxhall', N'Astra' UNION ALL
+SELECT N'Vauxhall', N'Cascada' UNION ALL
+SELECT N'Vauxhall', N'Combo Tour' UNION ALL
+SELECT N'Vauxhall', N'Corsa' UNION ALL
+SELECT N'Vauxhall', N'Insignia' UNION ALL
+SELECT N'Vauxhall', N'Meriva' UNION ALL
+SELECT N'Vauxhall', N'Mokka' UNION ALL
+SELECT N'Vauxhall', N'Viva' UNION ALL
+SELECT N'Vauxhall', N'Vivaro' UNION ALL
+SELECT N'Vauxhall', N'VXR8' UNION ALL
+SELECT N'Vauxhall', N'Zafira Tourer' UNION ALL
+SELECT N'Volkswagen', N'181' UNION ALL
+SELECT N'Volkswagen', N'Amarok' UNION ALL
+SELECT N'Volkswagen', N'Beetle' UNION ALL
+SELECT N'Volkswagen', N'Bora' UNION ALL
+SELECT N'Volkswagen', N'Buggy' UNION ALL
+SELECT N'Volkswagen', N'Caddy' UNION ALL
+SELECT N'Volkswagen', N'Corrado' UNION ALL
+SELECT N'Volkswagen', N'Crafter' UNION ALL
+SELECT N'Volkswagen', N'Derby' UNION ALL
+SELECT N'Volkswagen', N'Eos' UNION ALL
+SELECT N'Volkswagen', N'Fox' UNION ALL
+SELECT N'Volkswagen', N'Gol' UNION ALL
+SELECT N'Volkswagen', N'Golf Plus' UNION ALL
+SELECT N'Volkswagen', N'Golf' UNION ALL
+SELECT N'Volkswagen', N'Iltis' UNION ALL
+SELECT N'Volkswagen', N'Jetta' UNION ALL
+SELECT N'Volkswagen', N'Kafer' UNION ALL
+SELECT N'Volkswagen', N'Karmann Ghia' UNION ALL
+SELECT N'Volkswagen', N'LT' UNION ALL
+SELECT N'Volkswagen', N'Lupo' UNION ALL
+SELECT N'Volkswagen', N'New Beetle' UNION ALL
+SELECT N'Volkswagen', N'Passat CC' UNION ALL
+SELECT N'Volkswagen', N'Passat' UNION ALL
+SELECT N'Volkswagen', N'Phaeton' UNION ALL
+SELECT N'Volkswagen', N'Pointer' UNION ALL
+SELECT N'Volkswagen', N'Polo Sedan' UNION ALL
+SELECT N'Volkswagen', N'Polo' UNION ALL
+SELECT N'Volkswagen', N'Routan' UNION ALL
+SELECT N'Volkswagen', N'Santana' UNION ALL
+SELECT N'Volkswagen', N'Scirocco' UNION ALL
+SELECT N'Volkswagen', N'Sharan' UNION ALL
+SELECT N'Volkswagen', N'T1' UNION ALL
+SELECT N'Volkswagen', N'T2' UNION ALL
+SELECT N'Volkswagen', N'T3' UNION ALL
+SELECT N'Volkswagen', N'T4' UNION ALL
+SELECT N'Volkswagen', N'T5' UNION ALL
+SELECT N'Volkswagen', N'Taro' UNION ALL
+SELECT N'Volkswagen', N'Tiguan' UNION ALL
+SELECT N'Volkswagen', N'Touareg' UNION ALL
+SELECT N'Volkswagen', N'Touran' UNION ALL
+SELECT N'Volkswagen', N'Up' UNION ALL
+SELECT N'Volkswagen', N'Vento' UNION ALL
+SELECT N'Volvo', N'240' UNION ALL
+SELECT N'Volvo', N'242' UNION ALL
+SELECT N'Volvo', N'244' UNION ALL
+SELECT N'Volvo', N'245' UNION ALL
+SELECT N'Volvo', N'262' UNION ALL
+SELECT N'Volvo', N'264' UNION ALL
+SELECT N'Volvo', N'340' UNION ALL
+SELECT N'Volvo', N'343' UNION ALL
+SELECT N'Volvo', N'360' UNION ALL
+SELECT N'Volvo', N'440' UNION ALL
+SELECT N'Volvo', N'460' UNION ALL
+SELECT N'Volvo', N'480' UNION ALL
+SELECT N'Volvo', N'740' UNION ALL
+SELECT N'Volvo', N'744' UNION ALL
+SELECT N'Volvo', N'745' UNION ALL
+SELECT N'Volvo', N'760' UNION ALL
+SELECT N'Volvo', N'780' UNION ALL
+SELECT N'Volvo', N'850' UNION ALL
+SELECT N'Volvo', N'855' UNION ALL
+SELECT N'Volvo', N'940' UNION ALL
+SELECT N'Volvo', N'944' UNION ALL
+SELECT N'Volvo', N'945' UNION ALL
+SELECT N'Volvo', N'960' UNION ALL
+SELECT N'Volvo', N'965' UNION ALL
+SELECT N'Volvo', N'Amazon' UNION ALL
+SELECT N'Volvo', N'C30' UNION ALL
+SELECT N'Volvo', N'C70' UNION ALL
+SELECT N'Volvo', N'Polar' UNION ALL
+SELECT N'Volvo', N'S40' UNION ALL
+SELECT N'Volvo', N'S60' UNION ALL
+SELECT N'Volvo', N'S70' UNION ALL
+SELECT N'Volvo', N'S80' UNION ALL
+SELECT N'Volvo', N'S90' UNION ALL
+SELECT N'Volvo', N'V40' UNION ALL
+SELECT N'Volvo', N'V50' UNION ALL
+SELECT N'Volvo', N'V60' UNION ALL
+SELECT N'Volvo', N'V70' UNION ALL
+SELECT N'Volvo', N'V90' UNION ALL
+SELECT N'Volvo', N'XC60' UNION ALL
+SELECT N'Volvo', N'XC70' UNION ALL
+SELECT N'Volvo', N'XC90' UNION ALL
+SELECT N'Vortex', N'Corda' UNION ALL
+SELECT N'Vortex', N'Estina' UNION ALL
+SELECT N'Vortex', N'Tingo' UNION ALL
+SELECT N'Wartburg', N'353' UNION ALL
+SELECT N'Wartburg', N'Tourist' UNION ALL
+SELECT N'Zastava', N'10' UNION ALL
+SELECT N'Zastava', N'101' UNION ALL
+SELECT N'Zastava', N'Cabrio' UNION ALL
+SELECT N'Zastava', N'Florida' UNION ALL
+SELECT N'Zastava', N'Koral' UNION ALL
+SELECT N'Zastava', N'Skala' UNION ALL
+SELECT N'Zastava', N'Yugo' UNION ALL
+SELECT N'Zotye', N'2008' UNION ALL
+SELECT N'Zotye', N'M300' UNION ALL
+SELECT N'Zotye', N'V10' UNION ALL
+SELECT N'Zotye', N'Z200' UNION ALL
+SELECT N'Zotye', N'Z300' UNION ALL
+SELECT N'Zuk', N'А05' UNION ALL
+SELECT N'Zuk', N'А06' UNION ALL
+SELECT N'Zuk', N'АН' UNION ALL
+SELECT N'ZX', N'Admiral' UNION ALL
+SELECT N'ZX', N'Chanling' UNION ALL
+SELECT N'ZX', N'Grand Tiger' UNION ALL
+SELECT N'ZX', N'Landmark' UNION ALL
+SELECT N'ВАЗ', N'1111' UNION ALL
+SELECT N'ВАЗ', N'1119' UNION ALL
+SELECT N'ВАЗ', N'2101' UNION ALL
+SELECT N'ВАЗ', N'2102' UNION ALL
+SELECT N'ВАЗ', N'2103' UNION ALL
+SELECT N'ВАЗ', N'2104' UNION ALL
+SELECT N'ВАЗ', N'2105' UNION ALL
+SELECT N'ВАЗ', N'2106' UNION ALL
+SELECT N'ВАЗ', N'2107' UNION ALL
+SELECT N'ВАЗ', N'2108' UNION ALL
+SELECT N'ВАЗ', N'2109' UNION ALL
+SELECT N'ВАЗ', N'21099' UNION ALL
+SELECT N'ВАЗ', N'2110' UNION ALL
+SELECT N'ВАЗ', N'2111' UNION ALL
+SELECT N'ВАЗ', N'2112' UNION ALL
+SELECT N'ВАЗ', N'2113' UNION ALL
+SELECT N'ВАЗ', N'2114' UNION ALL
+SELECT N'ВАЗ', N'2115' UNION ALL
+SELECT N'ВАЗ', N'2120' UNION ALL
+SELECT N'ВАЗ', N'2121' UNION ALL
+SELECT N'ВАЗ', N'21213' UNION ALL
+SELECT N'ВАЗ', N'21215' UNION ALL
+SELECT N'ВАЗ', N'21218' UNION ALL
+SELECT N'ВАЗ', N'2123' UNION ALL
+SELECT N'ВАЗ', N'2129' UNION ALL
+SELECT N'ВАЗ', N'2130' UNION ALL
+SELECT N'ВАЗ', N'2131' UNION ALL
+SELECT N'ВАЗ', N'2310' UNION ALL
+SELECT N'ВАЗ', N'2328' UNION ALL
+SELECT N'ВАЗ', N'2329' UNION ALL
+SELECT N'ВАЗ', N'Granta' UNION ALL
+SELECT N'ВАЗ', N'Kalina' UNION ALL
+SELECT N'ВАЗ', N'Largus' UNION ALL
+SELECT N'ВАЗ', N'Priora' UNION ALL
+SELECT N'ВАЗ', N'ВИС' UNION ALL
+SELECT N'ВАЗ', N'Лаура' UNION ALL
+SELECT N'ГАЗ', N'12' UNION ALL
+SELECT N'ГАЗ', N'14' UNION ALL
+SELECT N'ГАЗ', N'21' UNION ALL
+SELECT N'ГАЗ', N'22' UNION ALL
+SELECT N'ГАЗ', N'23' UNION ALL
+SELECT N'ГАЗ', N'24' UNION ALL
+SELECT N'ГАЗ', N'2401' UNION ALL
+SELECT N'ГАЗ', N'2402' UNION ALL
+SELECT N'ГАЗ', N'2410' UNION ALL
+SELECT N'ГАЗ', N'2705' UNION ALL
+SELECT N'ГАЗ', N'2752' UNION ALL
+SELECT N'ГАЗ', N'2757' UNION ALL
+SELECT N'ГАЗ', N'3102' UNION ALL
+SELECT N'ГАЗ', N'310210' UNION ALL
+SELECT N'ГАЗ', N'31022' UNION ALL
+SELECT N'ГАЗ', N'310221' UNION ALL
+SELECT N'ГАЗ', N'31029' UNION ALL
+SELECT N'ГАЗ', N'3110' UNION ALL
+SELECT N'ГАЗ', N'31105' UNION ALL
+SELECT N'ГАЗ', N'3111' UNION ALL
+SELECT N'ГАЗ', N'322132' UNION ALL
+SELECT N'ГАЗ', N'322133' UNION ALL
+SELECT N'ГАЗ', N'3285' UNION ALL
+SELECT N'ГАЗ', N'3302' UNION ALL
+SELECT N'ГАЗ', N'67' UNION ALL
+SELECT N'ГАЗ', N'69' UNION ALL
+SELECT N'ГАЗ', N'Siber' UNION ALL
+SELECT N'ГАЗ', N'А21' UNION ALL
+SELECT N'ГАЗ', N'А22' UNION ALL
+SELECT N'ГАЗ', N'Луидор' UNION ALL
+SELECT N'ГАЗ', N'М20' UNION ALL
+SELECT N'ГАЗ', N'Семар' UNION ALL
+SELECT N'ЕрАЗ', N'3730' UNION ALL
+SELECT N'ЕрАЗ', N'762' UNION ALL
+SELECT N'ЗАЗ', N'1103' UNION ALL
+SELECT N'ЗАЗ', N'68' UNION ALL
+SELECT N'ЗАЗ', N'965' UNION ALL
+SELECT N'ЗАЗ', N'966' UNION ALL
+SELECT N'ЗАЗ', N'968а' UNION ALL
+SELECT N'ЗАЗ', N'968м' UNION ALL
+SELECT N'ЗАЗ', N'Chance' UNION ALL
+SELECT N'ЗАЗ', N'Forza' UNION ALL
+SELECT N'ЗАЗ', N'Sens' UNION ALL
+SELECT N'ЗАЗ', N'Vida' UNION ALL
+SELECT N'ЗАЗ', N'Дана' UNION ALL
+SELECT N'ЗАЗ', N'МД' UNION ALL
+SELECT N'ЗАЗ', N'Таврия' UNION ALL
+SELECT N'ИЖ', N'2125' UNION ALL
+SELECT N'ИЖ', N'2126' UNION ALL
+SELECT N'ИЖ', N'2715' UNION ALL
+SELECT N'ИЖ', N'2717' UNION ALL
+SELECT N'ЛуАЗ', N'967М' UNION ALL
+SELECT N'ЛуАЗ', N'969' UNION ALL
+SELECT N'Москвич', N'2125' UNION ALL
+SELECT N'Москвич', N'2136 Kombi' UNION ALL
+SELECT N'Москвич', N'2137 Kombi' UNION ALL
+SELECT N'Москвич', N'2138' UNION ALL
+SELECT N'Москвич', N'2140' UNION ALL
+SELECT N'Москвич', N'2141' UNION ALL
+SELECT N'Москвич', N'2149' UNION ALL
+SELECT N'Москвич', N'400' UNION ALL
+SELECT N'Москвич', N'401' UNION ALL
+SELECT N'Москвич', N'402' UNION ALL
+SELECT N'Москвич', N'403' UNION ALL
+SELECT N'Москвич', N'406' UNION ALL
+SELECT N'Москвич', N'407' UNION ALL
+SELECT N'Москвич', N'408' UNION ALL
+SELECT N'Москвич', N'412' UNION ALL
+SELECT N'Москвич', N'423 Kombi' UNION ALL
+SELECT N'Москвич', N'426' UNION ALL
+SELECT N'Москвич', N'427' UNION ALL
+SELECT N'Москвич', N'434' UNION ALL
+SELECT N'Москвич', N'Князь Владимир' UNION ALL
+SELECT N'Москвич', N'Святогор' UNION ALL
+SELECT N'Москвич', N'Юрий Долгорукий' UNION ALL
+SELECT N'РАФ', N'2203' UNION ALL
+SELECT N'СМЗ', N'C-3А' UNION ALL
+SELECT N'СМЗ', N'C-3АБ' UNION ALL
+SELECT N'СМЗ', N'С-3АМ' UNION ALL
+SELECT N'СМЗ', N'С-3Д' UNION ALL
+SELECT N'ТагАЗ', N'Aquila' UNION ALL
+SELECT N'УАЗ', N'2206' UNION ALL
+SELECT N'УАЗ', N'3151' UNION ALL
+SELECT N'УАЗ', N'31512' UNION ALL
+SELECT N'УАЗ', N'31514' UNION ALL
+SELECT N'УАЗ', N'3153' UNION ALL
+SELECT N'УАЗ', N'3160' UNION ALL
+SELECT N'УАЗ', N'3303' UNION ALL
+SELECT N'УАЗ', N'3741' UNION ALL
+SELECT N'УАЗ', N'39099' UNION ALL
+SELECT N'УАЗ', N'3962' UNION ALL
+SELECT N'УАЗ', N'451' UNION ALL
+SELECT N'УАЗ', N'452' UNION ALL
+SELECT N'УАЗ', N'469' UNION ALL
+SELECT N'УАЗ', N'69A' UNION ALL
+SELECT N'УАЗ', N'Hunter' UNION ALL
+SELECT N'УАЗ', N'Patriot' 
+;
+INSERT INTO dbo.CarBrand (Name)
+SELECT DISTINCT t.Brand 
+FROM @tModel t
+LEFT JOIN dbo.CarBrand AS cb ON cb.Name = t.Brand
+WHERE cb.CarBrandId IS NULL
+;
+INSERT INTO dbo.CarModel (CarBrandId,Name)
+SELECT cb.CarBrandId, t.Model 
+FROM @tModel t
+LEFT JOIN dbo.CarModel AS cm ON cm.Name = t.Model
+JOIN dbo.CarBrand AS cb ON cb.Name = t.Brand
+WHERE cm.CarModelId IS NULL
+;

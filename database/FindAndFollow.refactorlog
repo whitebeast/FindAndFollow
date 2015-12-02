@@ -14,4 +14,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Name" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="c1b226b0-518b-48b2-8cbe-0051f26aa9ff" ChangeDateTime="12/02/2015 09:32:50">
+    <Property Name="ElementName" Value="[dbo].[CarModelMapping].[MedelNotMask]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CarModelMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ModelNotMask" />
+  </Operation>
 </Operations>

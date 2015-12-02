@@ -30,7 +30,7 @@ BEGIN
         -- load and parse data
         SELECT  CASE 
                     WHEN cb.CarBrandId IS NULL THEN 'CarBrand Error'
-                    WHEN cm.CarModelId IS NULL THEN 'CarModel Error' 
+                    WHEN COALESCE(cm.CarModelId,cmm.CarModelId) IS NULL THEN 'CarModel Error' 
                     WHEN s.SiteId IS NULL THEN 'Site Error'
                     WHEN c.CityId IS NULL THEN 'City Error'
                     WHEN cn.CountryId IS NULL THEN 'Country Error'
@@ -41,7 +41,7 @@ BEGIN
                 cp.CarParsingId,
                 cb.CarBrandId,
                 cp.CarBrand,
-                cm.CarModelId,
+                COALESCE(cm.CarModelId,cmm.CarModelId) AS CarModelId,
                 cp.Model,
                 s.SiteId,
                 cp.SiteId AS SiteURL,
@@ -105,6 +105,11 @@ BEGIN
         LEFT JOIN dbo.City AS c ON c.Name = cp.City
         LEFT JOIN dbo.Country AS cn ON cn.Name = cp.Country
         LEFT JOIN dbo.Place AS pl ON pl.CityId = c.CityId AND pl.CountryId = cn.CountryId
+        LEFT JOIN dbo.CarModelMapping AS cmm 
+            ON  cm.CarModelId IS NULL 
+            AND cp.Model LIKE cmm.ModelMask 
+            AND cp.Model NOT LIKE cmm.ModelNotMask 
+            AND cmm.CarBrandId = cb.CarBrandId
         ;
 
         -- write wrong data info to Log table

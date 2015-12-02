@@ -21,6 +21,7 @@
         PageCreatedOn         DATETIME2 NULL,
         CarImages             NVARCHAR(4000) NULL,
         OptionList            NVARCHAR(4000) NULL,
+        OriginalCarModel      NVARCHAR(50) NULL,
         CreatedOn             DATETIME2 NOT NULL
     )
     ;

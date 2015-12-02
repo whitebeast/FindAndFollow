@@ -159,8 +159,7 @@
     <Build Include="Source\Function\ParseJSON.sql" />
     <Build Include="Source\Function\DecodeCyrillicJSON.sql" />
     <Build Include="Source\Procedure\CarParsingSettingsGet.sql" />
-    <None Include="Source\Script\PostDeployment\CarModelInitial.sql" />
-    <None Include="Source\Script\PostDeployment\CarBrandInitial.sql" />
+    <None Include="Source\Script\PostDeployment\CarBrandModelInitial.sql" />
     <Build Include="Source\Procedure\ErrorLogInsert.sql" />
     <Build Include="Source\Table\ErrorLog.sql" />
     <Build Include="Source\Table\Constraint\PK\ErrorLog.sql" />
@@ -175,6 +174,10 @@
     <Build Include="Source\Procedure\CarOwnerPhoneInsert.sql" />
     <None Include="Source\Script\PostDeployment\BelarusCityAndRegionInitial.sql" />
     <Build Include="Source\View\vwCarBrandModel.sql" />
+    <Build Include="Source\Table\CarModelMapping.sql" />
+    <Build Include="Source\Table\Constraint\PK\CarModelMapping.sql" />
+    <Build Include="Source\Table\Constraint\FK\CarModelMapping.sql" />
+    <None Include="Source\Script\PostDeployment\CarModelMappingInitial.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />

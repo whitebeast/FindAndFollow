@@ -16,9 +16,9 @@ GO
 GO
 :r .\Script\PostDeployment\ColorInitial.sql 
 GO
-:r .\Script\PostDeployment\CarBrandInitial.sql 
+:r .\Script\PostDeployment\CarBrandModelInitial.sql 
 GO
-:r .\Script\PostDeployment\CarModelInitial.sql 
+:r .\Script\PostDeployment\CarModelMappingInitial.sql 
 GO
 :r .\Script\PostDeployment\BelarusCityAndRegionInitial.sql 
 GO
