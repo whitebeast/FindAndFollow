@@ -10,7 +10,7 @@
         EngineType            TINYINT NOT NULL,
         EngineSize            SMALLINT NOT NULL,
         TransmissionType      BIT NOT NULL,
-        DriveType             TINYINT NOT NULL,
+        DriveType             TINYINT NULL,
         Condition             TINYINT NOT NULL,
         Mileage               INT NULL,
         ColorId               TINYINT NOT NULL,
