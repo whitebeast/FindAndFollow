@@ -48,6 +48,8 @@ INSERT INTO @tMask
     SELECT N'V%',N'Mercedes','V[a-Z]%' UNION ALL
     SELECT N'T1%',N'Mercedes','' UNION ALL
     SELECT N'T2%',N'Mercedes','' UNION ALL
+    --Suzuki
+    SELECT N'SX%',N'Suzuki','' UNION ALL
     --Toyota
     SELECT N'Carina%',N'Toyota','' UNION ALL
     --Volkswagen
