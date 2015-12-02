@@ -164,6 +164,6 @@ SELECT     'ab.onliner.by' AS SiteUrl,
            NULL AS IsContentExistXpath,            
            './/img[@src]' AS CarImagesNodeValue,             
            'src' AS CarImagesAttributeValue,
-           NULL AS CountryXPath
+           '/html[1]/body[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[1]/p[3]' AS CountryXPath
 ;
 

@@ -40,8 +40,9 @@ namespace FindAndFollow
             xPathArray = Database.CarParsingSettingsGet(siteAb);
 
             //int[] urlIds = Download.UrlsGet(urlSiteAb, "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/div[2]/div[2]/table/tbody", siteAb, ".//div[@class='b-listing-item-title']//a[@href]", "href", "public.php?event=View&public_id=");
+            urlIds = new int[] { 2441437, 2456895, 2441221, 2395719 };
 
-            //Database.CarParsingInsert(urlAb, xPathArray, urlIds, "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]", siteAb);
+            Database.CarParsingInsert(urlAb, xPathArray, urlIds, "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]", siteAb);
 
             Database.CarMerge();
         }

@@ -551,5 +551,24 @@ namespace FindAndFollow
             }
         }
 
+        public static string CountryGetAb(string word, string url)
+        {
+            try
+            {
+                int startCut = word.IndexOf("(", StringComparison.Ordinal);
+                int endCut = word.IndexOf(")", StringComparison.Ordinal);
+
+                // check for empty country
+                if (startCut == -1 && endCut == -1) return "Беларусь";
+
+                return word.Substring(startCut + 1, endCut - startCut - 1);
+
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
     }
 }

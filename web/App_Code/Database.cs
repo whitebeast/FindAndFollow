@@ -104,6 +104,7 @@ namespace FindAndFollow
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(dataArray[12], urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAb(dataArray[14], urlFull);
                         dataArray[16] = StringClass.RemoveText(StringClass.SelectWordGet(dataArray[16], ' ', 1, urlFull), ",", urlFull);
+                        dataArray[20] = StringClass.CountryGetAb(dataArray[20], urlFull);
                     }
                     #endregion "if ab.onliner.by"
 
