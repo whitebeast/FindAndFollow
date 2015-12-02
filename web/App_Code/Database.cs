@@ -32,7 +32,7 @@ namespace FindAndFollow
             // Insert data
             foreach (int i in urlIds)
             {
-            //for (int i = 8455386; i < 8455387; i++)
+            //for (int i = 11045140; i < 11045141; i++)
             //{
                 string[] checkSellerTypeArray = new string[1];
                 string urlFull = url + i;
@@ -66,6 +66,7 @@ namespace FindAndFollow
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: ", urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAv(dataArray[4], urlFull);
                         dataArray[16] = StringClass.SelectWordGet(dataArray[16], ',', 1, urlFull);
+                        dataArray[20] = StringClass.CountryGetAv(dataArray[20], ',', 1, urlFull);
                     }
                     #endregion "if av.by"
 
@@ -127,7 +128,7 @@ namespace FindAndFollow
                     commandInsert.Parameters.Add("@pOwnerPhone", SqlDbType.NVarChar, 300).Value = dataArray[17] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pCarImages", SqlDbType.NVarChar, 4000).Value = dataArray[18] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pOptionList", SqlDbType.NVarChar, 4000).Value = dataArray[19] ?? sqlParameters[0].Value;
-                    commandInsert.Parameters.Add("@pCountry", SqlDbType.NVarChar, 100).Value = sqlParameters[0].Value;
+                    commandInsert.Parameters.Add("@pCountry", SqlDbType.NVarChar, 100).Value = dataArray[20] ?? sqlParameters[0].Value;
 
                     commandInsert.ExecuteNonQuery();
 
@@ -161,7 +162,7 @@ namespace FindAndFollow
         public static string[] CarParsingSettingsGet(string url)
         {
             // Get XPaths
-            string[] xPathArray = new string[20];
+            string[] xPathArray = new string[21];
 
             SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
 
@@ -190,6 +191,7 @@ namespace FindAndFollow
                 xPathArray[17] = dataReader["OwnerPhoneXPath"].ToString();
                 xPathArray[18] = dataReader["CarImagesXPath"].ToString();
                 xPathArray[19] = dataReader["OptionListXPath"].ToString();
+                xPathArray[20] = dataReader["CountryXPath"].ToString();
             }
 
             return xPathArray;

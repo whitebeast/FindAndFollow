@@ -59,6 +59,7 @@ namespace FindAndFollow
                 returnArray[17] = OwnerPhoneGetAv(doc, xPathArray[17], url);
                 returnArray[18] = CarImagesGet(doc, xPathArray[18], url, "a[@href]", "href");
                 returnArray[19] = OptionListGetAv(doc, xPathArray[19], url);
+                returnArray[20] = CityGetGetAv(doc, xPathArray[20], url);
             }
 
             if (webSite == "abw.by")

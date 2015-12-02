@@ -32,6 +32,7 @@ INSERT INTO [dbo].[CarParsingSettings]
            ,[IsContentExistXpath]            
            ,[CarImagesNodeValue]             
            ,[CarImagesAttributeValue]        
+           ,[CountryXPath]
            )
 -- av.by
 SELECT     'av.by' AS SiteUrlXPath,
@@ -63,7 +64,8 @@ SELECT     'av.by' AS SiteUrlXPath,
            'public.php?event=View&public_id=' AS MainPageUrlsXPathRemoveText,
            '/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]' AS IsContentExistXpath,
            'a[@href]' AS CarImagesNodeValue,
-           'href' AS CarImagesAttributeValue
+           'href' AS CarImagesAttributeValue,
+           '/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[3]' AS CountryXPath
 UNION ALL
 -- abw.by-private      
 SELECT     'abw.by-private' AS SiteUrl,
@@ -95,7 +97,8 @@ SELECT     'abw.by-private' AS SiteUrl,
            '/allpublic/sell/' AS MainPageUrlsXPathRemoveText,    
            '/html/body/div/h1' AS IsContentExistXpath,            
            './/a[@rel=''group'']' AS CarImagesNodeValue,             
-           'href' AS CarImagesAttributeValue  
+           'href' AS CarImagesAttributeValue,
+           NULL AS CountryXPath
 UNION ALL
 -- abw.by-autoagency      
 SELECT     'abw.by-autoagency' AS SiteUrl,
@@ -127,7 +130,8 @@ SELECT     'abw.by-autoagency' AS SiteUrl,
            '/allpublic/sell/' AS MainPageUrlsXPathRemoveText,    
            '/html/body/div/h1' AS IsContentExistXpath,            
            './/a[@rel=''group'']' AS CarImagesNodeValue,             
-           'href' AS CarImagesAttributeValue  
+           'href' AS CarImagesAttributeValue,
+           NULL AS CountryXPath
 UNION ALL
 -- ab.onliner.by
 SELECT     'ab.onliner.by' AS SiteUrl,
@@ -159,6 +163,7 @@ SELECT     'ab.onliner.by' AS SiteUrl,
            NULL AS MainPageUrlsXPathRemoveText,    
            NULL AS IsContentExistXpath,            
            './/img[@src]' AS CarImagesNodeValue,             
-           'src' AS CarImagesAttributeValue  
+           'src' AS CarImagesAttributeValue,
+           NULL AS CountryXPath
 ;
 
