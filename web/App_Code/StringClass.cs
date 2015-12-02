@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -486,6 +487,44 @@ namespace FindAndFollow
                 {
                     return word;
                 }
+            }
+            catch (Exception ex)
+            {
+                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+            }
+        }
+
+        public static string CountryGetAv(string word, char delimeter, int wordNumber, string url)
+        {
+            try
+            {
+                List<string> lstCountries = word.Split(delimeter).ToList();
+
+                string country = lstCountries.Last().Trim().Substring(0, 4);
+
+                switch (country)
+                {
+                    case ("Бела"): country = "Беларусь";
+                        break;
+                    case ("Росс"): country = "Россия";
+                        break;
+                    case ("Литв"): country = "Литва";
+                        break;
+                    case ("Латв"): country = "Латвия";
+                        break;
+                    case ("Бель"): country = "Бельгия";
+                        break;
+                    case ("Герм"): country = "Германия";
+                        break;
+                    case ("Поль"): country = "Польша";
+                        break;
+                    case ("США"): country = "США";
+                        break;
+                    default: country = "Беларусь";
+                        break;
+                }
+
+                return country;
             }
             catch (Exception ex)
             {
