@@ -16,7 +16,7 @@
         ColorId               TINYINT NOT NULL,
         SellerType            TINYINT NOT NULL,
         IsSwap                BIT NOT NULL,
-        Description           NVARCHAR(1000) NULL,
+        Description           NVARCHAR(4000) NULL,
         OriginalURL           NVARCHAR(1000),
         PageCreatedOn         DATETIME2 NULL,
         CarImages             NVARCHAR(4000) NULL,
