@@ -128,9 +128,9 @@ SELECT N'Шклов',N'Могилевская область' UNION ALL
 SELECT N'Могилев',N'Могилевская область' UNION ALL
 SELECT N'Бобруйск',N'Могилевская область'
 
-IF NOT EXISTS (SELECT 1 FROM dbo.Country AS c WHERE NAME = N'Республика Беларусь')
+IF NOT EXISTS (SELECT 1 FROM dbo.Country AS c WHERE NAME = N'Беларусь')
 INSERT INTO Country (NAME)
-VALUES(N'Республика Беларусь')
+VALUES(N'Беларусь')
 
 INSERT INTO dbo.Region (NAME)
 SELECT DISTINCT tcr.Region 
@@ -145,7 +145,7 @@ LEFT JOIN dbo.City AS c ON c.Name = tcr.City
 WHERE c.Name IS NULL
 
 DECLARE @CountryId INT
-SELECT @CountryId = CountryId FROM dbo.Country AS c WHERE NAME = N'Республика Беларусь'
+SELECT @CountryId = CountryId FROM dbo.Country AS c WHERE NAME = N'Беларусь'
 
 INSERT INTO dbo.Place 
     (

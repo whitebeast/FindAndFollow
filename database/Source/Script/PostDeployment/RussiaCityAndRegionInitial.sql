@@ -11,9 +11,9 @@ SELECT N'Санкт-Петербург',N'Ленинградская облас�
 SELECT N'Смоленск',N'Смоленская область' UNION ALL
 SELECT N'Брянск',N'Брянская область'
 
-IF NOT EXISTS (SELECT 1 FROM dbo.Country AS c WHERE NAME = N'Российская Федерация')
+IF NOT EXISTS (SELECT 1 FROM dbo.Country AS c WHERE NAME = N'Россия')
 INSERT INTO Country (NAME)
-VALUES(N'Российская Федерация')
+VALUES(N'Россия')
 
 INSERT INTO dbo.Region (NAME)
 SELECT DISTINCT tcr.Region 
@@ -28,7 +28,7 @@ LEFT JOIN dbo.City AS c ON c.Name = tcr.City
 WHERE c.Name IS NULL
 
 DECLARE @CountryId INT
-SELECT @CountryId = CountryId FROM dbo.Country AS c WHERE NAME = N'Российская Федерация'
+SELECT @CountryId = CountryId FROM dbo.Country AS c WHERE NAME = N'Россия'
 
 INSERT INTO dbo.Place 
     (
