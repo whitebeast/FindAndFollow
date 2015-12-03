@@ -4,6 +4,7 @@ using System.Net;
 using HtmlAgilityPack;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace FindAndFollow
 {
@@ -176,23 +177,23 @@ namespace FindAndFollow
 
             foreach (HtmlNode node in bodyNode.SelectNodes("//td[@class='adv_left']")) 
             {
-                switch (node.InnerText)
+                switch (node.InnerHtml)
                 {
-                    case ("Год выпуска:"): lstCarParams.Insert(counter, "modelYear");
+                    case ("Гoд выпускa:"): lstCarParams.Insert(counter, "modelYear");
                         break;
                     case ("Цвет:"): lstCarParams.Insert(counter, "color");
                         break;
-                    case ("Пробег:"): lstCarParams.Insert(counter, "mileAge");
+                    case ("Прoбeг:"): lstCarParams.Insert(counter, "mileAge");
                         break;
-                    case ("Двигатель:"): lstCarParams.Insert(counter, "engineType");
+                    case ("Двигaтель:"): lstCarParams.Insert(counter, "engineType");
                         break;
-                    case ("Объем:"): lstCarParams.Insert(counter, "engineSize");
+                    case ("Объeм:"): lstCarParams.Insert(counter, "engineSize");
                         break;
-                    case ("Трансмиссия:"): lstCarParams.Insert(counter, "transmission");
+                    case ("Транcмиссия:"): lstCarParams.Insert(counter, "transmission");
                         break;
-                    case ("Кузов:"): lstCarParams.Insert(counter, "bodyType");
+                    case ("Кузoв:"): lstCarParams.Insert(counter, "bodyType");
                         break;
-                    case ("Привод:"): lstCarParams.Insert(counter, "driveType");
+                    case ("Привoд:"): lstCarParams.Insert(counter, "driveType");
                         break;
                     case ("Состояние:"): lstCarParams.Insert(counter, "condition");
                         break;
@@ -219,7 +220,7 @@ namespace FindAndFollow
                         break;
                     case ("color"): lstCarValues[1] = node.InnerHtml;
                         break;
-                    case ("mileAge"): lstCarValues[2] = node.InnerHtml;
+                    case ("mileAge"): lstCarValues[2] = Regex.Replace(node.InnerText.Trim(), @"\t|\n|\r", "");
                         break;
                     case ("engineType"): lstCarValues[3] = node.InnerHtml;
                         break;

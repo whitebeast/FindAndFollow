@@ -32,7 +32,7 @@ namespace FindAndFollow
             // Insert data
             foreach (int i in urlIds)
             {
-            //for (int i = 11045140; i < 11045141; i++)
+            //for (int i = 8488512; i < 8488513; i++)
             //{
                 string[] checkSellerTypeArray = new string[1];
                 string urlFull = url + i;
@@ -43,7 +43,7 @@ namespace FindAndFollow
                     if (webSite == "abw.by")
                     {
                         checkSellerTypeArray[0] = "/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/table[2]/tr[1]/td[1]/script[2]";
-                        checkSellerTypeArray = Download.GetData(urlFull.ToString(), checkSellerTypeArray, "abw");
+                        checkSellerTypeArray = Download.GetData(urlFull, checkSellerTypeArray, "abw");
 
                         xPathArray = CarParsingSettingsGet(checkSellerTypeArray[0] == null ? "abw.by-private" : "abw.by-autoagency");
                     }
@@ -74,7 +74,7 @@ namespace FindAndFollow
                     if (webSite == "abw.by")
                     {
                         dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р.", urlFull), 1000000, urlFull);
-                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыс. км", urlFull), 1000, urlFull);
+                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыc.км", urlFull), 1000, urlFull);
                         dataArray[5] = StringClass.RemoveText(dataArray[5], " см3", urlFull);
                         dataArray[6] = StringClass.ColorGet(dataArray[6], urlFull);
                         dataArray[7] = StringClass.BodyTypeGet(dataArray[7], urlFull);
@@ -223,7 +223,7 @@ namespace FindAndFollow
             SqlCommand commandInsert = SqlCommandGet("FindAndFollowConnectionString", "ErrorLogInsert");
 
             commandInsert.Parameters.AddWithValue("@pErrorNumber", 0);
-            commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
+            //commandInsert.Parameters.AddWithValue("@pErrorObject", exStackTrace.Substring(6, exStackTrace.IndexOf(" in ", StringComparison.Ordinal)));
             commandInsert.Parameters.AddWithValue("@pIsService", Convert.ToBoolean(1));
             commandInsert.Parameters.AddWithValue("@pErrorMessageShort", url);
             commandInsert.Parameters.AddWithValue("@pErrorMessageFull", exStackTrace);
