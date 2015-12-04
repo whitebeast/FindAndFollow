@@ -254,5 +254,29 @@ namespace FindAndFollow
 
             return currentId;
         }
+
+        public static string[] CarParsingSettingsMainPage(string url)
+        {
+            // Get XPaths
+            string[] xPathArray = new string[5];
+
+            SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
+
+            commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
+
+            SqlDataReader dataReader = commandSelect.ExecuteReader();
+            while (dataReader.Read())
+            {
+                xPathArray[0] = dataReader["MainPageUrlsXPath"].ToString();
+                xPathArray[1] = dataReader["MainPageUrlsXPathNodeValue"].ToString();
+                xPathArray[2] = dataReader["MainPageUrlsXPathAttributeValue"].ToString();
+                xPathArray[3] = dataReader["MainPageUrlsXPathRemoveText"].ToString();
+                xPathArray[4] = dataReader["IsContentExistXpath"].ToString();
+            }
+
+            return xPathArray;
+        }
+
     }
 }
+

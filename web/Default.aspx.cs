@@ -25,24 +25,25 @@ namespace FindAndFollow
             string urlSiteAb = "http://ab.onliner.by/#currency=USD&sort[]=creation_date&page=1";
 
             // av.by
-            int[] urlIds = Download.UrlsGet(urlSiteAv, "/html/body/div[2]/div[1]/div[2]/div/div[2]/div[3]", siteAv, ".//div[@class='b-listing-item-title']//a[@href]", "href", "public.php?event=View&public_id=");
+            string[] mainPageXpaths = Database.CarParsingSettingsMainPage(siteAv);
+            int[] urlIds = Download.UrlsGet(urlSiteAv, mainPageXpaths[0], siteAv, mainPageXpaths[1], mainPageXpaths[2], mainPageXpaths[3]);
 
             string[] xPathArray = Database.CarParsingSettingsGet(siteAv);
-
-            Database.CarParsingInsert(urlAv, xPathArray, urlIds, "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]", siteAv);
+            Database.CarParsingInsert(urlAv, xPathArray, urlIds, mainPageXpaths[4], siteAv);
 
             // abw.by
-            urlIds = Download.UrlsGet(urlSiteAbw, "//*[@id=\"advertsListContainer\"]", siteAbwA, ".//div[@class='a_m_o']//a[@href]", "href", "/allpublic/sell/");
+            mainPageXpaths = Database.CarParsingSettingsMainPage(siteAbwP);
+            urlIds = Download.UrlsGet(urlSiteAbw, mainPageXpaths[0], siteAbwA, mainPageXpaths[1], mainPageXpaths[2], mainPageXpaths[3]);
 
-            Database.CarParsingInsert(urlAbw, xPathArray, urlIds, "/html/body/div/h1", "abw.by");
+            Database.CarParsingInsert(urlAbw, xPathArray, urlIds, mainPageXpaths[4], "abw.by");
 
             // ab.onliner.by
             xPathArray = Database.CarParsingSettingsGet(siteAb);
 
             //int[] urlIds = Download.UrlsGet(urlSiteAb, "//*[@id=\"minWidth\"]/div/div[4]/div/div[2]/div[1]/div/div[2]/div[2]/table/tbody", siteAb, ".//div[@class='b-listing-item-title']//a[@href]", "href", "public.php?event=View&public_id=");
-            urlIds = new int[] { 2441437, 2456895, 2441221, 2395719 };
+            urlIds = new int[] { 2463032, 2441437, 2441221, 2395719 };
 
-            Database.CarParsingInsert(urlAb, xPathArray, urlIds, "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]", siteAb);
+            Database.CarParsingInsert(urlAb, xPathArray, urlIds, mainPageXpaths[4], siteAb);
 
             Database.CarMerge();
         }
