@@ -348,6 +348,38 @@ namespace FindAndFollow
             }
         }
 
+        public static string[] MainPageUrlGenerate(string webSite)
+        {
+            string[] urlsArray = new string[25];
+
+            if (webSite == "av.by")
+            {
+                for (int i = 1; i < urlsArray.Length; i++)
+                {
+                    urlsArray[i] = "http://av.by/public/search.php?name_form=search_form&event=Search&country_id=0&body_type_id=0&class_id=0&engine_type_all=1&volume_value=0&volume_value_max=0&cylinders_number=0&run_value=0&run_value_max=0&run_unit=-1&transmission_id=0&year_id=0&year_id_max=0&price_value=0&price_value_max=0&currency_id=USD&door_id=0&region_id=0&city_id=Array&public_pass_rf=0&public_new=0&public_exchange=0&public_image=0&public_show_id=0&order_id=2&category_parent[0]=0&category_id[0]=0&page=" + i.ToString();
+                }
+            }
+
+            if (webSite == "abw.by-autoagency")
+            {
+                for (int i = 30; i < urlsArray.Length; i = i + 30 )
+                {
+                    urlsArray[i] = "http://www.abw.by/index.php?set_small_form_1=1&act=public_search&do=search&index=1&adv_type=1&adv_group=&marka%5B%5D=&model%5B%5D=&type_engine=&transmission=&vol1=&vol2=&year1=1960&year2=2015&cost_val1=&cost_val2=&u_country=+&u_city=&period=&sort=&na_rf=&type_body=&privod=&probeg_col1=&probeg_col2=&key_word_a=&page=" + i.ToString();
+                }
+            }
+
+            if (webSite == "ab.onliner.by")
+            {
+                urlsArray[0] = "2463032";
+                urlsArray[1] = "2441437";
+                urlsArray[2] = "2441221";
+                urlsArray[3] = "2395719";
+            }
+
+            return urlsArray;
+
+        }
+
         public static int[] UrlsGet(string url, string xPath, string webSite, string nodeValue, string attributeValue, string removeText)
         {
             WebClient webGet = new WebClient();
@@ -355,37 +387,43 @@ namespace FindAndFollow
 
             webGet.Headers.Add("user-agent", "Mozilla/5.0 (Windows; Windows NT 5.1; rv:1.9.2.4) Gecko/20100611 Firefox/3.6.4");
 
-            if (webSite == "ab.onliner.by")
+            string[] urlsArray = MainPageUrlGenerate(webSite);
+            List<string> lstUrls = new List<string>();
+
+            foreach(string url2 in urlsArray)
             {
-                webGet.Encoding = System.Text.Encoding.UTF8;
-                doc.LoadHtml(DownloadPage(url));
-            }
-            else
-            {
-                try
+                if (webSite == "ab.onliner.by")
                 {
-                    var html = webGet.DownloadString(url);
-                    doc.LoadHtml(html);
+                    webGet.Encoding = System.Text.Encoding.UTF8;
+                    doc.LoadHtml(DownloadPage(url));
                 }
-                catch (Exception ex)
+                else
                 {
-                    Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+                    try
+                    {
+                        var html = webGet.DownloadString(url);
+                        doc.LoadHtml(html);
+                    }
+                    catch (Exception ex)
+                    {
+                        Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+                    }
                 }
-            }
 
-            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+                HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
+                List<string> lstUrls2 = bodyNode.SelectNodes(nodeValue).Select(node => StringClass.RemoveText(node.Attributes[attributeValue].Value, removeText, url)).ToList();
 
-            List<string> lstUrls = bodyNode.SelectNodes(nodeValue).Select(node => StringClass.RemoveText(node.Attributes[attributeValue].Value, removeText, url)).ToList();
-
-            // convert to int
-            for (int i = 0; i < lstUrls.Count; i++)
-            {
-                lstUrls[i] = StringClass.ReplaceText(lstUrls[i], "/", "", url);
+                // convert to int
+                for (int i = 0; i < lstUrls2.Count; i++)
+                {
+                    lstUrls.Add(StringClass.ReplaceText(lstUrls2[i], "/", "", url));
+                }
             }
 
             int[] ids = Array.ConvertAll(lstUrls.ToArray(), int.Parse);
 
             return ids;
+
         }
 
         public static string CityGetGetAv(HtmlDocument doc, string xPath, string url)

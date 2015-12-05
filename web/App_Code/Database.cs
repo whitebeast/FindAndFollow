@@ -108,6 +108,13 @@ namespace FindAndFollow
                     }
                     #endregion "if ab.onliner.by"
 
+                    // Check for new object
+                    if (Convert.ToDateTime(dataArray[12]) < Database.CarParsingSettingsLastUploadDateGet(webSite))
+                    {
+                        // TODO: add method for write dataArray[12] to db
+                        break;
+                    }
+
                     commandInsert.Parameters.Add("@pCarBrand", SqlDbType.NVarChar, 50).Value = dataArray[0] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pModel", SqlDbType.NVarChar, 50).Value = dataArray[1] ?? sqlParameters[0].Value;
                     commandInsert.Parameters.Add("@pModelYear", SqlDbType.NVarChar, 4).Value = dataArray[2] ?? sqlParameters[0].Value;
@@ -275,6 +282,23 @@ namespace FindAndFollow
             }
 
             return xPathArray;
+        }
+
+        public static DateTime CarParsingSettingsLastUploadDateGet(string url)
+        {
+            DateTime lastUploadDate = new DateTime(1900, 1, 1);
+
+            SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet_CurrentId");
+
+            commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
+
+            // Get data from db
+            SqlDataReader dataReader = commandSelect.ExecuteReader();
+            while (dataReader.Read())
+            {
+                lastUploadDate = Convert.ToDateTime(dataReader["LastUploadDate"]);
+            }
+            return lastUploadDate;
         }
 
     }

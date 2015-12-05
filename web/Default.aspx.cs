@@ -32,7 +32,7 @@ namespace FindAndFollow
             Database.CarParsingInsert(urlAv, xPathArray, urlIds, mainPageXpaths[4], siteAv);
 
             // abw.by
-            mainPageXpaths = Database.CarParsingSettingsMainPage(siteAbwP);
+            mainPageXpaths = Database.CarParsingSettingsMainPage(siteAbwA);
             urlIds = Download.UrlsGet(urlSiteAbw, mainPageXpaths[0], siteAbwA, mainPageXpaths[1], mainPageXpaths[2], mainPageXpaths[3]);
 
             Database.CarParsingInsert(urlAbw, xPathArray, urlIds, mainPageXpaths[4], "abw.by");
