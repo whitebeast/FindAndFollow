@@ -3,6 +3,7 @@
     CarParsingSettingsId            INT NOT NULL IDENTITY(1,1),
     SiteURL                         NVARCHAR(1000) NOT NULL,
     CurrentId                       INT NULL,
+    LastUploadDate                  DATETIME NULL,
     DownloadMaskURL                 NVARCHAR(100)  NOT NULL,
     CarBrandXPath                   NVARCHAR(1000) NULL,
     ModelXPath                      NVARCHAR(1000) NULL,
