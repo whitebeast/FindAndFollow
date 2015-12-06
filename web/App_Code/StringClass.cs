@@ -401,8 +401,18 @@ namespace FindAndFollow
             }
         }
 
-        public static string ConditionGetAbw(string word, string url)
+        public static string ConditionGetAbw(string word, string mileage, string url)
         {
+            // if condition is empty
+            if (word == "") 
+            {
+                int mileageInt = int.Parse(mileage.Trim());
+
+                var condition = mileageInt <= 50 ? "Новый" : "С пробегом";
+
+                return condition;
+            }
+
             try
             {
                 string condition = word.Trim().Substring(0, 3);

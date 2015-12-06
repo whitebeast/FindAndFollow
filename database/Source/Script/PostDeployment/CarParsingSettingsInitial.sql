@@ -107,7 +107,7 @@ UNION ALL
 SELECT     'abw.by-autoagency' AS SiteUrl,
            8346113 AS CurrentId,
            'http://www.abw.by/allpublic/sell/' AS DownloadMaskURL,
-           '///*[@id="news"]/tr[2]/td/table[4]/tr[1]/td/div/div[1]/a[1]' AS CarBrandXPath,
+           '//*[@id="news"]/tr[2]/td/table[4]/tr[1]/td/div/div[1]/a[1]' AS CarBrandXPath,
            '//*[@id="news"]/tr[2]/td/table[4]/tr[1]/td/div/div[1]/a[2]' AS ModelXPath,
            '//*[@id="news"]/tr[2]/td/table[4]/tr[1]/td/div/div[1]/span[1]/span[2]' AS PriceXPath,
            '/html[1]/body[1]/table[1]/tr[1]/td[2]/table[1]/tr[2]/td[1]/div[2]/table[1]/tr[8]/td[2]' AS BodyTypeXPath,
