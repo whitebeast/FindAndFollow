@@ -562,7 +562,7 @@ namespace FindAndFollow
                 int endCut = country.IndexOf(")", StringComparison.Ordinal);
                 startCut = country.IndexOf("(", StringComparison.Ordinal);
 
-                return country.Substring(startCut + 1, endCut).Split(',').FirstOrDefault();
+                return country.Substring(startCut + 1, endCut - startCut).Split(',').FirstOrDefault();
 
             }
             catch (Exception ex)

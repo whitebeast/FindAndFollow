@@ -81,7 +81,7 @@ namespace FindAndFollow
                         dataArray[8] = StringClass.EngineTypeGet(dataArray[8], urlFull);
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9], urlFull);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10], urlFull);
-                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], "Размещено: ", urlFull), urlFull), urlFull);
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(StringClass.RemoveText(dataArray[12], "Размещено: ", urlFull), "Продлено: ", urlFull), urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAbw(dataArray[14], dataArray[4], urlFull);
                         dataArray[16] = StringClass.CityGetAbw(dataArray[16], urlFull);
                         dataArray[20] = StringClass.CountryGetAbw(dataArray[20], urlFull);

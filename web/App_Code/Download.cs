@@ -373,7 +373,7 @@ namespace FindAndFollow
             if (webSite == "ab.onliner.by")
             {
                 urlsArray[0] = "2463032";
-                urlsArray[1] = "2441437";
+                urlsArray[1] = "2457321";
                 urlsArray[2] = "2441221";
                 urlsArray[3] = "2395719";
             }
@@ -382,7 +382,7 @@ namespace FindAndFollow
 
         }
 
-        public static int[] UrlsGet(string url, string xPath, string webSite, string nodeValue, string attributeValue, string removeText)
+        public static int[] UrlsGet(string xPath, string webSite, string nodeValue, string attributeValue, string removeText)
         {
             WebClient webGet = new WebClient();
             HtmlDocument doc = new HtmlDocument();
@@ -392,18 +392,18 @@ namespace FindAndFollow
             string[] urlsArray = MainPageUrlGenerate(webSite);
             List<string> lstUrls = new List<string>();
 
-            foreach(string url2 in urlsArray)
+            foreach(string url in urlsArray)
             {
                 if (webSite == "ab.onliner.by")
                 {
                     webGet.Encoding = System.Text.Encoding.UTF8;
-                    doc.LoadHtml(DownloadPage(url2));
+                    doc.LoadHtml(DownloadPage(url));
                 }
                 else
                 {
                     try
                     {
-                        var html = webGet.DownloadString(url2);
+                        var html = webGet.DownloadString(url);
                         doc.LoadHtml(html);
                     }
                     catch (Exception ex)
