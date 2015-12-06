@@ -404,36 +404,46 @@ namespace FindAndFollow
         public static string ConditionGetAbw(string word, string mileage, string url)
         {
             // if condition is empty
-            if (word == "") 
+            if (word == "")
             {
-                int mileageInt = int.Parse(mileage.Trim());
-
-                var condition = mileageInt <= 50 ? "Новый" : "С пробегом";
-
-                return condition;
-            }
-
-            try
-            {
-                string condition = word.Trim().Substring(0, 3);
-
-                switch (condition)
+                try
                 {
-                    case ("ава"): condition = "Аварийный";
-                        break;
-                    case ("нов"): condition = "Новый";
-                        break;
-                    case ("с п"): condition = "С пробегом";
-                        break;
-                    default: condition = "Другой";
-                        break;
-                }
+                    int mileageInt = int.Parse(word.Trim());
 
-                return condition;
+                    var condition = mileageInt <= 50 ? "Новый" : "С пробегом";
+
+                    return condition;
+                }
+                catch (Exception ex)
+                {
+                    return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+                }
             }
-            catch (Exception ex)
+            // if condition is not empty
+            else
             {
-                return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+                try
+                {
+                    string condition = word.Trim().Substring(0, 3);
+
+                    switch (condition)
+                    {
+                        case ("ава"): condition = "Аварийный";
+                            break;
+                        case ("нов"): condition = "Новый";
+                            break;
+                        case ("с п"): condition = "С пробегом";
+                            break;
+                        default: condition = "Другой";
+                            break;
+                    }
+
+                    return condition;
+                }
+                catch (Exception ex)
+                {
+                    return Database.ErrorLogInsert(ex.Message, ex.StackTrace, url);
+                }
             }
         }
 
