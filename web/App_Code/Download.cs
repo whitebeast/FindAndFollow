@@ -320,7 +320,7 @@ namespace FindAndFollow
 
             try
             {
-                List<string> lstOwnerPhones = bodyNode.SelectNodes(".//tr/td").Select(node => StringClass.RemoveText(node.InnerHtml, "-", url)).ToList();
+                List<string> lstOwnerPhones = bodyNode.SelectNodes(".//tr/td").Select(node => StringClass.RemoveText(node.InnerHtml, new string[]{"-"}, url)).ToList();
                 return Serialization.CarOptionListSerialize(lstOwnerPhones, url);
             }
             catch (Exception ex)
@@ -413,7 +413,7 @@ namespace FindAndFollow
                 }
 
                 HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode(xPath);
-                List<string> lstUrls2 = bodyNode.SelectNodes(nodeValue).Select(node => StringClass.RemoveText(node.Attributes[attributeValue].Value, removeText, url)).ToList();
+                List<string> lstUrls2 = bodyNode.SelectNodes(nodeValue).Select(node => StringClass.RemoveText(node.Attributes[attributeValue].Value, new string[]{removeText}, url)).ToList();
 
                 // convert to int
                 for (int i = 0; i < lstUrls2.Count; i++)

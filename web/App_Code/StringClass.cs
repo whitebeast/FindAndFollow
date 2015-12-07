@@ -19,11 +19,15 @@ namespace FindAndFollow
             }
         }
 
-        public static string RemoveText(string word, string removeWord, string url)
+        public static string RemoveText(string word, string[] removeArray, string url)
         {
             try
             {
-                return word.Replace(removeWord, string.Empty).Trim();
+                foreach (string removeWord in removeArray)
+                {
+                    word = word.Replace(removeWord, string.Empty).Trim();
+                }
+                return word;
             }
             catch (Exception ex)
             {
@@ -453,7 +457,7 @@ namespace FindAndFollow
             try
             {
                 int startCut = word.IndexOf("<div align=\"center\">Продавец:", StringComparison.Ordinal);
-                string city = RemoveText(word.Trim().Substring(startCut, 130), "<div align=\"center\">Продавец:</b>", url);
+                string city = RemoveText(word.Trim().Substring(startCut, 130), new string[]{"<div align=\"center\">Продавец:</b>"}, url);
                 int endCut = city.IndexOf(")", StringComparison.Ordinal);
 
                 return city.Substring(0, endCut).Split(new [] {", "}, StringSplitOptions.None).LastOrDefault();
@@ -470,7 +474,7 @@ namespace FindAndFollow
             {
                 int startCut = word.IndexOf("+375 ", StringComparison.Ordinal);
                 int endCut = word.IndexOf("</b>", StringComparison.Ordinal);
-                string phoneNumber = RemoveText(word.Substring(startCut, endCut - startCut), "<b>", url);
+                string phoneNumber = RemoveText(word.Substring(startCut, endCut - startCut), new string[]{"<b>"}, url);
 
                 return phoneNumber.Trim();
             }
@@ -484,7 +488,7 @@ namespace FindAndFollow
         {
             try
             {
-                return RemoveText(RemoveText(ReplaceText(word, "-", " ", url), ")", url), "(", url);
+                return RemoveText(ReplaceText(word, "-", " ", url), new string[]{")", "("}, url);
             }
             catch (Exception ex)
             {
@@ -498,10 +502,10 @@ namespace FindAndFollow
             {
                 if (word.Contains("миль"))
                 {
-                    float mileage = Int32.Parse(RemoveText(word, "миль", url).Trim());
+                    float mileage = Int32.Parse(RemoveText(word, new string[] { "тыc.миль", "миль" }, url).Trim());
                     string delimeter = ReplaceText(word, "миль", "км.", url);
 
-                    return ((int)(mileage/1.609)).ToString();
+                    return ((int)(mileage * 1.609)).ToString();
                 }
                 else
                 {
@@ -557,7 +561,7 @@ namespace FindAndFollow
             try
             {
                 int startCut = word.IndexOf("<div align=\"center\">Продавец:", StringComparison.Ordinal);
-                string country = RemoveText(word.Trim().Substring(startCut, 130), "<div align=\"center\">Продавец:</b>", url);
+                string country = RemoveText(word.Trim().Substring(startCut, 130), new string[]{"<div align=\"center\">Продавец:</b>"}, url);
                 
                 int endCut = country.IndexOf(")", StringComparison.Ordinal);
                 startCut = country.IndexOf("(", StringComparison.Ordinal);
