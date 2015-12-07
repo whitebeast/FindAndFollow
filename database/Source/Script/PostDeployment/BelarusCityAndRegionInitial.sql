@@ -106,6 +106,7 @@ SELECT N'Столбцы',N'Минская область' UNION ALL
 SELECT N'Узда',N'Минская область' UNION ALL
 SELECT N'Червень',N'Минская область' UNION ALL
 SELECT N'Жодино',N'Минская область' UNION ALL
+SELECT N'Заславль',N'Минская область' UNION ALL
 SELECT N'Белыничи',N'Могилевская область' UNION ALL
 SELECT N'Быхов',N'Могилевская область' UNION ALL
 SELECT N'Глуск',N'Могилевская область' UNION ALL
