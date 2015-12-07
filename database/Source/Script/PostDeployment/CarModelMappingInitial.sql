@@ -23,6 +23,9 @@ INSERT INTO @tMask
     --Renault
     SELECT N'Scenic%',N'Renault','' UNION ALL
     SELECT N'Laguna%',N'Renault','' UNION ALL
+    SELECT N'Clio%',N'Renault','' UNION ALL
+    --Nissan
+    SELECT N'100%',N'Nissan','' UNION ALL
     --Mercedes
     SELECT N'A%',N'Mercedes','' UNION ALL
     SELECT N'B%',N'Mercedes','' UNION ALL
@@ -60,49 +63,61 @@ INSERT INTO @tMask
     SELECT N'T2%',N'Volkswagen','' UNION ALL
     SELECT N'T3%',N'Volkswagen','' UNION ALL
     SELECT N'T4%',N'Volkswagen','' UNION ALL
-    SELECT N'T5%',N'Volkswagen','' 
+    SELECT N'T5%',N'Volkswagen','' UNION ALL
+    --ГАЗ
+    SELECT N'24%',N'ГАЗ','' UNION ALL
+    SELECT N'27%',N'ГАЗ','' UNION ALL
+    SELECT N'31%',N'ГАЗ','' UNION ALL
+    SELECT N'32%',N'ГАЗ','' UNION ALL
+    SELECT N'33%',N'ГАЗ','' 
 ;
 -- Honda Stream
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT 'Strea M','',cb.CarBrandId,cm.CarModelId
+SELECT N'Strea M',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Honda' AND cm.Name = N'Stream'
 ;
 --BMW E46
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT 'E46','',cb.CarBrandId,cm.CarModelId
+SELECT N'E46',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'BMW' AND cm.Name = N'3-Series'
 ;
 --Citroen Xsara Picasso
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT 'Picasso','',cb.CarBrandId,cm.CarModelId
+SELECT N'Picasso',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Citroen' AND cm.Name = N'Xsara Picasso'
 ;
 --Dodge Grand Caravan
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT 'Grand-Caravan','',cb.CarBrandId,cm.CarModelId
+SELECT N'Grand-Caravan',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Dodge' AND cm.Name = N'Grand Caravan'
 ;
 --Audi A6 Allroad
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT 'Allroad','',cb.CarBrandId,cm.CarModelId
+SELECT N'Allroad',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Audi' AND cm.Name = N'A6 Allroad'
 ;
 --Audi A6 Allroad
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT 'Allroad','',cb.CarBrandId,cm.CarModelId
+SELECT N'Allroad',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Audi' AND cm.Name = N'A6 Allroad'
 ;
 --Suzuki XL7
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT 'Grand Vitara XL7','',cb.CarBrandId,cm.CarModelId
+SELECT N'Grand Vitara XL7',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Suzuki' AND cm.Name = N'XL7'
+;
+--Mercedes T1 -- Cyrillic T symbol
+INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
+SELECT N'Т%',N'',cb.CarBrandId,cm.CarModelId
+FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
+WHERE   cb.Name = N'Mercedes' AND cm.Name = N'T1'
 ;
 INSERT INTO @tCarModelMapping
     (
