@@ -10,7 +10,8 @@ BEGIN
                     [CarId],
                     [Phone]
                 )
-            SELECT  t.CarId,
+            SELECT  DISTINCT
+                    t.CarId,
                     f.Stringvalue 
             FROM #CarOwnerPhone t
             CROSS APPLY dbo.ParseJSON (t.OwnerPhone) f
