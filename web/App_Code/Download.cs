@@ -56,15 +56,19 @@ namespace FindAndFollow
 
             if (webSite == "av.by")
             {
+                string[] imageSettingsArray = Database.CarParsingImageSettingsGet(webSite);
+
                 returnArray[16] = CityGetGetAv(doc, xPathArray[16], url);
                 returnArray[17] = OwnerPhoneGetAv(doc, xPathArray[17], url);
-                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, "a[@href]", "href");
+                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, imageSettingsArray[0], imageSettingsArray[1]);
                 returnArray[19] = OptionListGetAv(doc, xPathArray[19], url);
                 returnArray[20] = CityGetGetAv(doc, xPathArray[20], url);
             }
 
             if (webSite == "abw.by")
             {
+                string[] imageSettingsArray = Database.CarParsingImageSettingsGet("abw.by-autoagency");
+
                 returnArray[2] = returnArrayAbw[0];
                 returnArray[4] = returnArrayAbw[2];
                 returnArray[5] = returnArrayAbw[4];
@@ -74,14 +78,16 @@ namespace FindAndFollow
                 returnArray[9] = returnArrayAbw[5];
                 returnArray[10] = returnArrayAbw[7];
                 returnArray[14] = returnArrayAbw[8];
-                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, ".//a[@rel='group']", "href");
+                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, imageSettingsArray[0], imageSettingsArray[1]);
                 returnArray[19] = OptionListGetAbw(doc, xPathArray[19], url);
             }
 
             if (webSite == "ab.onliner.by")
             {
+                string[] imageSettingsArray = Database.CarParsingImageSettingsGet(webSite);
+
                 returnArray[17] = OwnerPhoneGetAb(doc, xPathArray[17], url);
-                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, ".//img[@src]", "src");
+                returnArray[18] = CarImagesGet(doc, xPathArray[18], url, imageSettingsArray[0], imageSettingsArray[1]);
                 returnArray[19] = OptionListGetAb(doc, xPathArray[19], url);
             }
 

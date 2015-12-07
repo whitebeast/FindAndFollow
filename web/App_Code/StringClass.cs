@@ -243,6 +243,8 @@ namespace FindAndFollow
 
         public static string EngineTypeGetHybrid(string word, string url)
         {
+            if (word == "гибрид") return "Гибрид";
+
             try
             {
                 string engineType = word.Substring(0, 10).ToLower();

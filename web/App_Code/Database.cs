@@ -301,6 +301,25 @@ namespace FindAndFollow
             return lastUploadDate;
         }
 
+        public static string[] CarParsingImageSettingsGet(string url)
+        {
+            // Get XPaths
+            string[] xPathArray = new string[2];
+
+            SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
+
+            commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
+
+            SqlDataReader dataReader = commandSelect.ExecuteReader();
+            while (dataReader.Read())
+            {
+                xPathArray[0] = dataReader["CarImagesNodeValue"].ToString();
+                xPathArray[1] = dataReader["CarImagesAttributeValue"].ToString();
+            }
+
+            return xPathArray;
+        }
+
     }
 }
 
