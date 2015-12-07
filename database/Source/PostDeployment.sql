@@ -18,6 +18,8 @@ GO
 GO
 :r .\Script\PostDeployment\CarBrandModelInitial.sql 
 GO
+:r .\Script\PostDeployment\CarBrandExceptionInitial.sql 
+GO
 :r .\Script\PostDeployment\CarBrandMappingInitial.sql 
 GO
 :r .\Script\PostDeployment\CarModelMappingInitial.sql 

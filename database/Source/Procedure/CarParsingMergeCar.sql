@@ -133,6 +133,7 @@ BEGIN
             AND cp.Model NOT LIKE cmm.ModelNotMask 
             AND cmm.CarBrandId = cb.CarBrandId
         LEFT JOIN dbo.CarModel AS cm2 ON cm2.CarModelId = cmm.CarModelId
+        WHERE NOT EXISTS (SELECT 1 FROM dbo.CarBrandException AS cbe WHERE cp.CarBrand LIKE cbe.ExceptionMask)
         ;
 
         -- write wrong data info to Log table

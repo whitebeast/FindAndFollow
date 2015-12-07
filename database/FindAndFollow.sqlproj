@@ -182,6 +182,9 @@
     <Build Include="Source\Table\Constraint\PK\CarBrandMapping.sql" />
     <Build Include="Source\Table\Constraint\FK\CarBrandMapping.sql" />
     <None Include="Source\Script\PostDeployment\CarBrandMappingInitial.sql" />
+    <Build Include="Source\Table\CarBrandException.sql" />
+    <Build Include="Source\Table\Constraint\PK\CarBrandException.sql" />
+    <None Include="Source\Script\PostDeployment\CarBrandExceptionInitial.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
