@@ -116,12 +116,6 @@ SELECT  N'Allroad',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Audi' AND cm.Name = N'A6 Allroad'
 ;
---Audi A6 Allroad
-INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT  N'Allroad',N'',cb.CarBrandId,cm.CarModelId
-FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
-WHERE   cb.Name = N'Audi' AND cm.Name = N'A6 Allroad'
-;
 --Suzuki XL7
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
 SELECT  N'Grand Vitara XL7',N'',cb.CarBrandId,cm.CarModelId
