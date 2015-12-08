@@ -55,6 +55,9 @@ namespace FindAndFollow
 
             try
             {
+                // value prepare
+                word = ReplaceText(word, " ", "", url);
+
                 double myNumber = double.Parse(word);
                 return (myNumber * value).ToString(CultureInfo.InvariantCulture).Trim();
             }
