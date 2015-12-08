@@ -39,8 +39,16 @@ namespace FindAndFollow
         {
             try
             {
-                DateTime myTime = DateTime.Parse(word);
-                return myTime.ToString("yyyy-MM-dd HH:mm:ss").Trim();
+                if (url.Contains("av.by"))
+                {
+                    DateTime myTime = DateTime.ParseExact(word, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+                    return myTime.ToString("yyyy-MM-dd HH:mm:ss").Trim();
+                }
+                else
+                {
+                    DateTime myTime = DateTime.Parse(word);
+                    return myTime.ToString("yyyy-MM-dd HH:mm:ss").Trim();
+                }
             }
             catch (Exception ex)
             {
