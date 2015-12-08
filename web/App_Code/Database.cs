@@ -54,16 +54,16 @@ namespace FindAndFollow
                     #region "if av.by"
                     if (webSite == "av.by")
                     {
-                        dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], "р.", urlFull), urlFull);
-                        dataArray[4] = StringClass.RemoveText(StringClass.MileToKm(dataArray[4], urlFull), "км.", urlFull);
-                        dataArray[5] = StringClass.RemoveText(dataArray[5], "см", urlFull);
+                        dataArray[3] = StringClass.ConcatenateSpaces(StringClass.RemoveText(dataArray[3], new string[]{ "р."}, urlFull), urlFull);
+                        dataArray[4] = StringClass.RemoveText(StringClass.MileToKm(dataArray[4], urlFull), new string[]{"км."}, urlFull);
+                        dataArray[5] = StringClass.RemoveText(dataArray[5], new string[]{"см"}, urlFull);
                         dataArray[6] = StringClass.ColorGet(dataArray[6], urlFull);
                         dataArray[7] = StringClass.BodyTypeGet(dataArray[7], urlFull);
                         dataArray[8] = StringClass.EngineTypeGet(dataArray[8], urlFull);
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9], urlFull);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10], urlFull);
-                        dataArray[11] = StringClass.RemoveText(dataArray[11], "Комментарий продавца:", urlFull);
-                        dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], "Добавлено: ", urlFull), urlFull);
+                        dataArray[11] = StringClass.RemoveText(dataArray[11], new string[]{"Комментарий продавца:"}, urlFull);
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.RemoveText(dataArray[12], new string[]{"Добавлено: "}, urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAv(dataArray[4], urlFull);
                         dataArray[16] = StringClass.SelectWordGet(dataArray[16], ',', 1, urlFull);
                         dataArray[20] = StringClass.CountryGetAv(dataArray[20], ',', 1, urlFull);
@@ -73,15 +73,15 @@ namespace FindAndFollow
                     #region "if abw.by"
                     if (webSite == "abw.by")
                     {
-                        dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], " млн б.р.", urlFull), 1000000, urlFull);
-                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[4], "тыc.км", urlFull), 1000, urlFull);
-                        dataArray[5] = StringClass.RemoveText(dataArray[5], " см3", urlFull);
+                        dataArray[3] = StringClass.MultiplyValue(StringClass.RemoveText(dataArray[3], new string[]{" млн б.р."}, urlFull), 1000000, urlFull);
+                        dataArray[4] = StringClass.MultiplyValue(StringClass.RemoveText(StringClass.MileToKm(dataArray[4], urlFull), new string[] { "тыc.км" }, urlFull), 1000, urlFull);
+                        dataArray[5] = StringClass.RemoveText(dataArray[5], new string[]{" см3"}, urlFull);
                         dataArray[6] = StringClass.ColorGet(dataArray[6], urlFull);
                         dataArray[7] = StringClass.BodyTypeGet(dataArray[7], urlFull);
                         dataArray[8] = StringClass.EngineTypeGet(dataArray[8], urlFull);
                         dataArray[9] = StringClass.TransmissionGet(dataArray[9], urlFull);
                         dataArray[10] = StringClass.DriveTypeGet(dataArray[10], urlFull);
-                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(StringClass.RemoveText(dataArray[12], "Размещено: ", urlFull), "Продлено: ", urlFull), urlFull), urlFull);
+                        dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(StringClass.RemoveText(dataArray[12], new string[]{ "Размещено: ", "Продлено: "}, urlFull), urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAbw(dataArray[14], dataArray[4], urlFull);
                         dataArray[16] = StringClass.CityGetAbw(dataArray[16], urlFull);
                         dataArray[20] = StringClass.CountryGetAbw(dataArray[20], urlFull);
@@ -103,7 +103,7 @@ namespace FindAndFollow
                         dataArray[10] = StringClass.DriveTypeGet(StringClass.SelectWordGet(dataArray[10], ',', 3, urlFull), urlFull);
                         dataArray[12] = StringClass.DatetimeFormat(StringClass.MonthConvert(dataArray[12], urlFull), urlFull);
                         dataArray[14] = StringClass.ConditionGetAb(dataArray[14], urlFull);
-                        dataArray[16] = StringClass.RemoveText(StringClass.SelectWordGet(dataArray[16], ' ', 1, urlFull), ",", urlFull);
+                        dataArray[16] = StringClass.RemoveText(StringClass.SelectWordGet(dataArray[16], ' ', 1, urlFull), new string[]{","}, urlFull);
                         dataArray[20] = StringClass.CountryGetAb(dataArray[20], urlFull);
                     }
                     #endregion "if ab.onliner.by"
@@ -299,6 +299,25 @@ namespace FindAndFollow
                 lastUploadDate = Convert.ToDateTime(dataReader["LastUploadDate"]);
             }
             return lastUploadDate;
+        }
+
+        public static string[] CarParsingImageSettingsGet(string url)
+        {
+            // Get XPaths
+            string[] xPathArray = new string[2];
+
+            SqlCommand commandSelect = SqlCommandGet("FindAndFollowConnectionString", "CarParsingSettingsGet");
+
+            commandSelect.Parameters.AddWithValue("@pSiteUrl", url);
+
+            SqlDataReader dataReader = commandSelect.ExecuteReader();
+            while (dataReader.Read())
+            {
+                xPathArray[0] = dataReader["CarImagesNodeValue"].ToString();
+                xPathArray[1] = dataReader["CarImagesAttributeValue"].ToString();
+            }
+
+            return xPathArray;
         }
 
     }
