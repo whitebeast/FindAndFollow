@@ -913,6 +913,7 @@ SELECT N'Mercedes', N'G-Class' UNION ALL
 SELECT N'Mercedes', N'GL-Class' UNION ALL
 SELECT N'Mercedes', N'GLA-Class' UNION ALL
 SELECT N'Mercedes', N'GLC-Class' UNION ALL
+SELECT N'Mercedes', N'GLE-Class' UNION ALL
 SELECT N'Mercedes', N'GLK-Class' UNION ALL
 SELECT N'Mercedes', N'MB100' UNION ALL
 SELECT N'Mercedes', N'ML-Class' UNION ALL

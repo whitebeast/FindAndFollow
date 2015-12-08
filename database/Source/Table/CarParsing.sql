@@ -3,7 +3,7 @@
     CarBrand            NVARCHAR(50) NULL,
     Model               NVARCHAR(50) NULL,
     SiteId              NVARCHAR(50) NULL,
-    SiteUrl             NVARCHAR(2000) NULL,
+    SiteUrl             NVARCHAR(100) NULL,
     City                NVARCHAR(100) NULL,
     Country             NVARCHAR(100) NULL,
     Price               NVARCHAR(100) NULL,

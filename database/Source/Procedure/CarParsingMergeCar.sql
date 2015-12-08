@@ -8,13 +8,18 @@ BEGIN
     ;
     IF OBJECT_ID('tempdb..#CarParsing') IS NOT NULL DROP TABLE #CarParsing
     ;
-    IF OBJECT_ID('tempdb..#CarOwnerPhone') IS NOT NULL DROP TABLE #CarOwnerPhone
+    IF OBJECT_ID('tempdb..#Car') IS NOT NULL DROP TABLE #Car
     ;
-    CREATE TABLE #CarOwnerPhone 
+    CREATE TABLE #Car
         (
-            CarId       INT,
-            OwnerPhone  NVARCHAR(300),
-            OriginalURL NVARCHAR(1000)
+            CarId           INT,
+            OwnerPhone      NVARCHAR(300),
+            OriginalURL     NVARCHAR(1000),
+            Price           MONEY,
+            Mileage         INT,
+            SellerType      TINYINT,
+            Description     NVARCHAR(4000),
+            PageCreatedOn   DATETIME2
         )
     ;
     DECLARE @XML                XML,
@@ -27,6 +32,9 @@ BEGIN
     ;
     BEGIN TRY
         BEGIN TRANSACTION
+        
+        DELETE FROM dbo.CarParsing WHERE PageStatusId = 0
+        ;
         -- load and parse data
         SELECT  
                 CASE 
@@ -47,7 +55,7 @@ BEGIN
                     --WHEN cp.Mileage                             IS NULL THEN 'Original Mileage Error'
                     WHEN cp.Condition                           IS NULL THEN 'Original Condition Error'
                     WHEN cp.TransmissionType                    IS NULL THEN 'Original TransmissionType Error'
-                    WHEN cp.DriveType                           IS NULL THEN 'Original DriveType Error'
+                    --WHEN cp.DriveType                           IS NULL THEN 'Original DriveType Error'
                     WHEN cp.Price                               IS NULL THEN 'Original Price Error'
                     --WHEN cp.OwnerPhone                          IS NULL THEN 'Original OwnerPhone Error'
                     WHEN cp.City                                IS NULL THEN 'Original City Error'
@@ -189,71 +197,139 @@ BEGIN
             ;
         END
         ;
-        -- insert into Car table
-        INSERT INTO [dbo].[Car]
-               ([CarModelId]
-               ,[SiteId]
-               ,[PlaceId]
-               ,[Price]
-               ,[BodyType]
-               ,[ModelYear]
-               ,[EngineType]
-               ,[EngineSize]
-               ,[TransmissionType]
-               ,[DriveType]
-               ,[Condition]
-               ,[Mileage]
-               ,[ColorId]
-               ,[SellerType]
-               ,[IsSwap]
-               ,[Description]
-               ,[OriginalURL]
-               ,[PageCreatedOn]
-               ,[CarImages]
-               ,[OptionList]
-               ,[OriginalCarBrand]
-               ,[OriginalCarModel])
-        OUTPUT
-            inserted.CarId,
-            NULL,
-            inserted.OriginalURL
-        INTO #CarOwnerPhone
-        SELECT  cp.CarModelId,
-                cp.SiteId,
-                cp.PlaceId,
-                cp.Price,
-                cp.BodyType,
-                cp.ModelYear,
-                cp.EngineType,
-                cp.EngineSize,
-                cp.TransmissionType,
-                cp.DriveType,
-                cp.Condition,
-                cp.Mileage,
-                cp.ColorId,
-                cp.SellerType,
-                cp.IsSwap,
-                cp.Description,
-                cp.OriginalURL,
-                cp.PageCreatedOn,
-                cp.CarImages,
-                cp.OptionList,
-                cp.OriginalCarBrand,
-                cp.OriginalCarModel
-        FROM #CarParsing AS cp  
-        WHERE cp.ErrorType IS NULL        
+        -- merge with Car table
+        MERGE dbo.Car AS target
+        USING 
+            (
+                SELECT  cp.CarModelId,
+                        cp.SiteId,
+                        cp.PlaceId,
+                        cp.Price,
+                        cp.BodyType,
+                        cp.ModelYear,
+                        cp.EngineType,
+                        cp.EngineSize,
+                        cp.TransmissionType,
+                        cp.DriveType,
+                        cp.Condition,
+                        cp.Mileage,
+                        cp.ColorId,
+                        cp.SellerType,
+                        cp.IsSwap,
+                        cp.Description,
+                        cp.OriginalURL,
+                        cp.PageCreatedOn,
+                        cp.CarImages,
+                        cp.OptionList,
+                        cp.OriginalCarBrand,
+                        cp.OriginalCarModel
+                FROM #CarParsing AS cp  
+                WHERE cp.ErrorType IS NULL        
+               ) AS source
+        ON target.OriginalURL = source.OriginalURL 
+        WHEN MATCHED AND target.PageCreatedOn <> source.PageCreatedOn
+            THEN 
+                UPDATE 
+                SET
+                    CarModelId = source.CarModelId,
+                    SiteId = source.SiteId,
+                    PlaceId = source.PlaceId,
+                    Price = source.Price,
+                    BodyType = source.BodyType,
+                    ModelYear = source.ModelYear,
+                    EngineType = source.EngineType,
+                    EngineSize = source.EngineSize,
+                    TransmissionType = source.TransmissionType,
+                    DriveType = source.DriveType,
+                    Condition = source.Condition,
+                    Mileage = source.Mileage,
+                    ColorId = source.ColorId,
+                    SellerType = source.SellerType,
+                    IsSwap = source.IsSwap,
+                    Description = source.Description,
+                    OriginalURL = source.OriginalURL,
+                    PageCreatedOn = source.PageCreatedOn,
+                    CarImages = source.CarImages,
+                    OptionList = source.OptionList,
+                    OriginalCarBrand = source.OriginalCarBrand,
+                    OriginalCarModel = source.OriginalCarModel
+        WHEN NOT MATCHED BY TARGET 
+            THEN 
+                INSERT 
+                (
+                    CarModelId,
+                    SiteId,
+                    PlaceId,
+                    Price,
+                    BodyType,
+                    ModelYear,
+                    EngineType,
+                    EngineSize,
+                    TransmissionType,
+                    DriveType,
+                    Condition,
+                    Mileage,
+                    ColorId,
+                    SellerType,
+                    IsSwap,
+                    Description,
+                    OriginalURL,
+                    PageCreatedOn,
+                    CarImages,
+                    OptionList,
+                    OriginalCarBrand,
+                    OriginalCarModel
+                )
+                VALUES 
+                (
+                    source.CarModelId,
+                    source.SiteId,
+                    source.PlaceId,
+                    source.Price,
+                    source.BodyType,
+                    source.ModelYear,
+                    source.EngineType,
+                    source.EngineSize,
+                    source.TransmissionType,
+                    source.DriveType,
+                    source.Condition,
+                    source.Mileage,
+                    source.ColorId,
+                    source.SellerType,
+                    source.IsSwap,
+                    source.Description,
+                    source.OriginalURL,
+                    source.PageCreatedOn,
+                    source.CarImages,
+                    source.OptionList,
+                    source.OriginalCarBrand,
+                    source.OriginalCarModel
+                )
+        --when not matched by source then delete 
+        --OUTPUT  $action, deleted.*, inserted.*
+        OUTPUT inserted.CarId,
+               NULL,
+               inserted.OriginalURL,
+               inserted.Price,
+               inserted.Mileage,
+               inserted.SellerType,
+               inserted.Description,
+               inserted.PageCreatedOn
+          INTO #Car
         ;   
         UPDATE cop
         SET cop.OwnerPhone = cp.OwnerPhone
-        FROM #CarOwnerPhone cop
+        FROM #Car cop
         JOIN CarParsing cp ON cp.SiteUrl = cop.OriginalURL
         ;
-        EXEC dbo.CarOwnerPhoneInsert
+        EXEC dbo.CarOwnerPhoneInsert 
         ;
         UPDATE cp
         SET PageStatusId = CASE WHEN t.ErrorType IS NULL THEN 2 ELSE 0 END
         FROM dbo.CarParsing cp
         JOIN #CarParsing t ON t.CarParsingId = cp.CarParsingId
+        ;
+        EXEC dbo.CarLogInsert
         ;
         COMMIT TRANSACTION
     END TRY        
@@ -266,7 +342,7 @@ BEGIN
     END CATCH
     IF OBJECT_ID('tempdb..#CarParsing') IS NOT NULL DROP TABLE #CarParsing
     ;
-    IF OBJECT_ID('tempdb..#CarOwnerPhone') IS NOT NULL DROP TABLE #CarOwnerPhone
+    IF OBJECT_ID('tempdb..#Car') IS NOT NULL DROP TABLE #Car
     ;
     
 END

@@ -1,0 +1,1 @@
+﻿ALTER TABLE dbo.CarLog ADD CONSTRAINT dfCarLog_CreatedOn DEFAULT GETUTCDATE() FOR CreatedOn

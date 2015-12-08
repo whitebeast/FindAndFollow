@@ -1,5 +1,5 @@
 ﻿PRINT 'Populate CarBrandMapping table...'
-DECLARE @tCarBrandMapping TABLE (BrandMask VARCHAR(100), CarBrandId INT)
+DECLARE @tCarBrandMapping TABLE (BrandMask NVARCHAR(100), CarBrandId INT)
 ;
 --Ваз
 INSERT INTO @tCarBrandMapping (BrandMask,CarBrandId)

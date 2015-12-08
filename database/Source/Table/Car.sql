@@ -17,7 +17,7 @@
         SellerType            TINYINT NOT NULL,
         IsSwap                BIT NOT NULL,
         Description           NVARCHAR(4000) NULL,
-        OriginalURL           NVARCHAR(1000),
+        OriginalURL           NVARCHAR(100),
         PageCreatedOn         DATETIME2 NULL,
         CarImages             NVARCHAR(4000) NULL,
         OptionList            NVARCHAR(4000) NULL,
