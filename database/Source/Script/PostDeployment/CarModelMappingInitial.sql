@@ -1,123 +1,144 @@
 ﻿PRINT 'Populate CarModelMapping table...'
-DECLARE @tMask TABLE (Mask VARCHAR(100), CarBrand NVARCHAR(100), NotMask VARCHAR(100)) 
+DECLARE @tMask TABLE (Mask NVARCHAR(100), CarBrand NVARCHAR(100), NotMask NVARCHAR(100)) 
 ;
-DECLARE @tCarModelMapping TABLE (ModelMask VARCHAR(100), ModelNotMask VARCHAR(100), CarBrandId INT, CarModelId INT)
+DECLARE @tCarModelMapping TABLE (ModelMask NVARCHAR(100), ModelNotMask NVARCHAR(100), CarBrandId INT, CarModelId INT)
 ;
 INSERT INTO @tMask
     --Audi
-    SELECT N'A4%',N'Audi','%Allroad' UNION ALL
-    SELECT N'A6%',N'Audi','%Allroad' UNION ALL
+    SELECT N'A4%',N'Audi',N'%Allroad' UNION ALL
+    SELECT N'A6%',N'Audi',N'%Allroad' UNION ALL
     --BMW
-    SELECT N'1%',N'BMW','' UNION ALL
-    SELECT N'2%',N'BMW','' UNION ALL
-    SELECT N'3%',N'BMW','' UNION ALL
-    SELECT N'4%',N'BMW','' UNION ALL
-    SELECT N'5%',N'BMW','' UNION ALL
-    SELECT N'6%',N'BMW','' UNION ALL
-    SELECT N'7%',N'BMW','' UNION ALL
-    SELECT N'8%',N'BMW','' UNION ALL
+    SELECT N'1%',N'BMW',N'' UNION ALL
+    SELECT N'2%',N'BMW',N'' UNION ALL
+    SELECT N'3%',N'BMW',N'' UNION ALL
+    SELECT N'4%',N'BMW',N'' UNION ALL
+    SELECT N'5%',N'BMW',N'' UNION ALL
+    SELECT N'6%',N'BMW',N'' UNION ALL
+    SELECT N'7%',N'BMW',N'' UNION ALL
+    SELECT N'8%',N'BMW',N'' UNION ALL
     --Citroen
-    SELECT N'C5%',N'Citroen','' UNION ALL
+    SELECT N'C5%',N'Citroen',N'' UNION ALL
+    --Fiat
+    SELECT N'Grande%',N'Fiat',N'' UNION ALL
     --Opel
-    SELECT N'Astra%',N'Opel','' UNION ALL
+    SELECT N'Astra%',N'Opel',N'' UNION ALL
     --Renault
-    SELECT N'Scenic%',N'Renault','' UNION ALL
-    SELECT N'Laguna%',N'Renault','' UNION ALL
-    SELECT N'Clio%',N'Renault','' UNION ALL
-    --Nissan
-    SELECT N'100%',N'Nissan','' UNION ALL
+    SELECT N'Scenic%',N'Renault',N'' UNION ALL
+    SELECT N'Laguna%',N'Renault',N'' UNION ALL
+    SELECT N'Clio%',N'Renault',N'' UNION ALL
+    --Lexus
+    SELECT N'CT%',N'Lexus',N'' UNION ALL
+    SELECT N'ES%',N'Lexus',N'' UNION ALL
+    SELECT N'GS%',N'Lexus',N'' UNION ALL
+    SELECT N'GX%',N'Lexus',N'' UNION ALL
+    SELECT N'HS%',N'Lexus',N'' UNION ALL
+    SELECT N'IS%',N'Lexus',N'' UNION ALL
+    SELECT N'LS%',N'Lexus',N'' UNION ALL
+    SELECT N'LX%',N'Lexus',N'' UNION ALL
+    SELECT N'NX%',N'Lexus',N'' UNION ALL
+    SELECT N'RX%',N'Lexus',N'' UNION ALL
+    SELECT N'SC%',N'Lexus',N'' UNION ALL
     --Mercedes
-    SELECT N'A%',N'Mercedes','' UNION ALL
-    SELECT N'B%',N'Mercedes','' UNION ALL
-    SELECT N'C%',N'Mercedes','CL%' UNION ALL
-    SELECT N'CL%',N'Mercedes','CL[a-Z]%' UNION ALL
-    SELECT N'CLA%',N'Mercedes','' UNION ALL
-    SELECT N'CLC%',N'Mercedes','' UNION ALL
-    SELECT N'CLK%',N'Mercedes','' UNION ALL
-    SELECT N'CLS%',N'Mercedes','' UNION ALL
-    SELECT N'E%',N'Mercedes','' UNION ALL
-    SELECT N'G%',N'Mercedes','GL%' UNION ALL
-    SELECT N'GL%',N'Mercedes','GL[a-Z]%' UNION ALL
-    SELECT N'GLA%',N'Mercedes','' UNION ALL
-    SELECT N'GLC%',N'Mercedes','' UNION ALL
-    SELECT N'GLK%',N'Mercedes','' UNION ALL
-    SELECT N'ML%',N'Mercedes','' UNION ALL
-    SELECT N'R%',N'Mercedes','' UNION ALL
-    SELECT N'S%',N'Mercedes','S[a-Z]%' UNION ALL
-    SELECT N'SL%',N'Mercedes','SL[a-Z]%' UNION ALL
-    SELECT N'SLR%',N'Mercedes','' UNION ALL
-    SELECT N'SLS%',N'Mercedes','' UNION ALL
-    SELECT N'SLK%',N'Mercedes','' UNION ALL
-    SELECT N'V%',N'Mercedes','V[a-Z]%' UNION ALL
-    SELECT N'T1%',N'Mercedes','' UNION ALL
-    SELECT N'T2%',N'Mercedes','' UNION ALL
+    SELECT N'A%',N'Mercedes',N'' UNION ALL
+    SELECT N'B%',N'Mercedes',N'' UNION ALL
+    SELECT N'C%',N'Mercedes',N'CL%' UNION ALL
+    SELECT N'CL%',N'Mercedes',N'CL[a-Z]%' UNION ALL
+    SELECT N'CLA%',N'Mercedes',N'' UNION ALL
+    SELECT N'CLC%',N'Mercedes',N'' UNION ALL
+    SELECT N'CLK%',N'Mercedes',N'' UNION ALL
+    SELECT N'CLS%',N'Mercedes',N'' UNION ALL
+    SELECT N'E%',N'Mercedes',N'' UNION ALL
+    SELECT N'G%',N'Mercedes',N'GL%' UNION ALL
+    SELECT N'GL%',N'Mercedes',N'GL[a-Z]%' UNION ALL
+    SELECT N'GLA%',N'Mercedes',N'' UNION ALL
+    SELECT N'GLC%',N'Mercedes',N'' UNION ALL
+    SELECT N'GLE%',N'Mercedes',N'' UNION ALL
+    SELECT N'GLK%',N'Mercedes',N'' UNION ALL
+    SELECT N'ML%',N'Mercedes',N'' UNION ALL
+    SELECT N'R%',N'Mercedes',N'' UNION ALL
+    SELECT N'S%',N'Mercedes',N'S[a-Z]%' UNION ALL
+    SELECT N'SL%',N'Mercedes',N'SL[a-Z]%' UNION ALL
+    SELECT N'SLR%',N'Mercedes',N'' UNION ALL
+    SELECT N'SLS%',N'Mercedes',N'' UNION ALL
+    SELECT N'SLK%',N'Mercedes',N'' UNION ALL
+    SELECT N'V%',N'Mercedes',N'V[a-Z]%' UNION ALL
+    SELECT N'T1%',N'Mercedes',N'' UNION ALL
+    SELECT N'T2%',N'Mercedes',N'' UNION ALL
+    --Nissan
+    SELECT N'100%',N'Nissan',N'' UNION ALL
     --Suzuki
-    SELECT N'SX%',N'Suzuki','' UNION ALL
-    SELECT N'XL%',N'Suzuki','Grand%' UNION ALL
+    SELECT N'SX%',N'Suzuki',N'' UNION ALL
+    SELECT N'XL%',N'Suzuki',N'Grand%' UNION ALL
     --Toyota
-    SELECT N'Carina%',N'Toyota','' UNION ALL
+    SELECT N'Carina%',N'Toyota',N'' UNION ALL
     --Volkswagen
-    SELECT N'Golf%',N'Volkswagen','%Plus%' UNION ALL 
-    SELECT N'Passat%',N'Volkswagen','%CC%' UNION ALL
-    SELECT N'T1%',N'Volkswagen','' UNION ALL
-    SELECT N'T2%',N'Volkswagen','' UNION ALL
-    SELECT N'T3%',N'Volkswagen','' UNION ALL
-    SELECT N'T4%',N'Volkswagen','' UNION ALL
-    SELECT N'T5%',N'Volkswagen','' UNION ALL
+    SELECT N'Golf%',N'Volkswagen',N'%Plus%' UNION ALL 
+    SELECT N'Passat%',N'Volkswagen',N'%CC%' UNION ALL
+    SELECT N'T1%',N'Volkswagen',N'' UNION ALL
+    SELECT N'T2%',N'Volkswagen',N'' UNION ALL
+    SELECT N'T3%',N'Volkswagen',N'' UNION ALL
+    SELECT N'T4%',N'Volkswagen',N'' UNION ALL
+    SELECT N'T5%',N'Volkswagen',N'' UNION ALL
     --ГАЗ
-    SELECT N'24%',N'ГАЗ','' UNION ALL
-    SELECT N'27%',N'ГАЗ','' UNION ALL
-    SELECT N'31%',N'ГАЗ','' UNION ALL
-    SELECT N'32%',N'ГАЗ','' UNION ALL
-    SELECT N'33%',N'ГАЗ','' 
+    SELECT N'24%',N'ГАЗ',N'' UNION ALL
+    SELECT N'27%',N'ГАЗ',N'' UNION ALL
+    SELECT N'31%',N'ГАЗ',N'' UNION ALL
+    SELECT N'32%',N'ГАЗ',N'' UNION ALL
+    SELECT N'33%',N'ГАЗ',N'' 
 ;
 -- Honda Stream
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT N'Strea M',N'',cb.CarBrandId,cm.CarModelId
+SELECT  N'Strea M',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Honda' AND cm.Name = N'Stream'
 ;
 --BMW E46
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT N'E46',N'',cb.CarBrandId,cm.CarModelId
+SELECT  N'E46',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'BMW' AND cm.Name = N'3-Series'
 ;
 --Citroen Xsara Picasso
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT N'Picasso',N'',cb.CarBrandId,cm.CarModelId
+SELECT  N'Picasso',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Citroen' AND cm.Name = N'Xsara Picasso'
 ;
 --Dodge Grand Caravan
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT N'Grand-Caravan',N'',cb.CarBrandId,cm.CarModelId
+SELECT  N'Grand-Caravan',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Dodge' AND cm.Name = N'Grand Caravan'
 ;
 --Audi A6 Allroad
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT N'Allroad',N'',cb.CarBrandId,cm.CarModelId
+SELECT  N'Allroad',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Audi' AND cm.Name = N'A6 Allroad'
 ;
 --Audi A6 Allroad
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT N'Allroad',N'',cb.CarBrandId,cm.CarModelId
+SELECT  N'Allroad',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Audi' AND cm.Name = N'A6 Allroad'
 ;
 --Suzuki XL7
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT N'Grand Vitara XL7',N'',cb.CarBrandId,cm.CarModelId
+SELECT  N'Grand Vitara XL7',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Suzuki' AND cm.Name = N'XL7'
 ;
 --Mercedes T1 -- Cyrillic T symbol
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
-SELECT N'Т%',N'',cb.CarBrandId,cm.CarModelId
+SELECT  N'Т1%',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Mercedes' AND cm.Name = N'T1'
+;
+--Hyundai H-1
+INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
+SELECT  N'H1',N'',cb.CarBrandId,cm.CarModelId
+FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
+WHERE   cb.Name = N'Hyundai' AND cm.Name = N'H-1'
 ;
 INSERT INTO @tCarModelMapping
     (
