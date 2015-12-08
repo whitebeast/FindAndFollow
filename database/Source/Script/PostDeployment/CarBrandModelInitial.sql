@@ -891,6 +891,7 @@ SELECT N'Mazda', N'Premacy' UNION ALL
 SELECT N'Mazda', N'Protege' UNION ALL
 SELECT N'Mazda', N'RX-7' UNION ALL
 SELECT N'Mazda', N'RX-8' UNION ALL
+SELECT N'Mazda', N'Titan' UNION ALL
 SELECT N'Mazda', N'Tribute' UNION ALL
 SELECT N'Mazda', N'Xedos 6' UNION ALL
 SELECT N'Mazda', N'Xedos 9' UNION ALL

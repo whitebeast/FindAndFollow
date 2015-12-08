@@ -26,6 +26,8 @@ INSERT INTO @tMask
     SELECT N'Scenic%',N'Renault',N'' UNION ALL
     SELECT N'Laguna%',N'Renault',N'' UNION ALL
     SELECT N'Clio%',N'Renault',N'' UNION ALL
+    --Kia
+    SELECT N'Cee%',N'Kia',N'' UNION ALL
     --Lexus
     SELECT N'CT%',N'Lexus',N'' UNION ALL
     SELECT N'ES%',N'Lexus',N'' UNION ALL
@@ -71,6 +73,12 @@ INSERT INTO @tMask
     SELECT N'XL%',N'Suzuki',N'Grand%' UNION ALL
     --Toyota
     SELECT N'Carina%',N'Toyota',N'' UNION ALL
+    --Rover
+    SELECT N'100-serie%',N'Rover',N'' UNION ALL
+    SELECT N'200-serie%',N'Rover',N'' UNION ALL
+    SELECT N'400-serie%',N'Rover',N'' UNION ALL
+    SELECT N'600-serie%',N'Rover',N'' UNION ALL
+    SELECT N'800-serie%',N'Rover',N'' UNION ALL
     --Volkswagen
     SELECT N'Golf%',N'Volkswagen',N'%Plus%' UNION ALL 
     SELECT N'Passat%',N'Volkswagen',N'%CC%' UNION ALL
