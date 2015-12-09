@@ -28,6 +28,15 @@ INSERT INTO @tMask
     SELECT N'Clio%',N'Renault',N'' UNION ALL
     --Kia
     SELECT N'Cee%',N'Kia',N'' UNION ALL
+    SELECT N'Pro Cee%',N'Kia',N'' UNION ALL
+    --Infinity
+    SELECT N'EX%',N'Infiniti',N'' UNION ALL
+    SELECT N'FX%',N'Infiniti',N'' UNION ALL
+    SELECT N'G%',N'Infiniti',N'' UNION ALL
+    SELECT N'JX%',N'Infiniti',N'' UNION ALL
+    SELECT N'M%',N'Infiniti',N'' UNION ALL
+    SELECT N'Q%',N'Infiniti',N'' UNION ALL
+    SELECT N'QX%',N'Infiniti',N'' UNION ALL
     --Lexus
     SELECT N'CT%',N'Lexus',N'' UNION ALL
     SELECT N'ES%',N'Lexus',N'' UNION ALL
@@ -135,6 +144,17 @@ INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
 SELECT  N'Т1%',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Mercedes' AND cm.Name = N'T1'
+;
+--Kia Cee'd -- Cyrillic C symbol
+INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
+SELECT  N'Сее%',N'',cb.CarBrandId,cm.CarModelId
+FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
+WHERE   cb.Name = N'Kia' AND cm.Name = N'Cee''d'
+
+INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
+SELECT  N'Сee%',N'',cb.CarBrandId,cm.CarModelId
+FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
+WHERE   cb.Name = N'Kia' AND cm.Name = N'Cee''d'
 ;
 --Hyundai H-1
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
