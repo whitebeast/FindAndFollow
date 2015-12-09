@@ -486,6 +486,9 @@ namespace FindAndFollow
             try
             {
                 int startCut = word.IndexOf("+375 ", StringComparison.Ordinal);
+                // alternative phone code
+                if (startCut == -1) startCut = word.IndexOf("+7 ", StringComparison.Ordinal);
+
                 int endCut = word.IndexOf("</b>", StringComparison.Ordinal);
                 string phoneNumber = RemoveText(word.Substring(startCut, endCut - startCut), new string[]{"<b>"}, url);
 
