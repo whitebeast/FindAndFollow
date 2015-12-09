@@ -37,6 +37,8 @@ INSERT INTO @tMask
     SELECT N'M%',N'Infiniti',N'' UNION ALL
     SELECT N'Q%',N'Infiniti',N'' UNION ALL
     SELECT N'QX%',N'Infiniti',N'' UNION ALL
+    --Lancia
+    SELECT N'Y%',N'Lancia',N'' UNION ALL
     --Lexus
     SELECT N'CT%',N'Lexus',N'' UNION ALL
     SELECT N'ES%',N'Lexus',N'' UNION ALL

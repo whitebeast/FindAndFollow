@@ -22,6 +22,7 @@ BEGIN
                     WHEN N'Пикап' THEN 10
                     WHEN N'Родстер' THEN 11
                     WHEN N'Автобус' THEN 12
+                    ELSE 0
                 END
             WHEN @pType = 'EngineType' THEN
                 CASE @pString
@@ -31,29 +32,34 @@ BEGIN
                     WHEN N'Гибридный бензиновый' THEN 4
                     WHEN N'Гибридный дизельный' THEN 5
                     WHEN N'Электрический' THEN 6
+                    ELSE 0
                 END
             WHEN @pType = 'TransmissionType' THEN
                 CASE @pString
                     WHEN N'Автомат' THEN 1
                     WHEN N'Механика' THEN 2
+                    ELSE 0
                 END
             WHEN @pType = 'DriveType' THEN
                 CASE @pString
                     WHEN N'Передний' THEN 1
                     WHEN N'Задний' THEN 2
                     WHEN N'Полный' THEN 3
+                    ELSE 0
                 END
             WHEN @pType = 'Condition' THEN
                 CASE @pString
                     WHEN N'Новый' THEN 1
                     WHEN N'С пробегом' THEN 2
                     WHEN N'Аварийный' THEN 3
+                    ELSE 0
                 END
             WHEN @pType = 'SellerType' THEN
                 CASE @pString
                     WHEN N'Частное' THEN 1
                     WHEN N'Автохаус' THEN 2
                     WHEN N'Дилер' THEN 3
+                    ELSE 0
                 END
             ELSE 0 
         END 
