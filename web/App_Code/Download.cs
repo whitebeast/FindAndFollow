@@ -428,7 +428,7 @@ namespace FindAndFollow
                 }
             }
 
-            int[] ids = Array.ConvertAll(lstUrls.ToArray(), int.Parse);
+            int[] ids = Array.ConvertAll(lstUrls.Distinct().ToArray(), int.Parse);
 
             return ids;
 
