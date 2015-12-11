@@ -7,6 +7,7 @@ INSERT INTO @tMask
     --Audi
     SELECT N'A4%',N'Audi',N'%Allroad' UNION ALL
     SELECT N'A6%',N'Audi',N'%Allroad' UNION ALL
+    SELECT N'A8%',N'Audi',N'' UNION ALL
     --BMW
     SELECT N'1%',N'BMW',N'' UNION ALL
     SELECT N'2%',N'BMW',N'' UNION ALL
@@ -22,6 +23,8 @@ INSERT INTO @tMask
     SELECT N'Grande%',N'Fiat',N'' UNION ALL
     --Opel
     SELECT N'Astra%',N'Opel',N'' UNION ALL
+    --Iveco
+    SELECT N'700%',N'Iveco',N'' UNION ALL
     --Renault
     SELECT N'Scenic%',N'Renault',N'' UNION ALL
     SELECT N'Laguna%',N'Renault',N'' UNION ALL
@@ -51,7 +54,10 @@ INSERT INTO @tMask
     SELECT N'NX%',N'Lexus',N'' UNION ALL
     SELECT N'RX%',N'Lexus',N'' UNION ALL
     SELECT N'SC%',N'Lexus',N'' UNION ALL
+    --Peugeot
+    SELECT N'407%',N'Peugeot',N'' UNION ALL
     --Mercedes
+    SELECT N'190%',N'Mercedes',N'' UNION ALL
     SELECT N'A%',N'Mercedes',N'' UNION ALL
     SELECT N'B%',N'Mercedes',N'' UNION ALL
     SELECT N'C%',N'Mercedes',N'CL%' UNION ALL
@@ -79,6 +85,8 @@ INSERT INTO @tMask
     SELECT N'T2%',N'Mercedes',N'' UNION ALL
     --Nissan
     SELECT N'100%',N'Nissan',N'' UNION ALL
+    --SAAB
+    SELECT N'9-7%',N'SAAB',N'' UNION ALL
     --Suzuki
     SELECT N'SX%',N'Suzuki',N'' UNION ALL
     SELECT N'XL%',N'Suzuki',N'Grand%' UNION ALL
