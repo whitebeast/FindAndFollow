@@ -46,7 +46,7 @@ SELECT N'Новополоцк',N'Витебская область' UNION ALL
 SELECT N'Орша',N'Витебская область' UNION ALL
 SELECT N'Полоцк',N'Витебская область' UNION ALL
 SELECT N'Брагин',N'Гомельская область' UNION ALL
-SELECT N'Буда-Кошелево',N'Гомельская область' UNION ALL
+SELECT N'Буда-Кошелёво',N'Гомельская область' UNION ALL
 SELECT N'Ветка',N'Гомельская область' UNION ALL
 SELECT N'Добруш',N'Гомельская область' UNION ALL
 SELECT N'Ельск',N'Гомельская область' UNION ALL

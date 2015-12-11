@@ -98,6 +98,12 @@ INSERT INTO @tMask
     SELECT N'T3%',N'Volkswagen',N'' UNION ALL
     SELECT N'T4%',N'Volkswagen',N'' UNION ALL
     SELECT N'T5%',N'Volkswagen',N'' UNION ALL
+    --Volvo
+    SELECT N'FH%',N'Volkswagen',N'' UNION ALL
+    SELECT N'FM%',N'Volkswagen',N'FMX%' UNION ALL
+    SELECT N'FMX%',N'Volkswagen',N'' UNION ALL
+    SELECT N'FE%',N'Volkswagen',N'' UNION ALL
+    SELECT N'FL%',N'Volkswagen',N'' UNION ALL
     --ГАЗ
     SELECT N'24%',N'ГАЗ',N'' UNION ALL
     SELECT N'27%',N'ГАЗ',N'' UNION ALL
