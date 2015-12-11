@@ -11,9 +11,9 @@ INSERT INTO @tMask
     --BMW
     SELECT N'1%',N'BMW',N'' UNION ALL
     SELECT N'2%',N'BMW',N'' UNION ALL
-    SELECT N'3%',N'BMW',N'' UNION ALL
+    SELECT N'3%',N'BMW',N'%Gran Turismo%' UNION ALL
     SELECT N'4%',N'BMW',N'' UNION ALL
-    SELECT N'5%',N'BMW',N'' UNION ALL
+    SELECT N'5%',N'BMW',N'%Gran Turismo%' UNION ALL
     SELECT N'6%',N'BMW',N'' UNION ALL
     SELECT N'7%',N'BMW',N'' UNION ALL
     SELECT N'8%',N'BMW',N'' UNION ALL
@@ -132,6 +132,11 @@ SELECT  N'E46',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'BMW' AND cm.Name = N'3-Series'
 ;
+--BMW 5-Series Gran Turismo
+INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
+SELECT  N'%F07%',N'',cb.CarBrandId,cm.CarModelId
+FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
+WHERE   cb.Name = N'BMW' AND cm.Name = N'5-Series Gran Turismo'
 --Citroen Xsara Picasso
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
 SELECT  N'Picasso',N'',cb.CarBrandId,cm.CarModelId

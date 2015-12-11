@@ -33,8 +33,6 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION
         
-        DELETE FROM dbo.CarParsing WHERE PageStatusId <> 1;
-        ;
         -- load and parse data
         SELECT  
                 CASE 
@@ -331,6 +329,8 @@ BEGIN
         JOIN #CarParsing t ON t.CarParsingId = cp.CarParsingId
         ;
         EXEC dbo.CarLogInsert
+        ;
+        DELETE FROM dbo.CarParsing WHERE PageStatusId <> 1;
         ;
         COMMIT TRANSACTION
     END TRY        
