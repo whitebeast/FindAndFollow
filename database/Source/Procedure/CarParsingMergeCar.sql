@@ -33,7 +33,7 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION
         
-        DELETE FROM dbo.CarParsing WHERE PageStatusId != 1;
+        DELETE FROM dbo.CarParsing WHERE PageStatusId <> 1;
         ;
         -- load and parse data
         SELECT  
