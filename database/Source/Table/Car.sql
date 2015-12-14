@@ -23,6 +23,7 @@
         OptionList            NVARCHAR(4000) NULL,
         OriginalCarBrand      NVARCHAR(50) NULL,
         OriginalCarModel      NVARCHAR(50) NULL,
+        IsActive              BIT NOT NULL,
         CreatedOn             DATETIME2 NOT NULL
     )
     ;

@@ -91,5 +91,5 @@
               FROM (SELECT CarId, 'Phone'+CAST(ROW_NUMBER() OVER (PARTITION BY CarId ORDER BY CarId DESC) AS VARCHAR) AS PhoneId, Phone FROM dbo.CarOwnerPhone) x
               PIVOT (MAX(Phone) FOR PhoneId IN ([Phone1], [Phone2], [Phone3]) ) pvt
           ) AS cop ON cop.CarId = c.CarId
-
+      WHERE c.IsActive = 1
 

@@ -191,6 +191,7 @@
     <Build Include="Source\Table\Constraint\FK\CarLog.sql" />
     <Build Include="Source\Procedure\CarLogInsert.sql" />
     <Build Include="Source\Table\Constraint\Default\CarLog.sql" />
+    <Build Include="Source\Procedure\CarUpdate_IsActive.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
