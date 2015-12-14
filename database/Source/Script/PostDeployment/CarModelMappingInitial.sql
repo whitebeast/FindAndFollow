@@ -184,6 +184,12 @@ SELECT  N'H1',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Hyundai' AND cm.Name = N'H-1'
 ;
+--Iveco 49-10
+INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
+SELECT  N'4910',N'',cb.CarBrandId,cm.CarModelId
+FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
+WHERE   cb.Name = N'Iveco' AND cm.Name = N'49-10'
+;
 INSERT INTO @tCarModelMapping
     (
 	    ModelMask,
