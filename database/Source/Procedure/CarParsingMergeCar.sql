@@ -100,7 +100,7 @@ BEGIN
                             cp.CarBrand,
                             cp.Model,
                             cp.SiteId,
-                            cp.City,
+                            CASE WHEN cp.City = N'Могилёв' THEN N'Могилев' ELSE cp.City END AS City,
                             cp.Country,
                             cp.Price,
                             dbo.MappingType('BodyType',cp.BodyType) AS BodyType,

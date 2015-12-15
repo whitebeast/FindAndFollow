@@ -132,6 +132,12 @@ SELECT  N'E46',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'BMW' AND cm.Name = N'3-Series'
 ;
+--BMW E65
+INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
+SELECT  N'E65',N'',cb.CarBrandId,cm.CarModelId
+FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
+WHERE   cb.Name = N'BMW' AND cm.Name = N'7-Series'
+;
 --BMW 5-Series Gran Turismo
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
 SELECT  N'%F07%',N'',cb.CarBrandId,cm.CarModelId
