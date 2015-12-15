@@ -43,6 +43,8 @@ namespace FindAndFollow
             int[] urlIds = Download.UrlsGet(mainPageXpaths[0], siteAbwA, mainPageXpaths[1], mainPageXpaths[2], mainPageXpaths[3]);
 
             Database.CarParsingInsert(urlAbw, xPathArray, urlIds, mainPageXpaths[4], "abw.by");
+
+            Database.CarMerge();
         }
 
         static void AbThread()
@@ -59,6 +61,8 @@ namespace FindAndFollow
             int[] urlIds = new int[] { 2478464, 2478462, 2478461, 2478457, 2478453, 2478452 };
 
             Database.CarParsingInsert(urlAb, xPathArray, urlIds, mainPageXpaths[4], siteAb);
+
+            Database.CarMerge();
         }
     }
 }
