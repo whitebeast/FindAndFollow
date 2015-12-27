@@ -15,8 +15,8 @@ namespace FindAndFollow
             Thread threadAbw = new Thread(AbwThread);
             threadAbw.Start();
 
-            Thread threadAb = new Thread(AbThread);
-            threadAb.Start(); 
+            //Thread threadAb = new Thread(AbThread);
+            //threadAb.Start(); 
 
             string siteAv = "av.by";
 
