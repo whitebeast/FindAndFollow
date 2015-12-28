@@ -20,7 +20,7 @@ set nocount on;
         (
             SELECT
                     0 as CurrencyId
-                   ,'BYR' as CharCode
+                   ,'BYN' as CharCode
                    ,'Belorussian Ruble' as EnglishName
             UNION ALL
             SELECT
