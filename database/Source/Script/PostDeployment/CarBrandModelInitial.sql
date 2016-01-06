@@ -474,6 +474,7 @@ SELECT N'Fiat', N'Idea' UNION ALL
 SELECT N'Fiat', N'Lancia' UNION ALL
 SELECT N'Fiat', N'Linea' UNION ALL
 SELECT N'Fiat', N'Marea' UNION ALL
+SELECT N'Fiat', N'Marea Weekend' UNION ALL
 SELECT N'Fiat', N'Marengo' UNION ALL
 SELECT N'Fiat', N'Multipla' UNION ALL
 SELECT N'Fiat', N'Palio' UNION ALL
@@ -1437,6 +1438,7 @@ SELECT N'Toyota', N'Altezza' UNION ALL
 SELECT N'Toyota', N'Auris' UNION ALL
 SELECT N'Toyota', N'Avalon' UNION ALL
 SELECT N'Toyota', N'Avensis' UNION ALL
+SELECT N'Toyota', N'Avensis Verso' UNION ALL
 SELECT N'Toyota', N'Aygo' UNION ALL
 SELECT N'Toyota', N'BB' UNION ALL
 SELECT N'Toyota', N'Camry' UNION ALL
