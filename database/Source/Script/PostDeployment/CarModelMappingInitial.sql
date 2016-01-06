@@ -57,6 +57,8 @@ INSERT INTO @tMask
     SELECT N'SC%',N'Lexus',N'' UNION ALL
     --Peugeot
     SELECT N'407%',N'Peugeot',N'' UNION ALL
+    --Mazda
+    SELECT N'323%',N'Mazda',N'' UNION ALL
     --Mercedes
     SELECT N'190%',N'Mercedes',N'' UNION ALL
     SELECT N'A%',N'Mercedes',N'' UNION ALL
@@ -196,7 +198,7 @@ SELECT  N'4910',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId
 WHERE   cb.Name = N'Iveco' AND cm.Name = N'49-10'
 ;
--- Mazda CX-5 / CX-7 / CX-9
+-- Mazda CX-5 / CX-7 / CX-9 
 INSERT INTO @tCarModelMapping (ModelMask,ModelNotMask,CarBrandId,CarModelId)
 SELECT  N'CX5',N'',cb.CarBrandId,cm.CarModelId
 FROM    dbo.CarModel cm JOIN dbo.CarBrand cb ON cb.CarBrandId = cm.CarBrandId

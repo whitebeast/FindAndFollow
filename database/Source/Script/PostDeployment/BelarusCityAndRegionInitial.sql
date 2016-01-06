@@ -61,7 +61,7 @@ SELECT N'Наровля',N'Гомельская область' UNION ALL
 SELECT N'Октябрьский',N'Гомельская область' UNION ALL
 SELECT N'Петриков',N'Гомельская область' UNION ALL
 SELECT N'Речица',N'Гомельская область' UNION ALL
-SELECT N'Рогачев',N'Гомельская область' UNION ALL
+SELECT N'Рогачёв',N'Гомельская область' UNION ALL
 SELECT N'Светлогорск',N'Гомельская область' UNION ALL
 SELECT N'Хойники',N'Гомельская область' UNION ALL
 SELECT N'Чечерск',N'Гомельская область' UNION ALL
