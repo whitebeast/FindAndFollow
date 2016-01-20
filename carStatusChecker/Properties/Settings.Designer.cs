@@ -27,9 +27,18 @@ namespace CarStatusChecker.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\ins1;Initial Catalog=FindAndFollow;Integrated Security=True")]
-        public string ConnectionStr {
+        public string ConnectionString {
             get {
-                return ((string)(this["ConnectionStr"]));
+                return ((string)(this["ConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\temp")]
+        public string logFileDir {
+            get {
+                return ((string)(this["logFileDir"]));
             }
         }
     }

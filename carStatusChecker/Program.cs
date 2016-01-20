@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
@@ -11,12 +12,13 @@ namespace CarStatusChecker
 {
     class Program
     {
-        static string fileName = @"C:\temp\" + DateTime.Now.ToString("HH-mm-ss") + ".txt"; // enter dir for log file
+        static string connStr = ConfigurationManager.ConnectionStrings["CarStatusChecker.Properties.Settings.ConnectionString"].ConnectionString;
+        static string dir = Properties.Settings.Default.logFileDir;
+        static string fileName = dir + DateTime.Now.ToString("HH-mm-ss") + ".txt"; 
         static void Main(string[] args)
         {
-            using (SqlConnection conn = new SqlConnection())
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                conn.ConnectionString = @"Server=.\ins1;Database=FindAndFollow;Trusted_Connection=true"; // enter database connection properties
                 conn.Open();
                 SqlCommand command = new SqlCommand("SELECT CarId, OriginalURL FROM Car WHERE IsActive = 1", conn);
                 var cars = new List<Car>();
