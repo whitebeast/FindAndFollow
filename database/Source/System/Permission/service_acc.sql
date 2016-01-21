@@ -10,8 +10,6 @@ BEGIN
     WITH PASSWORD = 'service_acc',
     CHECK_EXPIRATION=OFF, 
     CHECK_POLICY=OFF 
-
-    ALTER LOGIN service_acc WITH DEFAULT_DATABASE = FindAndFollow
 END
 GO
 
@@ -33,7 +31,12 @@ BEGIN
     GRANT SELECT ON dbo.DecodeCyrillicJSON TO service_acc 
 
     GRANT SELECT ON dbo.ParseJSON TO service_acc
+
+    GRANT SELECT ON dbo.vwCarActive TO service_acc
 END
+GO
+
+ALTER LOGIN service_acc WITH DEFAULT_DATABASE = FindAndFollow
 GO
 
 /*

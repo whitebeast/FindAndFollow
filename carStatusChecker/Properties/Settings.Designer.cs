@@ -26,7 +26,8 @@ namespace CarStatusChecker.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\ins1;Initial Catalog=FindAndFollow;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\ins1;Initial Catalog=FindAndFollow;Persist Security Info=True;User " +
+            "ID=service_acc;Password=service_acc")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
@@ -35,7 +36,7 @@ namespace CarStatusChecker.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("c:\\temp")]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\temp\\")]
         public string logFileDir {
             get {
                 return ((string)(this["logFileDir"]));

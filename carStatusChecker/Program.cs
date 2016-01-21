@@ -20,10 +20,9 @@ namespace CarStatusChecker
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT CarId, OriginalURL FROM Car WHERE IsActive = 1", conn);
+                SqlCommand command = new SqlCommand("SELECT CarId, OriginalURL FROM dbo.vwCarActive", conn);
                 var cars = new List<Car>();
-                var carsSort = new List<Car>();
-                
+                                
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -40,9 +39,11 @@ namespace CarStatusChecker
 
                 cars.Sort((x, y) => String.CompareOrdinal(x.OriginalURL, y.OriginalURL));
 
+                var count = cars.Count;
+
                 foreach (var car in cars)
                 {
-                    
+                    Console.WriteLine((cars.IndexOf(car) + 1) + " from " + count);
                     using (var web = new WebClient())
                     {
                         try
@@ -51,12 +52,12 @@ namespace CarStatusChecker
 
                             if (page.Contains("не найдено"))
                             {
-                                Logging(car.CarId, car.OriginalURL, "UPDATE");
-                                SetNotFound(conn, car.CarId);
+                                LogText(car.CarId, car.OriginalURL, "UPDATE");
+                                SetNotActive(conn, car.CarId);
                             }
                             else
                             {
-                                Logging(car.CarId, car.OriginalURL, "SKIP");
+                                LogText(car.CarId, car.OriginalURL, "SKIP");
                             }
                         }
                         catch (WebException ex)
@@ -64,26 +65,22 @@ namespace CarStatusChecker
                             HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
                             if (webResponse.StatusCode == HttpStatusCode.NotFound)
                             {
-                                SetNotFound(conn, car.CarId);
+                                SetNotActive(conn, car.CarId);
                             }
                         }
-                        //TODO: log
-                        //catch (Exception ex)
-                        //{
-                        //}
                     }
                 }
             }
         }
 
-        static void SetNotFound(SqlConnection connection, int carId)
+        static void SetNotActive(SqlConnection connection, int carId)
         {
-            var updCommand = new SqlCommand("UPDATE Car SET IsActive = 0 WHERE CarId = @CarId", connection);
+            var updCommand = new SqlCommand("EXECUTE dbo.CarUpdate_IsActive @pCarId = @CarId", connection);
             updCommand.Parameters.AddWithValue("@CarId", carId);
             updCommand.ExecuteNonQuery();
         }
 
-        static void Logging(int CarId, string OriginalURL, string RowType)
+        static void LogText(int CarId, string OriginalURL, string RowType)
         {
             TextWriter tsw = new StreamWriter(fileName, true);
             tsw.WriteLine("{0}\t{1}\t{2}", CarId, OriginalURL, RowType);
