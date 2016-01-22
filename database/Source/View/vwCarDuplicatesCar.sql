@@ -1,0 +1,37 @@
+﻿CREATE VIEW [dbo].[vwCarDuplicatesCar]
+AS 
+SELECT  CarBrand,
+        CarModel,
+        Country,
+        Region,
+        City,
+        BodyType,
+        ModelYear,
+        EngineType,
+        EngineSize,
+        TransmissionType,
+        DriveType,
+        Condition,
+        Color,
+        SellerType,
+        Mileage,
+        LEFT(Description,100) AS Description100,
+        COUNT(*) AS CarCount
+FROM    dbo.vwCar
+GROUP BY CarBrand,
+        CarModel,
+        Country,
+        Region,
+        City,
+        BodyType,
+        ModelYear,
+        EngineType,
+        EngineSize,
+        TransmissionType,
+        DriveType,
+        Condition,
+        Color,
+        SellerType,
+        Mileage,
+        LEFT(Description,100)
+HAVING  COUNT(*) > 1
