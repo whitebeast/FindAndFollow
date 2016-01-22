@@ -96,11 +96,11 @@ INSERT INTO @tMask
     --Toyota
     SELECT N'Carina%',N'Toyota',N'' UNION ALL
     --Rover
-    SELECT N'100-serie%',N'Rover',N'' UNION ALL
-    SELECT N'200-serie%',N'Rover',N'' UNION ALL
-    SELECT N'400-serie%',N'Rover',N'' UNION ALL
-    SELECT N'600-serie%',N'Rover',N'' UNION ALL
-    SELECT N'800-serie%',N'Rover',N'' UNION ALL
+    SELECT N'100%',N'Rover',N'' UNION ALL
+    SELECT N'200%',N'Rover',N'' UNION ALL
+    SELECT N'400%',N'Rover',N'' UNION ALL
+    SELECT N'600%',N'Rover',N'' UNION ALL
+    SELECT N'800%',N'Rover',N'' UNION ALL
     --Volkswagen
     SELECT N'Golf%',N'Volkswagen',N'%Plus%' UNION ALL 
     SELECT N'Passat%',N'Volkswagen',N'%CC%' UNION ALL
