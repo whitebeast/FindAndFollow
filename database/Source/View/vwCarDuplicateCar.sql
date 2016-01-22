@@ -1,4 +1,4 @@
-﻿CREATE VIEW [dbo].[vwCarDuplicatesCar]
+﻿CREATE VIEW [dbo].[vwCarDuplicateCar]
 AS 
 SELECT  CarBrand,
         CarModel,
