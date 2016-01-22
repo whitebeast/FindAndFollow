@@ -195,7 +195,7 @@
     <Build Include="Source\Procedure\CarUpdate_IsActive.sql" />
     <Build Include="Source\View\vwCarDuplicatePhone.sql" />
     <Build Include="Source\View\vwCarDuplicateDescription.sql" />
-    <Build Include="Source\View\vwCarDuplicatesCar.sql" />
+    <Build Include="Source\View\vwCarDuplicateCar.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\System\SQLJob\GetDailyCurrencyRates.sql" />
