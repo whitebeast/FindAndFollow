@@ -43,7 +43,7 @@ namespace CarStatusChecker
 
                 foreach (var car in cars)
                 {
-                    Console.WriteLine((cars.IndexOf(car) + 1) + " from " + count);
+                    Console.Write((cars.IndexOf(car) + 1) + " from " + count);
                     using (var web = new WebClient())
                     {
                         try
@@ -53,11 +53,15 @@ namespace CarStatusChecker
                             if (page.Contains("не найдено"))
                             {
                                 LogText(car.CarId, car.OriginalURL, "UPDATE");
+                                Console.Write(": UPDATE");
+                                Console.WriteLine("");
                                 SetNotActive(conn, car.CarId);
                             }
                             else
                             {
                                 LogText(car.CarId, car.OriginalURL, "SKIP");
+                                Console.Write(": SKIP");
+                                Console.WriteLine("");
                             }
                         }
                         catch (WebException ex)
