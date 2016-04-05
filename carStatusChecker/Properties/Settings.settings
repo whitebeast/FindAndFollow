@@ -5,13 +5,13 @@
     <Setting Name="ConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=.\ins1;Initial Catalog=FindAndFollow;Persist Security Info=True;User ID=service_acc;Password=service_acc&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=.;Initial Catalog=FindAndFollow;Persist Security Info=True;User ID=service_acc;Password=service_acc&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=.\ins1;Initial Catalog=FindAndFollow;Persist Security Info=True;User ID=service_acc;Password=service_acc</Value>
+      <Value Profile="(Default)">Data Source=.;Initial Catalog=FindAndFollow;Persist Security Info=True;User ID=service_acc;Password=service_acc</Value>
     </Setting>
     <Setting Name="logFileDir" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">c:\temp\</Value>
+      <Value Profile="(Default)">d:\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

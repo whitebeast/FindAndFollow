@@ -14,13 +14,13 @@ namespace CarStatusChecker
     {
         static string connStr = ConfigurationManager.ConnectionStrings["CarStatusChecker.Properties.Settings.ConnectionString"].ConnectionString;
         static string dir = Properties.Settings.Default.logFileDir;
-        static string fileName = dir + DateTime.Now.ToString("HH-mm-ss") + ".txt"; 
+        static string fileName = dir + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".txt"; 
         static void Main(string[] args)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT CarId, OriginalURL FROM dbo.vwCarActive", conn);
+                SqlCommand command = new SqlCommand("SELECT CarId, OriginalURL FROM dbo.vwCarActive ORDER BY CarId", conn);
                 var cars = new List<Car>();
                                 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -43,7 +43,7 @@ namespace CarStatusChecker
 
                 foreach (var car in cars)
                 {
-                    Console.Write((cars.IndexOf(car) + 1) + " from " + count);
+                    Console.Write((cars.IndexOf(car) + 1) + " from " + count + ":");
                     using (var web = new WebClient())
                     {
                         try
@@ -52,16 +52,12 @@ namespace CarStatusChecker
 
                             if (page.Contains("не найдено"))
                             {
-                                LogText(car.CarId, car.OriginalURL, "UPDATE");
-                                Console.Write(": UPDATE");
-                                Console.WriteLine("");
+                                LogText(car.CarId, car.OriginalURL, "NOT ACTIVE");
                                 SetNotActive(conn, car.CarId);
                             }
                             else
                             {
-                                LogText(car.CarId, car.OriginalURL, "SKIP");
-                                Console.Write(": SKIP");
-                                Console.WriteLine("");
+                                LogText(car.CarId, car.OriginalURL, "ACTIVE");
                             }
                         }
                         catch (WebException ex)
@@ -89,6 +85,9 @@ namespace CarStatusChecker
             TextWriter tsw = new StreamWriter(fileName, true);
             tsw.WriteLine("{0}\t{1}\t{2}", CarId, OriginalURL, RowType);
             tsw.Close();
+
+            Console.Write(RowType);
+            Console.WriteLine("");
         }
     }
 }
