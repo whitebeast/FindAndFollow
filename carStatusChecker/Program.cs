@@ -52,7 +52,7 @@ namespace CarStatusChecker
 
                             if (page.Contains("не найдено"))
                             {
-                                LogText(car.CarId, car.OriginalURL, "NOT ACTIVE");
+                                LogText(car.CarId, car.OriginalURL, "DELETED");
                                 SetNotActive(conn, car.CarId);
                             }
                             else
