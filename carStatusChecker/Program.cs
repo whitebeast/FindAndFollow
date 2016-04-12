@@ -37,7 +37,7 @@ namespace CarStatusChecker
                     }
                 }
 
-                cars.Sort((x, y) => String.CompareOrdinal(x.OriginalURL, y.OriginalURL));
+                //cars.Sort((x, y) => String.CompareOrdinal(x.OriginalURL, y.OriginalURL));
 
                 var count = cars.Count;
 
@@ -52,7 +52,8 @@ namespace CarStatusChecker
 
                             if (page.Contains("не найдено"))
                             {
-                                LogText(car.CarId, car.OriginalURL, "DELETED");
+                                
+                                LogText(car.CarId, car.OriginalURL, "UNACTIVE");
                                 SetNotActive(conn, car.CarId);
                             }
                             else
@@ -65,6 +66,7 @@ namespace CarStatusChecker
                             HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
                             if (webResponse.StatusCode == HttpStatusCode.NotFound)
                             {
+                                LogText(car.CarId, car.OriginalURL, "UNACTIVE");
                                 SetNotActive(conn, car.CarId);
                             }
                         }

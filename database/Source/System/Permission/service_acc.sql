@@ -33,6 +33,8 @@ BEGIN
     GRANT SELECT ON dbo.ParseJSON TO service_acc
 
     GRANT SELECT ON dbo.vwCarActive TO service_acc
+    
+    GRANT SELECT ON dbo.vwCar TO service_acc
 END
 GO
 

@@ -1,6 +1,8 @@
 ﻿CREATE VIEW [dbo].[vwCar]
-	AS 
-	SELECT c.CarId
+ALTER VIEW [dbo].[vwCar]
+    AS 
+    SELECT 
+	       c.CarId
           ,cb.Name AS CarBrand
           ,c.OriginalCarBrand
           ,cm.Name AS CarModel
@@ -10,6 +12,7 @@
           ,r.Name AS Region
           ,c3.Name AS City
           ,c.Price
+          ,c.Price / cr.Rate AS USDPrice
           ,CASE c.BodyType 
             WHEN 1 THEN 'Sedan'
             WHEN 2 THEN 'Wagon'
@@ -74,7 +77,7 @@
           ,c.Description
           ,c.OriginalURL
           ,c.PageCreatedOn
-          ,c.CarImages
+          ,f.StringValue AS CarImages
           ,c.OptionList
           ,c.CreatedOn
       FROM dbo.Car c
@@ -91,5 +94,8 @@
               FROM (SELECT CarId, 'Phone'+CAST(ROW_NUMBER() OVER (PARTITION BY CarId ORDER BY CarId DESC) AS VARCHAR) AS PhoneId, Phone FROM dbo.CarOwnerPhone) x
               PIVOT (MAX(Phone) FOR PhoneId IN ([Phone1], [Phone2], [Phone3]) ) pvt
           ) AS cop ON cop.CarId = c.CarId
+      LEFT JOIN dbo.CurrencyRate AS cr ON cr.CurrencyId = 145 AND cr.RateDate = CAST(GETDATE() AS DATE)
+      CROSS APPLY dbo.ParseJSON(c.CarImages) f
       WHERE c.IsActive = 1
-
+        AND f.NAME = 'ImageURL'
+        AND f.Element_ID = 1

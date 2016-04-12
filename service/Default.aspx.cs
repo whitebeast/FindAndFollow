@@ -18,15 +18,15 @@ namespace FindAndFollow
             //Thread threadAb = new Thread(AbThread);
             //threadAb.Start(); 
 
-            string siteAv = "av.by";
+            //string siteAv = "av.by";
 
-            string urlAv = Database.CarParsingSettingsDownloadMaskUrl(siteAv);
+            //string urlAv = Database.CarParsingSettingsDownloadMaskUrl(siteAv);
 
-            string[] mainPageXpaths = Database.CarParsingSettingsMainPage(siteAv);
-            int[] urlIds = Download.UrlsGet(mainPageXpaths[0], siteAv, mainPageXpaths[1], mainPageXpaths[2], mainPageXpaths[3]);
+            //string[] mainPageXpaths = Database.CarParsingSettingsMainPage(siteAv);
+            //int[] urlIds = Download.UrlsGet(mainPageXpaths[0], siteAv, mainPageXpaths[1], mainPageXpaths[2], mainPageXpaths[3]);
 
-            string[] xPathArray = Database.CarParsingSettingsGet(siteAv);
-            Database.CarParsingInsert(urlAv, xPathArray, urlIds, mainPageXpaths[4], siteAv);
+            //string[] xPathArray = Database.CarParsingSettingsGet(siteAv);
+            //Database.CarParsingInsert(urlAv, xPathArray, urlIds, mainPageXpaths[4], siteAv);
 
             Database.CarMerge();
         }
