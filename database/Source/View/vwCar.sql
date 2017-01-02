@@ -1,5 +1,4 @@
 ﻿CREATE VIEW [dbo].[vwCar]
-ALTER VIEW [dbo].[vwCar]
     AS 
     SELECT 
 	       c.CarId
